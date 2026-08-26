@@ -8,3 +8,5 @@
 - [x] Reduce editorial copy and make event cards visually match location cards except for a date-range element.
 - [x] Upgrade the project for database-backed content and managed image storage.
 - [x] Validate the concise database-ready interface and save the revised checkpoint.
+- [x] Optimize the navigation, heading hierarchy, filters, cards, and touch targets for small screens.
+- [x] Validate the refined mobile experience and save the revised checkpoint.

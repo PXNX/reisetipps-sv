@@ -3,3 +3,8 @@
 - [x] Categorize each fixed listing so search and filters return relevant results.
 - [x] Split date-bound events from permanent locations with opening times and distinct section labels.
 - [x] Validate desktop and mobile interactions, then save the revised checkpoint.
+- [x] Replace the dense guide with at most two date-sorted current events followed by locations.
+- [x] Use a shared content schema for events and locations with Kultur, Natur, Kulinarik, Geschichte, and Technik.
+- [x] Reduce editorial copy and make event cards visually match location cards except for a date-range element.
+- [x] Upgrade the project for database-backed content and managed image storage.
+- [x] Validate the concise database-ready interface and save the revised checkpoint.

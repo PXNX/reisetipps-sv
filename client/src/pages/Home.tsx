@@ -7,7 +7,10 @@ import {
   Clock3,
   MapPin,
   MoveUpRight,
+  Search,
   Sparkles,
+  TrainFront,
+  X,
 } from "lucide-react";
 
 /**
@@ -17,6 +20,7 @@ import {
  */
 
 type Kind = "event" | "place";
+type Category = "culture" | "nature" | "culinary" | "history";
 
 type GuideItem = {
   id: string;
@@ -31,7 +35,10 @@ type GuideItem = {
   href: string;
   image?: string;
   source: string;
+  categories: Category[];
+  openingHours?: string;
   featured?: boolean;
+  wide?: boolean;
 };
 
 const guideItems: GuideItem[] = [
@@ -48,6 +55,7 @@ const guideItems: GuideItem[] = [
     location: "Hafen Bregenz · Österreich",
     href: "https://www.bodensee.eu/de/was-erleben/bodensee-highlights/top-veranstaltungen",
     source: "Bodensee.eu",
+    categories: ["culture", "culinary"],
     featured: true,
   },
   {
@@ -63,6 +71,7 @@ const guideItems: GuideItem[] = [
     location: "Kloster Allerheiligen · Schaffhausen",
     href: "https://www.bodensee.eu/de/was-erleben/bodensee-highlights/top-veranstaltungen",
     source: "Bodensee.eu",
+    categories: ["culinary", "culture"],
   },
   {
     id: "home-garden",
@@ -77,6 +86,7 @@ const guideItems: GuideItem[] = [
     location: "Kloster & Schloss Salem · DE",
     href: "https://www.bodensee.eu/de/was-erleben/bodensee-highlights/top-veranstaltungen",
     source: "Bodensee.eu",
+    categories: ["nature", "culture"],
   },
   {
     id: "open-air-kino",
@@ -92,6 +102,7 @@ const guideItems: GuideItem[] = [
     href: "https://www.wasserburg-bodensee.de/highlights-in-wasserburg/open-air-kino/",
     source: "Wasserburg Bodensee",
     image: "/manus-storage/open-air-kino-wasserburg_327d0769.jpg",
+    categories: ["culture", "nature"],
   },
   {
     id: "zurwies",
@@ -99,7 +110,7 @@ const guideItems: GuideItem[] = [
     status: "besuchbar",
     month: "GANZ",
     day: "JÄHRIG",
-    range: "Mo–Fr 08:30–13:00 · Sa 08:30–12:00",
+    range: "Ganzjährig besuchbar",
     title: "Käserei Zurwies",
     description:
       "Bio-Weichkäse aus Heumilch, ein offener Besuchergang und ein Käseladen für den Umweg ins Allgäu.",
@@ -107,20 +118,48 @@ const guideItems: GuideItem[] = [
     href: "https://www.zurwies.com/",
     source: "Käserei Zurwies",
     image: "/manus-storage/cheesemaker-bodensee_2376f594.jpg",
+    categories: ["culinary"],
+    openingHours: "Mo–Fr 08:30–13:00 · Sa 08:30–12:00",
+  },
+  {
+    id: "stein-am-rhein",
+    kind: "event",
+    status: "Winter vormerken",
+    month: "DEZ",
+    day: "02—02",
+    range: "2. Dez. 2026 — 2. Jan. 2027",
+    title: "Märlistadt Stein am Rhein",
+    description:
+      "Beleuchtete Marktstände, Altstadt und Kloster St. Georgen machen aus einem Winterabend eine kleine Zeitreise.",
+    location: "Altstadt & Kloster St. Georgen · Stein am Rhein",
+    href: "https://www.bodensee.eu/de/was-erleben/bodensee-highlights/top-veranstaltungen",
+    source: "Bodensee.eu",
+    categories: ["history", "culture"],
+    wide: true,
   },
 ];
 
-const filters: { id: "all" | Kind; label: string }[] = [
+const filters: { id: "all" | Category; label: string }[] = [
   { id: "all", label: "Alles" },
-  { id: "event", label: "Termine" },
-  { id: "place", label: "Orte" },
+  { id: "culture", label: "Kultur" },
+  { id: "nature", label: "Natur" },
+  { id: "culinary", label: "Kulinarik" },
+  { id: "history", label: "Geschichte" },
 ];
 
+const categoryLabels: Record<Category, string> = {
+  culture: "Kultur",
+  nature: "Natur",
+  culinary: "Kulinarik",
+  history: "Geschichte",
+};
+
 function DateTile({ item, large = false }: { item: GuideItem; large?: boolean }) {
+  const isPlace = item.kind === "place";
   return (
-    <div className={`date-tile ${large ? "date-tile--large" : ""}`} aria-label={item.range}>
-      <span>{item.month}</span>
-      <strong>{item.day}</strong>
+    <div className={`date-tile ${large ? "date-tile--large" : ""} ${isPlace ? "date-tile--place" : ""}`} aria-label={isPlace ? item.openingHours : item.range}>
+      <span>{isPlace ? "ZEITEN" : item.month}</span>
+      <strong>{isPlace ? "MO–SA" : item.day}</strong>
     </div>
   );
 }
@@ -129,7 +168,7 @@ function ItemCard({ item, index }: { item: GuideItem; index: number }) {
   const isPlace = item.kind === "place";
 
   return (
-    <article className={`listing-card listing-card--${item.kind}`} style={{ animationDelay: `${index * 45}ms` }}>
+    <article className={`listing-card listing-card--${item.kind} ${item.wide ? "listing-card--wide" : ""}`} style={{ animationDelay: `${index * 45}ms` }}>
       {item.image ? (
         <div className="listing-card__image-wrap">
           <img className="listing-card__image" src={item.image} alt="" />
@@ -138,9 +177,11 @@ function ItemCard({ item, index }: { item: GuideItem; index: number }) {
         </div>
       ) : (
         <div className="listing-card__wash" aria-hidden="true">
+          <span className="wash-route-no">ROUTE 09</span>
           <span className="wash-orbit wash-orbit--one" />
           <span className="wash-orbit wash-orbit--two" />
           <span className="wash-coordinate">47° 32′ N</span>
+          <span className="wash-route-label">UFERKARTE / BODENSEE</span>
         </div>
       )}
       <div className="listing-card__body">
@@ -149,10 +190,13 @@ function ItemCard({ item, index }: { item: GuideItem; index: number }) {
           <DateTile item={item} />
         </div>
         <h3>{item.title}</h3>
+        <div className="category-tags" aria-label="Themen">
+          {item.categories.map((category) => <span key={category}>{categoryLabels[category]}</span>)}
+        </div>
         <p>{item.description}</p>
         <div className="listing-card__meta">
           <span><MapPin size={14} strokeWidth={1.8} /> {item.location}</span>
-          <span><Clock3 size={14} strokeWidth={1.8} /> {item.range}</span>
+          <span><Clock3 size={14} strokeWidth={1.8} /> {isPlace ? item.openingHours : item.range}</span>
         </div>
         <a className="listing-card__link" href={item.href} target="_blank" rel="noreferrer">
           {isPlace ? "Ort ansehen" : "Details ansehen"}
@@ -164,12 +208,25 @@ function ItemCard({ item, index }: { item: GuideItem; index: number }) {
 }
 
 export default function Home() {
-  const [activeFilter, setActiveFilter] = useState<"all" | Kind>("all");
+  const [activeFilter, setActiveFilter] = useState<"all" | Category>("all");
+  const [searchQuery, setSearchQuery] = useState("");
   const featured = guideItems.find((item) => item.featured) as GuideItem;
+  const normalizedSearch = searchQuery.trim().toLocaleLowerCase("de-DE");
+  const shouldHideFeaturedFromResults = activeFilter === "all" && normalizedSearch.length === 0;
   const filteredItems = useMemo(
-    () => guideItems.filter((item) => !item.featured && (activeFilter === "all" || item.kind === activeFilter)),
-    [activeFilter],
+    () => guideItems.filter((item) => {
+      if (shouldHideFeaturedFromResults && item.featured) return false;
+      const matchesCategory = activeFilter === "all" || item.categories.includes(activeFilter);
+      const searchableText = [item.title, item.description, item.location, ...item.categories.map((category) => categoryLabels[category])]
+        .join(" ")
+        .toLocaleLowerCase("de-DE");
+      return matchesCategory && (!normalizedSearch || searchableText.includes(normalizedSearch));
+    }),
+    [activeFilter, normalizedSearch, shouldHideFeaturedFromResults],
   );
+  const eventItems = filteredItems.filter((item) => item.kind === "event");
+  const placeItems = filteredItems.filter((item) => item.kind === "place");
+  const hasNoResults = eventItems.length === 0 && placeItems.length === 0;
 
   return (
     <div className="min-h-screen overflow-hidden bg-[#08111f] text-[#f5f0e8]">
@@ -177,11 +234,15 @@ export default function Home() {
 
       <header className="site-header">
         <a className="brand" href="#anfang" aria-label="reisetipps.sv Startseite">
-          <img src="/manus-storage/reisetipps-harbour-signal_be27078a.png" alt="" />
-          <span>reisetipps<i>.sv</i></span>
+          <span className="brand__signal" aria-hidden="true">
+            <img src="/manus-storage/reisetipps-harbour-signal_be27078a.png" alt="" />
+            <span className="brand__signal-ring" />
+          </span>
+          <span className="brand__wordmark"><b>reisetipps</b><i>.sv</i></span>
         </a>
         <nav className="site-nav" aria-label="Seitennavigation">
           <a href="#auswahl">Auswahl</a>
+          <a href="#idee">Warum</a>
           <a href="#ort">Ort der Woche</a>
           <a href="#hinweis">Hinweis</a>
         </nav>
@@ -249,33 +310,87 @@ export default function Home() {
           </article>
         </section>
 
+        <section className="origin-section" id="idee" aria-labelledby="origin-title">
+          <div className="origin-section__marker" aria-hidden="true"><TrainFront size={22} /></div>
+          <div className="origin-section__title">
+            <span className="section-kicker">WARUM DIESE SEITE?</span>
+            <h2 id="origin-title">Empfehlungen, die<br /><em>mitfahren.</em></h2>
+          </div>
+          <div className="origin-section__copy">
+            <p>
+              Ich habe reisetipps.sv gemacht, weil so viele Zuggespräche irgendwann bei derselben Frage landen: <strong>„Kennst du einen schönen Ort?“</strong>
+            </p>
+            <p>
+              Zwischen Fenstern, Waggons und einem Kaffee sammle ich diese kleinen Empfehlungen schon lange. Hier bekommen sie einen festen Platz — zum Weitererzählen, Vormerken und Losfahren.
+            </p>
+          </div>
+        </section>
+
         <section className="guide-section" id="auswahl" aria-labelledby="guide-title">
           <div className="guide-section__header">
             <div>
-              <span className="section-kicker">KURZE WEGE, LANGE ABENDE</span>
+              <span className="section-kicker">TERMINE MIT ZEITFENSTER</span>
               <h2 id="guide-title">Was am See ansteht.</h2>
             </div>
-            <div className="filter-bar" aria-label="Inhalte filtern">
-              {filters.map((filter) => (
-                <button
-                  key={filter.id}
-                  type="button"
-                  onClick={() => setActiveFilter(filter.id)}
-                  className={activeFilter === filter.id ? "is-active" : ""}
-                  aria-pressed={activeFilter === filter.id}
-                >
-                  {filter.label}
-                </button>
-              ))}
+            <div className="guide-section__actions">
+              <label className="search-field">
+                <Search size={16} strokeWidth={1.8} />
+                <span className="sr-only">Reisetipps durchsuchen</span>
+                <input
+                  type="search"
+                  value={searchQuery}
+                  onChange={(event) => setSearchQuery(event.target.value)}
+                  placeholder="Ort, Thema oder Stichwort"
+                />
+                {searchQuery && (
+                  <button type="button" onClick={() => setSearchQuery("")} aria-label="Suche löschen">
+                    <X size={15} strokeWidth={2} />
+                  </button>
+                )}
+              </label>
+              <div className="filter-bar" aria-label="Inhalte nach Thema filtern">
+                {filters.map((filter) => (
+                  <button
+                    key={filter.id}
+                    type="button"
+                    onClick={() => setActiveFilter(filter.id)}
+                    className={activeFilter === filter.id ? "is-active" : ""}
+                    aria-pressed={activeFilter === filter.id}
+                  >
+                    {filter.label}
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
           <div className="guide-section__subline">
             <span><CalendarDays size={15} /> Auswahl aus dem Spätsommer 2026</span>
-            <span>{filteredItems.length.toString().padStart(2, "0")} Hinweise</span>
+            <span>{eventItems.length.toString().padStart(2, "0")} Veranstaltungen</span>
           </div>
           <div className="listing-grid">
-            {filteredItems.map((item, index) => <ItemCard key={item.id} item={item} index={index} />)}
+            {eventItems.map((item, index) => <ItemCard key={item.id} item={item} index={index} />)}
           </div>
+          {placeItems.length > 0 && (
+            <section className="locations-section" aria-labelledby="locations-title">
+              <div className="locations-section__heading">
+                <div>
+                  <span className="section-kicker">ORTE OHNE LAUFZEIT</span>
+                  <h3 id="locations-title">Orte, die bleiben.</h3>
+                </div>
+                <p>Keine Tickets, kein Enddatum. Hier zählt nur: Wann ist die Tür offen?</p>
+              </div>
+              <div className="listing-grid listing-grid--locations">
+                {placeItems.map((item, index) => <ItemCard key={item.id} item={item} index={index} />)}
+              </div>
+            </section>
+          )}
+          {hasNoResults && (
+            <div className="empty-results">
+              <Search size={21} strokeWidth={1.6} />
+              <p>Kein Tipp passt gerade zu dieser Suche.</p>
+              <button type="button" onClick={() => { setSearchQuery(""); setActiveFilter("all"); }}>Alles zeigen</button>
+            </div>
+          )}
         </section>
 
         <section className="place-feature" id="ort" aria-labelledby="place-title">
@@ -294,8 +409,11 @@ export default function Home() {
 
       <footer className="site-footer" id="hinweis">
         <div className="site-footer__brand">
-          <img src="/manus-storage/reisetipps-harbour-signal_be27078a.png" alt="" />
-          <span>reisetipps<i>.sv</i></span>
+          <span className="brand__signal" aria-hidden="true">
+            <img src="/manus-storage/reisetipps-harbour-signal_be27078a.png" alt="" />
+            <span className="brand__signal-ring" />
+          </span>
+          <span className="brand__wordmark"><b>reisetipps</b><i>.sv</i></span>
         </div>
         <p>Eine feste Reiseauswahl für die Bodenseeregion. Zeiten, Eintritt und Durchführbarkeit können sich ändern.</p>
         <div className="site-footer__meta">

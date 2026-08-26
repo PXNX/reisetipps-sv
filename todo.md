@@ -1,0 +1,5 @@
+- [x] Add a concise first-person origin story about recommending places after conversations on trains.
+- [x] Add search and category filtering for culture, nature, culinary experiences, and history.
+- [x] Categorize each fixed listing so search and filters return relevant results.
+- [x] Split date-bound events from permanent locations with opening times and distinct section labels.
+- [x] Validate desktop and mobile interactions, then save the revised checkpoint.

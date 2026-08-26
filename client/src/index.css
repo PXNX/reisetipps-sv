@@ -493,3 +493,82 @@
   .locations-section { margin-top: 4rem; }
   .locations-section__heading { align-items: flex-start; flex-direction: column; gap: 0.8rem; }
 }
+
+/* Concise data-backed guide: events and locations use one card grammar. */
+.compact-hero { width: min(100% - 2rem, 1280px); min-height: 360px; margin: 0 auto; display: grid; grid-template-columns: minmax(280px, 0.75fr) minmax(400px, 1.25fr); align-items: stretch; overflow: hidden; border-bottom: 1px solid rgb(98 195 221 / 0.24); }
+.compact-hero > div { z-index: 1; display: flex; flex-direction: column; justify-content: center; padding: 3rem clamp(1.4rem, 4vw, 4rem) 3rem 1rem; background: radial-gradient(30rem 20rem at 0 8%, rgb(44 137 167 / 0.2), transparent 68%); }
+.compact-hero h1 { margin-top: 1rem; font-family: "DM Serif Display", Georgia, serif; color: #fbf6ec; font-size: clamp(3.65rem, 6vw, 6.4rem); font-weight: 400; line-height: 0.82; letter-spacing: -0.065em; }
+.compact-hero h1 em { color: #86d6e9; font-style: italic; }
+.compact-hero p { margin-top: 1.25rem; max-width: 260px; color: rgb(238 245 244 / 0.68); font-size: 0.83rem; line-height: 1.65; }
+.compact-hero > img { width: 100%; height: 100%; min-height: 360px; object-fit: cover; filter: saturate(0.76) brightness(0.72); }
+.tip-section { width: min(100% - 2rem, 1180px); margin: 0 auto; padding: 4.5rem 0; }
+.tip-section--locations { padding-top: 3.4rem; border-top: 1px solid rgb(98 195 221 / 0.2); }
+.tip-section__head { display: flex; align-items: end; justify-content: space-between; gap: 1.5rem; }
+.tip-section__head h2 { margin-top: 0.8rem; font-family: "DM Serif Display", Georgia, serif; color: #f9f4eb; font-size: clamp(2.7rem, 4.4vw, 4.5rem); font-weight: 400; line-height: 0.84; letter-spacing: -0.058em; }
+.compact-search { display: flex; align-items: center; gap: 0.45rem; width: min(100%, 255px); padding: 0.55rem 0.65rem; color: #84cad9; border: 1px solid rgb(115 205 222 / 0.28); background: rgb(5 15 27 / 0.55); }
+.compact-search input { min-width: 0; flex: 1; border: 0; outline: 0; background: transparent; color: #ecf7f4; font: 600 0.7rem/1 "Manrope", Arial, sans-serif; }
+.compact-search input::placeholder { color: rgb(225 244 244 / 0.44); }
+.compact-search button { display: inline-flex; align-items: center; justify-content: center; border: 0; background: transparent; color: #9cdae5; }
+.category-strip { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: 2rem; padding: 0.65rem 0; border-top: 1px solid rgb(98 195 221 / 0.17); border-bottom: 1px solid rgb(98 195 221 / 0.17); }
+.category-strip button { border: 0; background: transparent; color: rgb(230 243 243 / 0.54); padding: 0.35rem 0.5rem; font-size: 0.61rem; font-weight: 800; letter-spacing: 0.09em; text-transform: uppercase; transition: background 160ms cubic-bezier(0.23, 1, 0.32, 1), color 160ms cubic-bezier(0.23, 1, 0.32, 1); }
+.category-strip button:hover, .category-strip button.is-active { background: #62c3dd; color: #08111f; }
+.category-strip button:active { transform: scale(0.97); }
+.signal-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1px; margin-top: 1px; background: rgb(113 203 219 / 0.22); }
+.signal-card { display: grid; grid-template-columns: minmax(160px, 0.72fr) minmax(220px, 1.28fr); min-height: 286px; background: #f4f0e7; color: #15283a; }
+.signal-card__image, .signal-card__plate { position: relative; min-height: 286px; overflow: hidden; }
+.signal-card__image img { width: 100%; height: 100%; object-fit: cover; filter: saturate(0.82) contrast(1.04); }
+.signal-card__plate { background: radial-gradient(circle at 82% 18%, rgb(98 195 221 / 0.63), transparent 8%), linear-gradient(145deg, #cfe3dd, #f0f0e6 51%, #afc8c4); }
+.signal-card__plate::before, .signal-card__plate::after { content: ""; position: absolute; width: 300px; height: 116px; left: -120px; bottom: -31px; border: 1px solid rgb(20 86 106 / 0.27); border-radius: 50%; transform: rotate(-20deg); }
+.signal-card__plate::after { width: 490px; height: 204px; left: -183px; bottom: -100px; }
+.signal-card__plate span { position: absolute; top: 1rem; left: 0.9rem; z-index: 1; color: rgb(16 67 83 / 0.72); font-size: 0.55rem; font-weight: 800; letter-spacing: 0.12em; }
+.signal-card__plate b { position: absolute; right: 0.75rem; top: 0.75rem; z-index: 1; padding: 0.25rem 0.32rem; color: #f4f0e7; background: #164e65; font-size: 0.5rem; letter-spacing: 0.12em; }
+.signal-card__plate i { position: absolute; right: -20px; bottom: 19px; width: 145px; height: 58px; border: 1px solid rgb(20 86 106 / 0.28); border-radius: 50%; transform: rotate(-21deg); }
+.signal-card__body { display: flex; flex-direction: column; padding: 1.2rem 1.25rem 1.15rem; }
+.signal-card__topline { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; }
+.signal-card__kind { color: #286d83; font-size: 0.56rem; font-weight: 800; letter-spacing: 0.12em; }
+.signal-card__kind--event { color: #aa5734; }
+.signal-card__kind--event::before { content: "●"; display: inline-block; margin-right: 0.3rem; color: #e9a06e; font-size: 0.46rem; vertical-align: 1px; }
+.signal-card__range { display: inline-flex; align-items: center; gap: 0.28rem; color: rgb(20 56 73 / 0.68); font-size: 0.56rem; font-weight: 800; text-align: right; }
+.signal-card h3 { margin-top: 1.35rem; font-family: "DM Serif Display", Georgia, serif; color: #13283a; font-size: clamp(1.8rem, 2.5vw, 2.45rem); font-weight: 400; line-height: 0.88; letter-spacing: -0.05em; }
+.signal-card p { margin-top: 0.7rem; color: rgb(19 40 58 / 0.68); font-size: 0.73rem; line-height: 1.6; }
+.signal-card__meta { display: flex; align-items: end; justify-content: space-between; gap: 0.55rem; margin-top: auto; padding-top: 1rem; color: rgb(19 40 58 / 0.62); font-size: 0.59rem; line-height: 1.35; }
+.signal-card__meta > span:first-child { display: inline-flex; align-items: center; gap: 0.26rem; max-width: 70%; }
+.signal-card__topic { color: #276c82; font-size: 0.52rem; font-weight: 800; letter-spacing: 0.09em; text-transform: uppercase; }
+.signal-card a { display: inline-flex; align-items: center; gap: 0.3rem; align-self: flex-start; margin-top: 0.75rem; padding-bottom: 0.2rem; color: #15546d; border-bottom: 1px solid rgb(21 84 109 / 0.5); text-decoration: none; font-size: 0.62rem; font-weight: 800; transition: color 160ms cubic-bezier(0.23, 1, 0.32, 1), gap 160ms cubic-bezier(0.23, 1, 0.32, 1); }
+.signal-card a:hover { gap: 0.58rem; color: #0b2636; }
+.data-state { margin-top: 1rem; color: rgb(232 245 245 / 0.62); font-size: 0.76rem; }
+
+@media (max-width: 820px) {
+  .compact-hero { width: 100%; min-height: 540px; display: block; position: relative; }
+  .compact-hero > div { position: absolute; inset: 0; z-index: 1; justify-content: flex-start; padding: 6.5rem 1.3rem 2rem; background: linear-gradient(90deg, rgb(8 17 31 / 0.94), rgb(8 17 31 / 0.24)); }
+  .compact-hero > img { min-height: 540px; }
+  .tip-section { width: min(100% - 1.5rem, 1180px); padding: 3.6rem 0; }
+  .tip-section__head { align-items: flex-start; flex-direction: column; }
+  .compact-search { width: 100%; }
+  .signal-grid { grid-template-columns: 1fr; }
+  .signal-card { min-height: 0; grid-template-columns: 0.78fr 1.22fr; }
+  .signal-card__image, .signal-card__plate { min-height: 262px; }
+  .signal-card__body { padding: 1rem; }
+  .signal-card h3 { font-size: 1.9rem; }
+  .signal-card__range { max-width: 132px; }
+}
+
+/* Shoreline route grammar and ferry-timetable emphasis. */
+main { position: relative; }
+main::before { content: ""; position: absolute; z-index: 0; top: 470px; bottom: 84px; left: max(1rem, calc((100% - 1180px) / 2 - 24px)); width: 1px; background: linear-gradient(#62c3dd 0 3%, rgb(98 195 221 / 0.18) 3% 96%, #62c3dd 96% 100%); }
+.compact-hero, .tip-section { position: relative; z-index: 1; }
+.tip-section::before { content: ""; position: absolute; top: 5.1rem; left: -29px; width: 9px; height: 9px; border: 2px solid #08111f; border-radius: 50%; background: #62c3dd; box-shadow: 0 0 0 1px #62c3dd; }
+.tip-section::after { content: "BODENSEE · SIGNAL ROUTE"; position: absolute; top: 4.9rem; left: -11px; color: rgb(125 211 227 / 0.5); font-size: 0.5rem; font-weight: 800; letter-spacing: 0.14em; transform: rotate(-90deg) translateX(-100%); transform-origin: top left; white-space: nowrap; }
+.signal-card__range--event { min-width: 119px; justify-content: flex-start; gap: 0.36rem; padding: 0.38rem 0.44rem; color: #d7f3f4; background: #14364a; border-left: 2px solid #e9a06e; }
+.signal-card__range--event > span { display: grid; gap: 0.08rem; }
+.signal-card__range--event small { color: #e9a06e; font-size: 0.45rem; font-weight: 800; letter-spacing: 0.1em; }
+.signal-card__range--event strong { color: #effbfa; font-size: 0.55rem; font-weight: 800; line-height: 1.1; }
+.signal-card__plate span::after { content: " · UFERLINIE"; color: rgb(16 67 83 / 0.52); }
+
+@media (max-width: 820px) {
+  main::before { top: 560px; left: 0.62rem; bottom: 58px; }
+  .tip-section::before { left: -0.15rem; top: 4.2rem; }
+  .tip-section::after { display: none; }
+  .signal-card__range--event { min-width: 104px; padding: 0.3rem; }
+  .signal-card__range--event strong { font-size: 0.5rem; }
+}

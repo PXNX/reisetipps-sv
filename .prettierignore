@@ -1,35 +1,9 @@
-# Dependencies
-node_modules/
-.pnpm-store/
-
-# Build outputs
-dist/
-build/
-*.dist
-
-# Generated files
-*.tsbuildinfo
-coverage/
-
-# Package files
+# Package Managers
 package-lock.json
 pnpm-lock.yaml
+yarn.lock
+bun.lock
+bun.lockb
 
-# Database
-*.db
-*.sqlite
-*.sqlite3
-
-# Logs
-*.log
-
-# Environment files
-.env*
-
-# IDE files
-.vscode/
-.idea/
-
-# OS files
-.DS_Store
-Thumbs.db
+# Miscellaneous
+/static/

@@ -1,0 +1,41 @@
+@import 'tailwindcss';
+
+@plugin 'daisyui' {
+	themes: bodensee --default;
+}
+
+@plugin 'daisyui/theme' {
+	name: 'bodensee';
+	default: true;
+	prefersdark: false;
+	color-scheme: dark;
+	--color-base-100: #0b1f33;
+	--color-base-200: #0e2740;
+	--color-base-300: #123049;
+	--color-base-content: #eaf3f8;
+	--color-primary: #62c3dd;
+	--color-primary-content: #062330;
+	--color-secondary: #f2a65a;
+	--color-secondary-content: #2c1806;
+	--color-accent: #f2a65a;
+	--color-accent-content: #2c1806;
+	--color-neutral: #123049;
+	--color-neutral-content: #eaf3f8;
+	--color-info: #62c3dd;
+	--color-success: #7fd88f;
+	--color-warning: #f2a65a;
+	--color-error: #ef6f6f;
+	--radius-box: 1rem;
+	--radius-field: 0.75rem;
+	--radius-selector: 0.75rem;
+}
+
+html,
+body {
+	height: 100%;
+	overscroll-behavior-y: none;
+}
+
+body {
+	padding-bottom: env(safe-area-inset-bottom);
+}

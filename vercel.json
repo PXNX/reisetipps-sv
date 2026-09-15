@@ -1,4 +1,7 @@
 {
-  "buildCommand": "pnpm build",
-  "outputDirectory": "dist/public"
+	"$schema": "https://openapi.vercel.sh/vercel.json",
+	"buildCommand": "bun run build",
+	"outputDirectory": "build",
+	"cleanUrls": true,
+	"trailingSlash": false
 }

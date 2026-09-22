@@ -34,6 +34,9 @@ html,
 body {
 	height: 100%;
 	overscroll-behavior-y: none;
+	/* Let normal scrolling through, but leave pinch-zoom to elements (like the map)
+	   that explicitly opt back in — otherwise a stray pinch zooms the whole app. */
+	touch-action: pan-x pan-y;
 }
 
 body {

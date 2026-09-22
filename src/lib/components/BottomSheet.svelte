@@ -46,14 +46,14 @@
 		transition:fly={{ duration: 180, opacity: 0 }}
 	></button>
 	<div
-		class="fixed inset-x-0 bottom-0 z-50 max-h-[80vh] overflow-y-auto rounded-t-2xl bg-base-200 shadow-xl"
+		class="fixed inset-x-0 bottom-0 z-50 flex max-h-[80dvh] flex-col overflow-hidden rounded-t-2xl bg-base-200 shadow-xl"
 		style={dragging ? `transform: translateY(${dragOffset}px)` : ''}
 		transition:fly={{ y: 400, duration: 220 }}
 		role="dialog"
 		aria-modal="true"
 	>
 		<div
-			class="sticky top-0 z-10 flex touch-none justify-center bg-inherit py-2"
+			class="sticky top-0 z-10 flex shrink-0 touch-none justify-center bg-inherit py-2"
 			role="presentation"
 			onpointerdown={onPointerDown}
 			onpointermove={onPointerMove}
@@ -69,7 +69,10 @@
 				✕
 			</button>
 		</div>
-		<div class="px-5 pb-8">
+		<div
+			class="min-h-0 overflow-y-auto overscroll-contain px-5"
+			style="padding-bottom: max(2rem, env(safe-area-inset-bottom))"
+		>
 			{@render children()}
 		</div>
 	</div>

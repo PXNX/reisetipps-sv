@@ -28,7 +28,7 @@
 	});
 </script>
 
-<div class="h-full w-full">
+<div class="h-full w-full touch-none">
 	<LMap bind:instance={map} options={{ center: [47.66, 9.35], zoom: 10 }}>
 		<TileLayer
 			url={tileUrl}
@@ -47,6 +47,9 @@
 </div>
 
 <style>
+	:global(.leaflet-container) {
+		touch-action: none;
+	}
 	:global(.map-pin span) {
 		display: block;
 		width: 16px;

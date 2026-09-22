@@ -46,7 +46,7 @@
 		transition:fly={{ duration: 180, opacity: 0 }}
 	></button>
 	<div
-		class="bg-base-200 fixed inset-x-0 bottom-0 z-50 max-h-[80vh] overflow-y-auto rounded-t-2xl shadow-xl"
+		class="fixed inset-x-0 bottom-0 z-50 max-h-[80vh] overflow-y-auto rounded-t-2xl bg-base-200 shadow-xl"
 		style={dragging ? `transform: translateY(${dragOffset}px)` : ''}
 		transition:fly={{ y: 400, duration: 220 }}
 		role="dialog"
@@ -60,8 +60,12 @@
 			onpointerup={onPointerUp}
 			onpointercancel={onPointerUp}
 		>
-			<div class="bg-base-content/30 h-1.5 w-12 rounded-full"></div>
-			<button class="btn btn-circle btn-ghost btn-sm absolute top-1 right-2" onclick={onclose} aria-label={m.close()}>
+			<div class="h-1.5 w-12 rounded-full bg-base-content/30"></div>
+			<button
+				class="btn absolute top-1 right-2 btn-circle btn-ghost btn-sm"
+				onclick={onclose}
+				aria-label={m.close()}
+			>
 				✕
 			</button>
 		</div>

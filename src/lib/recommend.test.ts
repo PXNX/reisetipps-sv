@@ -29,7 +29,11 @@ describe('findMatches', () => {
 
 describe('pickRecommendation', () => {
 	it('returns null when filters match nothing', () => {
-		const result = pickRecommendation({ categories: ['technology'], duration: 'short', station: null });
+		const result = pickRecommendation({
+			categories: ['technology'],
+			duration: 'short',
+			station: null
+		});
 		expect(result).toBeNull();
 	});
 

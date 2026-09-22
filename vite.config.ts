@@ -58,6 +58,15 @@ export default defineConfig({
 							expiration: { maxEntries: 200, maxAgeSeconds: 60 * 60 * 24 * 30 },
 							cacheableResponse: { statuses: [0, 200] }
 						}
+					},
+					{
+						urlPattern: /^https:\/\/upload\.wikimedia\.org\/.*/i,
+						handler: 'CacheFirst',
+						options: {
+							cacheName: 'location-photos',
+							expiration: { maxEntries: 60, maxAgeSeconds: 60 * 60 * 24 * 30 },
+							cacheableResponse: { statuses: [0, 200] }
+						}
 					}
 				]
 			},

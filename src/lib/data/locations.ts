@@ -7,6 +7,12 @@ export interface LocalizedText {
 	en: string;
 }
 
+export interface LocationImage {
+	url: string;
+	alt: LocalizedText;
+	attribution: string;
+}
+
 export interface Location {
 	id: string;
 	/** [lat, lng] */
@@ -20,6 +26,17 @@ export interface Location {
 	tip: LocalizedText;
 	openingHours?: LocalizedText;
 	url?: string;
+	image?: LocationImage;
+}
+
+export function googleMapsUrl(location: Location): string {
+	const [lat, lng] = location.coordinates;
+	return `https://www.google.com/maps/search/?api=1&query=${lat},${lng}`;
+}
+
+export function hikingMapUrl(location: Location): string {
+	const [lat, lng] = location.coordinates;
+	return `https://www.opentopomap.org/#marker=15/${lat}/${lng}`;
 }
 
 export const stations = [
@@ -56,7 +73,10 @@ export const locations: Location[] = [
 			de: 'Mit dem Schiff ab Konstanz anreisen – das ist entspannter als das Auto und man sieht die Insel schon von Weitem.',
 			en: 'Arrive by boat from Konstanz — more relaxed than driving, and you see the island from the water first.'
 		},
-		openingHours: { de: 'täglich 7:00–20:00 (saisonal abweichend)', en: 'daily 7am–8pm (seasonal hours vary)' },
+		openingHours: {
+			de: 'täglich 7:00–20:00 (saisonal abweichend)',
+			en: 'daily 7am–8pm (seasonal hours vary)'
+		},
 		url: 'https://www.mainau.de'
 	},
 	{
@@ -99,7 +119,10 @@ export const locations: Location[] = [
 			de: 'Tickets vorher online kaufen, spart an Wochenenden Wartezeit am Einlass.',
 			en: 'Buy tickets online in advance — it saves queueing at the entrance on weekends.'
 		},
-		openingHours: { de: 'täglich ab 10:00, Schließzeit saisonal', en: 'daily from 10am, closing time varies by season' },
+		openingHours: {
+			de: 'täglich ab 10:00, Schließzeit saisonal',
+			en: 'daily from 10am, closing time varies by season'
+		},
 		url: 'https://www.visitsealife.com/konstanz'
 	},
 	{
@@ -286,7 +309,10 @@ export const locations: Location[] = [
 			de: 'Das Museum liegt in Gehweite zum Bahnhof Friedrichshafen Hafen — ideal bei kurzer Wartezeit auf die Fähre.',
 			en: 'The museum is a short walk from Friedrichshafen Hafen station — perfect while waiting for a ferry connection.'
 		},
-		openingHours: { de: 'Di–So 9:00–17:00 (Winter ab 10:00)', en: 'Tue–Sun 9am–5pm (from 10am in winter)' },
+		openingHours: {
+			de: 'Di–So 9:00–17:00 (Winter ab 10:00)',
+			en: 'Tue–Sun 9am–5pm (from 10am in winter)'
+		},
 		url: 'https://www.zeppelin-museum.de'
 	},
 	{
@@ -351,5 +377,51 @@ export const locations: Location[] = [
 		},
 		openingHours: { de: 'Di–So 10:00–18:00, Do bis 20:00', en: 'Tue–Sun 10am–6pm, Thu until 8pm' },
 		url: 'https://www.kunsthaus-bregenz.at'
+	},
+	{
+		id: 'sennerei-bremenried',
+		coordinates: [47.58, 9.9012],
+		categories: ['culinary'],
+		duration: ['short'],
+		nearestStation: 'Lindau-Reutin',
+		name: { de: 'Sennerei Bremenried', en: 'Sennerei Bremenried (Alpine Dairy)' },
+		teaser: {
+			de: 'Traditionelle Genossenschaftssennerei im Allgäu, Verkauf direkt ab Hof.',
+			en: 'A traditional cooperative alpine dairy in the Allgäu, selling straight from the source.'
+		},
+		description: {
+			de: 'Seit 1897 verarbeiten hier täglich sechs Bauern naturbelassene Heumilch in Handarbeit zu acht Käsesorten und frischer Butter — eine der letzten Original-Sennereien im Allgäu.',
+			en: 'Since 1897, six local farms have brought their raw hay milk here to be hand-crafted daily into eight kinds of cheese and fresh butter — one of the last original dairies of its kind in the Allgäu.'
+		},
+		tip: {
+			de: 'Liegt einen Zug weiter als der See selbst: mit der Allgäubahn ab Lindau-Reutin Richtung Hergatz bis Weiler (Allgäu), von dort ein kurzer Spaziergang zum Käseladen.',
+			en: 'A little further inland than the lake itself: take the Allgäu line from Lindau-Reutin toward Hergatz to Weiler (Allgäu), then it is a short walk to the cheese shop.'
+		},
+		openingHours: {
+			de: 'Mo–Sa vormittags & nachmittags, So 7–11:30 & 16–18:30 Uhr (Details variieren)',
+			en: 'Mon–Sat mornings & afternoons, Sun 7–11:30am & 4–6:30pm (hours vary)'
+		},
+		url: 'https://sennerei-bremenried-eg.weblocator.de/'
+	},
+	{
+		id: 'kirchle-ebnit',
+		coordinates: [47.3700348, 9.7777044],
+		categories: ['nature'],
+		duration: ['long'],
+		nearestStation: 'Bregenz',
+		name: { de: 'Naturdenkmal Kirchle, Ebnit', en: 'Kirchle Natural Monument, Ebnit' },
+		teaser: {
+			de: 'Eine trockene Gletscherschlucht hoch über dem Ebniter Tal, geformt wie ein Kirchengewölbe.',
+			en: 'A dry glacial gorge high above the Ebnit valley, shaped like a church nave.'
+		},
+		description: {
+			de: 'Schmelzwasser der letzten Eiszeit hat hier eine bis zu 20 Meter tiefe, 65 Meter lange Klamm ausgewaschen, deren sich nach oben verengende Felswände an ein Kirchengewölbe erinnern. Der Zustieg führt steil von der Bushaltestelle Alploch/Schmitte hinauf.',
+			en: 'Meltwater from the last ice age carved this gorge — up to 20 metres deep and 65 metres long — with narrowing rock walls that resemble a church nave. The approach climbs steeply from the Alploch/Schmitte bus stop.'
+		},
+		tip: {
+			de: 'Ein Ausflug für einen ganzen Zwischenstopp: mit dem Zug bis Bregenz, dann mit Linie 46 bis Ebnit (Alploch/Schmitte) und zu Fuß hinauf. Feste Schuhe mitbringen, am Einstieg gibt es keinen Parkplatz.',
+			en: 'A trip for a longer layover: train to Bregenz, then bus line 46 to Ebnit (Alploch/Schmitte), and up on foot from there. Wear sturdy shoes — there is no parking at the trailhead.'
+		},
+		url: 'https://www.rappenloch.at/startseite/sehenswertes/kirchle/'
 	}
 ];

@@ -12,7 +12,10 @@ export interface RecommendFilters {
 /** Returns `null` when the location is excluded by a hard filter, otherwise a relevance score. */
 export function scoreLocation(location: Location, filters: RecommendFilters): number | null {
 	if (filters.duration && !location.duration.includes(filters.duration)) return null;
-	if (filters.categories.length > 0 && !location.categories.some((c) => filters.categories.includes(c))) {
+	if (
+		filters.categories.length > 0 &&
+		!location.categories.some((c) => filters.categories.includes(c))
+	) {
 		return null;
 	}
 
@@ -38,7 +41,10 @@ export function findMatches(filters: RecommendFilters): Location[] {
  * Picks one location from the best-scoring tier, skipping ids already shown so
  * repeated "try again" taps cycle through the pool before repeating any pick.
  */
-export function pickRecommendation(filters: RecommendFilters, excludeIds: string[] = []): Location | null {
+export function pickRecommendation(
+	filters: RecommendFilters,
+	excludeIds: string[] = []
+): Location | null {
 	const scored = locations
 		.map((location) => ({ location, score: scoreLocation(location, filters) }))
 		.filter((entry): entry is { location: Location; score: number } => entry.score !== null);

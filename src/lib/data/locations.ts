@@ -39,6 +39,11 @@ export function hikingMapUrl(location: Location): string {
 	return `https://www.opentopomap.org/#marker=15/${lat}/${lng}`;
 }
 
+export function cyclingMapUrl(location: Location): string {
+	const [lat, lng] = location.coordinates;
+	return `https://www.openstreetmap.org/?mlat=${lat}&mlon=${lng}#map=15/${lat}/${lng}&layers=Y`;
+}
+
 export const stations = [
 	'Lindau-Insel',
 	'Lindau-Reutin',
@@ -262,12 +267,12 @@ export const locations: Location[] = [
 			en: 'Half-timbered lanes, Germany’s oldest inhabited castle, and wine taverns.'
 		},
 		description: {
-			de: 'Steile, autofreie Altstadtgassen führen zur Burg Meersburg hinauf. Unten am Ufer reihen sich Weinstuben mit Blick auf die Alpen bei klarer Sicht.',
-			en: 'Steep, car-free lanes lead up to Meersburg Castle. Down by the shore, wine taverns line the waterfront with Alpine views on a clear day.'
+			de: 'Steile, autofreie Altstadtgassen führen zur Burg Meersburg hinauf. Unten am Ufer reihen sich Weinstuben mit Blick auf die Alpen bei klarer Sicht. An ausgewählten Wochenenden von April bis Oktober wird die Burg bei der "Belebten Burg Meersburg" zum Mittelalter-Schauplatz: Darsteller in Kostüm zeigen Schmiedehandwerk, Wäsche waschen, Musik und Tanz — im Eintrittspreis inbegriffen und besonders für Kinder ein Erlebnis.',
+			en: 'Steep, car-free lanes lead up to Meersburg Castle. Down by the shore, wine taverns line the waterfront with Alpine views on a clear day. On selected weekends from April to October, "Belebte Burg Meersburg" turns the castle into a living-history scene — costumed performers show blacksmithing, laundry work, music and dancing, included in the regular admission and especially fun with kids.'
 		},
 		tip: {
-			de: 'Meersburg hat keinen eigenen Bahnhof — mit der Autofähre ab Konstanz-Staad anreisen, das ist Teil des Erlebnisses.',
-			en: 'Meersburg has no train station of its own — take the car ferry from Konstanz-Staad, which is part of the experience.'
+			de: 'Meersburg hat keinen eigenen Bahnhof — mit der Autofähre ab Konstanz-Staad anreisen, das ist Teil des Erlebnisses. Wer mit Kindern unterwegs ist: vorher die Termine der "Belebten Burg" checken und gezielt an so einem Wochenende hinfahren.',
+			en: 'Meersburg has no train station of its own — take the car ferry from Konstanz-Staad, which is part of the experience. Travelling with kids? Check the "Belebte Burg" event dates beforehand and time your visit for one of those weekends.'
 		}
 	},
 	{
@@ -390,12 +395,12 @@ export const locations: Location[] = [
 			en: 'A traditional cooperative alpine dairy in the Allgäu, selling straight from the source.'
 		},
 		description: {
-			de: 'Seit 1897 verarbeiten hier täglich sechs Bauern naturbelassene Heumilch in Handarbeit zu acht Käsesorten und frischer Butter — eine der letzten Original-Sennereien im Allgäu.',
-			en: 'Since 1897, six local farms have brought their raw hay milk here to be hand-crafted daily into eight kinds of cheese and fresh butter — one of the last original dairies of its kind in the Allgäu.'
+			de: 'Seit 1897 verarbeiten hier täglich sechs Bauern naturbelassene Heumilch in Handarbeit zu acht Käsesorten und frischer Butter — eine der letzten Original-Sennereien im Allgäu. Im Laden gibt es unter anderem würzigen Bergkäse, kräftigen Räßkäse, Emmentaler und den typisch allgäuerischen Weißlacker.',
+			en: 'Since 1897, six local farms have brought their raw hay milk here to be hand-crafted daily into eight kinds of cheese and fresh butter — one of the last original dairies of its kind in the Allgäu. The shop carries, among others, tangy Bergkäse, strong Räßkäse, Emmentaler, and the typically Allgäu Weißlacker.'
 		},
 		tip: {
-			de: 'Liegt einen Zug weiter als der See selbst: mit der Allgäubahn ab Lindau-Reutin Richtung Hergatz bis Weiler (Allgäu), von dort ein kurzer Spaziergang zum Käseladen.',
-			en: 'A little further inland than the lake itself: take the Allgäu line from Lindau-Reutin toward Hergatz to Weiler (Allgäu), then it is a short walk to the cheese shop.'
+			de: 'Liegt einen Zug weiter als der See selbst: mit der Allgäubahn ab Lindau-Reutin Richtung Hergatz bis Weiler (Allgäu), von dort ein kurzer Spaziergang zum Käseladen. Den Weißlacker nur probieren, wenn kräftiger Geschmack kein Problem ist.',
+			en: 'A little further inland than the lake itself: take the Allgäu line from Lindau-Reutin toward Hergatz to Weiler (Allgäu), then it is a short walk to the cheese shop. Only try the Weißlacker if you do not mind a strong flavor.'
 		},
 		openingHours: {
 			de: 'Mo–Sa vormittags & nachmittags, So 7–11:30 & 16–18:30 Uhr (Details variieren)',

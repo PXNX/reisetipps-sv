@@ -19,16 +19,24 @@
 <div class="flex min-h-dvh flex-col bg-base-100 text-base-content">
 	<header class="flex items-center justify-between border-b border-base-300/60 px-4 py-3">
 		<span class="text-lg font-semibold tracking-tight">{m.app_name()}</span>
-		<div class="join">
-			{#each locales as locale (locale)}
-				<a
-					href={localizeHref(page.url.pathname, { locale })}
-					class="btn join-item btn-xs {currentLocale() === locale ? 'btn-primary' : 'btn-ghost'}"
-					aria-current={currentLocale() === locale}
-				>
-					{locale.toUpperCase()}
-				</a>
-			{/each}
+		<div class="flex items-center gap-3">
+			<a
+				href={localizeHref('/privacy')}
+				class="text-xs text-base-content/50 underline-offset-2 hover:underline"
+			>
+				{m.privacy_link()}
+			</a>
+			<div class="join">
+				{#each locales as locale (locale)}
+					<a
+						href={localizeHref(page.url.pathname, { locale })}
+						class="btn join-item btn-xs {currentLocale() === locale ? 'btn-primary' : 'btn-ghost'}"
+						aria-current={currentLocale() === locale}
+					>
+						{locale.toUpperCase()}
+					</a>
+				{/each}
+			</div>
 		</div>
 	</header>
 

@@ -16,14 +16,14 @@
 
 <svelte:head><link rel="icon" href={favicon} /></svelte:head>
 
-<div class="bg-base-100 text-base-content flex min-h-dvh flex-col">
-	<header class="border-base-300/60 flex items-center justify-between border-b px-4 py-3">
+<div class="flex min-h-dvh flex-col bg-base-100 text-base-content">
+	<header class="flex items-center justify-between border-b border-base-300/60 px-4 py-3">
 		<span class="text-lg font-semibold tracking-tight">{m.app_name()}</span>
 		<div class="join">
 			{#each locales as locale (locale)}
 				<a
 					href={localizeHref(page.url.pathname, { locale })}
-					class="join-item btn btn-xs {currentLocale() === locale ? 'btn-primary' : 'btn-ghost'}"
+					class="btn join-item btn-xs {currentLocale() === locale ? 'btn-primary' : 'btn-ghost'}"
 					aria-current={currentLocale() === locale}
 				>
 					{locale.toUpperCase()}
@@ -37,7 +37,7 @@
 	</main>
 
 	<nav
-		class="border-base-300/60 bg-base-100/95 fixed inset-x-0 bottom-0 z-30 flex border-t backdrop-blur"
+		class="fixed inset-x-0 bottom-0 z-30 flex border-t border-base-300/60 bg-base-100/95 backdrop-blur"
 		style="padding-bottom: env(safe-area-inset-bottom)"
 	>
 		{#each tabs as tab (tab.href)}

@@ -30,5 +30,14 @@
 	"map_hint": "Tap a marker for details.",
 	"language_label": "Language",
 	"intro_body": "I keep recommending places around Lake Constance to people I meet on the train. This app turns that into a tool: pick your interests, get a recommendation, get back on the train.",
-	"back_to_recommendation": "Back to recommendation"
+	"back_to_recommendation": "Back to recommendation",
+	"open_in_google_maps": "Open in Google Maps",
+	"open_hiking_map": "Hiking map (OpenTopoMap)",
+	"mark_visited": "Mark as visited",
+	"unmark_visited": "Remove from visited",
+	"visited_badge": "Visited",
+	"mark_wishlist": "Want to go",
+	"unmark_wishlist": "Remove from wishlist",
+	"wishlist_badge": "Want to go",
+	"image_credit": "Photo"
 }

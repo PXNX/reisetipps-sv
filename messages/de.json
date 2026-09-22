@@ -30,5 +30,14 @@
 	"map_hint": "Auf einen Punkt tippen für Details.",
 	"language_label": "Sprache",
 	"intro_body": "Ich empfehle Leuten im Zug regelmäßig Orte am Bodensee. Diese App macht daraus ein Werkzeug: Interessen wählen, Empfehlung bekommen, weiterfahren.",
-	"back_to_recommendation": "Zurück zur Empfehlung"
+	"back_to_recommendation": "Zurück zur Empfehlung",
+	"open_in_google_maps": "In Google Maps öffnen",
+	"open_hiking_map": "Wanderkarte (OpenTopoMap)",
+	"mark_visited": "Als besucht markieren",
+	"unmark_visited": "Nicht mehr besucht",
+	"visited_badge": "Besucht",
+	"mark_wishlist": "Da will ich hin",
+	"unmark_wishlist": "Von der Merkliste entfernen",
+	"wishlist_badge": "Will ich hin",
+	"image_credit": "Foto"
 }

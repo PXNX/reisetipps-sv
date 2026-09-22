@@ -1,7 +1,13 @@
 <script lang="ts">
 	import { localizeHref } from '$lib/paraglide/runtime';
 	import * as m from '$lib/paraglide/messages.js';
-	import { allCategories, allDurations, categoryIcons, categoryLabel, durationLabel } from '$lib/categories';
+	import {
+		allCategories,
+		allDurations,
+		categoryIcons,
+		categoryLabel,
+		durationLabel
+	} from '$lib/categories';
 	import { stations, type Category, type Duration, type Location } from '$lib/data/locations';
 	import { pickRecommendation, type RecommendFilters } from '$lib/recommend';
 	import LocationDetails from '$lib/components/LocationDetails.svelte';
@@ -69,7 +75,9 @@
 			<div class="flex flex-wrap gap-2">
 				{#each allCategories as category (category)}
 					<button
-						class="btn btn-sm {selectedCategories.includes(category) ? 'btn-primary' : 'btn-outline'}"
+						class="btn btn-sm {selectedCategories.includes(category)
+							? 'btn-primary'
+							: 'btn-outline'}"
 						onclick={() => toggleCategory(category)}
 					>
 						<span aria-hidden="true">{categoryIcons[category]}</span>
@@ -96,7 +104,7 @@
 		<div>
 			<h2 class="mb-2 text-sm font-semibold">{m.filter_station_label()}</h2>
 			<select
-				class="select select-bordered w-full"
+				class="select-bordered select w-full"
 				value={selectedStation ?? ''}
 				onchange={(e) => setStation(e.currentTarget.value)}
 			>
@@ -115,11 +123,8 @@
 			</div>
 		</section>
 		<div class="flex gap-2 pb-4">
-			<button class="btn btn-primary flex-1" onclick={recommend}>{m.try_again()}</button>
-			<a
-				class="btn btn-outline flex-1"
-				href={`${localizeHref('/map')}?focus=${result.id}`}
-			>
+			<button class="btn flex-1 btn-primary" onclick={recommend}>{m.try_again()}</button>
+			<a class="btn flex-1 btn-outline" href={`${localizeHref('/map')}?focus=${result.id}`}>
 				{m.show_on_map()}
 			</a>
 		</div>
@@ -128,10 +133,12 @@
 			<div class="card-body items-center text-center">
 				<h2 class="text-lg font-semibold">{m.no_matches_title()}</h2>
 				<p class="text-base-content/70">{m.no_matches_body()}</p>
-				<button class="btn btn-outline mt-2" onclick={resetFilters}>{m.reset_filters()}</button>
+				<button class="btn mt-2 btn-outline" onclick={resetFilters}>{m.reset_filters()}</button>
 			</div>
 		</section>
 	{:else}
-		<button class="btn btn-primary btn-lg w-full" onclick={recommend}>{m.get_recommendation()}</button>
+		<button class="btn w-full btn-lg btn-primary" onclick={recommend}
+			>{m.get_recommendation()}</button
+		>
 	{/if}
 </div>

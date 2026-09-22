@@ -3,6 +3,13 @@
 	import type { Map as LeafletMapInstance } from 'leaflet';
 	import type { Location } from '$lib/data/locations';
 	import { localize } from '$lib/i18n';
+	import { locationMarks } from '$lib/stores/locationMarks.svelte';
+
+	function pinClass(location: Location): string {
+		if (locationMarks.isVisited(location.id)) return 'map-pin map-pin-visited';
+		if (locationMarks.isWishlisted(location.id)) return 'map-pin map-pin-wishlist';
+		return 'map-pin';
+	}
 
 	interface Props {
 		locations: Location[];
@@ -29,10 +36,11 @@
 		/>
 		{#each locations as location (location.id)}
 			<Marker latLng={location.coordinates} onclick={() => onselect(location)}>
-				<DivIcon options={{ className: 'map-pin', iconSize: [16, 16] }}>
+				<DivIcon options={{ className: pinClass(location), iconSize: [16, 16] }}>
 					<span></span>
 				</DivIcon>
-				<Tooltip options={{ direction: 'top', offset: [0, -10] }}>{localize(location.name)}</Tooltip>
+				<Tooltip options={{ direction: 'top', offset: [0, -10] }}>{localize(location.name)}</Tooltip
+				>
 			</Marker>
 		{/each}
 	</LMap>
@@ -47,5 +55,13 @@
 		background: #f2a65a;
 		border: 2px solid #0b1f33;
 		box-shadow: 0 0 0 2px rgba(98, 195, 221, 0.6);
+	}
+	:global(.map-pin-visited span) {
+		background: #8a8f98;
+		box-shadow: 0 0 0 2px rgba(138, 143, 152, 0.5);
+	}
+	:global(.map-pin-wishlist span) {
+		background: #62c3dd;
+		box-shadow: 0 0 0 2px rgba(242, 166, 90, 0.7);
 	}
 </style>

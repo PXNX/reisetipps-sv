@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { googleMapsUrl, hikingMapUrl, type Location } from '$lib/data/locations';
+	import { cyclingMapUrl, googleMapsUrl, hikingMapUrl, type Location } from '$lib/data/locations';
 	import { localize } from '$lib/i18n';
 	import { categoryIcons, categoryLabel } from '$lib/categories';
 	import { locationMarks } from '$lib/stores/locationMarks.svelte';
@@ -66,31 +66,43 @@
 		{/if}
 	</dl>
 
-	<div class="flex flex-wrap gap-2">
-		<!-- eslint-disable svelte/no-navigation-without-resolve -- these are external URLs, not SvelteKit routes -->
+	<!-- eslint-disable svelte/no-navigation-without-resolve -- these are external URLs, not SvelteKit routes -->
+	<div class="grid grid-cols-3 gap-2">
 		<a
 			href={googleMapsUrl(location)}
 			target="_blank"
 			rel="noreferrer"
-			class="btn gap-1 btn-outline btn-sm"
+			class="btn flex-col gap-0.5 btn-outline btn-sm"
 		>
-			🧭 {m.open_in_google_maps()}
+			<span class="text-base" aria-hidden="true">🧭</span>
+			<span class="text-xs">{m.link_maps()}</span>
 		</a>
 		<a
 			href={hikingMapUrl(location)}
 			target="_blank"
 			rel="noreferrer"
-			class="btn gap-1 btn-outline btn-sm"
+			class="btn flex-col gap-0.5 btn-outline btn-sm"
 		>
-			🥾 {m.open_hiking_map()}
+			<span class="text-base" aria-hidden="true">🥾</span>
+			<span class="text-xs">{m.link_hiking()}</span>
 		</a>
-		{#if location.url}
-			<a href={location.url} target="_blank" rel="noreferrer" class="btn gap-1 btn-outline btn-sm">
-				🔗 {location.url.replace(/^https?:\/\//, '')}
-			</a>
-		{/if}
-		<!-- eslint-enable svelte/no-navigation-without-resolve -->
+		<a
+			href={cyclingMapUrl(location)}
+			target="_blank"
+			rel="noreferrer"
+			class="btn flex-col gap-0.5 btn-outline btn-sm"
+		>
+			<span class="text-base" aria-hidden="true">🚴</span>
+			<span class="text-xs">{m.link_cycling()}</span>
+		</a>
 	</div>
+
+	{#if location.url}
+		<a href={location.url} target="_blank" rel="noreferrer" class="link text-sm link-primary">
+			{m.more_info()} →
+		</a>
+	{/if}
+	<!-- eslint-enable svelte/no-navigation-without-resolve -->
 
 	<div class="flex gap-2">
 		<button

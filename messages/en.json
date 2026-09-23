@@ -23,9 +23,7 @@
 	"location_set": "Location set",
 	"location_error": "Could not determine your location.",
 	"clear_location": "Clear location",
-	"location_manual_hint": "or enter coordinates",
-	"latitude": "Latitude",
-	"longitude": "Longitude",
+	"location_optional_hint": "Optional — only used to prefer places nearby. A rough location is enough.",
 	"get_recommendation": "Get a recommendation",
 	"try_again": "Show me another",
 	"show_on_map": "Show on map",
@@ -58,7 +56,7 @@
 	"privacy_data_heading": "What data is processed",
 	"privacy_data_body": "The app stores your selected filters, visited places, and your wishlist only locally in your browser's storage (localStorage). This data never leaves your device and is never sent to any server.",
 	"privacy_geolocation_heading": "Location",
-	"privacy_geolocation_body": "When you tap \"Use my location\", your browser asks for permission to determine your position. The coordinates are only used locally in your browser to compute nearby recommendations, and are never stored or transmitted. You can also enter a location manually without granting this permission.",
+	"privacy_geolocation_body": "\"Use my location\" is entirely optional and deliberately asks only for a rough, network-based position (not a precise GPS fix). The coordinates are only used locally in your browser to prefer nearby recommendations, and are never stored or transmitted. Without this permission the app still works fully, just without distance-based sorting.",
 	"privacy_storage_heading": "Offline storage",
 	"privacy_storage_body": "As an installable app (PWA), your browser caches parts of the app and map tiles so it also works offline. This happens entirely in your browser's own cache, not on a server run by this app.",
 	"privacy_external_heading": "External links",
@@ -66,5 +64,8 @@
 	"privacy_no_tracking_heading": "No tracking",
 	"privacy_no_tracking_body": "No analytics or tracking tools, no advertising cookies, and no third-party scripts are used.",
 	"privacy_contact_heading": "Contact",
-	"privacy_contact_body": "This app is run privately."
+	"privacy_contact_body": "This app is run privately.",
+	"install_hint_body": "Install this as an app — faster access and it works offline.",
+	"install_hint_ios": "To install: tap the Share icon, then \"Add to Home Screen\".",
+	"install_action": "Install"
 }

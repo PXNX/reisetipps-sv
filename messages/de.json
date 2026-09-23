@@ -23,9 +23,7 @@
 	"location_set": "Standort gesetzt",
 	"location_error": "Standort konnte nicht ermittelt werden.",
 	"clear_location": "Standort entfernen",
-	"location_manual_hint": "oder Koordinaten eingeben",
-	"latitude": "Breitengrad",
-	"longitude": "Längengrad",
+	"location_optional_hint": "Optional – hilft nur dabei, näher gelegene Orte zu bevorzugen. Eine grobe Ortung reicht.",
 	"get_recommendation": "Empfehlung holen",
 	"try_again": "Noch eine andere",
 	"show_on_map": "Auf der Karte zeigen",
@@ -58,7 +56,7 @@
 	"privacy_data_heading": "Welche Daten verarbeitet werden",
 	"privacy_data_body": "Die App speichert deine ausgewählten Filter, besuchte Orte und deine Merkliste ausschließlich lokal im Speicher deines Browsers (localStorage). Diese Daten verlassen dein Gerät nie und werden an keinen Server übertragen.",
 	"privacy_geolocation_heading": "Standort",
-	"privacy_geolocation_body": "Wenn du \"Meinen Standort verwenden\" antippst, fragt dein Browser nach der Berechtigung, deinen Standort zu ermitteln. Die Koordinaten werden nur lokal in deinem Browser verwendet, um Empfehlungen in deiner Nähe zu berechnen, und niemals gespeichert oder übertragen. Du kannst den Standort auch manuell eingeben, ohne diese Berechtigung zu erteilen.",
+	"privacy_geolocation_body": "\"Meinen Standort verwenden\" ist rein optional und fragt bewusst nur eine grobe, netzwerkbasierte Position an (keine genaue GPS-Ortung). Die Koordinaten werden nur lokal in deinem Browser verwendet, um Empfehlungen in deiner Nähe zu bevorzugen, und niemals gespeichert oder übertragen. Ohne diese Berechtigung funktioniert die App genauso, nur ohne Nähe-Sortierung.",
 	"privacy_storage_heading": "Offline-Speicherung",
 	"privacy_storage_body": "Als installierbare App (PWA) speichert dein Browser Teile der App sowie Kartenkacheln zwischen, damit sie auch offline funktioniert. Das geschieht technisch über den Cache deines Browsers, nicht über einen Server dieser App.",
 	"privacy_external_heading": "Externe Links",
@@ -66,5 +64,8 @@
 	"privacy_no_tracking_heading": "Kein Tracking",
 	"privacy_no_tracking_body": "Es werden keine Analyse- oder Tracking-Werkzeuge, keine Cookies zu Werbezwecken und keine Drittanbieter-Skripte eingesetzt.",
 	"privacy_contact_heading": "Kontakt",
-	"privacy_contact_body": "Diese App wird privat betrieben."
+	"privacy_contact_body": "Diese App wird privat betrieben.",
+	"install_hint_body": "Als App installieren – für schnelleren Zugriff und Offline-Nutzung.",
+	"install_hint_ios": "Zum Installieren: Teilen-Symbol antippen, dann „Zum Home-Bildschirm“.",
+	"install_action": "Installieren"
 }

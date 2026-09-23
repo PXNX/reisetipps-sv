@@ -15,8 +15,6 @@
 	let selectedCategories = $state<Category[]>([]);
 	let selectedDuration = $state<Duration | null>(null);
 	let origin = $state<[number, number] | null>(null);
-	let manualLat = $state('');
-	let manualLng = $state('');
 	let locating = $state(false);
 	let locationError = $state(false);
 	let result = $state<Location | null>(null);
@@ -51,8 +49,6 @@
 		navigator.geolocation.getCurrentPosition(
 			(position) => {
 				origin = [position.coords.latitude, position.coords.longitude];
-				manualLat = origin[0].toFixed(5);
-				manualLng = origin[1].toFixed(5);
 				locating = false;
 				resetResult();
 			},
@@ -60,24 +56,13 @@
 				locating = false;
 				locationError = true;
 			},
-			{ timeout: 10_000 }
+			// Rough, network-based location is enough to rank nearby spots — no need for a precise GPS fix.
+			{ enableHighAccuracy: false, timeout: 10_000, maximumAge: 5 * 60_000 }
 		);
-	}
-
-	function applyManualLocation() {
-		const lat = Number(manualLat);
-		const lng = Number(manualLng);
-		if (Number.isFinite(lat) && Number.isFinite(lng) && manualLat !== '' && manualLng !== '') {
-			origin = [lat, lng];
-			locationError = false;
-			resetResult();
-		}
 	}
 
 	function clearLocation() {
 		origin = null;
-		manualLat = '';
-		manualLng = '';
 		locationError = false;
 		resetResult();
 	}
@@ -153,28 +138,10 @@
 				<button class="btn btn-outline btn-sm" onclick={useMyLocation} disabled={locating}>
 					📍 {locating ? m.locating() : m.use_my_location()}
 				</button>
+				<p class="mt-1 text-xs text-base-content/50">{m.location_optional_hint()}</p>
 				{#if locationError}
 					<p class="mt-1 text-xs text-error">{m.location_error()}</p>
 				{/if}
-				<div class="mt-2 flex flex-wrap items-center gap-2">
-					<span class="text-xs text-base-content/60">{m.location_manual_hint()}</span>
-					<input
-						type="number"
-						step="any"
-						placeholder={m.latitude()}
-						class="input-bordered input w-28 input-sm"
-						bind:value={manualLat}
-						onchange={applyManualLocation}
-					/>
-					<input
-						type="number"
-						step="any"
-						placeholder={m.longitude()}
-						class="input-bordered input w-28 input-sm"
-						bind:value={manualLng}
-						onchange={applyManualLocation}
-					/>
-				</div>
 			{/if}
 		</div>
 	</section>

@@ -72,27 +72,27 @@
 			href={googleMapsUrl(location)}
 			target="_blank"
 			rel="noreferrer"
-			class="btn flex-col gap-0.5 btn-outline btn-sm"
+			class="btn h-auto flex-col gap-1 btn-outline py-2"
 		>
-			<span class="text-base" aria-hidden="true">🧭</span>
+			<span class="text-lg" aria-hidden="true">🧭</span>
 			<span class="text-xs">{m.link_maps()}</span>
 		</a>
 		<a
 			href={hikingMapUrl(location)}
 			target="_blank"
 			rel="noreferrer"
-			class="btn flex-col gap-0.5 btn-outline btn-sm"
+			class="btn h-auto flex-col gap-1 btn-outline py-2"
 		>
-			<span class="text-base" aria-hidden="true">🥾</span>
+			<span class="text-lg" aria-hidden="true">🥾</span>
 			<span class="text-xs">{m.link_hiking()}</span>
 		</a>
 		<a
 			href={cyclingMapUrl(location)}
 			target="_blank"
 			rel="noreferrer"
-			class="btn flex-col gap-0.5 btn-outline btn-sm"
+			class="btn h-auto flex-col gap-1 btn-outline py-2"
 		>
-			<span class="text-base" aria-hidden="true">🚴</span>
+			<span class="text-lg" aria-hidden="true">🚴</span>
 			<span class="text-xs">{m.link_cycling()}</span>
 		</a>
 	</div>

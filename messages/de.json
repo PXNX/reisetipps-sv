@@ -1,7 +1,10 @@
 {
 	"$schema": "https://inlang.com/schema/inlang-message-format",
 	"app_name": "Bodensee Guide",
-	"tagline": "Servus! Ich reise ziemlich viel mit der Bahn und unterhalte mich dort gerne mit Leuten. Oft kommen wir dann darauf zu sprechen, was man in meiner Heimat so unternehmen kann — deshalb habe ich hier mal übersichtlich ein paar meiner Lieblingsorte gesammelt. Schönen Urlaub!",
+	"greeting_heading": "Servus!",
+	"greeting_body": "Ich reise ziemlich viel mit der Bahn und unterhalte mich dort gerne mit Leuten. Oft kommen wir dann darauf zu sprechen, was man in meiner Heimat so unternehmen kann — deshalb habe ich hier mal übersichtlich ein paar meiner Lieblingsorte gesammelt.\n\nSchönen Urlaub!",
+	"greeting_close": "Los geht's",
+	"logo_credit": "Kartenumriss Bodensee: Wikimedia Commons, activivan (CC BY-SA 4.0)",
 	"nav_recommend": "Empfehlung",
 	"nav_map": "Karte",
 	"category_nature": "Natur",

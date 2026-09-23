@@ -11,7 +11,6 @@
 	import type { Category, Duration, Location } from '$lib/data/locations';
 	import { pickRecommendation, type RecommendFilters } from '$lib/recommend';
 	import LocationDetails from '$lib/components/LocationDetails.svelte';
-	import bodenseeIcon from '$lib/assets/favicon.svg';
 
 	let selectedCategories = $state<Category[]>([]);
 	let selectedDuration = $state<Duration | null>(null);
@@ -103,11 +102,6 @@
 </script>
 
 <div class="mx-auto max-w-xl space-y-6 px-4 pt-6">
-	<div class="flex items-start gap-3">
-		<img src={bodenseeIcon} alt="" class="h-12 w-12 shrink-0" />
-		<p class="text-sm leading-relaxed text-base-content/70">{m.tagline()}</p>
-	</div>
-
 	<section class="space-y-4">
 		<div>
 			<h2 class="mb-2 text-sm font-semibold">{m.filter_categories_label()}</h2>

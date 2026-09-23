@@ -1,7 +1,10 @@
 {
 	"$schema": "https://inlang.com/schema/inlang-message-format",
 	"app_name": "Bodensee Guide",
-	"tagline": "Hi there! I travel by train quite a lot and enjoy chatting with people along the way. We often end up talking about what there is to do around my home region — so here's a tidy little collection of some of my favorite places. Enjoy your trip!",
+	"greeting_heading": "Hi there!",
+	"greeting_body": "I travel by train quite a lot and enjoy chatting with people along the way. We often end up talking about what there is to do around my home region — so here's a tidy little collection of some of my favorite places.\n\nEnjoy your trip!",
+	"greeting_close": "Let's go",
+	"logo_credit": "Lake outline: Wikimedia Commons, activivan (CC BY-SA 4.0)",
 	"nav_recommend": "Recommend",
 	"nav_map": "Map",
 	"category_nature": "Nature",

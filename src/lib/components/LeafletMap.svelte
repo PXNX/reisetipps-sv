@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { Map as LMap, TileLayer, Marker, DivIcon, Tooltip } from 'sveaflet';
 	import type { Map as LeafletMapInstance } from 'leaflet';
+	import { browser } from '$app/environment';
 	import type { Location } from '$lib/data/locations';
 	import { localize } from '$lib/i18n';
 	import { locationMarks } from '$lib/stores/locationMarks.svelte';
@@ -29,21 +30,24 @@
 </script>
 
 <div class="h-full w-full touch-none">
-	<LMap bind:instance={map} options={{ center: [47.66, 9.35], zoom: 10 }}>
-		<TileLayer
-			url={tileUrl}
-			options={{ attribution: '&copy; OpenStreetMap contributors', maxZoom: 18 }}
-		/>
-		{#each locations as location (location.id)}
-			<Marker latLng={location.coordinates} onclick={() => onselect(location)}>
-				<DivIcon options={{ className: pinClass(location), iconSize: [16, 16] }}>
-					<span></span>
-				</DivIcon>
-				<Tooltip options={{ direction: 'top', offset: [0, -10] }}>{localize(location.name)}</Tooltip
-				>
-			</Marker>
-		{/each}
-	</LMap>
+	{#if browser}
+		<LMap bind:instance={map} options={{ center: [47.66, 9.35], zoom: 10 }}>
+			<TileLayer
+				url={tileUrl}
+				options={{ attribution: '&copy; OpenStreetMap contributors', maxZoom: 18 }}
+			/>
+			{#each locations as location (location.id)}
+				<Marker latLng={location.coordinates} onclick={() => onselect(location)}>
+					<DivIcon options={{ className: pinClass(location), iconSize: [16, 16] }}>
+						<span></span>
+					</DivIcon>
+					<Tooltip options={{ direction: 'top', offset: [0, -10] }}
+						>{localize(location.name)}</Tooltip
+					>
+				</Marker>
+			{/each}
+		</LMap>
+	{/if}
 </div>
 
 <style>

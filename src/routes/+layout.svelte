@@ -5,6 +5,7 @@
 	import * as m from '$lib/paraglide/messages.js';
 	import './layout.css';
 	import favicon from '$lib/assets/favicon.svg';
+	import GreetingSheet from '$lib/components/GreetingSheet.svelte';
 
 	let { children } = $props();
 
@@ -43,6 +44,8 @@
 	<main class="flex-1 pb-20">
 		{@render children()}
 	</main>
+
+	<GreetingSheet />
 
 	<nav
 		class="fixed inset-x-0 bottom-0 z-30 flex border-t border-base-300/60 bg-base-100/95 backdrop-blur"

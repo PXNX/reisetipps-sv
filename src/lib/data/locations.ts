@@ -1,4 +1,4 @@
-export type Category = 'nature' | 'culture' | 'culinary' | 'history' | 'technology';
+export type Category = 'nature' | 'culture' | 'culinary' | 'history' | 'technology' | 'viewpoint';
 
 export type Duration = 'short' | 'medium' | 'long';
 
@@ -53,7 +53,8 @@ export const stations = [
 	'Wasserburg (Bodensee)',
 	'Überlingen',
 	'Radolfzell',
-	'Konstanz'
+	'Konstanz',
+	'Markdorf'
 ] as const;
 
 export type Station = (typeof stations)[number];
@@ -649,5 +650,167 @@ export const locations: Location[] = [
 			en: 'open daily all year, free admission'
 		},
 		url: 'https://www.gartendenkmal-lindenhofpark.de/page/lindenhofpark.html'
-	}
+	},
+	{
+		id: 'fesslerhof-eichenberg',
+		coordinates: [47.5447, 9.7968],
+		categories: ['culinary'],
+		duration: ['short'],
+		nearestStation: 'Bregenz',
+		name: { de: 'Bergmetzgerei Fesslerhof', en: 'Fesslerhof Farm Butchery' },
+		teaser: {
+			de: 'Bergmetzgerei mit Hofladen und Jausenstation — Wurst aus eigener Produktion mit Seeblick.',
+			en: 'A farm butchery with shop and snack station — sausages made on site, with a lake view.'
+		},
+		description: {
+			de: 'Seit 1997 steht der Fesslerhof für bodenständige Qualität: Alle Fleisch- und Wurstwaren stammen aus eigener Produktion, seit 2017 kommt das Rindfleisch von der eigenen Mastzucht, dazu arbeitet der Hof mit Bauern aus der Region Eichenberg zusammen. Im Hofladen gibt es die Wurst direkt, oben an der Jausenstation wartet eine Brettljause mit Blick über den Bodensee.',
+			en: 'Since 1997 the Fesslerhof has stood for straightforward quality: all meat and sausages come from its own production, since 2017 the beef is from its own cattle breeding, and the farm works with growers from the Eichenberg region. The farm shop sells the sausages directly; up at the snack station a Brettljause awaits with a view over Lake Constance.'
+		},
+		tip: {
+			de: 'Der SB-Automat ist rund um die Uhr gefüllt, falls die Jausenstation geschlossen hat. Die Jausenstation ist von Mai bis Oktober täglich außer montags und donnerstags geöffnet — der Anstieg von Bregenz oder Lochau aus lohnt sich allein für den Ausblick.',
+			en: 'The vending machine is stocked around the clock if the snack station is closed. The snack station runs May to October, closed Mondays and Thursdays — the climb from Bregenz or Lochau is worth it for the view alone.'
+		},
+		openingHours: {
+			de: 'Metzgerei Di/Mi/Fr 9:00–17:00, Sa 9:00–14:00; Jausenstation Mai–Okt tägl. 10:00–18:00, außer Mo & Do; SB-Automat 24h',
+			en: 'Butchery Tue/Wed/Fri 9am–5pm, Sat 9am–2pm; snack station May–Oct daily 10am–6pm, except Mon & Thu; vending machine 24/7'
+		},
+		url: 'https://fesslerhof.com'
+	},
+	{
+		id: 'alma-kaeslaedele-lochau',
+		coordinates: [47.5315, 9.7509],
+		categories: ['culinary'],
+		duration: ['short'],
+		nearestStation: 'Bregenz',
+		name: { de: 'Alma Käslädele Lochau', en: 'Alma Käslädele, Lochau' },
+		teaser: {
+			de: 'Käseladen von Alma und Rupp mit Vorarlberger Bergkäse direkt vom Senner — und dem Jersey Blue.',
+			en: 'A cheese shop by Alma and Rupp with Vorarlberg mountain cheese straight from the alpine dairy — including the Jersey Blue.'
+		},
+		description: {
+			de: 'Das gemeinsame Lädele von Alma und der Ölmühle Sailer führt Vorarlberger Käsespezialitäten direkt von den Sennern: den ursprungsgeschützten Berg- und Alpkäse g.U. aus den Alma-Bergsennereien, gereift auf Fichtenbrettern. Mit dabei ist der Jersey Blue, ein cremiger Blauschimmelkäse aus Jersey-Kuhmilch, dazu kaltgepresste Öle aus der Sailer Mühle. Der Laden liegt an der Alberlochstraße, nur wenige Minuten vom Bodensee entfernt.',
+			en: 'The joint shop by Alma and the Sailer mill carries Vorarlberg cheese specialties straight from the alpine dairies: the protected-origin Bergkäse and Alpkäse g.U. from Alma’s mountain dairies, ripened on spruce boards. Also on the shelf: the Jersey Blue, a creamy blue cheese made from Jersey cow’s milk, plus cold-pressed oils from the Sailer mill. The shop sits on Alberlochstraße, minutes from Lake Constance.'
+		},
+		tip: {
+			de: 'Die Öffnungszeiten sind knapp bemessen und ändern sich gelegentlich — vorher kurz prüfen oder anrufen. Von Bregenz aus ist das Lädele mit Bus oder Rad in wenigen Minuten am Fuß des Pfänders erreicht.',
+			en: 'Opening hours are slim and change from time to time — check or call ahead. From Bregenz the shop at the foot of the Pfänder is a few minutes away by bus or bike.'
+		},
+		openingHours: {
+			de: 'Do 13:00–19:00, Fr 8:00–19:00, Sa 8:00–12:00 (Angabe von 2014 — vorher prüfen)',
+			en: 'Thu 1–7pm, Fri 8am–7pm, Sat 8am–noon (as of 2014 — check ahead)'
+		},
+		url: 'https://www.alma.at'
+	},
+	{
+		id: 'streitelsfingen',
+		coordinates: [47.5667, 9.7185],
+		categories: ['viewpoint'],
+		duration: ['short'],
+		nearestStation: 'Lindau-Reutin',
+		name: { de: 'Streitelsfingen', en: 'Streitelsfingen' },
+		teaser: {
+			de: 'Obsthänge über Reutin mit Panoramablick über den Bodensee bis in die Alpen.',
+			en: 'Orchard slopes above Reutin with a panoramic view across Lake Constance to the Alps.'
+		},
+		description: {
+			de: 'Streitelsfingen liegt erhöht nordwestlich von Lindau. Von den Obstbaumhängen reicht der Blick über das obere Wannental, Reutin und den Bodensee bis zu den Alpen Österreichs, Liechtensteins und der Schweiz. Unten im Ort steht das Monfort-Schlössle, erstmals 1260 urkundlich erwähnt; im Sommer lockt die Lindauer Dahlienschau.',
+			en: 'Streitelsfingen sits high above the northwestern edge of Lindau. From the orchard slopes the view runs over the upper Wannental valley, Reutin and Lake Constance to the Alps of Austria, Liechtenstein and Switzerland. Down in the village stands the Monfort-Schlössle, first documented in 1260; in summer the Lindau dahlia show draws visitors.'
+		},
+		tip: {
+			de: 'Vom Bahnhof Lindau-Reutin aus führt der Weg hinauf durch die Obstwiesen — der Rückblick auf Lindau mit Hafen und Leuchtturm lohnt sich. Gut zu kombinieren mit der Dahlienschau oder dem Monfort-Schlössle.',
+			en: 'From Lindau-Reutin station the path climbs through the orchards — the look back at Lindau with its harbour and lighthouse is worth it. Combines well with the dahlia show or the Monfort-Schlössle.'
+		}
+	},
+	{
+		id: 'weissensberger-halde',
+		coordinates: [47.5775, 9.7262],
+		categories: ['viewpoint'],
+		duration: ['short', 'medium'],
+		nearestStation: 'Lindau-Reutin',
+		name: { de: 'Weißensberger Halde', en: 'Weißensberger Halde' },
+		teaser: {
+			de: 'Aussichtspunkt über Weißensberg mit Marienkapelle und Blick auf Bodensee, Bregenzerwald und Schweizer Alpen.',
+			en: 'A viewpoint above Weißensberg with its Marienkapelle and views over Lake Constance, the Bregenz Forest and the Swiss Alps.'
+		},
+		description: {
+			de: 'Die markante Halde ragt auf gut 530 Metern über die Gemeinde Weißensberg. Oben stehen die 1870 von Prinz Luitpold von Bayern erbaute Marienkapelle, Bänke und eine Tafel zum Bergpanorama. Bei wolkenfreiem Blick reicht die Sicht über den Bodensee bis zum Säntis und nach Konstanz; der Jakobusweg führt vorbei, und im August spielt der örtliche Musikverein zum Open-Air-Konzert auf.',
+			en: 'The striking hill rises more than 530 metres above the municipality of Weißensberg. At the top stand the Marienkapelle built in 1870 by Prince Luitpold of Bavaria, benches and a board explaining the mountain panorama. On cloudless days the view reaches across Lake Constance to the Säntis and all the way to Constance; the Jakobusweg pilgrimage route passes by, and each August the local brass band plays an open-air concert.'
+		},
+		tip: {
+			de: 'Am schönsten ist die Auffahrt über die kurvigen, verkehrsarmen Straßen von Egghalden oder über Streitelsfingen („Hühnerpass"). Mit dem Rad ist die Halde von Lindau-Reutin aus gut zu erreichen, unten an der Kapelle laden Bänke zum Verweilen ein.',
+			en: 'The prettiest approaches are the winding, quiet roads from Egghalden or via Streitelsfingen (the “Hühnerpass”). By bike the hill is an easy ride from Lindau-Reutin station, and benches by the chapel invite you to linger.'
+		}
+	},
+	{
+		id: 'organic-distillery-friedrichshafen',
+		coordinates: [47.6768, 9.4202],
+		categories: ['culinary'],
+		duration: ['short'],
+		nearestStation: 'Friedrichshafen Hafen',
+		name: { de: 'Organic Distillery Friedrichshafen', en: 'Organic Distillery Friedrichshafen' },
+		teaser: {
+			de: 'Kleine Bio-Brennerei auf dem Hof in Friedrichshafen-Fischbach/Spaltenstein — Gin und pflanzliche Essenzen.',
+			en: 'A small organic distillery on a farm in Friedrichshafen-Fischbach/Spaltenstein — gin and botanical essences.'
+		},
+		description: {
+			de: 'Christine Brugger verbindet auf dem biologisch-dynamischen Hof ihrer Eltern Sensorik-Wissenschaft mit Brennerei-Handwerk. Seit 2014 entstehen hier die beiden Bio-Gins Ginn und Ginnie sowie organische Essenzen und Schlüsselaromen — etwa Zitronenverbena, Mandarine, Minze oder Silberwermut — für Köche, Barkeeper und Genießer. Die genaue Rezeptur des Gins mit 22 Zutaten bleibt streng geheim.',
+			en: 'On her parents’ organic-biodynamic farm, Christine Brugger combines sensory science with the craft of distillation. Since 2014 the two organic gins Ginn and Ginnie have been produced here, alongside organic essences and key aromas such as lemon verbena, mandarin, mint or southernwood — for chefs, bartenders and gourmets. The gin’s exact recipe with 22 ingredients remains a closely guarded secret.'
+		},
+		tip: {
+			de: 'Es gibt keinen Hofladen — Besuche nur nach Voranmeldung. Die Produkte sind in über 50 Geschäften rund um den Bodensee und online erhältlich; vom Bahnhof Friedrichshafen Hafen sind es wenige Kilometer mit dem Rad.',
+			en: 'There is no farm shop — visits by appointment only. The products are stocked in more than 50 shops around Lake Constance and online; from Friedrichshafen Hafen station it is a few kilometres by bike.'
+		},
+		url: 'https://www.organic-distillery.com'
+	},
+	{
+		id: 'obst-und-beerenhof-pfleghaar',
+		coordinates: [47.6852, 9.3484],
+		categories: ['culinary'],
+		duration: ['short'],
+		nearestStation: 'Markdorf',
+		name: { de: 'Obst- und Beerenhof Pfleghaar', en: 'Pfleghaar Fruit & Berry Farm' },
+		teaser: {
+			de: 'Obst- und Beerenhof auf der Reute über Markdorf — Hofcafé, Hofladen, Regiomat und Rundfahrt mit dem Beerenzügle.',
+			en: 'A fruit and berry farm on the Reute hills above Markdorf — café, farm shop, vending machine and a ride on the “Beerenzügle”.'
+		},
+		description: {
+			de: 'Seit 2010 lädt das Hofcafé des Obst- und Beerenhofs Pfleghaar mit 60 Sitzplätzen zum Bleiben ein: Apfel-, Zwetschgen-, Pfirsich-, Johannisbeer-, Heidelbeer- und natürlich Erdbeerkuchen je nach Jahreszeit, dazu Kaffeespezialitäten. Der Hofladen verkauft Obst und Gemüse direkt vom Erzeuger, und am Regiomat in der Hofeinfahrt gibt es rund um die Uhr regionale Produkte, von Marmelade und Obstbränden bis zu Eiern und Nudeln. Die Erdbeeren wachsen hier von Mai bis Dezember in luftiger Höhe auf Röhrengerüsten, im Spätsummer locken die Kürbisfelder, und mit dem Beerenzügle geht es durch die Gärten — ohne Chemie, dafür mit Nützlingen.',
+			en: 'Since 2010 the farm café of the Pfleghaar fruit and berry farm has invited guests to stay a while with its 60 seats: apple, plum, peach, currant, blueberry and, of course, strawberry cake depending on the season, plus coffee specialties. The farm shop sells fruit and vegetables straight from the grower, and a Regiomat vending machine by the entrance stocks regional products around the clock, from jams and fruit spirits to eggs and noodles. The strawberries grow up here in the fresh air from May to December on elevated tube frames, the pumpkin fields draw visitors in late summer, and a ride on the “Beerenzügle” takes you through the gardens — no chemicals, beneficial insects instead.'
+		},
+		tip: {
+			de: 'Das Hofcafé hat sonntags und feiertags Ruhetag — der Obstladen öffnet sonntags vormittags, der Regiomat ist immer da. Rundfahrten mit dem Beerenzügle gibt es nach Absprache bei mindestens 25 Erwachsenen, also lieber vorher anmelden.',
+			en: 'The farm café rests on Sundays and public holidays — the fruit shop opens Sunday mornings and the Regiomat is always there. Tours with the Beerenzügle run by arrangement with at least 25 adults, so book ahead.'
+		},
+		openingHours: {
+			de: 'Mai–Okt Mo–Sa 9:00–18:00 (So Ruhetag, Obstladen So 9:00–12:00), Nov–Apr Mo–Sa 9:00–18:00 (So Ruhetag)',
+			en: 'May–Oct Mon–Sat 9am–6pm (Sun closed, farm shop Sun 9am–noon), Nov–Apr Mon–Sat 9am–6pm (Sun closed)'
+		},
+		url: 'https://www.beerenzuegle.de'
+	},
+	{
+		id: 'landbaeckerei-baader-markdorf',
+		coordinates: [47.717, 9.3888],
+		categories: ['culinary'],
+		duration: ['short'],
+		nearestStation: 'Markdorf',
+		name: { de: 'Landbäckerei Baader im Bahnhof Markdorf', en: 'Landbäckerei Baader at Markdorf Station' },
+		teaser: {
+			de: 'Traditionsreiche Landbäckerei im renovierten Bahnhofsgebäude — Frühstück, Brezeln und Bäcker-Snacks direkt am Gleis.',
+			en: 'A traditional country bakery in the renovated station building — breakfast, pretzels and baker’s snacks right by the platform.'
+		},
+		description: {
+			de: 'Im Juni 2021 hat die Landbäckerei Baader aus Frickingen im renovierten Bahnhofsgebäude von Markdorf ihr neuestes Fachgeschäft eröffnet — altehrwürdiger Bahnhof trifft traditionsreichen Handwerksbäcker. Das Angebot reicht vom Frühstück über warme und kalte Bäcker-Snacks bis zur schnellen Butterbrezel auf die Hand und einem guten Brot fürs Vesper. Gebacken wird aus dem Linzgau Korn der hauseigenen Gläsernen Backstube, regional und naturnah angebaut, mit Transparent vom Acker bis zur Ladentheke.',
+			en: 'In June 2021 the Landbäckerei Baader from Frickingen opened its newest shop in Markdorf’s lovingly renovated station building — a venerable station meets time-honoured craft. The offer ranges from breakfast over warm and cold baker’s snacks to a warm pretzel to take away and good bread for your picnic. Everything is baked from Linzgau Korn grain from the bakery’s own glass-walled bakehouse, grown regionally and close to nature, with transparency from the field to the counter.'
+		},
+		tip: {
+			de: 'Ideal für den frühen Zug: unter der Woche öffnet die Filiale bereits um 6 Uhr. Wer tiefer einsteigen möchte, kombiniert den Besuch mit der Linie nach Frickingen zur Gläsernen Backstube.',
+			en: 'Perfect for an early train: on weekdays the shop opens at 6am. For a deeper look, combine the visit with the line to Frickingen and the glass-walled bakehouse.'
+		},
+		openingHours: {
+			de: 'Mo–Fr 6:00–18:00, Sa 6:30–14:00, So 7:00–17:00',
+			en: 'Mon–Fri 6am–6pm, Sat 6:30am–2pm, Sun 7am–5pm'
+		},
+		url: 'https://www.baaderbeck.de/fachgeschaefte/bahnhof-markdorf'
+	},
+
 ];

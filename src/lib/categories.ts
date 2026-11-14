@@ -1,7 +1,14 @@
 import * as m from '$lib/paraglide/messages.js';
 import type { Category, Duration } from './data/locations';
 
-export const allCategories: Category[] = ['nature', 'culture', 'culinary', 'history', 'technology'];
+export const allCategories: Category[] = [
+	'nature',
+	'culture',
+	'culinary',
+	'history',
+	'technology',
+	'viewpoint'
+];
 export const allDurations: Duration[] = ['short', 'medium', 'long'];
 
 export const categoryIcons: Record<Category, string> = {
@@ -9,7 +16,8 @@ export const categoryIcons: Record<Category, string> = {
 	culture: '🏛️',
 	culinary: '🍷',
 	history: '🏺',
-	technology: '⚙️'
+	technology: '⚙️',
+	viewpoint: '🌄'
 };
 
 export function categoryLabel(category: Category): string {
@@ -24,6 +32,8 @@ export function categoryLabel(category: Category): string {
 			return m.category_history();
 		case 'technology':
 			return m.category_technology();
+		case 'viewpoint':
+			return m.category_viewpoint();
 	}
 }
 

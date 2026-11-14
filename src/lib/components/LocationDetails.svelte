@@ -25,11 +25,6 @@
 			attribution={location.image?.attribution}
 			class="h-40 sm:h-52"
 		/>
-		{#if location.image}
-			<figcaption class="mt-1 text-right text-[11px] text-base-content/50">
-				{m.image_credit()}: {location.image.attribution}
-			</figcaption>
-		{/if}
 	</figure>
 
 	<div>

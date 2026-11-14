@@ -4,6 +4,7 @@
 	import { categoryIcons, categoryLabel } from '$lib/categories';
 	import { locationMarks } from '$lib/stores/locationMarks.svelte';
 	import { placeholderImage } from '$lib/placeholderImage';
+	import ZoomableImage from '$lib/components/ZoomableImage.svelte';
 	import * as m from '$lib/paraglide/messages.js';
 
 	let { location }: { location: Location } = $props();
@@ -17,8 +18,13 @@
 </script>
 
 <div class="space-y-4">
-	<figure class="-mx-1 overflow-hidden rounded-box">
-		<img src={imageSrc} alt={imageAlt} loading="lazy" class="h-40 w-full object-cover sm:h-52" />
+	<figure class="-mx-1">
+		<ZoomableImage
+			src={imageSrc}
+			alt={imageAlt}
+			attribution={location.image?.attribution}
+			class="h-40 sm:h-52"
+		/>
 		{#if location.image}
 			<figcaption class="mt-1 text-right text-[11px] text-base-content/50">
 				{m.image_credit()}: {location.image.attribution}

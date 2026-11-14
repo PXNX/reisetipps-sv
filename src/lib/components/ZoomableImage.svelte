@@ -53,17 +53,14 @@
 			aria-label={m.close()}
 		></button>
 		<div class="relative flex h-full flex-col items-center justify-center p-4">
-			<!-- Caption is absolutely positioned so the figure sizes to the image alone;
-			     otherwise a long credit line widens the figure and the text sits to the
-			     right of the image instead of underneath it. -->
-			<figure class="relative max-w-4xl">
+			<figure class="max-w-4xl">
 				<img
 					{src}
 					{alt}
 					class="max-h-[70dvh] w-auto max-w-full rounded-box object-contain shadow-2xl"
 				/>
 				{#if attribution}
-					<figcaption class="absolute inset-x-0 top-full mt-2 text-center text-xs text-white/70">
+					<figcaption class="mt-2 text-right text-xs text-white/70">
 						{m.image_credit()}: {attribution}
 					</figcaption>
 				{/if}

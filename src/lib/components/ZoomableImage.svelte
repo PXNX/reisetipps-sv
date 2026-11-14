@@ -53,14 +53,16 @@
 			aria-label={m.close()}
 		></button>
 		<div class="relative flex h-full flex-col items-center justify-center p-4">
-			<figure class="max-w-4xl">
+			<!-- Flex column keeps the credit underneath the image even when the
+			     credit line is longer than the photo is wide. -->
+			<figure class="flex max-w-4xl flex-col items-center">
 				<img
 					{src}
 					{alt}
 					class="max-h-[70dvh] w-auto max-w-full rounded-box object-contain shadow-2xl"
 				/>
 				{#if attribution}
-					<figcaption class="mt-2 text-right text-xs text-white/70">
+					<figcaption class="mt-2 text-center text-xs text-white/70">
 						{m.image_credit()}: {attribution}
 					</figcaption>
 				{/if}

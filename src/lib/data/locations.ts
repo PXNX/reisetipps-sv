@@ -812,5 +812,134 @@ export const locations: Location[] = [
 		},
 		url: 'https://www.baaderbeck.de/fachgeschaefte/bahnhof-markdorf'
 	},
-
+	{
+		id: 'rheindamm',
+		coordinates: [47.494, 9.666],
+		categories: ['nature', 'culinary'],
+		duration: ['short', 'medium'],
+		nearestStation: 'Bregenz',
+		name: { de: 'Rheindamm im Rheindelta', en: 'Rheindamm Rhine Delta' },
+		teaser: {
+			de: 'Grillplatz am Rheindamm im Naturschutzgebiet Rheindelta mit Seeblick und Sandinsel.',
+			en: 'Grill spot on the Rheindamm in the Rhine Delta nature reserve, with lake views and a sand island.'
+		},
+		description: {
+			de: 'Am Fuß des Rheindamms liegt das Naturschutzgebiet Rheindelta: Schilfgürtel, Wattflächen und die Sandinsel direkt an der Mündung des Rheins in den Bodensee. Picknicktische laden zum Verweilen ein — ideal für ein gemütliches Grillvergnügen mit Blick über den See und die Alpen.',
+			en: 'At the foot of the Rheindamm lies the Rhine Delta nature reserve: reed beds, tidal flats and the sand island right where the Rhine flows into Lake Constance. Picnic tables invite you to linger — perfect for a relaxed BBQ with views over the lake and the Alps.'
+		},
+		tip: {
+			de: 'Grill mitbringen und an den ausgewiesenen Picknickplätzen am Damm genießen; Teile des Naturschutzgebiets sind gesperrt. Mit dem Rad über den Rheindamm von Hard oder Fußach aus besonders schön.',
+			en: 'Bring your own grill and enjoy it at the marked picnic spots by the dam; parts of the nature reserve are off-limits. Especially lovely by bike along the Rheindamm from Hard or Fußach.'
+		}
+	},
+	{
+		id: 'kleines-cafe',
+		coordinates: [47.5463, 9.6883],
+		categories: ['culinary'],
+		duration: ['short'],
+		nearestStation: 'Lindau-Insel',
+		name: { de: 'Kleines Café', en: 'Kleines Café' },
+		teaser: {
+			de: 'Kleines Eiscafé in der Fischergasse auf der Lindauer Insel.',
+			en: 'A tiny ice cream café on Fischergasse, on Lindau island.'
+		},
+		description: {
+			de: 'Das kleine Café auf der Insel Lindau serviert Bio-Eis mit veganen und vegetarischen Sorten, dazu Sitzplätze im Freien. Täglich von 10 bis 21 Uhr geöffnet, auch zum Mitnehmen.',
+			en: 'This tiny café on Lindau island serves organic ice cream with vegan and vegetarian flavors, plus outdoor seating. Open daily 10am–9pm, also for takeaway.'
+		},
+		tip: {
+			de: 'Direkt auf der Insel: vom Bahnhof Lindau-Insel in wenigen Minuten zu Fuß — perfekt als Belohnung nach der Altstadtrunde.',
+			en: 'Right on the island: a few minutes on foot from Lindau-Insel station — a perfect treat after the old-town loop.'
+		},
+		openingHours: { de: 'Mo–Su 10:00–21:00', en: 'Mon–Sun 10am–9pm' },
+		url: 'https://kleines-cafe.com'
+	},
+	{
+		id: 'la-dolce-vita-lochau',
+		coordinates: [47.513, 9.754],
+		categories: ['culinary'],
+		duration: ['short'],
+		nearestStation: 'Bregenz',
+		name: { de: 'La Dolce Vita Eis-Manufaktur Lochau', en: 'La Dolce Vita Ice Cream Parlour, Lochau' },
+		teaser: {
+			de: 'Eismanufaktur in Lochau mit selbst gemachten Eissorten, täglich geöffnet.',
+			en: 'Ice cream parlour in Lochau with homemade flavors, open daily.'
+		},
+		description: {
+			de: 'Die Dolce Vita Eis-Manufaktur in der Bregenzer Straße in Lochau ist die Anlaufstelle für selbst gemachtes Eis aus der Region. Täglich von 10 bis 22 Uhr geöffnet — ideal nach einem Strandbadbesuch oder als Zwischenstopp zwischen Bregenz und Lindau.',
+			en: 'The Dolce Vita ice cream parlour on Bregenzer Straße in Lochau is the place to go for homemade regional ice cream. Open daily 10am–10pm — ideal after a beach visit or as a stopover between Bregenz and Lindau.'
+		},
+		tip: {
+			de: 'Vom Bahnhof Bregenz aus zu Fuß oder mit dem Bus erreichbar; die Eisdiele liegt an der Bregenzer Straße in Lochau.',
+			en: 'Reachable on foot or by bus from Bregenz station; the parlour is on Bregenzer Straße in Lochau.'
+		},
+		openingHours: { de: 'Mo–Su 10:00–22:00', en: 'Mon–Sun 10am–10pm' },
+		url: 'https://www.eismanufaktur-dolcevita.com/'
+	},
+	{
+		id: 'metzgerei-giray',
+		coordinates: [47.6044, 9.8901],
+		categories: ['culinary'],
+		duration: ['short'],
+		nearestStation: 'Lindau-Reutin',
+		name: { de: 'Metzgerei Giray', en: 'Giray Butcher Shop' },
+		teaser: {
+			de: 'Metzgerei in Lindenberg im Allgäu mit eigenem Fleisch- und Wurstangebot.',
+			en: 'Butcher shop in Lindenberg im Allgäu with its own meat and sausage range.'
+		},
+		description: {
+			de: 'Die Metzgerei Giray in Lindenberg im Allgäu bietet frisches Fleisch und Wurstwaren aus eigener Herstellung. Unter der Woche bis 18 Uhr und samstags bis 12:30 Uhr geöffnet.',
+			en: 'Giray butcher shop in Lindenberg im Allgäu offers fresh meat and sausages made in-house. Open until 6pm on weekdays and until 12:30pm on Saturdays.'
+		},
+		tip: {
+			de: 'In Lindenberg im Allgäu gelegen — gut als Zwischenstopp auf einer Tour durch das Allgäu; samstags nur bis Mittag geöffnet.',
+			en: 'Located in Lindenberg im Allgäu — a good stop on a tour through the Allgäu; on Saturdays only open until midday.'
+		},
+		openingHours: { de: 'Mo–Fr 07:30–18:00, Sa 07:00–12:30', en: 'Mon–Fri 7:30am–6pm, Sat 7am–12:30pm' },
+		url: 'https://www.metzgerei-giray.de/'
+	},
+	{
+		id: 'acapulco-friedrichshafen',
+		coordinates: [47.6501, 9.4674],
+		categories: ['culinary'],
+		duration: ['short', 'medium'],
+		nearestStation: 'Friedrichshafen Stadt',
+		name: { de: 'Acapulco', en: 'Acapulco' },
+		teaser: {
+			de: 'Mexikanisches Restaurant in Friedrichshafen, abends ab 17 Uhr geöffnet.',
+			en: 'Mexican restaurant in Friedrichshafen, open evenings from 5pm.'
+		},
+		description: {
+			de: 'Das Acapulco in der Olgastraße ist Friedrichshafens mexikanisches Restaurant: abends ab 17 Uhr geöffnet, montags geschlossen.',
+			en: 'Acapulco on Olgastraße is Friedrichshafen’s Mexican restaurant: open evenings from 5pm, closed on Mondays.'
+		},
+		tip: {
+			de: 'Mitten in der Stadt, nur wenige Gehminuten vom Bahnhof Friedrichshafen Stadt entfernt — gut als Abendprogramm nach der Ankunft.',
+			en: 'Right in the city, a few minutes on foot from Friedrichshafen Stadt station — good evening plans after arriving.'
+		},
+		openingHours: { de: 'Di–So 17:00–24:00, Mo geschlossen', en: 'Tue–Sun 5pm–midnight, Mon closed' },
+		url: 'https://www.acapulco-restaurant-bar.de/friedrichshafen'
+	},
+	{
+		id: 'cafe-hoepker',
+		coordinates: [47.6701, 9.4226],
+		categories: ['culinary'],
+		duration: ['short'],
+		nearestStation: 'Friedrichshafen Hafen',
+		name: { de: 'Cafe Confiserie Höpker', en: 'Cafe Confiserie Höpker' },
+		teaser: {
+			de: 'Café und Conditorei in Friedrichshafen-Fischbach — Kuchen und Kaffee, auch sonntags.',
+			en: 'A café and confisery in Friedrichshafen-Fischbach — cake and coffee, also on Sundays.'
+		},
+		description: {
+			de: 'Die Confiserie Höpker im Fischbacher Birnauweg serviert Kuchen und Kaffee, dazu Plätze im Freien. Mittwochs bis samstags ab 9:30 Uhr und sonntags ab 10 Uhr geöffnet.',
+			en: 'The Höpker confisery on Birnauweg in Fischbach serves cake and coffee, with outdoor seats. Open Wednesday to Saturday from 9:30am and Sunday from 10am.'
+		},
+		tip: {
+			de: 'Im Stadtteil Fischbach gelegen — gut mit dem Rad vom Hafen aus zu erreichen; montags und dienstags bleibt das Café zu.',
+			en: 'In the Fischbach district — an easy ride from the harbour; the café rests on Mondays and Tuesdays.'
+		},
+		openingHours: { de: 'Mi–Sa 09:30–18:00, So 10:00–18:00', en: 'Wed–Sat 9:30am–6pm, Sun 10am–6pm' },
+		url: 'https://www.cafe-hoepker.de/'
+	}
 ];

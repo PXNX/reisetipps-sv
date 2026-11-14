@@ -5,6 +5,7 @@
 	import type { Location } from '$lib/data/locations';
 	import { localize } from '$lib/i18n';
 	import { locationMarks } from '$lib/stores/locationMarks.svelte';
+	import { categoryIcons } from '$lib/categories';
 
 	function pinClass(location: Location): string {
 		if (locationMarks.isVisited(location.id)) return 'map-pin map-pin-visited';
@@ -38,10 +39,16 @@
 			/>
 			{#each locations as location (location.id)}
 				<Marker latLng={location.coordinates} onclick={() => onselect(location)}>
-					<DivIcon options={{ className: pinClass(location), iconSize: [16, 16] }}>
-						<span></span>
+					<DivIcon
+						options={{
+							className: pinClass(location),
+							iconSize: [28, 28],
+							iconAnchor: [14, 14]
+						}}
+					>
+						<span>{categoryIcons[location.categories[0] ?? 'nature']}</span>
 					</DivIcon>
-					<Tooltip options={{ direction: 'top', offset: [0, -10] }}
+					<Tooltip options={{ direction: 'top', offset: [0, -16] }}
 						>{localize(location.name)}</Tooltip
 					>
 				</Marker>
@@ -55,10 +62,14 @@
 		touch-action: none;
 	}
 	:global(.map-pin span) {
-		display: block;
-		width: 16px;
-		height: 16px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 28px;
+		height: 28px;
 		border-radius: 9999px;
+		font-size: 17px;
+		line-height: 1;
 		background: #f2a65a;
 		border: 2px solid #0b1f33;
 		box-shadow: 0 0 0 2px rgba(98, 195, 221, 0.6);

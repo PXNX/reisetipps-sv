@@ -50,6 +50,7 @@ export const stations = [
 	'Bregenz',
 	'Friedrichshafen Stadt',
 	'Friedrichshafen Hafen',
+	'Wasserburg (Bodensee)',
 	'Überlingen',
 	'Radolfzell',
 	'Konstanz'
@@ -570,5 +571,83 @@ export const locations: Location[] = [
 			},
 			attribution: '© Asurnipal, CC BY-SA 3.0, via Wikimedia Commons'
 		}
+	},
+	{
+		id: 'open-air-kino-wasserburg',
+		coordinates: [47.5662, 9.6409],
+		categories: ['culture'],
+		duration: ['medium'],
+		nearestStation: 'Wasserburg (Bodensee)',
+		name: { de: 'Open Air Kino Wasserburg', en: 'Wasserburg Open Air Cinema' },
+		teaser: {
+			de: 'Sommerkino unter freiem Himmel im Freibad Aquarin.',
+			en: 'Open-air summer cinema at the Aquarin lido.'
+		},
+		description: {
+			de: 'An rund zehn Abenden im August wird im Freibad Aquarin unter offenem Himmel gefilmt — Großleinwand, Einlass ab etwa 20:30 Uhr und ein Kiosk vor Ort. Kein Dauerbetrieb, sondern ein saisonales Ereignis für einen Sommerabend.',
+			en: 'On around ten evenings in August, films are shown under the open sky at the Aquarin lido — big screen, doors from about 8:30pm, and a kiosk on site. Not a permanent venue, but a seasonal summer-evening event.'
+		},
+		tip: {
+			de: 'Tickets vorher online sichern, an warmen Abenden ist es schnell voll. Bei Starkregen oder Sturm fällt die Vorstellung aus — ab 19:30 Uhr gilt die Info-Hotline +49 8382 9853-60.',
+			en: 'Book tickets online in advance — it fills up fast on warm evenings. Shows are cancelled in heavy rain or storm; from 7:30pm the info hotline +49 8382 9853-60 has the latest word.'
+		},
+		openingHours: {
+			de: 'saisonal: rund zehn Abende im August, Einlass ca. 20:30 Uhr, Beginn ca. 21:00 Uhr',
+			en: 'seasonal: around ten evenings in August, doors about 8:30pm, start about 9pm'
+		},
+		url: 'https://www.wasserburg-bodensee.de/highlights-in-wasserburg/open-air-kino/'
+	},
+	{
+		id: 'open-air-kino-lindau',
+		coordinates: [47.5487, 9.7175],
+		categories: ['culture'],
+		duration: ['medium'],
+		nearestStation: 'Lindau-Reutin',
+		name: {
+			de: 'Open Air Kino im Strandbad Eichwald',
+			en: 'Open Air Cinema at Strandbad Eichwald'
+		},
+		teaser: {
+			de: 'Kinoabende am See, veranstaltet vom Parktheater Lindau.',
+			en: 'Cinema evenings by the lake, put on by the Parktheater Lindau.'
+		},
+		description: {
+			de: 'Im Sommer verwandelt sich das Strandbad Eichwald in ein Open-Air-Kino — in Kooperation mit dem Parktheater Lindau. Ein saisonales Event an ausgewählten Abenden, kein dauerhaft bespielter Spielort.',
+			en: 'Each summer the Eichwald lido turns into an open-air cinema, in cooperation with the Parktheater Lindau. A seasonal event on selected evenings, not a year-round venue.'
+		},
+		tip: {
+			de: 'Wetterabhängig: bei Sturm oder Dauerregen fallen die Vorstellungen aus. Programm und Tickets gibt es online über Kinoheld.',
+			en: 'Weather dependent: shows are called off in storms or prolonged rain. Programme and tickets are available online via Kinoheld.'
+		},
+		openingHours: {
+			de: 'saisonal: ausgewählte Abende von Ende Juli bis Anfang August, wetterabhängig',
+			en: 'seasonal: selected evenings from late July to early August, weather permitting'
+		},
+		url: 'https://www.kinoheld.de/kino/lindau/open-air-lindau-bodensee/info'
+	},
+	{
+		id: 'lindenhofpark-bad-schachen',
+		coordinates: [47.5573, 9.6604],
+		categories: ['nature', 'culture'],
+		duration: ['short', 'medium'],
+		nearestStation: 'Lindau-Insel',
+		name: { de: 'Lindenhofpark Bad Schachen', en: 'Lindenhofpark, Bad Schachen' },
+		teaser: {
+			de: 'Landschaftspark mit Villa, Burgruine und Friedensräumen am Ostufer.',
+			en: 'A landscape park with a villa, castle ruins and peace rooms on the eastern shore.'
+		},
+		description: {
+			de: 'Rund 7,5 Hektar Park im Osten Lindaus, seit 1956 in städtischem Besitz und ganzjährig kostenfrei geöffnet. Zur Ausstattung gehören die Villa Lindenhof, die Burgruine Degelstein und die Friedensräume; die Wege sind rollstuhlgerecht.',
+			en: 'About 7.5 hectares of park in eastern Lindau, owned by the city since 1956 and open all year for free. It includes Villa Lindenhof, the Degelstein castle ruins and the peace rooms, with wheelchair-friendly paths.'
+		},
+		tip: {
+			de: 'Parken gibt es am Westeingang zur Badestelle; vom Bahnhof Lindau-Insel führt ein Spaziergang am Ufer entlang in den Park.',
+			en: 'Parking is at the western entrance by the lido; from Lindau-Insel station it is a scenic stroll along the shore into the park.'
+		},
+		openingHours: {
+			de: 'täglich ganzjährig geöffnet, Eintritt frei',
+			en: 'open daily all year, free admission'
+		},
+		url: 'https://www.gartendenkmal-lindenhofpark.de/page/lindenhofpark.html'
 	}
 ];

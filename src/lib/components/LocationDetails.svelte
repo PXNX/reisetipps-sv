@@ -29,6 +29,14 @@
 	const imageAlt = $derived(
 		location.image ? localize(location.image.alt) : localize(location.name)
 	);
+	/** Photos for the swipeable gallery, up to three. */
+	const photos = $derived(
+		(location.images ?? (location.image ? [location.image] : [])).map((photo) => ({
+			src: photo.url,
+			alt: localize(photo.alt),
+			attribution: photo.attribution
+		}))
+	);
 </script>
 
 <div class="space-y-4">
@@ -37,6 +45,7 @@
 			src={imageSrc}
 			alt={imageAlt}
 			attribution={location.image?.attribution}
+			gallery={photos}
 			class="h-40 sm:h-52"
 		/>
 	</figure>

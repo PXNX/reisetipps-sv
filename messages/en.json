@@ -103,5 +103,10 @@
 	"wishlist_remove": "Remove",
 	"wishlist_show": "Show on map",
 	"map_hide_visited": "Hide visited",
-	"map_show_visited": "Show visited"
+	"map_show_visited": "Show visited",
+	"gallery_previous": "Previous image",
+	"gallery_next": "Next image",
+	"gallery_counter": "Image {index} of {total}",
+	"gallery_count": "{count} photos",
+	"gallery_swipe_hint": "Swipe or use the arrows to browse the images."
 }

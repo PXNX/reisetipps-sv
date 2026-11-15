@@ -103,5 +103,10 @@
 	"wishlist_remove": "Entfernen",
 	"wishlist_show": "Auf der Karte zeigen",
 	"map_hide_visited": "Besuchte ausblenden",
-	"map_show_visited": "Besuchte einblenden"
+	"map_show_visited": "Besuchte einblenden",
+	"gallery_previous": "Vorheriges Bild",
+	"gallery_next": "Nächstes Bild",
+	"gallery_counter": "Bild {index} von {total}",
+	"gallery_count": "{count} Bilder",
+	"gallery_swipe_hint": "Wischen oder die Pfeile nutzen, um durch die Bilder zu blättern."
 }

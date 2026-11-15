@@ -38,6 +38,11 @@ export interface Location {
 	openingHours?: LocalizedText;
 	url?: string;
 	image?: LocationImage;
+	/**
+	 * Up to three photos for the swipeable gallery. The first entry should be
+	 * the same as `image`, which stays the fallback cover photo.
+	 */
+	images?: LocationImage[];
 	/** Emoji that overrides the category icon for this location, e.g. 🎥 for cinema events. */
 	icon?: string;
 }
@@ -2426,6 +2431,32 @@ export const locations: Location[] = [
 			},
 			attribution: '© Laydii, CC BY-SA 4.0, via Wikimedia Commons'
 		},
+		images: [
+			{
+				url: '/images/locations/breitachklamm.jpg',
+				alt: {
+					de: 'Die Breitachklamm bei Oberstdorf mit tosendem Wasser',
+					en: 'The Breitach gorge near Oberstdorf with roaring water'
+				},
+				attribution: '© Laydii, CC BY-SA 4.0, via Wikimedia Commons'
+			},
+			{
+				url: '/images/locations/breitachklamm-panoramio.jpg',
+				alt: {
+					de: 'Blick durch die Breitachklamm nach oben zu einem Steg über den Felsen',
+					en: 'Looking up through the Breitach gorge to a footbridge spanning the rocks'
+				},
+				attribution: '© qwesy qwesy, CC BY 3.0, via Wikimedia Commons'
+			},
+			{
+				url: '/images/locations/breitachklamm-winter.jpg',
+				alt: {
+					de: 'Die Breitachklamm im Winter mit Eiszapfen und schneebedeckten Felsen',
+					en: 'The Breitach gorge in winter with icicles and snow-covered rocks'
+				},
+				attribution: '© Jan Czeczotka, CC BY-SA 4.0, via Wikimedia Commons'
+			}
+		],
 		url: 'https://www.breitachklamm.de/'
 	},
 	{

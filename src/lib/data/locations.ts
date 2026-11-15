@@ -1558,7 +1558,7 @@ export const locations: Location[] = [
 		},
 		openingHours: {
 			de: 'Do–Mo 12:00–14:00 & 18:00–21:00, Di + Mi Ruhetag',
-			en: 'Tue–Sun 12–2pm & 6–9pm, closed Mon'
+			en: 'Thu–Mon 12pm–2pm & 6–9pm, closed Tue + Wed'
 		},
 		url: 'https://seehalde.de'
 	},
@@ -1574,12 +1574,12 @@ export const locations: Location[] = [
 			en: 'Farm shop selling raw and cooked ham straight from the Allgäu.'
 		},
 		description: {
-			de: 'Im Schinkenstadl in Edensbach werden Rohschinken und Kochschinken seit 1931 hergestellt und direkt verkauft. Daneben gibt es einen Selbstbedienungsautomat für den Einkauf rund um die Uhr.',
-			en: 'The Schinkenstadl in Edensbach has been producing raw and cooked ham since 1931 and sells it directly on site. A self-service vending machine lets you shop around the clock.'
+			de: 'Der Schinkenstadl in Waldburg/Edensbach (Edensbach 193) ist der Direktverkauf der Waldburger Schinken Spezialitäten: Rohschinken, Vesperwurst und Konserven in unvergleichbarer Frische direkt vor Ort — einzelne Produkte kann man verkosten.',
+			en: 'The Schinkenstadl in Waldburg/Edensbach (Edensbach 193) is the direct-sales shop of the Waldburger Schinken specialties: raw ham, Vesperwurst sausage and preserves, sold fresh right on site, with individual products available to taste.'
 		},
 		tip: {
-			de: 'Der SB-Automat ist rund um die Uhr gefüllt, falls der Hofladen geschlossen hat.',
-			en: 'The vending machine is stocked around the clock if the farm shop is closed.'
+			de: 'Die Angebote der Woche erscheinen in einer Aktionsbeilage der Schwäbischen Zeitung und unter „News" auf der Homepage.',
+			en: 'The weekly specials appear in a Schwäbische Zeitung insert and under “News” on the homepage.'
 		},
 		openingHours: {
 			de: 'Do + Fr 9:00–12:00 & 14:00–18:00, Sa 8:00–12:00',

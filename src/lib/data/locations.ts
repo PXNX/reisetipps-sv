@@ -1535,4 +1535,46 @@ export const locations: Location[] = [
 		},
 		url: 'https://www.xn--humpis-gaststtte-7nb.de/'
 	},
+	{
+		id: 'alpsee-coaster',
+		coordinates: [47.5606, 10.1386],
+		categories: ['nature'],
+		duration: ['short', 'medium'],
+		nearestStation: 'Immenstadt',
+		name: { de: 'Alpsee Coaster Immenstadt', en: 'Alpsee Coaster, Immenstadt' },
+		teaser: {
+			de: '2,8 km lange Ganzjahres-Rodelbahn mit 68 Kurven und bis zu 40 km/h.',
+			en: 'A 2.8 km all-season toboggan run with 68 curves and up to 40 km/h.'
+		},
+		description: {
+			de: 'Der Alpsee Coaster ist eine Ganzjahres-Rodelbahn am Alpsee in Immenstadt. Auf 2,8 km Strecke erwarten dich 68 Kurven, Steilkurven und Sprünge — wetterunabhängig und für Groß und Klein.',
+			en: 'The Alpsee Coaster is an all-season toboggan run at the Alpsee in Immenstadt. Over 2.8 km you’ll tackle 68 curves, banked turns and jumps — weather-proof and fun for all ages.'
+		},
+		tip: {
+			de: 'Mit der Bahn bis Immenstadt, dann Bus bis „Ratholz – Jägerhaus“. Im Winter bei Schnee geschlossen.',
+			en: 'Take the train to Immenstadt, then the bus to "Ratholz – Jägerhaus". Closed in winter when there is snow.'
+		},
+		url: 'https://www.alpsee-bergwelt.de/erleben/alpsee-coaster'
+	},
+	{
+		id: 'rappenlochschlucht',
+		coordinates: [47.3838, 9.7796],
+		categories: ['nature'],
+		duration: ['short', 'medium'],
+		nearestStation: 'Dornbirn',
+		name: { de: 'Rappenlochschlucht Dornbirn', en: 'Rappenlochschlucht, Dornbirn' },
+		teaser: {
+			de: 'Wildromantische Klamm mit Wasserfällen — April bis November begehbar.',
+			en: 'Wildly romantic gorge with waterfalls — open April through November.'
+		},
+		description: {
+			de: 'Die Rappenlochschlucht bei Dornbirn ist eine spektakuläre Klamm mit tosenden Wasserfällen und steilen Felswänden. Sie ist von April bis November geöffnet und ein beliebtes Wanderziel.',
+			en: 'The Rappenlochschlucht near Dornbirn is a spectacular gorge with roaring waterfalls and sheer rock walls. Open from April to November, it is a popular hiking destination.'
+		},
+		tip: {
+			de: 'Der Einstieg liegt am Gütle-Parkplatz — festes Schuhwerk mitnehmen. Im Winter geschlossen.',
+			en: 'The entrance is at the Gütle car park — bring sturdy shoes. Closed in winter.'
+		},
+		url: 'https://www.rappenloch.at'
+	},
 ];

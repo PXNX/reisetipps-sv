@@ -1439,4 +1439,29 @@ export const locations: Location[] = [
 		},
 		url: 'https://www.bodensee-vorarlberg.com/panoramawandern-von-lochau-auf-den-aussichtsberg-pfaender'
 	},
+	{
+		id: 'nebelhorn-oberstdorf',
+		coordinates: [47.4219, 10.3423],
+		categories: ['nature'],
+		duration: ['medium', 'long'],
+		nearestStation: 'Oberstdorf',
+		name: { de: 'Nebelhorn Oberstdorf', en: 'Nebelhorn, Oberstdorf' },
+		teaser: {
+			de: 'Mit 2,224 m ist der Nebelhorn der höchste Berg im Allgäu und bietet ein 400-Grad-Panorama über Bodensee, Allgäu und Alpen.',
+			en: 'At 2,224 m, Nebelhorn is the Allgäu\'s highest peak and offers a 400° panorama over Lake Constance, Allgäu and the Alps.'
+		},
+		description: {
+			de: 'Der Nebelhorn ist ein beliebtes Ziel für Bergsteiger und Wanderer. Von Oberstdorf aus führt die Nebelhornbahn (2,224 m) über den Hindelanger Klettersteig, der eine der längsten und spektakulärsten Abfahrten der Alpen ist.',
+			en: 'Nebelhorn is a popular destination for climbers and hikers. From Oberstdorf, the Nebelhornbahn (2,224 m) ascends via the Hindelanger climbing route, one of the Alps\' longest and most spectacular descents.'
+		},
+		tip: {
+			de: 'Die Nebelhornbahn fährt von Oberstdorf aus; die letzte Station liegt auf 2,224 m. Der Hindelanger Klettersteig ist bis zu 7,5 km lang und erfordert solide Schuhe und Kondition.',
+			en: 'The Nebelhornbahn departs from Oberstdorf and reaches 2,224 m. The Hindelanger climbing route is up to 7.5 km long and requires sturdy shoes and good fitness.'
+		},
+		openingHours: {
+			de: 'Nebelhornbahn 9–18 Uhr (Saison); Wanderwege ganzjährig frei.',
+			en: 'Nebelhornbahn 9am–6pm (seasonal); hiking trails are open year-round.'
+		},
+		url: 'https://www.ok-bergbahnen.com/bergbahnen/nebelhornbahn/'
+	},
 ];

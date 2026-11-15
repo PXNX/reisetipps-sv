@@ -721,6 +721,90 @@ export const locations: Location[] = [
 		url: 'https://www.alma.at'
 	},
 	{
+		id: 'gletschermuehle-goldbach',
+		coordinates: [47.7795, 9.1306],
+		categories: ['viewpoint'],
+		duration: ['short'],
+		nearestStation: 'Überlingen',
+		name: { de: 'Gletschermühle Goldbach', en: 'Gletschermühle, Goldbach' },
+		teaser: {
+			de: 'Versteckte Sandsteinhöhle mit riesigen Gletschertöpfen im Spetzgarter Tobel.',
+			en: 'Hidden sandstone cave with huge glacial potholes in the Spetzgarter Tobel gorge.'
+		},
+		description: {
+			de: 'Im Spetzgarter Tobel bei Goldbach westlich von Überlingen haben Regen und Wind weiches Molassegestein ausgewaschen — dabei entstanden Gletschermühlen von bis zu 20 Metern Durchmesser. Das Geotop liegt als Naturdenkmal im Naturschutzgebiet Katharinenfelsen direkt an der B 31.',
+			en: 'In the Spetzgarter Tobel gorge by Goldbach, west of Überlingen, rain and wind have carved the soft molasse rock into glacial potholes up to 20 metres across. The geotope is a natural monument inside the Katharinenfelsen nature reserve, right by the B31.'
+		},
+		tip: {
+			de: 'Der Einstieg liegt versteckt im Tobel — feste Schuhe mitnehmen und an der B 31 orientieren; gut mit einem Spaziergang durch den Spetzgarter Tobel zu kombinieren.',
+			en: 'The entrance is hidden in the gorge — bring sturdy shoes and orient yourself from the B31; combines well with a walk through the Spetzgarter Tobel.'
+		},
+		url: 'https://lgrbwissen.lgrb-bw.de/geotourismus/glazialformen/alpenvorland/gletschermuehle-ueberlingen'
+	},
+	{
+		id: 'burghalde-sipplingen',
+		coordinates: [47.7958, 9.1118],
+		categories: ['viewpoint', 'ruins'],
+		duration: ['short', 'medium'],
+		nearestStation: 'Überlingen',
+		name: { de: 'Burghalde (Burgrest Hüneberg)', en: 'Burghalde (Hüneberg Castle Ruins)' },
+		teaser: {
+			de: 'Burgrest der Haldenburg auf dem 528 Meter hohen Sandsteinrücken des Hünebergs über Sipplingen.',
+			en: 'Remains of the Haldenburg castle on the 528-metre sandstone ridge of the Hüneberg above Sipplingen.'
+		},
+		description: {
+			de: 'Östlich von Sipplingen stand auf dem Hüneberg vermutlich seit dem 12. Jahrhundert eine Höhenburg, die auch Haldenburg genannt wird. Heute zeugen noch Mauerreste vom Burgstall; der bewaldete Rücken liegt hoch über dem Steilufer des Bodensees.',
+			en: 'East of Sipplingen, a hilltop castle known as Haldenburg probably stood on the Hüneberg from the 12th century. Today only wall remains mark the site; the wooded ridge sits high above the steep shore of Lake Constance.'
+		},
+		tip: {
+			de: 'Der Aufstieg startet in Sipplingen und führt über den bewaldeten Rücken zum Burgstall — gut mit den nahen Sieben Churfirsten zu kombinieren.',
+			en: 'The ascent starts in Sipplingen and leads over the wooded ridge to the castle site — easy to combine with the nearby Seven Churfirsten rocks.'
+		},
+		url: 'https://de.wikipedia.org/wiki/Burgrest_H%C3%BCneberg'
+	},
+	{
+		id: 'katharinenfelsen-ueberlingen',
+		coordinates: [47.7815, 9.1277],
+		categories: ['viewpoint'],
+		duration: ['short'],
+		nearestStation: 'Überlingen',
+		name: { de: 'Katharinenfelsen', en: 'Katharinenfelsen' },
+		teaser: {
+			de: 'Bis zu 100 Meter steil abfallende Molasse-Felswand mit Gletschertopf hoch über dem Überlinger See.',
+			en: 'Molasse rock wall falling up to 100 metres steep, with a glacial pothole high above Lake Überlingen.'
+		},
+		description: {
+			de: 'Nordwestlich von Überlingen bei Hödingen schützt das Naturschutzgebiet Katharinenfelsen seit 1989 eine bis zu 100 Meter hohe, steil abfallende Felswand aus Oberer Meeresmolasse sowie Felsformationen mit Gletschertopf. Von den Wegen am Abhang reicht der Blick über Sipplingen und den Bodensee.',
+			en: 'Northwest of Überlingen near Hödingen, the Katharinenfelsen nature reserve has protected an up-to-100-metre steep rock wall of Upper Marine Molasse and formations with a glacial pothole since 1989. From the paths along the slope, the view reaches across Sipplingen and Lake Constance.'
+		},
+		tip: {
+			de: 'Das Schutzgebiet liegt direkt westlich von Überlingen an der B 31 — auf den Wegen bleiben, der Hang ist steil.',
+			en: 'The reserve lies just west of Überlingen by the B31 — stay on the paths, the slope is steep.'
+		},
+		url: 'https://de.wikipedia.org/wiki/Katharinenfelsen'
+	},
+	{
+		id: 'sieben-churfirsten-sipplingen',
+		coordinates: [47.7926, 9.1176],
+		categories: ['culture'],
+		duration: ['short'],
+		nearestStation: 'Überlingen',
+		name: { de: 'Sieben Churfirsten', en: 'Seven Churfirsten' },
+		teaser: {
+			de: 'Sieben pfeilerartige Sandsteinfelsen am Rotweilerberg — sie ähneln den Mützen der Kurfürsten.',
+			en: 'Seven pillar-like sandstone rocks on the Rotweilerberg — they resemble the hats of the prince-electors.'
+		},
+		description: {
+			de: 'Am Rotweilerberg im Naturschutzgebiet Sipplinger Dreieck stehen pfeilerartige, fünf bis sieben Meter hohe Sandsteinfelsen, die in der Nacheiszeit durch Erosion von Regen und Wind entstanden sind. Der Name geht auf die Kurfürsten zurück, deren Mützen den Felsen ähneln sollen; die härteren Gesteinskappen haben den darunterliegenden Sandstein vor der Abtragung geschützt.',
+			en: 'On the Rotweilerberg in the Sipplinger Dreieck nature reserve stand pillar-like sandstone rocks, five to seven metres high, formed by rain and wind erosion after the last ice age. The name recalls the prince-electors, whose hats the rocks are said to resemble; the harder rock caps protected the sandstone beneath from erosion.'
+		},
+		tip: {
+			de: 'Die Felsen liegen oberhalb von Süßenmühle am Ortsrand von Sipplingen — ideal mit einem Abstecher zum nahen Burgrest auf der Burghalde zu kombinieren.',
+			en: 'The rocks lie above Süßenmühle at the edge of Sipplingen — ideal combined with a visit to the nearby castle ruins on the Burghalde.'
+		},
+		url: 'https://www.freizeit-bodensee.com/die-sieben-churfirsten-bei-sipplingen.html'
+	},
+	{
 		id: 'streitelsfingen',
 		coordinates: [47.5667, 9.7185],
 		categories: ['viewpoint'],

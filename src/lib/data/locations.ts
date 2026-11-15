@@ -849,6 +849,7 @@ export const locations: Location[] = [
 		coordinates: [47.6768, 9.4202],
 		categories: ['culinary'],
 		duration: ['short'],
+		icon: '🍷',
 		nearestStation: 'Friedrichshafen Hafen',
 		name: { de: 'Organic Distillery Friedrichshafen', en: 'Organic Distillery Friedrichshafen' },
 		teaser: {
@@ -860,8 +861,8 @@ export const locations: Location[] = [
 			en: 'On her parents’ organic-biodynamic farm, Christine Brugger combines sensory science with the craft of distillation. Since 2014 the two organic gins Ginn and Ginnie have been produced here, alongside organic essences and key aromas such as lemon verbena, mandarin, mint or southernwood — for chefs, bartenders and gourmets. The gin’s exact recipe with 22 ingredients remains a closely guarded secret.'
 		},
 		tip: {
-			de: 'Es gibt keinen Hofladen — Besuche nur nach Voranmeldung. Die Produkte sind in über 50 Geschäften rund um den Bodensee und online erhältlich; vom Bahnhof Friedrichshafen Hafen sind es wenige Kilometer mit dem Rad.',
-			en: 'There is no farm shop — visits by appointment only. The products are stocked in more than 50 shops around Lake Constance and online; from Friedrichshafen Hafen station it is a few kilometres by bike.'
+			de: 'Es gibt keinen Hofladen — Besuche nur nach Voranmeldung. Die Produkte sind in über 50 Geschäften rund um den Bodensee und online erhältlich; vom Bahnhof Friedrichshafen Hafen sind es wenige Kilometer mit dem Rad. Besonders beliebt: die Bio-Gins Ginn und Ginnie.',
+			en: 'There is no farm shop — visits by appointment only. The products are stocked in more than 50 shops around Lake Constance and online; from Friedrichshafen Hafen station it is a few kilometres by bike. The organic gins Ginn and Ginnie are the standouts.'
 		},
 		url: 'https://www.organic-distillery.com'
 	},
@@ -895,6 +896,7 @@ export const locations: Location[] = [
 		coordinates: [47.717, 9.3888],
 		categories: ['culinary'],
 		duration: ['short'],
+		icon: '🥐',
 		nearestStation: 'Markdorf',
 		name: { de: 'Landbäckerei Baader im Bahnhof Markdorf', en: 'Landbäckerei Baader at Markdorf Station' },
 		teaser: {
@@ -1030,6 +1032,7 @@ export const locations: Location[] = [
 		coordinates: [47.6701, 9.4226],
 		categories: ['culinary'],
 		duration: ['short'],
+		icon: '☕',
 		nearestStation: 'Friedrichshafen Hafen',
 		name: { de: 'Cafe Confiserie Höpker', en: 'Cafe Confiserie Höpker' },
 		teaser: {
@@ -1052,6 +1055,7 @@ export const locations: Location[] = [
 		coordinates: [47.6527, 9.4728],
 		categories: ['culinary'],
 		duration: ['short'],
+		icon: '🥐',
 		nearestStation: 'Friedrichshafen Stadt',
 		name: { de: 'Webers Backstube', en: 'Webers Backstube Bakery' },
 		teaser: {
@@ -1074,6 +1078,7 @@ export const locations: Location[] = [
 		coordinates: [47.7654, 9.1638],
 		categories: ['culinary'],
 		duration: ['short'],
+		icon: '🥐',
 		nearestStation: 'Überlingen',
 		name: { de: 'Backhaus Mahl', en: 'Backhaus Mahl Bakery' },
 		teaser: {
@@ -1207,6 +1212,7 @@ export const locations: Location[] = [
 		coordinates: [47.7606, 9.1871],
 		categories: ['culinary'],
 		duration: ['short'],
+		icon: '🍷',
 		nearestStation: 'Überlingen',
 		name: { de: 'Weingut Kress', en: 'Weingut Kress Winery' },
 		teaser: {
@@ -1218,8 +1224,8 @@ export const locations: Location[] = [
 			en: 'Weingut Kress on Mühlbachstraße in Überlingen has been family-run for three generations, growing its vines by Lake Constance: glacial moraine soils, the lake as a temperature regulator and the Alps in view. The range includes Riesling, Pinot, single-vineyard wines, sparkling wine and sekt, among them the “Überlinger Felsengarten” cuvées.'
 		},
 		tip: {
-			de: 'In der Vinothek dienstags bis freitags 9–12:30 und 14–18 Uhr, samstags 10–13 Uhr geöffnet. Im Juni und Juli freitags ab 18 Uhr die Besenwirtschaft „Viertel vor Kress“ — vorher anrufen (+49 7551 65855).',
-			en: 'The vinotheque is open Tuesday to Friday 9am–12:30pm and 2–6pm, Saturday 10am–1pm. In June and July the “Viertel vor Kress” wine bar opens on Fridays from 6pm — call ahead (+49 7551 65855).'
+			de: 'In der Vinothek dienstags bis freitags 9–12:30 und 14–18 Uhr, samstags 10–13 Uhr geöffnet. Im Juni und Juli freitags ab 18 Uhr die Besenwirtschaft „Viertel vor Kress“ — vorher anrufen (+49 7551 65855). Besonders empfehlenswert: der Müller-Thurgau.',
+			en: 'The vinotheque is open Tuesday to Friday 9am–12:30pm and 2–6pm, Saturday 10am–1pm. In June and July the “Viertel vor Kress” wine bar opens on Fridays from 6pm — call ahead (+49 7551 65855). The Müller-Thurgau in particular comes recommended.'
 		},
 		openingHours: {
 			de: 'Di–Fr 09:00–12:30 & 14:00–18:00, Sa 10:00–13:00, Mo/So/Feiertage geschlossen',
@@ -1265,6 +1271,7 @@ export const locations: Location[] = [
 		coordinates: [47.58381, 7.648673],
 		categories: ['culinary'],
 		duration: ['short'],
+		icon: '🍫',
 		nearestStation: 'Riehen',
 		name: {
 			de: 'Patrizias Schoggiparadies',
@@ -1351,6 +1358,7 @@ export const locations: Location[] = [
 		coordinates: [47.5601, 9.6578],
 		categories: ['culinary'],
 		duration: ['short'],
+		icon: '🍷',
 		nearestStation: 'Lindau-Insel',
 		name: { de: 'Weingut Teresa Deufel', en: 'Teresa Deufel Winery' },
 		teaser: {
@@ -1362,8 +1370,8 @@ export const locations: Location[] = [
 			en: 'A family farm in Bad Schachen surrounded by vineyards: as early as 1975 Hannes Deufel and Ludwig Haug turned to vines alongside their orchards, and in 1977 the first Lindau wine was poured. Teresa Deufel has made her own wines since 2009 and opened the Degelstein farm bar in the old wine cellar in 2011. Varieties such as Cabernet Blanc, Solaris and Johanniter benefit from the föhn winds; the vineyard is among Germany’s southernmost, with a view over Lake Constance.'
 		},
 		tip: {
-			de: 'Der Hofverkauf ist vormittags geöffnet, Mo–Sa 9–12 Uhr; die Weinprobe im Degelstein ist nach Absprache möglich. Vom Bahnhof Lindau-Insel sind es gut zwei Kilometer nach Bad Schachen.',
-			en: 'The farm shop opens in the morning, Mon–Sat 9am–noon; a tasting at the Degelstein bar is possible by arrangement. From Lindau-Insel station it is a good two kilometres to Bad Schachen.'
+			de: 'Der Hofverkauf ist vormittags geöffnet, Mo–Sa 9–12 Uhr; die Weinprobe im Degelstein ist nach Absprache möglich. Vom Bahnhof Lindau-Insel sind es gut zwei Kilometer nach Bad Schachen. Besonders empfehlenswert: der Solaris.',
+			en: 'The farm shop opens in the morning, Mon–Sat 9am–noon; a tasting at the Degelstein bar is possible by arrangement. From Lindau-Insel station it is a good two kilometres to Bad Schachen. The Solaris in particular comes recommended.'
 		},
 		openingHours: {
 			de: 'Hofverkauf Mo–Sa 9:00–12:00; Degelstein Di–Sa ab 17:00 Uhr, saisonal — vorher prüfen',

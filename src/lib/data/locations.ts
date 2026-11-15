@@ -671,6 +671,14 @@ export const locations: Location[] = [
 			de: 'täglich ganzjährig geöffnet, Eintritt frei',
 			en: 'open daily all year, free admission'
 		},
+		image: {
+			url: '/images/locations/lindenhofpark-bad-schachen.jpg',
+			alt: {
+				de: 'Im Lindenhofpark in Bad Schachen mit altem Baumbestand',
+				en: 'In the Lindenhofpark at Bad Schachen with its old trees'
+			},
+			attribution: '© Daderot, public domain, via Wikimedia Commons'
+		},
 		url: 'https://www.gartendenkmal-lindenhofpark.de/page/lindenhofpark.html'
 	},
 	{
@@ -784,6 +792,14 @@ export const locations: Location[] = [
 			de: 'Das Schutzgebiet liegt direkt westlich von Überlingen an der B 31 — auf den Wegen bleiben, der Hang ist steil.',
 			en: 'The reserve lies just west of Überlingen by the B31 — stay on the paths, the slope is steep.'
 		},
+		image: {
+			url: '/images/locations/katharinenfelsen-ueberlingen.jpg',
+			alt: {
+				de: 'Blick vom Katharinenfelsen über den Überlinger See bei Goldbach',
+				en: 'View from the Katharinenfelsen rock over Lake Überlingen near Goldbach'
+			},
+			attribution: '© Frank Vincentz, CC BY-SA 3.0, via Wikimedia Commons'
+		},
 		url: 'https://de.wikipedia.org/wiki/Katharinenfelsen'
 	},
 	{
@@ -804,6 +820,14 @@ export const locations: Location[] = [
 		tip: {
 			de: 'Die Felsen liegen oberhalb von Süßenmühle am Ortsrand von Sipplingen — ideal mit einem Abstecher zum nahen Burgrest auf der Burghalde zu kombinieren.',
 			en: 'The rocks lie above Süßenmühle at the edge of Sipplingen — ideal combined with a visit to the nearby castle ruins on the Burghalde.'
+		},
+		image: {
+			url: '/images/locations/sieben-churfirsten-sipplingen.jpg',
+			alt: {
+				de: 'Die Felstürme der Sieben Churfirsten oberhalb von Sipplingen',
+				en: 'The Sieben Churfirsten rock towers above Sipplingen'
+			},
+			attribution: '© Jan Czeczotka, CC BY-SA 4.0, via Wikimedia Commons'
 		},
 		url: 'https://www.freizeit-bodensee.com/die-sieben-churfirsten-bei-sipplingen.html'
 	},
@@ -918,6 +942,14 @@ export const locations: Location[] = [
 			de: 'Mo–Fr 6:00–18:00, Sa 6:30–14:00, So 7:00–17:00',
 			en: 'Mon–Fri 6am–6pm, Sat 6:30am–2pm, Sun 7am–5pm'
 		},
+		image: {
+			url: '/images/locations/landbaeckerei-baader-markdorf.jpg',
+			alt: {
+				de: 'Das Bahnhofsgebäude von Markdorf mit der Landbäckerei Baader',
+				en: 'The Markdorf station building housing the Landbäckerei Baader'
+			},
+			attribution: '© Klaus Jesper, CC BY 4.0, via Wikimedia Commons'
+		},
 		url: 'https://www.baaderbeck.de/fachgeschaefte/bahnhof-markdorf'
 	},
 	{
@@ -938,7 +970,15 @@ export const locations: Location[] = [
 		tip: {
 			de: 'Grill mitbringen und an den ausgewiesenen Picknickplätzen am Damm genießen; Teile des Naturschutzgebiets sind gesperrt. Mit dem Rad über den Rheindamm von Hard oder Fußach aus besonders schön.',
 			en: 'Bring your own grill and enjoy it at the marked picnic spots by the dam; parts of the nature reserve are off-limits. Especially lovely by bike along the Rheindamm from Hard or Fußach.'
-		}
+		},
+		image: {
+			url: '/images/locations/rheindamm.jpg',
+			alt: {
+				de: 'Blick über das Naturschutzgebiet Rheindelta am Bodensee',
+				en: 'View over the Rheindelta nature reserve on Lake Constance'
+			},
+			attribution: '© JoachimKohler-HB, CC BY-SA 4.0, via Wikimedia Commons'
+		},
 	},
 	{
 		id: 'kleines-cafe',
@@ -1138,6 +1178,14 @@ export const locations: Location[] = [
 			de: 'Ab Wallhausen mit dem Bus Richtung Bodman bis zur Haltestelle fahren und von dort zu Fuß zur Schlucht; auf dem Weg über den Bodanrück liegt das Bisongehege am Hofgut Bodenwald.',
 			en: 'From Wallhausen take the bus toward Bodman and get off at the stop, then walk to the gorge; on the way across the Bodanrück you pass the bison enclosure at Hofgut Bodenwald.'
 		},
+		image: {
+			url: '/images/locations/marienschlucht.jpg',
+			alt: {
+				de: 'Blick vom Schiffsanleger zur Marienschlucht am Überlinger See',
+				en: 'View from the boat landing toward the Marienschlucht gorge on Lake Überlingen'
+			},
+			attribution: '© Christine Ferdinand, CC BY-SA 2.5, via Wikimedia Commons'
+		},
 		url: 'https://www.marienschlucht.info'
 	},
 	{
@@ -1158,7 +1206,15 @@ export const locations: Location[] = [
 		tip: {
 			de: 'Ab Wallhausen mit dem Bus Richtung Bodman fahren und an der Haltestelle aussteigen, dann zu Fuß über den Bodanrück — das Bisongehege liegt auf dem Weg.',
 			en: 'From Wallhausen take the bus toward Bodman and get off at the stop, then hike across the Bodanrück — the bison enclosure is on the way.'
-		}
+		},
+		image: {
+			url: '/images/locations/altbodman.jpg',
+			alt: {
+				de: 'Die Burgruine Altbodman auf dem Bodanrück',
+				en: 'The Altbodman castle ruin on the Bodanrück ridge'
+			},
+			attribution: '© Johannes Robalotoff, CC BY-SA 4.0, via Wikimedia Commons'
+		},
 	},
 	{
 		id: 'landmetzgerei-schaedler-oberlangnau',
@@ -1207,6 +1263,14 @@ export const locations: Location[] = [
 		openingHours: {
 			de: 'Apr–Okt: Mi–So 10:30–22:00, Mo–Di geschlossen',
 			en: 'Apr–Oct: Wed–Sun 10:30am–10pm, Mon–Tue closed'
+		},
+		image: {
+			url: '/images/locations/degerseestube.jpg',
+			alt: {
+				de: 'Die Degerseestube am Ufer des Degersees, vom Wasser aus gesehen',
+				en: 'The Degerseestube on the shore of the Degersee, seen from the water'
+			},
+			attribution: '© Chrissss, CC BY-SA 4.0, via Wikimedia Commons'
 		},
 		url: 'https://www.degerseestube.de/'
 	},
@@ -1463,6 +1527,14 @@ export const locations: Location[] = [
 			de: 'Nebelhornbahn 9–18 Uhr (Saison); Wanderwege ganzjährig frei.',
 			en: 'Nebelhornbahn 9am–6pm (seasonal); hiking trails are open year-round.'
 		},
+		image: {
+			url: '/images/locations/nebelhorn-oberstdorf.jpg',
+			alt: {
+				de: 'Der Gipfel des Nebelhorns bei Oberstdorf',
+				en: 'The summit of the Nebelhorn near Oberstdorf'
+			},
+			attribution: '© Johannes Robalotoff, CC BY-SA 3.0 DE, via Wikimedia Commons'
+		},
 		url: 'https://www.ok-bergbahnen.com/bergbahnen/nebelhornbahn/'
 	},
 	{
@@ -1555,6 +1627,14 @@ export const locations: Location[] = [
 			de: 'Mit der Bahn bis Immenstadt, dann Bus bis „Ratholz – Jägerhaus“. Im Winter bei Schnee geschlossen.',
 			en: 'Take the train to Immenstadt, then the bus to "Ratholz – Jägerhaus". Closed in winter when there is snow.'
 		},
+		image: {
+			url: '/images/locations/alpsee-coaster.jpg',
+			alt: {
+				de: 'Die Alpsee-Coaster-Rodelbahn bei Immenstadt',
+				en: 'The Alpsee Coaster summer toboggan run near Immenstadt'
+			},
+			attribution: '© qwesy qwesy, CC BY 3.0, via Wikimedia Commons'
+		},
 		url: 'https://www.alpsee-bergwelt.de/erleben/alpsee-coaster'
 	},
 	{
@@ -1575,6 +1655,14 @@ export const locations: Location[] = [
 		tip: {
 			de: 'Der Einstieg liegt am Gütle-Parkplatz — festes Schuhwerk mitnehmen. Im Winter geschlossen.',
 			en: 'The entrance is at the Gütle car park — bring sturdy shoes. Closed in winter.'
+		},
+		image: {
+			url: '/images/locations/rappenlochschlucht.jpg',
+			alt: {
+				de: 'Die Rappenlochschlucht bei Dornbirn mit Felswänden und Wasser',
+				en: 'The Rappenloch gorge near Dornbirn with rock walls and water'
+			},
+			attribution: '© A.Savin, FAL, via Wikimedia Commons'
 		},
 		url: 'https://www.rappenloch.at'
 	},
@@ -1597,6 +1685,14 @@ export const locations: Location[] = [
 			de: 'Die Stiftsbibliothek ist ein absolutes Highlight — die Deckenfresken und Holzdecken lohnen einen Besuch.',
 		en: 'The abbey library is an absolute highlight — the ceiling frescoes and wooden ceilings are worth a visit.'
 		},
+		image: {
+			url: '/images/locations/st-gallen-stiftsbezirk.jpg',
+			alt: {
+				de: 'Der Barocksaal der Stiftsbibliothek St. Gallen',
+				en: 'The baroque hall of the St. Gallen Abbey Library'
+			},
+			attribution: '© Martin Thurnherr, CC BY-SA 4.0, via Wikimedia Commons'
+		},
 		url: 'https://www.stiftsbibliothek.ch'
 	},
 	{
@@ -1617,6 +1713,14 @@ export const locations: Location[] = [
 		tip: {
 			de: 'Der Hoyerberg ist ein kurzer Spaziergang von der Insel aus zu erreichen.',
 			en: 'The Hoyerberg is a short walk from the island.'
+		},
+		image: {
+			url: '/images/locations/bismarck-denkmal-lindau.jpg',
+			alt: {
+				de: 'Das Bismarckdenkmal auf dem Hoyerberg über Lindau',
+				en: 'The Bismarck monument on the Hoyerberg above Lindau'
+			},
+			attribution: '© Mayer Richard, CC BY 3.0, via Wikimedia Commons'
 		},
 		url: 'https://www.lindau.de/addresses/bismarck-denkmal-reichsadler/'
 	},
@@ -1660,6 +1764,14 @@ export const locations: Location[] = [
 			de: 'Die Schlosskapelle und das Schlossmuseum sind einen Besuch wert. Vom Bahnhof Markdorf ca. 5 km nach Tettnang.',
 			en: 'The palace chapel and museum are worth a visit. From Markdorf station about 5 km to Tettnang.'
 		},
+		image: {
+			url: '/images/locations/schloss-tettnang.jpg',
+			alt: {
+				de: 'Luftbild von Schloss Tettnang',
+				en: 'Aerial view of Tettnang Castle'
+			},
+			attribution: '© Carsten Steger, CC BY-SA 4.0, via Wikimedia Commons'
+		},
 		url: 'https://www.schloss-tettnang.de/'
 	},
 	{
@@ -1681,6 +1793,14 @@ export const locations: Location[] = [
 			de: 'Vom Bahnhof Markdorf aus gut erreichbar — ideal für eine Rast mit Hopfenspezialitäten.',
 			en: 'Easily reached from Markdorf station — ideal for a stop with hop specialties.'
 		},
+		image: {
+			url: '/images/locations/hopfengut-no20-tettnang.jpg',
+			alt: {
+				de: 'Hopfenfeld beim Hopfengut No. 20 in Tettnang',
+				en: 'Hop field at the Hopfengut No. 20 in Tettnang'
+			},
+			attribution: '© Anvilaquarius, public domain, via Wikimedia Commons'
+		},
 		url: 'https://www.hopfengut.de/'
 	},
 	{
@@ -1701,6 +1821,14 @@ export const locations: Location[] = [
 		tip: {
 			de: 'Mit dem Bus oder zu Fuß von Hergatz erreichbar. Geführte Touren geben Einblick in die Bunkeranlagen.',
 			en: 'Accessible by bus or on foot from Hergatz. Guided tours offer insight into the bunker installations.'
+		},
+		image: {
+			url: '/images/locations/festungsmuseum-heldsberg.jpg',
+			alt: {
+				de: 'Kanone des Artilleriewerks Heldsberg',
+				en: 'Cannon of the Heldsberg artillery fort'
+			},
+			attribution: '© Kecko, CC BY 2.0, via Wikimedia Commons'
 		},
 		url: 'https://festung.ch/'
 	},

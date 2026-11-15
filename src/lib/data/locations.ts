@@ -73,7 +73,8 @@ export const stations = [
 	'Riehen',
 	'Kaiseraugst',
 	'Markdorf',
-	'Hergatz'
+	'Hergatz',
+	'Uhldingen-Mühlhofen'
 ] as const;
 
 export type Station = (typeof stations)[number];
@@ -1939,6 +1940,77 @@ export const locations: Location[] = [
 				en: 'Aerial view of the Meckatzer brewery at Meckatz'
 			},
 			attribution: '© Clemenspool, CC0, via Wikimedia Commons'
+		}
+	},
+	{
+		id: 'dornier-museum',
+		coordinates: [47.6577, 9.5229],
+		categories: ['technology', 'culture'],
+		duration: ['medium'],
+		nearestStation: 'Friedrichshafen Flughafen',
+		name: { de: 'Dornier Museum', en: 'Dornier Museum' },
+		teaser: {
+			de: 'Luftfahrt- und Raumfahrtgeschichte am Flughafen Friedrichshafen — vom Wasserflugzeug bis zur Raumfahrt.',
+			en: 'Aviation and space history at Friedrichshafen airport — from flying boats to spaceflight.'
+		},
+		description: {
+			de: 'In der futuristischen Halle am Flughafen erzählt das Museum die Geschichte von Claude Dornier und seinen Flugzeugen: von den ersten Wasserflugzeugen über die legendäre Do X bis zur Luft- und Raumfahrt von heute. Über 400 Exponate, darunter Originalflugzeuge, sind drinnen und auf dem Freigelände zu sehen.',
+			en: 'In the futuristic hall at the airport, the museum tells the story of Claude Dornier and his aircraft: from the first flying boats over the legendary Do X to today’s aviation and spaceflight. More than 400 exhibits, including original aircraft, are on show indoors and on the open-air grounds.'
+		},
+		tip: {
+			de: 'Aktionstage wie die „Do Days“ machen die Technik zum Anfassen — Termine vorher prüfen. Vom Bahnhof Friedrichshafen Flughafen sind es wenige Minuten zu Fuß; bei Regen ist das Museum ein guter Plan B.',
+			en: 'Event days such as the “Do Days” make the technology hands-on — check the dates beforehand. It is a few minutes on foot from Friedrichshafen Flughafen station; on a rainy day the museum is a good plan B.'
+		},
+		openingHours: {
+			de: 'Di–So 10:00–17:00, Mo geschlossen; an Feiertagen und in der Saison abweichend',
+			en: 'Tue–Sun 10am–5pm, closed Mon; different on public holidays and in season'
+		},
+		url: 'https://www.dorniermuseum.de'
+	},
+	{
+		id: 'langenargen',
+		coordinates: [47.5877, 9.5908],
+		categories: ['culture', 'nature'],
+		duration: ['short', 'medium'],
+		nearestStation: 'Langenargen',
+		name: { de: 'Langenargen & Maurischer Kiosk', en: 'Langenargen & Moorish Kiosk' },
+		teaser: {
+			de: 'Hafenpromenade an der Argenmündung mit dem Maurischen Kiosk aus der Pariser Weltausstellung.',
+			en: 'Harbour promenade at the mouth of the Argen, with the Moorish Kiosk from the Paris World’s Fair.'
+		},
+		description: {
+			de: 'Wo die Argen in den Bodensee fließt, liegt Langenargen mit seiner Promenade und der hölzernen Argenbrücke. Im Park am See steht der Maurische Kiosk, ein exotischer Pavillon aus der Pariser Weltausstellung — ein Blickfang mit Blick über den See zur Schweizer Seite.',
+			en: 'Where the Argen flows into Lake Constance lies Langenargen, with its promenade and the wooden Argen bridge. In the park by the lake stands the Moorish Kiosk, an exotic pavilion from the Paris World’s Fair — an eye-catcher with a view across the lake to the Swiss shore.'
+		},
+		tip: {
+			de: 'Einmal im Jahr ist Langenargen Schauplatz einer Flugshow — dann ist der Ort voll und die Promenade der beste Aussichtspunkt; Termine vorher prüfen. Sonst lohnt der Spaziergang über die Argenbrücke zum Kiosk im Park.',
+			en: 'Once a year Langenargen hosts a plane show — the town is busy then and the promenade is the best vantage point; check the dates beforehand. Otherwise, the walk over the Argen bridge to the kiosk in the park is worth it.'
+		},
+		url: 'https://www.langenargen.de'
+	},
+	{
+		id: 'open-air-kino-hagnau',
+		coordinates: [47.6764, 9.6213],
+		categories: ['culture'],
+		duration: ['short'],
+		nearestStation: 'Uhldingen-Mühlhofen',
+		name: { de: 'Open Air Kino Hagnau', en: 'Hagnau Open Air Cinema' },
+		teaser: {
+			de: 'Sommerliche Filmabende unter freiem Himmel am See.',
+			en: 'Summer film evenings under the open sky by the lake.'
+		},
+		description: {
+			de: 'An ausgewählten Sommerabenden wird in Hagnau unter freiem Himmel gefilmt — das Publikum sitzt mit Decken und Getränken am See, während über ihm der Film läuft. Kein Dauerbetrieb, sondern ein saisonales Ereignis für laue Nächte.',
+			en: 'On selected summer evenings, films are shown under the open sky in Hagnau — the audience sits by the lake with blankets and drinks while the film runs above them. Not a permanent venue, but a seasonal event for balmy nights.'
+		},
+		tip: {
+			de: 'Decke und etwas Warmes zum Anziehen mitnehmen, auch im Sommer kühlt es am Wasser schnell ab. Bei Regen fällt die Vorstellung aus — Programm und Tickets vorher online prüfen.',
+			en: 'Bring a blanket and something warm — it cools down quickly by the water even in summer. Shows are cancelled in rain, so check the programme and tickets online beforehand.'
+		},
+		icon: '🎥',
+		openingHours: {
+			de: 'saisonal: ausgewählte Abende im Sommer, Beginn bei Einbruch der Dunkelheit',
+			en: 'seasonal: selected summer evenings, starting at dusk'
 		}
 	}
 ];

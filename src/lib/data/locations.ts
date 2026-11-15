@@ -1745,4 +1745,200 @@ export const locations: Location[] = [
 		},
 		url: 'https://lagondolaristorantepizzeria.com'
 	},
+	{
+		id: 'bauernhausmuseum-wolfegg',
+		coordinates: [47.8185582, 9.7889301],
+		categories: ['history'],
+		duration: ['medium', 'long'],
+		nearestStation: 'Kißlegg',
+		name: {
+			de: 'Bauernhaus-Museum Allgäu-Oberschwaben Wolfegg',
+			en: 'Allgäu-Oberschwaben Farmhouse Museum, Wolfegg'
+		},
+		teaser: {
+			de: 'Freilichtmuseum mit originalgetreu eingerichteten Bauernhäusern aus Oberschwaben und dem westlichen Allgäu.',
+			en: 'An open-air museum of faithfully furnished farmhouses from Upper Swabia and the western Allgäu.'
+		},
+		description: {
+			de: 'Zahlreiche historische Bauernhäuser aus Oberschwaben und dem westlichen Allgäu wurden abgetragen und hier wieder aufgebaut – vom Kornspeicher bis zum Fischerhaus. In den originalgetreu eingerichteten Stuben und Kammern wird die ländliche Kulturgeschichte der Region greifbar, ergänzt durch Sonderausstellungen und Mitmachangebote.',
+			en: 'Dozens of historic farmhouses from Upper Swabia and the western Allgäu were dismantled and rebuilt here – from granaries to fishing cottages. The faithfully furnished parlours and chambers make the region’s rural history tangible, rounded off by special exhibitions and hands-on activities.'
+		},
+		tip: {
+			de: 'Die Saison läuft nur von Mitte März bis Anfang November – vorher prüfen, ob geöffnet ist. Mit dem Zug bis Kißlegg, von dort mit Bus oder Rad weiter.',
+			en: 'The season only runs from mid-March to early November – check opening before you go. Take the train to Kißlegg, then continue by bus or bike.'
+		},
+		openingHours: {
+			de: 'Saison 19. März – 11. November: Di–So 9:00–17:00, letzter Einlass 16:00, montags geschlossen (Oster- und Pfingstmontag geöffnet)',
+			en: 'season 19 March – 11 November: Tue–Sun 9am–5pm, last admission 4pm, closed Mondays (open Easter and Whit Monday)'
+		},
+		url: 'https://www.bauernhausmuseum-wolfegg.de',
+		image: {
+			url: '/images/locations/bauernhausmuseum-wolfegg.jpg',
+			alt: {
+				de: 'Kornspeicher und Fischerhaus im Bauernhaus-Museum Wolfegg',
+				en: 'Granary and fishing cottage at the Wolfegg farmhouse museum'
+			},
+			attribution: '© Norbert Kaiser, CC BY-SA 3.0, via Wikimedia Commons'
+		}
+	},
+	{
+		id: 'zur-post-wolfegg',
+		coordinates: [47.8198472, 9.7939192],
+		categories: ['culinary'],
+		duration: ['short'],
+		nearestStation: 'Kißlegg',
+		name: { de: 'Gasthof zur Post', en: 'Gasthof zur Post' },
+		teaser: {
+			de: 'Gasthof mit Biergarten im Wolfegger Ortsteil Wassers, wenige Minuten vom Bauernhaus-Museum.',
+			en: 'An inn with a beer garden in Wolfegg’s Wassers district, minutes from the farmhouse museum.'
+		},
+		description: {
+			de: 'Der Gasthof zur Post liegt im Ortsteil Wassers, nur wenige Gehminuten vom Bauernhaus-Museum entfernt. Im Haus gibt es Restaurant und Biergarten – eine naheliegende Einkehr vor oder nach dem Museumsbesuch.',
+			en: 'The Gasthof zur Post sits in the Wassers district, just a few minutes’ walk from the farmhouse museum. It has a restaurant and a beer garden – an obvious stop before or after a museum visit.'
+		},
+		tip: {
+			de: 'Mit dem Museumsbesuch kombinieren: erst durch die historischen Häuser, dann in der Nähe einkehren. Die Öffnungszeiten sind saisonal – am besten vorher anrufen.',
+			en: 'Combine it with the museum: tour the historic houses first, then eat nearby. Hours are seasonal – best to call ahead.'
+		},
+		url: 'https://www.hotel-post-wolfegg.de/',
+		image: {
+			url: '/images/locations/zur-post-wolfegg.jpg',
+			alt: {
+				de: 'Die grüne Ortsmitte von Wolfegg mit Teich und Bäumen',
+				en: 'The green village centre of Wolfegg with its pond and trees'
+			},
+			attribution: '© Mayer Richard, CC BY 3.0, via Wikimedia Commons'
+		}
+	},
+	{
+		id: 'gleisneun-kisslegg',
+		coordinates: [47.7934006, 9.8819362],
+		categories: ['culinary'],
+		duration: ['short'],
+		nearestStation: 'Kißlegg',
+		name: { de: 'Gleisneun Bäckerei', en: 'Gleisneun Bakery' },
+		teaser: {
+			de: 'Bäckerei mit Sitzplätzen an der Bahnhofstraße in Kißlegg.',
+			en: 'A bakery with seating on Bahnhofstraße in Kißlegg.'
+		},
+		description: {
+			de: 'Kleine Bäckerei im Ortskern von Kißlegg, wenige Schritte vom Bahnhof entfernt. Frische Backwaren zum Mitnehmen, dazu Sitzplätze drinnen und draußen – praktisch für eine Pause vor oder nach dem Zug.',
+			en: 'A small bakery in the centre of Kißlegg, a few steps from the station. Fresh baked goods to take away, plus indoor and outdoor seating – handy for a break before or after the train.'
+		},
+		tip: {
+			de: 'Unkomplizierter Zwischenstopp auf dem Weg ins Allgäu: kurz vor der Abfahrt noch Brot und Gebäck mitnehmen. Sonntags öffnet erst um 7:30 Uhr.',
+			en: 'An easy stop on the way into the Allgäu: grab bread and pastries before your train. On Sundays it opens at 7:30am.'
+		},
+		openingHours: {
+			de: 'Mo–Sa 5:30–18:00, So 7:30–18:00, an Feiertagen geschlossen',
+			en: 'Mon–Sat 5:30am–6pm, Sun 7:30am–6pm, closed on public holidays'
+		},
+		image: {
+			url: '/images/locations/gleisneun-kisslegg.jpg',
+			alt: {
+				de: 'Ortsansicht von Kißlegg',
+				en: 'View of Kißlegg'
+			},
+			attribution: '© Ssch, CC BY-SA 3.0, via Wikimedia Commons'
+		}
+	},
+	{
+		id: 'fidelisbaeck-wangen',
+		coordinates: [47.6857645, 9.8333697],
+		categories: ['culinary'],
+		duration: ['short', 'medium'],
+		nearestStation: 'Wangen (Allgäu)',
+		name: { de: 'Fidelisbäck', en: 'Fidelisbäck' },
+		teaser: {
+			de: 'Traditionsbäckerei von 1505 mit Gaststube und Biergarten in der Wangener Altstadt.',
+			en: 'A traditional bakery dating back to 1505, with a tavern and beer garden in the old town of Wangen.'
+		},
+		description: {
+			de: 'Seit über 500 Jahren wird in der Paradiesstraße in Wangen gebacken. Aus der historischen Bäckerei ist ein Haus mit Bäckerei, Gaststube und Biergarten geworden: Fidi-Seelen und Laugenhörnle für unterwegs, Leberkäs frisch aus dem Ofen und dazu ein frisch gezapftes Bier.',
+			en: 'Bread has been baked on Paradiesstraße in Wangen for more than 500 years. The historic bakery has grown into a house with a bakery, tavern and beer garden: Fidi-Seelen and pretzel rolls to go, meatloaf fresh from the oven, and a freshly tapped beer alongside.'
+		},
+		tip: {
+			de: 'Für die Pause zwischendurch: morgens früh sind die Laugenhörnle am frischesten. Wer länger bleiben will, setzt sich in den Biergarten unter den Linden.',
+			en: 'For a break in between: the pretzel rolls are freshest early in the morning. If you have time to linger, settle into the beer garden under the lime trees.'
+		},
+		openingHours: {
+			de: 'Mo–Fr 6:00–18:30, Sa 6:00–14:00, So und feiertags 8:00–11:00',
+			en: 'Mon–Fri 6am–6:30pm, Sat 6am–2pm, Sun and public holidays 8–11am'
+		},
+		url: 'https://www.fidelisbaeck.de',
+		image: {
+			url: '/images/locations/fidelisbaeck-wangen.jpg',
+			alt: {
+				de: 'Der Marktplatz von Wangen im Allgäu',
+				en: 'The market square of Wangen im Allgäu'
+			},
+			attribution: '© Andreas Lorer, CC BY-SA 3.0, via Wikimedia Commons'
+		}
+	},
+	{
+		id: 'cafe-engel-scheidegg',
+		coordinates: [47.5817597, 9.8476776],
+		categories: ['culinary'],
+		duration: ['short'],
+		nearestStation: 'Hergatz',
+		name: { de: 'Café Engel', en: 'Café Engel' },
+		teaser: {
+			de: 'Café mit hausgemachtem Kuchen, Kaffee und Eis mitten in Scheidegg.',
+			en: 'A café with homemade cake, coffee and ice cream in the centre of Scheidegg.'
+		},
+		description: {
+			de: 'Mitten im Ortszentrum von Scheidegg gelegen, führt Martin das Café Engel. Es gibt hausgemachte Kuchen, Kaffeespezialitäten, kleine Snacks und Eis – drinnen im gemütlichen Café oder bei Sonne auf der Terrasse.',
+			en: 'Run by Martin right in the centre of Scheidegg, Café Engel serves homemade cakes, coffee specialities, small snacks and ice cream – inside the cosy café or on the terrace when the sun is out.'
+		},
+		tip: {
+			de: 'Montag und Dienstag ist Ruhetag – an den übrigen Tagen lohnt sich der Nachmittag: Kuchen gibt es bis Ladenschluss, und die Terrasse ist an Sonnentagen schnell besetzt.',
+			en: 'Closed on Mondays and Tuesdays – on the other days an afternoon visit works well: cake is served until closing, and the terrace fills up fast on sunny days.'
+		},
+		openingHours: {
+			de: 'Mi–So 10:00–18:00, Mo und Di Ruhetag',
+			en: 'Wed–Sun 10am–6pm, closed Mondays and Tuesdays'
+		},
+		url: 'https://cafe-engel-scheidegg.de/',
+		image: {
+			url: '/images/locations/cafe-engel-scheidegg.jpg',
+			alt: {
+				de: 'Die Kirche St. Gallus mit Brunnen im Ortszentrum von Scheidegg',
+				en: 'St Gallus church with its fountain in the centre of Scheidegg'
+			},
+			attribution: '© Dguendel, CC BY 3.0, via Wikimedia Commons'
+		}
+	},
+	{
+		id: 'meckatzer-brauestueble',
+		coordinates: [47.6307986, 9.8891243],
+		categories: ['culinary'],
+		duration: ['short', 'medium'],
+		nearestStation: 'Heimenkirch',
+		name: { de: 'Meckatzer Bräustüble', en: 'Meckatzer Bräustüble' },
+		teaser: {
+			de: 'Brauereigasthof der Meckatzer Brauerei mit regionaler Küche im Allgäu.',
+			en: 'The brewery tavern of Meckatzer, with regional cooking in the Allgäu.'
+		},
+		description: {
+			de: 'Das Bräustüble in Meckatz ist die Wiege der Meckatzer Brauerei: Bereits 1738 wurde an dieser Stelle Bier gebraut, das Gebäude selbst reicht bis ins 14. Jahrhundert zurück. Heute gibt es regionale Küche in den Stuben, im Glaspavillon oder im Saal – und dazu die Biere der Brauerei.',
+			en: 'The Bräustüble in Meckatz is where the Meckatzer brewery began: beer was already brewed on this spot in 1738, and the building itself dates back to the 14th century. Today it serves regional cooking in the cosy parlours, the glass pavilion or the hall – with the brewery’s beers alongside.'
+		},
+		tip: {
+			de: 'Wer mehr sehen will, bucht eine Brauereiführung; der Fanshop hat Di–Sa 11:00–16:30 geöffnet. Mit dem Zug bis Heimenkirch, von dort sind es rund zwei Kilometer.',
+			en: 'To see more, book a brewery tour; the fan shop is open Tue–Sat 11am–4:30pm. Take the train to Heimenkirch, about two kilometres away.'
+		},
+		openingHours: {
+			de: 'Fanshop: Di–Sa 11:00–16:30; Küchen- und Gastronomiezeiten vorab prüfen',
+			en: 'fan shop: Tue–Sat 11am–4:30pm; check kitchen and restaurant hours in advance'
+		},
+		url: 'https://www.meckatzer-braeustueble.de/',
+		image: {
+			url: '/images/locations/meckatzer-brauestueble.jpg',
+			alt: {
+				de: 'Luftbild der Meckatzer Brauerei in Meckatz',
+				en: 'Aerial view of the Meckatzer brewery at Meckatz'
+			},
+			attribution: '© Clemenspool, CC0, via Wikimedia Commons'
+		}
+	}
 ];

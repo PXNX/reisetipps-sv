@@ -10,3 +10,11 @@
 - [x] Validate the concise database-ready interface and save the revised checkpoint.
 - [x] Optimize the navigation, heading hierarchy, filters, cards, and touch targets for small screens.
 - [x] Validate the refined mobile experience and save the revised checkpoint.
+
+## Recherche-Lücken (neue Einträge)
+
+- [ ] Gleisneun (Kißlegg): keine eigene Website gefunden – Öffnungszeiten und Beschreibung stammen aus OpenStreetMap (Stand 10/2026), daher kein `url` im Eintrag.
+- [ ] Gasthof zur Post (Wolfegg): Website `hotel-post-wolfegg.de` war nicht abrufbar (Transportfehler) – keine verlässlichen Öffnungszeiten, Feld bewusst weggelassen.
+- [ ] Meckatzer Bräustüble: genaue Öffnungszeiten der Gastronomie nicht ermittelt – im Eintrag stehen nur die Fanshop-Zeiten (Di–Sa 11:00–16:30).
+- [ ] Bauernhaus-Museum Wolfegg: Öffnungszeiten von der Website übernommen (Saison 19. März – 11. November); Saisonjahr prüfen.
+- [ ] Bildnachweise der neuen Einträge sind Platzhalter im Sinne der Rechteprüfung – bei Gelegenheit gegen die finalen Wikimedia-Commons-Angaben verifizieren.

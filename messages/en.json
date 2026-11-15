@@ -72,6 +72,7 @@
 	"install_hint_body": "Install this as an app — faster access and it works offline.",
 	"install_hint_ios": "To install: tap the Share icon, then \"Add to Home Screen\".",
 	"install_action": "Install",
+	"install_sheet_title": "Install as an app",
 	"update_app_title": "Update available",
 	"update_app_body": "A new version of the app is ready. Update now to get the latest places and maps.",
 	"update_app_action": "Update now",

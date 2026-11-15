@@ -74,7 +74,9 @@ export const stations = [
 	'Kaiseraugst',
 	'Markdorf',
 	'Hergatz',
-	'Uhldingen-Mühlhofen'
+	'Uhldingen-Mühlhofen',
+	'Sigmaringen',
+	'Aulendorf'
 ] as const;
 
 export type Station = (typeof stations)[number];
@@ -2140,5 +2142,30 @@ export const locations: Location[] = [
 			de: 'saisonal: ausgewählte Abende im Sommer, Beginn bei Einbruch der Dunkelheit',
 			en: 'seasonal: selected summer evenings, starting at dusk'
 		}
+	},
+	{
+		id: 'kommprobier-langenargen',
+		coordinates: [47.5943, 9.5491],
+		categories: ['drinks', 'culinary'],
+		duration: ['short', 'medium'],
+		nearestStation: 'Langenargen',
+		name: { de: 'KommproBier Langenargen', en: 'KommproBier Langenargen' },
+		teaser: {
+			de: 'Craft-Beer-Shop am Bodensee mit bis zu 900 Biersorten, Ausschank und dem monatlichen Tag der offenen Flasche.',
+			en: 'Craft beer shop on Lake Constance with up to 900 beers on the shelf, a tasting bar and the monthly Tag der offenen Flasche.'
+		},
+		description: {
+			de: 'Uli und Helmut Heine haben 2015 in der Mühlstraße einen ehemaligen Lebensmittelmarkt in ein Bierparadies verwandelt: 600 bis 900 Craft Biere, Landbiere, Geuzen und Ciders aus aller Welt. Nach dem Prinzip „artgerechte Bierhaltung“ stehen in den Regalen nur leere Musterflaschen, das echte Bier schläft im Kühlhaus. Vor Ort gibt es Selbstbedienungstheke, Wohnzimmer und Biergarten, und Biersommeliers helfen bei der Wahl aus den Kühlregalen.',
+			en: 'In 2015 Uli and Helmut Heine turned a former grocery store in Mühlstraße into a beer paradise: 600 to 900 craft beers, regional beers, lambics and ciders from all over the world. In line with their “species-appropriate beer storage” principle, the shelves show only empty sample bottles while the real stock rests in the cool rooms. On site there is a self-service bar, a lounge and a beer garden, and beer sommeliers help you pick from the fridge shelves.'
+		},
+		tip: {
+			de: 'Der Tag der offenen Flasche ist jeden ersten Freitag im Monat von 17 bis 24 Uhr: Biere vom Fass der mitbringenden Brauer, Wurstsalat-Buffet (im Winter Raclette, im Sommer Bratwurst vom Grill) und über 800 gekühlte Biere zum Durchprobieren — pro Flasche 1,50 € Aufschlag, Plätze bis 19:00 Uhr reserviert. Zusätzlich gibt es jeden zweiten Donnerstag eine geführte Themenverkostung um 19:30 Uhr (50 €, mit Reservierung und Anzahlung).',
+			en: 'The Tag der offenen Flasche (day of the open bottle) is every first Friday of the month from 5pm to midnight: draft beers from visiting brewers, a sausage-salad buffet (raclette in winter, grilled sausage in summer) and more than 800 chilled beers to taste — a €1.50 surcharge per bottle, seats held until 7pm. On top of that, a guided themed tasting runs every second Thursday at 7:30pm (€50, with reservation and deposit).'
+		},
+		openingHours: {
+			de: 'Di–Fr 13:00–19:00, Sa 11:00–19:00; Mo, So und Feiertage geschlossen; Wohnzimmer und Biergarten je nach Betrieb bis 22:00',
+			en: 'Tue–Fri 1–7pm, Sat 11am–7pm; closed Mon, Sun and holidays; lounge and beer garden until 10pm depending on business'
+		},
+		url: 'https://kommprobier.de'
 	}
 ];

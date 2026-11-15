@@ -61,7 +61,8 @@ export const stations = [
 	'Singen (Hohentwiel)',
 	'Riehen',
 	'Kaiseraugst',
-	'Markdorf'
+	'Markdorf',
+	'Hergatz'
 ] as const;
 
 export type Station = (typeof stations)[number];
@@ -458,7 +459,7 @@ export const locations: Location[] = [
 	{
 		id: 'pfaender',
 		coordinates: [47.5074, 9.7802],
-		categories: ['nature'],
+		categories: ['viewpoint'],
 		duration: ['medium'],
 		nearestStation: 'Bregenz',
 		name: { de: 'Pfänder Seilbahn', en: 'Pfänder Cable Car' },
@@ -1132,5 +1133,207 @@ export const locations: Location[] = [
 			en: 'Tue–Fri 9am–12:30pm & 2–6pm, Sat 10am–1pm, closed Mon/Sun/holidays'
 		},
 		url: 'https://www.weingut-kress.de/'
-	}
+	},
+	{
+		id: 'hohentwiel',
+		coordinates: [47.7647, 8.8189],
+		categories: ['history'],
+		duration: ['medium', 'long'],
+		nearestStation: 'Singen (Hohentwiel)',
+		name: { de: 'Festungsruine Hohentwiel', en: 'Hohentwiel Fortress Ruins' },
+		teaser: {
+			de: 'Mit neun Hektar eine der größten Festungsruinen Deutschlands, hoch über Singen.',
+			en: 'With nine hectares, one of Germany’s largest fortress ruins, high above Singen.'
+		},
+		description: {
+			de: 'Erstmals 914/915 befestigt, war der Hohentwiel frühmittelalterlicher Herzogssitz, dann Adelsburg und ab dem 16. Jahrhundert württembergische Staatsfestung. Im Dreißigjährigen Krieg fünfmal erfolglos belagert, diente er später als Staatsgefängnis, bis ihn französische Truppen 1800/1801 schleiften. Heute lockt die Ruine mit Panorama über Bodensee, Hegau und Alpen — im Juli findet hier das Hohentwiel-Festival statt.',
+			en: 'First fortified in 914/915, the Hohentwiel was an early medieval ducal seat, then a noble castle and from the 16th century a Württemberg state fortress. It withstood five sieges in the Thirty Years’ War, later served as a state prison, until French troops slighted it in 1800/1801. Today the ruins draw visitors with a panorama over Lake Constance, the Hegau and the Alps — the Hohentwiel Festival takes place here in July.'
+		},
+		tip: {
+			de: 'Der Rundgang startet an der Domäne Hohentwiel unterhalb der Ruine; vom Bahnhof Singen (Hohentwiel) sind es rund 260 Höhenmeter bergauf — feste Schuhe mitnehmen.',
+			en: 'The tour starts at the Domäne Hohentwiel estate below the ruins; from Singen (Hohentwiel) station it is roughly 260 metres of ascent — bring sturdy shoes.'
+		},
+		openingHours: {
+			de: '29.3.–31.10. tägl. 9:30–18:30, 19.10.–28.3. Do–So & Feiertage 10:00–16:00; letzter Einlass 30 Min. vorher',
+			en: '29 Mar–31 Oct daily 9:30am–6:30pm, 19 Oct–28 Mar Thu–Sun & holidays 10am–4pm; last admission 30 min before'
+		},
+		image: {
+			url: '/images/locations/hohentwiel.jpg',
+			alt: {
+				de: 'Luftbild der Festungsruine Hohentwiel auf dem Felshoch über Singen',
+				en: 'Aerial view of the Hohentwiel fortress ruins on the rock spur above Singen'
+			},
+			attribution: '© Carsten Steger, CC BY-SA 4.0, via Wikimedia Commons'
+		},
+		url: 'https://www.festungsruine-hohentwiel.de'
+	},
+	{
+		id: 'schoggiparadies-riehen',
+		coordinates: [47.58381, 7.648673],
+		categories: ['culinary'],
+		duration: ['short'],
+		nearestStation: 'Riehen',
+		name: {
+			de: 'Patrizias Schoggiparadies',
+			en: 'Patrizias Schoggiparadies (Chocolate Paradise)'
+		},
+		teaser: {
+			de: 'Handgemachte Pralinés und Schokolade im 500 Jahre alten „Huus bym Kilchhof“.',
+			en: 'Handmade pralines and chocolate in the 500-year-old “Huus bym Kilchhof”.'
+		},
+		description: {
+			de: 'Confiserie, Konditorei, Bäckerei und Café in einem 500 Jahre alten Haus am Kirchhof: selbst gemachte Pralinés und Schokolade, dazu Backwaren und Kuchen bei Tee und Kaffee. Bei nur zehn Plätzen im Café blickt man der Backstube direkt in die Arbeit.',
+			en: 'A confiserie, patisserie, bakery and café in a 500-year-old house by the churchyard: handmade pralines and chocolate, plus baked goods and cakes with tea and coffee. With only ten seats in the café, you watch the bakery at work right in front of you.'
+		},
+		tip: {
+			de: 'Nur gut 200 Meter vom Bahnhof Riehen entfernt — ein kurzer Abstecher für Schoggi zum Mitnehmen. Die Backstube schließt schon um 12:15 Uhr, frische Ware gibt es vormittags.',
+			en: 'Just over 200 metres from Riehen station — a quick detour for chocolate to take away. The bakery counter closes at 12:15pm, so come in the morning for fresh goods.'
+		},
+		openingHours: {
+			de: 'Di–Fr 7:00–12:30 & 14:00–18:00, Sa 8:00–16:00, Mo & So geschlossen',
+			en: 'Tue–Fri 7am–12:30pm & 2–6pm, Sat 8am–4pm, closed Mon & Sun'
+		},
+		url: 'https://www.schoggiparadies.ch'
+	},
+	{
+		id: 'roemerfest-augusta-raurica',
+		coordinates: [47.5328, 7.7218],
+		categories: ['culture', 'history'],
+		duration: ['medium', 'long'],
+		nearestStation: 'Kaiseraugst',
+		name: { de: 'Römerfest Augusta Raurica', en: 'Augusta Raurica Roman Festival' },
+		teaser: {
+			de: 'Größtes Römerfest der Schweiz: Gladiatoren, Legionäre, Handwerk und Markt in der Römerstadt.',
+			en: 'Switzerland’s biggest Roman festival: gladiators, legionaries, crafts and a market in the Roman city.'
+		},
+		description: {
+			de: 'Jeweils am letzten Augustwochenende verwandelt sich das Gelände der Römerstadt Augusta Raurica in ein lebendiges Römerlager: Gladiatorenkämpfe im Theater, Legionäre in Kampfformation, Handwerker wie Töpfer, Glasbläser und Schneider, römischer Wein und ein Wagenrennen für Familien. Zwischen den Festtagen lohnen Museum, Römerhaus, Amphitheater und Tierpark.',
+			en: 'On the last August weekend each year, the grounds of the Roman city of Augusta Raurica turn into a living Roman camp: gladiator fights in the theatre, legionaries in battle formation, craftspeople such as potters, glassblowers and tailors, Roman wine and a chariot race for families. Between festival days, the museum, Roman house, amphitheatre and animal park are worth a look.'
+		},
+		tip: {
+			de: 'Die Plätze in der Gladiatoren- und Legionärsschule sind schnell vergeben — früh anmelden. Anreise mit dem Zug bis Kaiseraugst, von dort rund zehn Minuten zu Fuß; das Freilichtgelände ist kostenlos.',
+			en: 'Places in the gladiator and legionary school fill up fast — register early. Take the train to Kaiseraugst, then walk about ten minutes; admission to the outdoor grounds is free.'
+		},
+		openingHours: {
+			de: 'saisonal: Römerfest am letzten Augustwochenende; Museum & Römerhaus Mär–Okt tägl. 10:00–17:00, Nov–Feb Di–So 10:00–15:00; Freilichtgelände jederzeit offen',
+			en: 'seasonal: Roman festival on the last August weekend; museum & Roman house Mar–Oct daily 10am–5pm, Nov–Feb Tue–Sun 10am–3pm; outdoor grounds open at all times'
+		},
+		image: {
+			url: '/images/locations/roemerfest-augusta-raurica.jpg',
+			alt: {
+				de: 'Das Amphitheater der Römerstadt Augusta Raurica',
+				en: 'The amphitheatre of the Augusta Raurica Roman city'
+			},
+			attribution: '© Guido Radig, CC BY-SA 3.0, via Wikimedia Commons'
+		},
+		url: 'https://www.augustaraurica.ch/roemerfest'
+	},
+	{
+		id: 'gruener-baum-moos',
+		coordinates: [47.7261, 8.934],
+		categories: ['culinary'],
+		duration: ['short', 'medium'],
+		nearestStation: 'Radolfzell',
+		name: { de: 'Restaurant Grüner Baum, Moos', en: 'Grüner Baum Restaurant, Moos' },
+		teaser: {
+			de: 'Höri-Gasthof in fünfter Generation: Bodenseefische, Hörigemüse und alles mit der Höri-Bülle.',
+			en: 'A fifth-generation inn on the Höri peninsula: Lake Constance fish, Höri vegetables and everything with the Höri Bülle onion.'
+		},
+		description: {
+			de: 'Der seit 1873 bestehende Gasthof an der Halbinsel Höri kocht regionale Klassiker: Bodenseefische und Hörigemüse, allen voran die milde rote Höri-Bülle — von der Büllensuppe über Salate bis zu Soßen. Küchenchef Hubert Neidhart ist Genussbotschafter Baden-Württembergs; die Höri-Bülle ist in der Slow-Food-Arche des Geschmacks verzeichnet.',
+			en: 'The inn on the Höri peninsula has been run by the same family for five generations since 1873, cooking regional classics: Lake Constance fish and Höri vegetables, above all the mild red Höri Bülle onion — from Bülle soup over salads to sauces. Chef Hubert Neidhart is a Baden-Württemberg “Genussbotschafter”, and the Höri Bülle is listed in Slow Food’s Ark of Taste.'
+		},
+		tip: {
+			de: 'Die Gerichte mit der Höri-Bülle sind fantastisch — besonders die Büllensuppe. Küche nur abends (Sa & So zusätzlich mittags), Di & Mi Ruhetag; im Lädele gibt es Hörisalz und Konserven mit.',
+			en: 'The dishes built around the Höri Bülle onion are fantastic — the Bülle soup in particular. The kitchen serves mainly in the evenings (Sat & Sun also at noon), closed Tue & Wed; the shop sells Höri salt and preserves.'
+		},
+		openingHours: {
+			de: 'Di & Mi Ruhetag, Küche Do–Mo 17:30–21:00, Sa & So zusätzlich 12:00–14:00; an Feiertagen geöffnet',
+			en: 'Closed Tue & Wed, kitchen Thu–Mon 5:30–9pm, Sat & Sun also noon–2pm; open on public holidays'
+		},
+		url: 'https://www.gruenerbaum-moos.de'
+	},
+	{
+		id: 'weingut-teresa-deufel',
+		coordinates: [47.5601, 9.6578],
+		categories: ['culinary'],
+		duration: ['short'],
+		nearestStation: 'Lindau-Insel',
+		name: { de: 'Weingut Teresa Deufel', en: 'Teresa Deufel Winery' },
+		teaser: {
+			de: 'Bio-Weingut in Lindau-Bad Schachen: Bodenseeweine aus einer der südlichsten Lagen Deutschlands.',
+			en: 'Organic winery in Lindau-Bad Schachen: Lake Constance wines from one of Germany’s southernmost vineyards.'
+		},
+		description: {
+			de: 'Familienhof in Bad Schachen, umgeben von Weinbergen: Bereits 1975 stiegen Hannes Deufel und Ludwig Haug neben den Obstwiesen auf den Rebanbau um, 1977 folgte der erste Lindauer Wein. Seit 2009 keltert Teresa Deufel eigene Weine und öffnete 2011 den Hofausschank Degelstein im ehemaligen Weinkeller. Sorten wie Cabernet Blanc, Solaris und Johanniter profitieren von der Föhnlage, der Weinberg gehört zu den südlichsten Deutschlands — mit Blick auf den Bodensee.',
+			en: 'A family farm in Bad Schachen surrounded by vineyards: as early as 1975 Hannes Deufel and Ludwig Haug turned to vines alongside their orchards, and in 1977 the first Lindau wine was poured. Teresa Deufel has made her own wines since 2009 and opened the Degelstein farm bar in the old wine cellar in 2011. Varieties such as Cabernet Blanc, Solaris and Johanniter benefit from the föhn winds; the vineyard is among Germany’s southernmost, with a view over Lake Constance.'
+		},
+		tip: {
+			de: 'Der Hofverkauf ist vormittags geöffnet, Mo–Sa 9–12 Uhr; die Weinprobe im Degelstein ist nach Absprache möglich. Vom Bahnhof Lindau-Insel sind es gut zwei Kilometer nach Bad Schachen.',
+			en: 'The farm shop opens in the morning, Mon–Sat 9am–noon; a tasting at the Degelstein bar is possible by arrangement. From Lindau-Insel station it is a good two kilometres to Bad Schachen.'
+		},
+		openingHours: {
+			de: 'Hofverkauf Mo–Sa 9:00–12:00; Degelstein Di–Sa ab 17:00 Uhr, saisonal — vorher prüfen',
+			en: 'Farm shop Mon–Sat 9am–noon; Degelstein Tue–Sat from 5pm, seasonal — check ahead'
+		},
+		url: 'https://www.teresadeufel.de'
+	},
+	{
+		id: 'wendelinskapelle-kinberg',
+		coordinates: [47.5949, 9.8293],
+		categories: ['viewpoint'],
+		duration: ['short'],
+		nearestStation: 'Hergatz',
+		name: { de: 'Wendelinskapelle Kinberg', en: 'Wendelinskapelle, Kinberg' },
+		teaser: {
+			de: 'Freistehende Feldkapelle im Weiler Kinberg bei Sigmarszell, wohl um 1698 erbaut — mit Weitblick zum Bodensee.',
+			en: 'Free-standing field chapel in the hamlet of Kinberg near Sigmarszell, probably built around 1698 — with far views toward Lake Constance.'
+		},
+		description: {
+			de: 'Die Wendelinskapelle steht frei im Feld im Weiler Kinberg, östlich des Sigmarszeller Hauptorts. Der kleine rechteckige Bau mit dreiseitigem Chorschluss wurde der Überlieferung nach wohl um 1698 von den einheimischen Brüdern King errichtet und dem heiligen Wendelin geweiht, dem Bauernheiligen. Sie ist das älteste Gotteshaus, das man in Kinberg findet. Seit 1931 treffen sich am zweiten Sonntag im Oktober Reitergruppen aus Scheidegg und Niederstaufen zum Wendelinsritt; die Pilgerzüge kommen hier zusammen und feiern eine Festmesse mit Pferdesegnung.',
+			en: 'The Wendelinskapelle stands free in a field in the hamlet of Kinberg, east of Sigmarszell’s main town. The small rectangular building with a three-sided apse was, according to tradition, probably built around 1698 by the local Brothers King and dedicated to St. Wendelin, the farmers’ saint. It is the oldest place of worship to be found in Kinberg. Since 1931, on the second Sunday in October, riding groups from Scheidegg and Niederstaufen gather for the Wendelinsritt pilgrimage; the processions meet here for a festive mass with a horse blessing.'
+		},
+		tip: {
+			de: 'Aus dem Weiler Kinberg führt ein kleines Sträßchen zur Kapelle — ein schöner Abstecher zu Fuß oder mit dem Fahrrad, mit Weitblick bis zum Bodensee.',
+			en: 'A small lane leads from the hamlet of Kinberg to the chapel — a lovely detour on foot or by bike, with far views as far as Lake Constance.'
+		},
+		image: {
+			url: '/images/locations/wendelinskapelle-kinberg.jpg',
+			alt: {
+				de: 'Die Wendelinskapelle auf dem Kinberg, frei im Feld stehend',
+				en: 'The Wendelinskapelle on the Kinberg, standing free in a field'
+			},
+			attribution: '© FkMohr, CC BY-SA 3.0 DE, via Wikimedia Commons'
+		},
+		url: 'https://www.outdooractive.com/de/poi/sigmarszell/wendelinskapelle/1695738/'
+	},
+	{
+		id: 'rhombergstein',
+		coordinates: [47.5208, 9.7562],
+		categories: ['history'],
+		duration: ['short'],
+		nearestStation: 'Bregenz',
+		name: { de: 'Rhombergstein', en: 'Rhombergstein' },
+		teaser: {
+			de: 'Gedenkstein am Panoramaweg über Lochau-Haggen für Thomas Rhomberg, der 1647 bei der Bregenzer Klause fiel.',
+			en: 'Memorial stone on the panoramic trail above Lochau-Haggen for Thomas Rhomberg, who fell at the Bregenz pass in 1647.'
+		},
+		description: {
+			de: 'Der Rhombergstein liegt am Panoramaweg, der von Lochau-Wellenhof über die Parzellen Stein und Haggen zur Kapelle Altreute und weiter zur Pfänderbergstation führt. Seine Tafel erinnert an Thomas Rhomberg, der am 4. Januar 1647 als tapferer Führer der Dornbirner bei der Verteidigung der Bregenzer Klause gegen die Schweden unter Wrangel fiel. Am Stein wächst die „Dagmar´s Buche“, eine mächtige Rotbuche.',
+			en: 'The Rhombergstein lies on the panoramic trail that leads from Lochau-Wellenhof via the Stein and Haggen districts past the Altreute chapel and up to the Pfänder mountain station. Its plaque commemorates Thomas Rhomberg, who fell on 4 January 1647 as the brave leader of the Dornbirn men defending the Bregenz pass against the Swedish troops under Wrangel. The “Dagmar´s Buche”, a large beech tree, grows beside the stone.'
+		},
+		tip: {
+			de: 'Der Stein liegt zwischen den Weilern Stein und Haggen direkt am Panoramaweg — ein kurzer Abstecher ab Lochau-Wellenhof; wer weitergeht, erreicht die Kapelle Altreute und die Pfänderbergstation.',
+			en: 'The stone sits between the Stein and Haggen districts right on the panoramic trail — a short detour from Lochau-Wellenhof; continuing on reaches the Altreute chapel and the Pfänder mountain station.'
+		},
+		image: {
+			url: '/images/locations/rhombergstein.jpg',
+			alt: {
+				de: 'Der Rhombergstein mit der Gedenktafel für Thomas Rhomberg',
+				en: 'The Rhombergstein memorial stone with its plaque for Thomas Rhomberg'
+			},
+			attribution: '© Reinhard Müller, CC BY-SA 4.0, via Wikimedia Commons'
+		},
+		url: 'https://www.bodensee-vorarlberg.com/panoramawandern-von-lochau-auf-den-aussichtsberg-pfaender'
+	},
 ];

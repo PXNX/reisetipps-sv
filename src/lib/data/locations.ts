@@ -2167,5 +2167,26 @@ export const locations: Location[] = [
 			en: 'Tue–Fri 1–7pm, Sat 11am–7pm; closed Mon, Sun and holidays; lounge and beer garden until 10pm depending on business'
 		},
 		url: 'https://kommprobier.de'
+	},
+	{
+		id: 'bisongehege-bodenwald',
+		coordinates: [47.789, 9.0317],
+		categories: ['nature'],
+		duration: ['short', 'medium'],
+		nearestStation: 'Überlingen',
+		name: { de: 'Bisongehege am Hofgut Bodenwald', en: 'Bison Enclosure at Hofgut Bodenwald' },
+		teaser: {
+			de: 'Kostenlos zugängliche Bisonherde auf dem Hochplateau des Bodanrück zwischen Überlinger See und Untersee.',
+			en: 'A freely accessible bison herd on the high plateau of the Bodanrück between Lake Überlingen and the Untersee.'
+		},
+		description: {
+			de: 'Auf dem Hofgut Bodenwald, einem Hochplateau auf dem Bodanrück auf etwa 700 Metern, grasen rund 20 nordamerikanische Bisons auf einer gepachteten Fläche von etwa 12 Hektar. Das Gehege ist kostenlos zugänglich; direkt daneben lädt die Bisonstube Bodenwald mit regionaler Küche und großem Biergarten zur Einkehr ein. Rundwege führen weiter zur Ruine Altbodman und zum Frauenberg mit Blick auf den Bodensee.',
+			en: 'On the Hofgut Bodenwald, a high plateau on the Bodanrück ridge at about 700 metres, around 20 North American bisons graze on a leased area of roughly 12 hectares. The enclosure is freely accessible; right next door the Bisonstube Bodenwald invites you to stop for regional dishes and a large beer garden. Circular trails continue to the Altbodman ruin and the Frauenberg with views over Lake Constance.'
+		},
+		tip: {
+			de: 'Von Wallhausen mit dem Bus Richtung Bodman fahren und an der Haltestelle aussteigen, dann zu Fuß hinauf — das Gehege liegt auf dem Weg zur Ruine Altbodman. Der Eintritt ist kostenlos, feste Schuhe empfehlenswert.',
+			en: 'From Wallhausen take the bus toward Bodman and get off at the stop, then walk uphill — the enclosure is on the way to the Altbodman ruin. Entry is free; sturdy shoes recommended.'
+		},
+		url: 'https://www.bisonzuchtbodenwald.com'
 	}
 ];

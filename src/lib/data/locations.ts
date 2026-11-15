@@ -1577,4 +1577,67 @@ export const locations: Location[] = [
 		},
 		url: 'https://www.rappenloch.at'
 	},
+	{
+		id: 'st-gallen-stiftsbezirk',
+		coordinates: [47.4232, 9.3775],
+		categories: ['culture'],
+		duration: ['medium'],
+		nearestStation: 'St. Gallen',
+		name: { de: 'Stiftsbezirk St. Gallen', en: 'St. Gallen Abbey District' },
+		teaser: {
+			de: 'UNESCO-Weltkulturerbe: die barocke Stiftsbibliothek und die gotische Kathedrale.',
+		en: 'UNESCO World Heritage site: the baroque abbey library and the Gothic cathedral.'
+		},
+		description: {
+			de: 'Der Stiftsbezirk von St. Gallen ist ein UNESCO-Weltkulturerbe und beherbergt die gotische Kathedrale sowie die barocke Stiftsbibliothek, eine der wertvollsten historischen Bibliotheken der Welt.',
+			en: 'St. Gallen’s abbey district is a UNESCO World Heritage site housing the Gothic cathedral and the baroque abbey library, one of the world’s most valuable historic libraries.'
+		},
+		tip: {
+			de: 'Die Stiftsbibliothek ist ein absolutes Highlight — die Deckenfresken und Holzdecken lohnen einen Besuch.',
+		en: 'The abbey library is an absolute highlight — the ceiling frescoes and wooden ceilings are worth a visit.'
+		},
+		url: 'https://www.stiftsbibliothek.ch'
+	},
+	{
+		id: 'bismarck-denkmal-lindau',
+		coordinates: [47.5645, 9.6756],
+		categories: ['history'],
+		duration: ['short'],
+		nearestStation: 'Lindau-Insel',
+		name: { de: 'Bismarck-Denkmal (Reichsadler)', en: 'Bismarck Monument (Reichsadler)' },
+		teaser: {
+			de: 'Denkmal für Bismarck mit dem Reichsadler auf dem Hoyerberg.',
+			en: 'Bismarck monument with the imperial eagle on the Hoyerberg.'
+		},
+		description: {
+			de: 'Das Bismarck-Denkmal auf dem Hoyerberg bei Lindau zeigt den Reichsadler und gilt als das südlichste Bismarck-Denkmal Deutschlands.',
+			en: 'The Bismarck monument on the Hoyerberg near Lindau features the imperial eagle and is considered Germany’s southernmost Bismarck monument.'
+		},
+		tip: {
+			de: 'Der Hoyerberg ist ein kurzer Spaziergang von der Insel aus zu erreichen.',
+			en: 'The Hoyerberg is a short walk from the island.'
+		},
+		url: 'https://www.lindau.de/addresses/bismarck-denkmal-reichsadler/'
+	},
+	{
+		id: 'walderlebnispfad-moeggers',
+		coordinates: [47.5807, 9.8086],
+		categories: ['nature'],
+		duration: ['short', 'medium'],
+		nearestStation: 'Lindau-Insel',
+		name: { de: 'Walderlebnispfad Möggers', en: 'Walderlebnispfad Möggers' },
+		teaser: {
+			de: '2,7 km Rundweg mit Hängebrücken und Erlebnisstationen.',
+		en: 'A 2.7 km loop with hanging bridges and adventure stations.'
+		},
+		description: {
+			de: 'Der Walderlebnispfad in Möggers ist ein 2,7 km langer Rundweg mit Hängebrücken, Kletterelementen und verschiedenen Erlebnisstationen. Der Eintritt ist frei.',
+			en: 'The Walderlebnispfad in Möggers is a 2.7 km loop with hanging bridges, climbing elements and various adventure stations. Admission is free.'
+		},
+		tip: {
+			de: 'Mit dem Landbus 12 zu erreichen. Der Rundweg ist ideal für Familien.',
+		en: 'Reachable by Landbus 12. The loop is ideal for families.'
+		},
+		url: 'https://www.walderlebnispfad.at'
+	},
 ];

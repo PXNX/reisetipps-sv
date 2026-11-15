@@ -14,7 +14,7 @@ export const allDurations: Duration[] = ['short', 'medium', 'long'];
 export const categoryIcons: Record<Category, string> = {
 	nature: '🌿',
 	culture: '🏛️',
-	culinary: '🍷',
+	culinary: '🍴',
 	history: '🏺',
 	technology: '⚙️',
 	viewpoint: '🌄'

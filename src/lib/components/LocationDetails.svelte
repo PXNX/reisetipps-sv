@@ -32,9 +32,9 @@
 			<h2 class="text-2xl font-semibold">{localize(location.name)}</h2>
 		</div>
 		<div class="mt-2 flex flex-wrap gap-1.5">
-			{#each location.categories as category (category)}
+			{#each location.categories as category, i (category)}
 				<span class="badge gap-1 badge-outline badge-primary">
-					<span aria-hidden="true">{categoryIcons[category]}</span>
+					<span aria-hidden="true">{i === 0 && location.icon ? location.icon : categoryIcons[category]}</span>
 					{categoryLabel(category)}
 				</span>
 			{/each}

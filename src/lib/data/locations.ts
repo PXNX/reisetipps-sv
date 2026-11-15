@@ -27,6 +27,8 @@ export interface Location {
 	openingHours?: LocalizedText;
 	url?: string;
 	image?: LocationImage;
+	/** Emoji that overrides the category icon for this location, e.g. 🎥 for cinema events. */
+	icon?: string;
 }
 
 export function googleMapsUrl(location: Location): string {
@@ -50,10 +52,15 @@ export const stations = [
 	'Bregenz',
 	'Friedrichshafen Stadt',
 	'Friedrichshafen Hafen',
+	'Friedrichshafen Flughafen',
 	'Wasserburg (Bodensee)',
+	'Langenargen',
 	'Überlingen',
 	'Radolfzell',
 	'Konstanz',
+	'Singen (Hohentwiel)',
+	'Riehen',
+	'Kaiseraugst',
 	'Markdorf'
 ] as const;
 
@@ -592,6 +599,7 @@ export const locations: Location[] = [
 			de: 'Tickets vorher online sichern, an warmen Abenden ist es schnell voll. Bei Starkregen oder Sturm fällt die Vorstellung aus — ab 19:30 Uhr gilt die Info-Hotline +49 8382 9853-60.',
 			en: 'Book tickets online in advance — it fills up fast on warm evenings. Shows are cancelled in heavy rain or storm; from 7:30pm the info hotline +49 8382 9853-60 has the latest word.'
 		},
+		icon: '🎥',
 		openingHours: {
 			de: 'saisonal: rund zehn Abende im August, Einlass ca. 20:30 Uhr, Beginn ca. 21:00 Uhr',
 			en: 'seasonal: around ten evenings in August, doors about 8:30pm, start about 9pm'
@@ -620,6 +628,7 @@ export const locations: Location[] = [
 			de: 'Wetterabhängig: bei Sturm oder Dauerregen fallen die Vorstellungen aus. Programm und Tickets gibt es online über Kinoheld.',
 			en: 'Weather dependent: shows are called off in storms or prolonged rain. Programme and tickets are available online via Kinoheld.'
 		},
+		icon: '🎥',
 		openingHours: {
 			de: 'saisonal: ausgewählte Abende von Ende Juli bis Anfang August, wetterabhängig',
 			en: 'seasonal: selected evenings from late July to early August, weather permitting'
@@ -837,6 +846,7 @@ export const locations: Location[] = [
 		coordinates: [47.5463, 9.6883],
 		categories: ['culinary'],
 		duration: ['short'],
+		icon: '🍦',
 		nearestStation: 'Lindau-Insel',
 		name: { de: 'Kleines Café', en: 'Kleines Café' },
 		teaser: {
@@ -859,6 +869,7 @@ export const locations: Location[] = [
 		coordinates: [47.513, 9.754],
 		categories: ['culinary'],
 		duration: ['short'],
+		icon: '🍦',
 		nearestStation: 'Bregenz',
 		name: { de: 'La Dolce Vita Eis-Manufaktur Lochau', en: 'La Dolce Vita Ice Cream Parlour, Lochau' },
 		teaser: {
@@ -941,5 +952,185 @@ export const locations: Location[] = [
 		},
 		openingHours: { de: 'Mi–Sa 09:30–18:00, So 10:00–18:00', en: 'Wed–Sat 9:30am–6pm, Sun 10am–6pm' },
 		url: 'https://www.cafe-hoepker.de/'
+	},
+	{
+		id: 'webers-backstube-friedrichshafen',
+		coordinates: [47.6527, 9.4728],
+		categories: ['culinary'],
+		duration: ['short'],
+		nearestStation: 'Friedrichshafen Stadt',
+		name: { de: 'Webers Backstube', en: 'Webers Backstube Bakery' },
+		teaser: {
+			de: 'Bäckerei am Friedrichshafener Stadtbahnhof mit frischem Gebäck und Brezeln.',
+			en: 'Bakery at Friedrichshafen’s city station with fresh pastries and pretzels.'
+		},
+		description: {
+			de: 'Die Webers Backstube am Stadtbahnhof backt täglich frisches Brot, Brötchen und Gebäck — ideal für ein Frühstück unterwegs oder einen Kaffee zum Mitnehmen. Montags bis samstags ab 6 Uhr, sonntags vormittags geöffnet.',
+			en: 'Webers Backstube at the city station bakes fresh bread, rolls and pastries daily — ideal for breakfast on the go or a coffee to take away. Open from 6am Monday to Saturday and on Sunday mornings.'
+		},
+		tip: {
+			de: 'Nur wenige Gehminuten vom Bahnhof Friedrichshafen Stadt entfernt — gut als erste Station nach der Ankunft.',
+			en: 'Just a few minutes on foot from Friedrichshafen Stadt station — a good first stop after arriving.'
+		},
+		openingHours: { de: 'Mo–Sa 06:00–22:00, So 08:00–11:00', en: 'Mon–Sat 6am–10pm, Sun 8–11am' },
+		url: 'https://webers-backstube.de/verkauf/filiale-stadtbahnhof/'
+	},
+	{
+		id: 'backhaus-mahl-ueberlingen',
+		coordinates: [47.7654, 9.1638],
+		categories: ['culinary'],
+		duration: ['short'],
+		nearestStation: 'Überlingen',
+		name: { de: 'Backhaus Mahl', en: 'Backhaus Mahl Bakery' },
+		teaser: {
+			de: 'Bäckerei in der Überlinger Mühlenstraße — bekannt für Buttergebäck wie Pain au chocolat.',
+			en: 'Bakery on Überlingen’s Mühlenstraße — known for buttery pastries like pain au chocolat.'
+		},
+		description: {
+			de: 'Der Backhaus Mahl in der Überlinger Mühlenstraße backt täglich frisches Gebäck. Ein Geheimtipp für einen Pain au chocolat am Morgen oder auf dem Weg zum See.',
+			en: 'Backhaus Mahl on Überlingen’s Mühlenstraße bakes fresh pastries daily. An insider tip for a pain au chocolat in the morning or on the way to the lake.'
+		},
+		tip: {
+			de: 'Nur wenige Gehminuten vom Bahnhof Überlingen zur Filiale in der Mühlenstraße — perfekt vor der Fahrt mit dem Schiff.',
+			en: 'Just a few minutes on foot from Überlingen station to the Mühlenstraße branch — perfect before a boat trip.'
+		}
+	},
+	{
+		id: 'winzerfest-nonnenhorn',
+		coordinates: [47.5746, 9.611],
+		categories: ['culinary'],
+		duration: ['medium'],
+		nearestStation: 'Nonnenhorn',
+		name: { de: 'Winzerfest Nonnenhorn', en: 'Nonnenhorn Wine Festival' },
+		teaser: {
+			de: 'Jährliches Winzerfest am Bodensee mit Weinen aus dem bayerischen Seeort.',
+			en: 'Annual wine festival on Lake Constance featuring wines from the Bavarian lakeside village.'
+		},
+		description: {
+			de: 'Nonnenhorn ist ein kleines Weindorf am bayerischen Bodenseeufer, bekannt für seine Weinlagen „Sonnenbichl“ und „Seehalde“. Beim Winzerfest am See stellen die örtlichen Winzer ihre Weine aus — ein geselliges Highlight des Jahres im Luftkurort.',
+			en: 'Nonnenhorn is a small wine village on the Bavarian shore of Lake Constance, known for its “Sonnenbichl” and “Seehalde” vineyards. At the Winzerfest am See, local winemakers present their wines — a sociable highlight of the year in this climatic health resort.'
+		},
+		tip: {
+			de: 'Termine vor der Anreise prüfen — das Fest findet einmal im Jahr statt. Der Bahnhof Nonnenhorn liegt an der Bodenseegürtelbahn zwischen Friedrichshafen und Lindau.',
+			en: 'Check the dates before travelling — the festival takes place once a year. Nonnenhorn station is on the Bodensee ring line between Friedrichshafen and Lindau.'
+		},
+		openingHours: { de: 'Jährliche Veranstaltung, Termine auf nonnenhorn.de', en: 'Annual event, dates at nonnenhorn.de' },
+		url: 'https://www.nonnenhorn.de'
+	},
+	{
+		id: 'marienschlucht',
+		coordinates: [47.7653, 9.0948],
+		categories: ['nature'],
+		duration: ['short', 'medium'],
+		nearestStation: 'Überlingen',
+		name: { de: 'Marienschlucht', en: 'Marienschlucht Gorge' },
+		teaser: {
+			de: 'Begehbare Schlucht am Überlinger See zwischen Bodman und Wallhausen.',
+			en: 'Walkable gorge on Lake Überlingen between Bodman and Wallhausen.'
+		},
+		description: {
+			de: 'Die Marienschlucht liegt auf der Halbinsel Bodanrück zwischen Bodman und Wallhausen. Ein Pfad mit Stegen führt durch die Schlucht hindurch; oben winken Ausblicke über den Überlinger See. Seit der Wiedereröffnung im März 2026 führt ein neuer Panoramasteg durch die Schlucht.',
+			en: 'The Marienschlucht lies on the Bodanrück peninsula between Bodman and Wallhausen. A path with footbridges leads through the gorge, with views over Lake Überlingen above. Since its reopening in March 2026 a new panoramic footbridge runs through the gorge.'
+		},
+		tip: {
+			de: 'Ab Wallhausen mit dem Bus Richtung Bodman bis zur Haltestelle fahren und von dort zu Fuß zur Schlucht; auf dem Weg über den Bodanrück liegt das Bisongehege am Hofgut Bodenwald.',
+			en: 'From Wallhausen take the bus toward Bodman and get off at the stop, then walk to the gorge; on the way across the Bodanrück you pass the bison enclosure at Hofgut Bodenwald.'
+		},
+		url: 'https://www.marienschlucht.info'
+	},
+	{
+		id: 'altbodman',
+		coordinates: [47.7947, 9.0321],
+		categories: ['nature', 'history'],
+		duration: ['medium'],
+		nearestStation: 'Überlingen',
+		name: { de: 'Ruine Altbodman', en: 'Altbodman Castle Ruin' },
+		teaser: {
+			de: 'Burgruine auf dem Bodanrück mit Weitblick über den Überlinger See.',
+			en: 'Castle ruin on the Bodanrück ridge with sweeping views over Lake Überlingen.'
+		},
+		description: {
+			de: 'Die Ruine Altbodman liegt hoch über dem Überlinger See auf dem Bodanrück. Von den Mauerresten aus hat man einen weiten Blick über den See; die Wanderung führt durch Obstwiesen und Wald vorbei am Bisongehege und der Bisonstube Bodenwald.',
+			en: 'The Altbodman ruin sits high above Lake Überlingen on the Bodanrück ridge. From the remains of the walls there is a wide view over the lake; the hike leads through orchards and forest past the bison enclosure and the Bisonstube Bodenwald.'
+		},
+		tip: {
+			de: 'Ab Wallhausen mit dem Bus Richtung Bodman fahren und an der Haltestelle aussteigen, dann zu Fuß über den Bodanrück — das Bisongehege liegt auf dem Weg.',
+			en: 'From Wallhausen take the bus toward Bodman and get off at the stop, then hike across the Bodanrück — the bison enclosure is on the way.'
+		}
+	},
+	{
+		id: 'landmetzgerei-schaedler-oberlangnau',
+		coordinates: [47.6316, 9.6592],
+		categories: ['culinary'],
+		duration: ['short'],
+		nearestStation: 'Kressbronn',
+		name: { de: 'Landmetzgerei Eugen Schädler', en: 'Eugen Schädler Village Butchery' },
+		teaser: {
+			de: 'Landmetzgerei in Tettnang-Oberlangnau — bekannt für gutes Fleisch.',
+			en: 'Village butchery in Tettnang-Oberlangnau — known for its good meat.'
+		},
+		description: {
+			de: 'Die Landmetzgerei Eugen Schädler in der Argenstraße in Oberlangnau ist die Adresse für gutes Fleisch im Raum Tettnang. Dienstags bis freitags von 7:30 bis 12:30 und 14:00 bis 18 Uhr, samstags von 7 bis 12:30 Uhr geöffnet.',
+			en: 'Eugen Schädler village butchery on Argenstraße in Oberlangnau is the place for good meat in the Tettnang area. Open Tuesday to Friday 7:30am–12:30pm and 2–6pm, Saturday 7am–12:30pm.'
+		},
+		tip: {
+			de: 'In Oberlangnau an der Argenstraße — mit dem Bus (Linie 246/7546) bis Haltestelle Oberlangnau; sonntags und montags geschlossen.',
+			en: 'In Oberlangnau on Argenstraße — reachable by bus (lines 246/7546) to the Oberlangnau stop; closed Sundays and Mondays.'
+		},
+		openingHours: {
+			de: 'Di–Fr 07:30–12:30 & 14:00–18:00, Sa 07:00–12:30',
+			en: 'Tue–Fri 7:30am–12:30pm & 2–6pm, Sat 7am–12:30pm'
+		},
+		url: 'https://www.metzgerei.org/tettnang/eugen-schaedler-5003439.html'
+	},
+	{
+		id: 'degerseestube',
+		coordinates: [47.6133, 9.654],
+		categories: ['culinary'],
+		duration: ['short', 'medium'],
+		nearestStation: 'Kressbronn',
+		name: { de: 'Degerseestube', en: 'Degerseestube' },
+		teaser: {
+			de: 'Restaurant und Strandbad am Degersee mit Terrasse und Blick über den See.',
+			en: 'Restaurant and lido by Degersee lake with a terrace and views over the water.'
+		},
+		description: {
+			de: 'Die Degerseestube liegt in Südhanglage direkt am Degersee, einem warmen Moränensee bei Tettnang. Zum Strandbad gehört ein Restaurant mit Terrasse und Seeblick; die Küche bietet regionale und schwäbische Spezialitäten, dazu Wild aus der Region und Burger. In der Saison von April bis Oktober geöffnet.',
+			en: 'Degerseestube sits on the southern slope right by Degersee, a warm moraine lake near Tettnang. The lido includes a restaurant with a terrace and lake views; the menu features regional and Swabian specialties, local game and burgers. Open in the season from April to October.'
+		},
+		tip: {
+			de: 'Von Kressbronn mit dem Bus (Linie 235) bis zur Haltestelle Tettnang, Degersee; Parkplatz am Haus (2 €/Tag). Bei schlechtem Wetter kann montags und dienstags geschlossen sein.',
+			en: 'From Kressbronn take bus line 235 to the Tettnang, Degersee stop; parking on site (€2/day). In bad weather the restaurant may close on Mondays and Tuesdays.'
+		},
+		openingHours: {
+			de: 'Apr–Okt: Mi–So 10:30–22:00, Mo–Di geschlossen',
+			en: 'Apr–Oct: Wed–Sun 10:30am–10pm, Mon–Tue closed'
+		},
+		url: 'https://www.degerseestube.de/'
+	},
+	{
+		id: 'weingut-kress-ueberlingen',
+		coordinates: [47.7606, 9.1871],
+		categories: ['culinary'],
+		duration: ['short'],
+		nearestStation: 'Überlingen',
+		name: { de: 'Weingut Kress', en: 'Weingut Kress Winery' },
+		teaser: {
+			de: 'Überlinger Weingut am Bodanrück — Riesling, Burgunder und die Felsengarten-Cuvées.',
+			en: 'Überlingen winery on the Bodanrück ridge — Riesling, Pinot and the Felsengarten cuvées.'
+		},
+		description: {
+			de: 'Das Weingut Kress in der Mühlbachstraße in Überlingen wird seit drei Generationen geführt und baut seine Reben am Bodensee an: eiszeitliche Endmoränenböden, der See als Temperaturregulant und die Alpen in Sichtweite. Im Sortiment finden sich Riesling, Burgunder, Lagenweine, Perlwein und Sekt, darunter die Cuvées „Überlinger Felsengarten“.',
+			en: 'Weingut Kress on Mühlbachstraße in Überlingen has been family-run for three generations, growing its vines by Lake Constance: glacial moraine soils, the lake as a temperature regulator and the Alps in view. The range includes Riesling, Pinot, single-vineyard wines, sparkling wine and sekt, among them the “Überlinger Felsengarten” cuvées.'
+		},
+		tip: {
+			de: 'In der Vinothek dienstags bis freitags 9–12:30 und 14–18 Uhr, samstags 10–13 Uhr geöffnet. Im Juni und Juli freitags ab 18 Uhr die Besenwirtschaft „Viertel vor Kress“ — vorher anrufen (+49 7551 65855).',
+			en: 'The vinotheque is open Tuesday to Friday 9am–12:30pm and 2–6pm, Saturday 10am–1pm. In June and July the “Viertel vor Kress” wine bar opens on Fridays from 6pm — call ahead (+49 7551 65855).'
+		},
+		openingHours: {
+			de: 'Di–Fr 09:00–12:30 & 14:00–18:00, Sa 10:00–13:00, Mo/So/Feiertage geschlossen',
+			en: 'Tue–Fri 9am–12:30pm & 2–6pm, Sat 10am–1pm, closed Mon/Sun/holidays'
+		},
+		url: 'https://www.weingut-kress.de/'
 	}
 ];

@@ -46,7 +46,7 @@
 							iconAnchor: [14, 14]
 						}}
 					>
-						<span>{categoryIcons[location.categories[0] ?? 'nature']}</span>
+						<span>{location.icon ?? categoryIcons[location.categories[0] ?? 'nature']}</span>
 					</DivIcon>
 					<Tooltip options={{ direction: 'top', offset: [0, -16] }}
 						>{localize(location.name)}</Tooltip

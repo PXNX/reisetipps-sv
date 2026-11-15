@@ -154,7 +154,7 @@
 		</section>
 		<div class="flex gap-2 pb-4">
 			<button class="btn flex-1 btn-primary" onclick={recommend}>{m.try_again()}</button>
-			<a class="btn flex-1 btn-outline" href={`${localizeHref('/map')}?focus=${result.id}`}>
+			<a class="btn flex-1 btn-outline" href={`${localizeHref('/karte')}?focus=${result.id}`}>
 				{m.show_on_map()}
 			</a>
 		</div>

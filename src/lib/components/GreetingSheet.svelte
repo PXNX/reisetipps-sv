@@ -41,7 +41,7 @@
 		<button class="btn w-full btn-primary" onclick={close}>{m.greeting_close()}</button>
 
 		<a
-			href={localizeHref('/privacy')}
+			href={localizeHref('/datenschutz')}
 			class="text-xs text-base-content/50 underline-offset-2 hover:underline"
 		>
 			{m.privacy_link()}

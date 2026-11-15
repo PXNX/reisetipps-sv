@@ -14,7 +14,7 @@
 
 	const tabs = [
 		{ href: '/', label: () => m.nav_recommend(), icon: '🧭' },
-		{ href: '/map', label: () => m.nav_map(), icon: '🗺️' }
+		{ href: '/karte', label: () => m.nav_map(), icon: '🗺️' }
 	] as const;
 </script>
 
@@ -25,7 +25,7 @@
 		<span class="text-lg font-semibold tracking-tight">{m.app_name()}</span>
 		<div class="flex items-center gap-3">
 			<a
-				href={localizeHref('/privacy')}
+				href={localizeHref('/datenschutz')}
 				class="text-xs text-base-content/50 underline-offset-2 hover:underline"
 			>
 				{m.privacy_link()}

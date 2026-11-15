@@ -1464,4 +1464,29 @@ export const locations: Location[] = [
 		},
 		url: 'https://www.ok-bergbahnen.com/bergbahnen/nebelhornbahn/'
 	},
+	{
+		id: 'seehalde-birnau',
+		coordinates: [47.7412, 9.223],
+		categories: ['culinary'],
+		duration: ['short', 'medium'],
+		nearestStation: 'Überlingen',
+		name: { de: 'Seehalde Birnau', en: 'Seehalde Birnau (Gruler Seehauspark)' },
+		teaser: {
+			de: 'Familienrestaurant mit Seeblick direkt unter der Birnau-Wallfahrtskirche.',
+			en: 'Family restaurant with a lake view directly below the Birnau pilgrimage church.'
+		},
+		description: {
+			de: 'Die Seehalde ist ein Restaurant der vierten Generation der Familie Gruler, direkt unter der Wallfahrtskirche Birnau gelegen. Die Terrasse, der Strandbereich und der Steg reichen fast bis an das Seeufer heran.',
+			en: 'Seehalde is a fourth-generation Gruler family restaurant, located directly below the Birnau pilgrimage church. The terrace, beach area and jetty reach almost to the lakeshore.'
+		},
+		tip: {
+			de: 'Nach dem Besuch der Birnau direkt hinabgehen — oder den Spaziergang von Überlingen aus mit einem Essen hier abschließen.',
+			en: 'Come straight down after visiting Birnau — or round off a walk from Überlingen with a meal here.'
+		},
+		openingHours: {
+			de: 'Do–Mo 12:00–14:00 & 18:00–21:00, Di + Mi Ruhetag',
+			en: 'Tue–Sun 12–2pm & 6–9pm, closed Mon'
+		},
+		url: 'https://seehalde.de'
+	},
 ];

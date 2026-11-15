@@ -1,4 +1,13 @@
-export type Category = 'nature' | 'culture' | 'culinary' | 'history' | 'technology' | 'viewpoint';
+export type Category =
+	| 'nature'
+	| 'culture'
+	| 'culinary'
+	| 'history'
+	| 'technology'
+	| 'viewpoint'
+	| 'cheese'
+	| 'butcher'
+	| 'ruins';
 
 export type Duration = 'short' | 'medium' | 'long';
 

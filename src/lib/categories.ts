@@ -7,7 +7,10 @@ export const allCategories: Category[] = [
 	'culinary',
 	'history',
 	'technology',
-	'viewpoint'
+	'viewpoint',
+	'cheese',
+	'butcher',
+	'ruins'
 ];
 export const allDurations: Duration[] = ['short', 'medium', 'long'];
 
@@ -17,7 +20,10 @@ export const categoryIcons: Record<Category, string> = {
 	culinary: '🍴',
 	history: '🏺',
 	technology: '⚙️',
-	viewpoint: '🌄'
+	viewpoint: '🌄',
+	cheese: '🧀',
+	butcher: '🥩',
+	ruins: '🏰'
 };
 
 export function categoryLabel(category: Category): string {
@@ -34,6 +40,12 @@ export function categoryLabel(category: Category): string {
 			return m.category_technology();
 		case 'viewpoint':
 			return m.category_viewpoint();
+		case 'cheese':
+			return m.category_cheese();
+		case 'butcher':
+			return m.category_butcher();
+		case 'ruins':
+			return m.category_ruins();
 	}
 }
 

@@ -25,7 +25,7 @@ export default defineConfig({
 		}),
 
 		SvelteKitPWA({
-			registerType: 'autoUpdate',
+			registerType: 'prompt',
 			manifest: {
 				name: 'Bodensee Guide',
 				short_name: 'Bodensee',

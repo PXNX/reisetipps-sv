@@ -1,0 +1,75 @@
+<script lang="ts">
+	/**
+	 * Registers the app's service worker (built by vite-plugin-pwa as /sw.js) and offers updates in
+	 * place. Nothing here runs on the server: the hook is only reached in the browser, and it is
+	 * what actually registers the worker — without it the app is not installable. In `prompt` mode
+	 * the hook reports a waiting build through `needRefresh`, so the new version is only swapped in
+	 * when the reader taps the button instead of the page reloading under them.
+	 */
+	import { browser } from '$app/environment';
+	import { onMount } from 'svelte';
+	import * as m from '$lib/paraglide/messages.js';
+	import { useRegisterSW } from 'virtual:pwa-register/svelte';
+	import BottomSheet from './BottomSheet.svelte';
+
+	const { needRefresh, updateServiceWorker } = useRegisterSW({ immediate: true });
+
+	let open = $state(false);
+	let updating = $state(false);
+
+	$effect(() => {
+		if ($needRefresh) open = true;
+	});
+
+	// Regular update checks: once an hour and whenever the app comes back into view.
+	onMount(() => {
+		if (!browser) return;
+		const check = () =>
+			navigator.serviceWorker
+				.getRegistration()
+				.then((r) => r?.update())
+				.catch(() => {});
+		const interval = window.setInterval(check, 60 * 60 * 1000);
+		const onFocus = () => {
+			if (document.visibilityState === 'visible') check();
+		};
+		document.addEventListener('visibilitychange', onFocus);
+		window.addEventListener('focus', onFocus);
+		return () => {
+			window.clearInterval(interval);
+			document.removeEventListener('visibilitychange', onFocus);
+			window.removeEventListener('focus', onFocus);
+		};
+	});
+
+	async function update() {
+		updating = true;
+		try {
+			await updateServiceWorker();
+		} catch {
+			// The worker did not take over; a plain reload is the last resort.
+			if (browser) location.reload();
+		} finally {
+			updating = false;
+		}
+	}
+
+	function close() {
+		open = false;
+		needRefresh.set(false);
+	}
+</script>
+
+<BottomSheet {open} onclose={close}>
+	<div class="flex flex-col items-center gap-4 pt-2 text-center">
+		<span class="text-4xl" aria-hidden="true">🌊</span>
+		<div>
+			<h2 class="text-xl font-semibold">{m.update_app_title()}</h2>
+			<p class="mt-2 text-sm leading-relaxed text-base-content/80">{m.update_app_body()}</p>
+		</div>
+		<button class="btn w-full btn-primary" onclick={update} disabled={updating}>
+			{updating ? m.updating() : m.update_app_action()}
+		</button>
+		<button class="btn w-full btn-ghost" onclick={close}>{m.update_app_later()}</button>
+	</div>
+</BottomSheet>

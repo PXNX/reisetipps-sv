@@ -71,5 +71,10 @@
 	"privacy_contact_body": "This app is run privately.",
 	"install_hint_body": "Install this as an app — faster access and it works offline.",
 	"install_hint_ios": "To install: tap the Share icon, then \"Add to Home Screen\".",
-	"install_action": "Install"
+	"install_action": "Install",
+	"update_app_title": "Update available",
+	"update_app_body": "A new version of the app is ready. Update now to get the latest places and maps.",
+	"update_app_action": "Update now",
+	"update_app_later": "Later",
+	"updating": "Updating…"
 }

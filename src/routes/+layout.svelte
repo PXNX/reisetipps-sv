@@ -7,6 +7,7 @@
 	import favicon from '$lib/assets/favicon.svg';
 	import GreetingSheet from '$lib/components/GreetingSheet.svelte';
 	import InstallHint from '$lib/components/InstallHint.svelte';
+	import ServiceWorker from '$lib/components/ServiceWorker.svelte';
 
 	let { children } = $props();
 
@@ -48,6 +49,7 @@
 
 	<GreetingSheet />
 	<InstallHint />
+	<ServiceWorker />
 
 	<nav
 		class="fixed inset-x-0 bottom-0 z-30 flex border-t border-base-300/60 bg-base-100/95 backdrop-blur"

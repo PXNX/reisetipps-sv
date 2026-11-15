@@ -71,5 +71,10 @@
 	"privacy_contact_body": "Diese App wird privat betrieben.",
 	"install_hint_body": "Als App installieren – für schnelleren Zugriff und Offline-Nutzung.",
 	"install_hint_ios": "Zum Installieren: Teilen-Symbol antippen, dann „Zum Home-Bildschirm“.",
-	"install_action": "Installieren"
+	"install_action": "Installieren",
+	"update_app_title": "Neue Version verfügbar",
+	"update_app_body": "Es gibt eine neue Version der App. Jetzt aktualisieren, um die neuesten Orte und Karten zu sehen.",
+	"update_app_action": "Jetzt aktualisieren",
+	"update_app_later": "Später",
+	"updating": "Wird aktualisiert …"
 }

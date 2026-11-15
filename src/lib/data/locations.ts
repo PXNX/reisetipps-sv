@@ -1514,4 +1514,25 @@ export const locations: Location[] = [
 		},
 		url: 'https://www.waldburger-schinken.de/schinkenstadl/'
 	},
+	{
+		id: 'humpis-ravensburg',
+		coordinates: [47.7803, 9.6157],
+		categories: ['culinary'],
+		duration: ['short', 'medium'],
+		nearestStation: 'Ravensburg',
+		name: { de: 'Humpis Gaststätte', en: 'Humpis Gaststätte (Ravensburg)' },
+		teaser: {
+			de: 'Handgeschabte Spätzle und Maultaschen im ehemaligen Humpis-Kaufhaus.',
+			en: 'Hand-scraped Spätzle and Maultaschen in the former Humpis trading house.'
+		},
+		description: {
+			de: 'Die Humpis Gaststätte in Ravensburgs Marktstraße 47 ist ein historisches Restaurant im ehemaligen Humpis-Kaufhaus. Auf der Speisekarte stehen klassische Gerichte wie handgeschabte Spätzle, Maultaschen und Kässpätzle.',
+			en: 'The Humpis Gaststätte on Ravensburg’s Marktstraße 47 is a historic restaurant inside the former Humpis trading house. The menu features classics such as hand-scraped Spätzle, Maultaschen and Kässpätzle.'
+		},
+		tip: {
+			de: 'Ideal für einen schnellen Zwischenstopp oder eine ausführliche Pause am Seeufer; Öffnungszeiten Mo–Fr 11:00–24:00, Sa 9:00–24:00, So 10:00–24:00.',
+			en: 'Ideal for a quick stop or a leisurely break by the lake; opening hours Mon–Fri 11am–midnight, Sat 9am–midnight, Sun 10am–midnight.'
+		},
+		url: 'https://www.xn--humpis-gaststtte-7nb.de/'
+	},
 ];

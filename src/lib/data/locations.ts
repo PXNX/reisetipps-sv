@@ -533,7 +533,7 @@ export const locations: Location[] = [
 	{
 		id: 'sennerei-bremenried',
 		coordinates: [47.58, 9.9012],
-		categories: ['culinary'],
+		categories: ['cheese', 'culinary'],
 		duration: ['short'],
 		nearestStation: 'Lindau-Reutin',
 		name: { de: 'Sennerei Bremenried', en: 'Sennerei Bremenried (Alpine Dairy)' },
@@ -675,7 +675,7 @@ export const locations: Location[] = [
 	{
 		id: 'fesslerhof-eichenberg',
 		coordinates: [47.5447, 9.7968],
-		categories: ['culinary'],
+		categories: ['butcher', 'culinary'],
 		duration: ['short'],
 		nearestStation: 'Bregenz',
 		name: { de: 'Bergmetzgerei Fesslerhof', en: 'Fesslerhof Farm Butchery' },
@@ -700,7 +700,7 @@ export const locations: Location[] = [
 	{
 		id: 'alma-kaeslaedele-hoerbranz',
 		coordinates: [47.5442, 9.7495],
-		categories: ['culinary'],
+		categories: ['cheese', 'culinary'],
 		duration: ['short'],
 		nearestStation: 'Bregenz',
 		name: { de: 'Alma Käslädele Hörbranz', en: 'Alma Käslädele, Hörbranz' },
@@ -849,7 +849,7 @@ export const locations: Location[] = [
 	{
 		id: 'organic-distillery-friedrichshafen',
 		coordinates: [47.6768, 9.4202],
-		categories: ['culinary'],
+		categories: ['drinks', 'culinary'],
 		duration: ['short'],
 		icon: '🍷',
 		nearestStation: 'Friedrichshafen Hafen',
@@ -896,7 +896,7 @@ export const locations: Location[] = [
 	{
 		id: 'landbaeckerei-baader-markdorf',
 		coordinates: [47.717, 9.3888],
-		categories: ['culinary'],
+		categories: ['sweets', 'culinary'],
 		duration: ['short'],
 		icon: '🥐',
 		nearestStation: 'Markdorf',
@@ -942,7 +942,7 @@ export const locations: Location[] = [
 	{
 		id: 'kleines-cafe',
 		coordinates: [47.5463, 9.6883],
-		categories: ['culinary'],
+		categories: ['sweets', 'culinary'],
 		duration: ['short'],
 		icon: '🍦',
 		nearestStation: 'Lindau-Insel',
@@ -965,7 +965,7 @@ export const locations: Location[] = [
 	{
 		id: 'la-dolce-vita-lochau',
 		coordinates: [47.513, 9.754],
-		categories: ['culinary'],
+		categories: ['sweets', 'culinary'],
 		duration: ['short'],
 		icon: '🍦',
 		nearestStation: 'Bregenz',
@@ -988,7 +988,7 @@ export const locations: Location[] = [
 	{
 		id: 'metzgerei-giray',
 		coordinates: [47.6044, 9.8901],
-		categories: ['culinary'],
+		categories: ['butcher', 'culinary'],
 		duration: ['short'],
 		nearestStation: 'Lindau-Reutin',
 		name: { de: 'Metzgerei Giray', en: 'Giray Butcher Shop' },
@@ -1032,7 +1032,7 @@ export const locations: Location[] = [
 	{
 		id: 'cafe-hoepker',
 		coordinates: [47.6701, 9.4226],
-		categories: ['culinary'],
+		categories: ['sweets', 'culinary'],
 		duration: ['short'],
 		icon: '☕',
 		nearestStation: 'Friedrichshafen Hafen',
@@ -1055,7 +1055,7 @@ export const locations: Location[] = [
 	{
 		id: 'webers-backstube-friedrichshafen',
 		coordinates: [47.6527, 9.4728],
-		categories: ['culinary'],
+		categories: ['sweets', 'culinary'],
 		duration: ['short'],
 		icon: '🥐',
 		nearestStation: 'Friedrichshafen Stadt',
@@ -1078,7 +1078,7 @@ export const locations: Location[] = [
 	{
 		id: 'backhaus-mahl-ueberlingen',
 		coordinates: [47.7654, 9.1638],
-		categories: ['culinary'],
+		categories: ['sweets', 'culinary'],
 		duration: ['short'],
 		icon: '🥐',
 		nearestStation: 'Überlingen',
@@ -1099,7 +1099,7 @@ export const locations: Location[] = [
 	{
 		id: 'winzerfest-nonnenhorn',
 		coordinates: [47.5746, 9.611],
-		categories: ['culinary'],
+		categories: ['drinks', 'culinary'],
 		duration: ['medium'],
 		nearestStation: 'Nonnenhorn',
 		name: { de: 'Winzerfest Nonnenhorn', en: 'Nonnenhorn Wine Festival' },
@@ -1162,7 +1162,7 @@ export const locations: Location[] = [
 	{
 		id: 'landmetzgerei-schaedler-oberlangnau',
 		coordinates: [47.6316, 9.6592],
-		categories: ['culinary'],
+		categories: ['butcher', 'culinary'],
 		duration: ['short'],
 		nearestStation: 'Kressbronn',
 		name: { de: 'Landmetzgerei Eugen Schädler', en: 'Eugen Schädler Village Butchery' },
@@ -1212,7 +1212,7 @@ export const locations: Location[] = [
 	{
 		id: 'weingut-kress-ueberlingen',
 		coordinates: [47.7606, 9.1871],
-		categories: ['culinary'],
+		categories: ['drinks', 'culinary'],
 		duration: ['short'],
 		icon: '🍷',
 		nearestStation: 'Überlingen',
@@ -1271,7 +1271,7 @@ export const locations: Location[] = [
 	{
 		id: 'schoggiparadies-riehen',
 		coordinates: [47.58381, 7.648673],
-		categories: ['culinary'],
+		categories: ['sweets', 'culinary'],
 		duration: ['short'],
 		icon: '🍫',
 		nearestStation: 'Riehen',
@@ -1358,7 +1358,7 @@ export const locations: Location[] = [
 	{
 		id: 'weingut-teresa-deufel',
 		coordinates: [47.5601, 9.6578],
-		categories: ['culinary'],
+		categories: ['drinks', 'culinary'],
 		duration: ['short'],
 		icon: '🍷',
 		nearestStation: 'Lindau-Insel',

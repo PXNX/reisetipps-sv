@@ -10,7 +10,9 @@ const categoryGradients: Record<Category, [string, string]> = {
 	viewpoint: ['#1b3a5c', '#62c3dd'],
 	cheese: ['#6b4f1d', '#f2c94c'],
 	butcher: ['#5c1a18', '#e07a5f'],
-	ruins: ['#3d3a34', '#c9a86a']
+	ruins: ['#3d3a34', '#c9a86a'],
+	drinks: ['#3d1d4e', '#b07cc6'],
+	sweets: ['#5c2a3d', '#f2a6c9']
 };
 
 /**

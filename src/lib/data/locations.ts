@@ -7,7 +7,9 @@ export type Category =
 	| 'viewpoint'
 	| 'cheese'
 	| 'butcher'
-	| 'ruins';
+	| 'ruins'
+	| 'drinks'
+	| 'sweets';
 
 export type Duration = 'short' | 'medium' | 'long';
 

@@ -10,7 +10,9 @@ export const allCategories: Category[] = [
 	'viewpoint',
 	'cheese',
 	'butcher',
-	'ruins'
+	'ruins',
+	'drinks',
+	'sweets'
 ];
 export const allDurations: Duration[] = ['short', 'medium', 'long'];
 
@@ -23,7 +25,9 @@ export const categoryIcons: Record<Category, string> = {
 	viewpoint: '🌄',
 	cheese: '🧀',
 	butcher: '🥩',
-	ruins: '🏰'
+	ruins: '🏰',
+	drinks: '🍷',
+	sweets: '🍦'
 };
 
 export function categoryLabel(category: Category): string {
@@ -46,6 +50,10 @@ export function categoryLabel(category: Category): string {
 			return m.category_butcher();
 		case 'ruins':
 			return m.category_ruins();
+		case 'drinks':
+			return m.category_drinks();
+		case 'sweets':
+			return m.category_sweets();
 	}
 }
 

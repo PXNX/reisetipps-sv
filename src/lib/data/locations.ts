@@ -338,8 +338,8 @@ export const locations: Location[] = [
 			en: 'A playful rococo interior featuring the famous "honey-licking" cherub. The path up from the lakeside promenade runs straight through the vineyards.'
 		},
 		tip: {
-			de: 'Zehn Minuten hinaufgehen und oben oder unten bei einem der Weingüter eine Rast einlegen.',
-			en: 'Walk ten minutes up and rest at one of the vineyard estates at the top or bottom.'
+			de: 'Zehn Minuten hinaufgehen und oben oder unten bei einem der Weingüter eine Rast einlegen — oder nach dem Besuch hinunter zum Restaurant Seehalde am Seeufer.',
+			en: 'Walk ten minutes up and rest at one of the vineyard estates at the top or bottom — or head down to the lakeside Seehalde restaurant afterwards.'
 		},
 		image: {
 			url: '/images/locations/birnau.jpg',

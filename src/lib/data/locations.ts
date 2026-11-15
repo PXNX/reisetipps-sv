@@ -2428,4 +2428,67 @@ export const locations: Location[] = [
 		},
 		url: 'https://www.breitachklamm.de/'
 	},
+	{
+		id: 'gerberschanze',
+		coordinates: [47.5459, 9.6889],
+		categories: ['viewpoint'],
+		duration: ['short'],
+		nearestStation: 'Lindau-Insel',
+		name: { de: 'Gerberschanze', en: 'Gerberschanze' },
+		teaser: {
+			de: 'Aussichtspunkt auf der Lindauer Insel unter einer alten Linde mit Blick über den See.',
+			en: 'A viewpoint on Lindau island under an old lime tree with views over the lake.'
+		},
+		description: {
+			de: 'Die Gerberschanze ist einer der beliebtesten Aussichtspunkte der Lindauer Insel. Unter einer alten Linde blickt man über den Bodensee, auf die Alpenkette und hinunter ins Hafenbecken mit Löwe und Leuchtturm.',
+			en: 'The Gerberschanze is one of the most popular viewpoints on Lindau island. Under an old lime tree you look across Lake Constance, over the Alps and down into the harbour basin with its lion and lighthouse.'
+		},
+		tip: {
+			de: 'Zum Sonnenuntergang kommen, wenn das Licht auf dem Hafeneingang warm wird.',
+			en: 'Come at sunset, when the light on the harbour entrance turns warm.'
+		},
+		icon: '🌳'
+	},
+	{
+		id: 'lindau-hafen',
+		coordinates: [47.5445, 9.6833],
+		categories: ['viewpoint'],
+		duration: ['short'],
+		nearestStation: 'Lindau-Insel',
+		name: { de: 'Lindau Hafen & Leuchtturm', en: 'Lindau Harbour & Lighthouse' },
+		teaser: {
+			de: 'Bayerischer Löwe und Leuchtturm rahmen das bekannteste Seebild der Region.',
+			en: 'The Bavarian lion and the lighthouse frame the region’s most famous lake view.'
+		},
+		description: {
+			de: 'Der Lindauer Hafen ist das Postkartenmotiv der Stadt: Der Bayerische Löwe und der Leuchtturm stehen an der Einfahrt, dahinter liegt die Altstadt mit Cavazzen und Marktplatz. Von der Hafenpromenade reicht der Blick über den Bodensee bis zu den Alpen, und in der warmen Jahreszeit legen hier die Ausflugsschiffe an.',
+			en: 'The Lindau harbour is the town’s postcard motif: the Bavarian lion and the lighthouse stand at the entrance, with the old town, the Cavazzen house and the market square behind them. From the harbour promenade the view reaches across Lake Constance to the Alps, and in the warmer months the excursion boats call here.'
+		},
+		tip: {
+			de: 'Für das klassische Foto am besten am frühen Morgen oder Abend kommen, wenn weniger Betrieb ist.',
+			en: 'For the classic photo come early in the morning or in the evening, when it is quieter.'
+		},
+		icon: '⚓'
+	},
+	{
+		id: 'obsthof-weber',
+		coordinates: [47.5971, 9.7383],
+		categories: ['culinary'],
+		duration: ['short'],
+		nearestStation: 'Hergatz',
+		name: { de: 'Obsthof Weber Wildberg', en: 'Obsthof Weber Wildberg' },
+		teaser: {
+			de: 'Obsthof im Weißensberger Ortsteil Wildberg mit Äpfeln, Pflaumen, Williams-Birnen und Apfelbränden.',
+			en: 'An orchard farm in Wildberg, part of Weißensberg, with apples, plums, Williams pears and apple spirits.'
+		},
+		description: {
+			de: 'Der Obsthof Weber liegt im kleinen Wildberg, einem Ortsteil von Weißensberg zwischen Lindau und dem Westallgäu. Der Hof baut Äpfel, Pflaumen und Williams-Birnen an und verdistilliert darunter Apfelbrand und Obstler.',
+			en: 'Obsthof Weber is in tiny Wildberg, a hamlet of Weißensberg between Lindau and the western Allgäu. The farm grows apples, plums and Williams pears and distills apple brandy and obstler from them.'
+		},
+		tip: {
+			de: 'Die Erntezeit von Spätsommer bis Herbst ist die beste Zeit für einen Abstecher; Angebot und Zeiten wechseln mit der Saison.',
+			en: 'Harvest time from late summer to autumn is the best moment for a detour; the offer and the times change with the season.'
+		},
+		icon: '🍎'
+	},
 ];

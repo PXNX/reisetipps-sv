@@ -1489,4 +1489,29 @@ export const locations: Location[] = [
 		},
 		url: 'https://seehalde.de'
 	},
+	{
+		id: 'waldburger-schinken',
+		coordinates: [47.7567, 9.7434],
+		categories: ['butcher', 'culinary'],
+		duration: ['short'],
+		nearestStation: 'Ravensburg',
+		name: { de: 'Schinkenstadl Waldburger', en: 'Schinkenstadl Waldburger' },
+		teaser: {
+			de: 'Hofladen mit Roh- und Kochschinken direkt aus dem Allgäu.',
+			en: 'Farm shop selling raw and cooked ham straight from the Allgäu.'
+		},
+		description: {
+			de: 'Im Schinkenstadl in Edensbach werden Rohschinken und Kochschinken seit 1931 hergestellt und direkt verkauft. Daneben gibt es einen Selbstbedienungsautomat für den Einkauf rund um die Uhr.',
+			en: 'The Schinkenstadl in Edensbach has been producing raw and cooked ham since 1931 and sells it directly on site. A self-service vending machine lets you shop around the clock.'
+		},
+		tip: {
+			de: 'Der SB-Automat ist rund um die Uhr gefüllt, falls der Hofladen geschlossen hat.',
+			en: 'The vending machine is stocked around the clock if the farm shop is closed.'
+		},
+		openingHours: {
+			de: 'Do + Fr 9:00–12:00 & 14:00–18:00, Sa 8:00–12:00',
+			en: 'Thu + Fri 9am–noon & 2–6pm, Sat 8am–noon'
+		},
+		url: 'https://www.waldburger-schinken.de/schinkenstadl/'
+	},
 ];

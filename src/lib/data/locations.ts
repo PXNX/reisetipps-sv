@@ -1640,4 +1640,109 @@ export const locations: Location[] = [
 		},
 		url: 'https://www.walderlebnispfad.at'
 	},
+	{
+		id: 'schloss-tettnang',
+		coordinates: [47.6699, 9.5845],
+		categories: ['culture', 'viewpoint'],
+		duration: ['medium'],
+		nearestStation: 'Markdorf',
+		name: { de: 'Neues Schloss Tettnang', en: 'New Palace Tettnang' },
+		teaser: {
+			de: 'Barockes Schloss mit prächtigen Räumen und Ausblick über das Schussental.',
+			en: 'Baroque palace with magnificent rooms and views over the Schussen valley.'
+		},
+		description: {
+			de: 'Das Neue Schloss Tettnang war Residenz der Grafen von Montfort und wurde nach dem Brand 1712 im Barockstil neu erbaut. Es beherbergt heute Museen und bietet einen weiten Blick über das Schussental bis zum Bodensee.',
+			en: 'The New Palace Tettnang was the residence of the Counts of Montfort and was rebuilt in Baroque style after a fire in 1712. Today it houses museums and offers sweeping views over the Schussen valley to Lake Constance.'
+		},
+		tip: {
+			de: 'Die Schlosskapelle und das Schlossmuseum sind einen Besuch wert. Vom Bahnhof Markdorf ca. 5 km nach Tettnang.',
+			en: 'The palace chapel and museum are worth a visit. From Markdorf station about 5 km to Tettnang.'
+		},
+		url: 'https://www.schloss-tettnang.de/'
+	},
+	{
+		id: 'hopfengut-no20-tettnang',
+		coordinates: [47.6904, 9.6166],
+		categories: ['drinks', 'culinary'],
+		duration: ['short', 'medium'],
+		nearestStation: 'Markdorf',
+		name: { de: 'Hopfengut No20 Tettnang', en: 'Hopfengut No20 Tettnang' },
+		teaser: {
+			de: 'Brauerei, Gaststätte, Biergarten und Museum auf dem Hopfengut Siggenweiler/Tannau.',
+			en: 'Brewery, restaurant, beer garden and museum on the Hopfengut in Siggenweiler/Tannau.'
+		},
+		description: {
+			de: 'Das Hopfengut No20 in Siggenweiler (Tannau) ist ein historisches Hopfengut mit eigener Brauerei, Gaststätte, Biergarten und Museum. Hier wird der Tettnanger Hopfen angebaut und veredelt.',
+			en: 'Hopfengut No20 in Siggenweiler (Tannau) is a historic hop farm with its own brewery, restaurant, beer garden and museum. The Tettnang hop is grown and processed here.'
+		},
+		tip: {
+			de: 'Vom Bahnhof Markdorf aus gut erreichbar — ideal für eine Rast mit Hopfenspezialitäten.',
+			en: 'Easily reached from Markdorf station — ideal for a stop with hop specialties.'
+		},
+		url: 'https://www.hopfengut.de/'
+	},
+	{
+		id: 'festungsmuseum-heldsberg',
+		coordinates: [47.4432, 9.6433],
+		categories: ['history'],
+		duration: ['short', 'medium'],
+		nearestStation: 'Hergatz',
+		name: { de: 'Festungsmuseum Heldsberg', en: 'Heldsberg Fortress Museum' },
+		teaser: {
+			de: 'Ehemaliges Artilleriewerk des Zweiten Weltkriegs, seit 1993 Museum.',
+			en: 'Former WWII artillery fort, museum since 1993.'
+		},
+		description: {
+			de: 'Das Festungsmuseum Heldsberg bei St. Margrethen (Schweiz) ist ein ehemaliges Artilleriewerk des Zweiten Weltkriegs, das seit 1993 als Museum der Öffentlichkeit zugänglich ist. Es zeigt die Verteidigungsanlagen und das Leben der Besatzung.',
+			en: 'The Heldsberg Fortress Museum near St. Margrethen (Switzerland) is a former WWII artillery fort that has been open to the public as a museum since 1993. It displays the defensive installations and the life of the garrison.'
+		},
+		tip: {
+			de: 'Mit dem Bus oder zu Fuß von Hergatz erreichbar. Geführte Touren geben Einblick in die Bunkeranlagen.',
+			en: 'Accessible by bus or on foot from Hergatz. Guided tours offer insight into the bunker installations.'
+		},
+		url: 'https://festung.ch/'
+	},
+	{
+		id: 'pizzeria-lindo-lindau',
+		coordinates: [47.5473, 9.6843],
+		categories: ['culinary'],
+		duration: ['short'],
+		nearestStation: 'Lindau-Insel',
+		name: { de: 'Pizzeria Lindo', en: 'Pizzeria Lindo (Lindau Island)' },
+		teaser: {
+			de: 'Pizzeria auf der Lindauer Insel in der In der Grub 32.',
+			en: 'Pizzeria on the Lindau island at In der Grub 32.'
+		},
+		description: {
+			de: 'Die Pizzeria Lindo liegt direkt auf der Lindauer Insel in der In der Grub 32 und bietet klassische italienische Pizzen in gemütlicher Atmosphäre.',
+			en: 'Pizzeria Lindo is located directly on the Lindau island at In der Grub 32 and serves classic Italian pizzas in a cosy atmosphere.'
+		},
+		tip: {
+			de: 'Nur wenige Minuten vom Hafen entfernt — ideal für ein Mittag- oder Abendessen bei der Inselerkundung.',
+			en: 'Just a few minutes from the harbour — ideal for lunch or dinner while exploring the island.'
+		},
+		url: ''
+	},
+	{
+		id: 'la-gondola-nonnenhorn',
+		coordinates: [47.5749, 9.6085],
+		categories: ['culinary'],
+		duration: ['short'],
+		nearestStation: 'Lindau-Reutin',
+		name: { de: 'La Gondola Nonnenhorn', en: 'La Gondola, Nonnenhorn' },
+		teaser: {
+			de: 'Pizzeria in Nonnenhorn mit Seeblick und großer Terrasse.',
+			en: 'Pizzeria in Nonnenhorn with lake view and large terrace.'
+		},
+		description: {
+			de: 'La Gondola in Nonnenhorn (Seehalde 2) ist eine Pizzeria und Ristorante mit einer großen Terrasse direkt am Bodenseeufer.',
+			en: 'La Gondola in Nonnenhorn (Seehalde 2) is a pizzeria and restaurant with a large terrace right on the Lake Constance shore.'
+		},
+		tip: {
+			de: 'Vom Bahnhof Lindau-Reutin mit dem Bus oder zu Fuß erreichbar — ideal nach einem Seebesuch.',
+			en: 'Reachable from Lindau-Reutin station by bus or on foot — ideal after a lake visit.'
+		},
+		url: 'https://lagondolaristorantepizzeria.com'
+	},
 ];

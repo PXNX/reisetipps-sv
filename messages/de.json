@@ -79,5 +79,18 @@
 	"update_app_body": "Es gibt eine neue Version der App. Jetzt aktualisieren, um die neuesten Orte und Karten zu sehen.",
 	"update_app_action": "Jetzt aktualisieren",
 	"update_app_later": "Später",
-	"updating": "Wird aktualisiert …"
+	"updating": "Wird aktualisiert …",
+	"tour_title": "Tour planen",
+	"tour_stops_count": "Stopps: {count}",
+	"tour_mode_walk": "Zu Fuß",
+	"tour_mode_bike": "Mit dem Rad",
+	"tour_add": "Zur Tour hinzufügen",
+	"tour_in": "In der Tour",
+	"tour_remove": "Stopp entfernen",
+	"tour_move_up": "Nach oben",
+	"tour_move_down": "Nach unten",
+	"tour_empty": "Noch keine Stopps — Orte aus den Empfehlungen oder der Karte hinzufügen.",
+	"tour_open": "Route öffnen",
+	"tour_open_hint": "Öffnet die Route in Google Maps.",
+	"tour_clear": "Tour leeren"
 }

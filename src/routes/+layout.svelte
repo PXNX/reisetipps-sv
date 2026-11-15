@@ -8,6 +8,7 @@
 	import GreetingSheet from '$lib/components/GreetingSheet.svelte';
 	import InstallHint from '$lib/components/InstallHint.svelte';
 	import ServiceWorker from '$lib/components/ServiceWorker.svelte';
+	import TourPlanner from '$lib/components/TourPlanner.svelte';
 
 	let { children } = $props();
 
@@ -50,6 +51,7 @@
 	<GreetingSheet />
 	<InstallHint />
 	<ServiceWorker />
+	<TourPlanner />
 
 	<nav
 		class="fixed inset-x-0 bottom-0 z-30 flex border-t border-base-300/60 bg-base-100/95 backdrop-blur"

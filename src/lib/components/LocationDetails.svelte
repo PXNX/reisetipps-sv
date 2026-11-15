@@ -3,6 +3,7 @@
 	import { localize } from '$lib/i18n';
 	import { categoryIcons, categoryLabel } from '$lib/categories';
 	import { locationMarks } from '$lib/stores/locationMarks.svelte';
+	import { tour } from '$lib/stores/tour.svelte';
 	import { placeholderImage } from '$lib/placeholderImage';
 	import ZoomableImage from '$lib/components/ZoomableImage.svelte';
 	import * as m from '$lib/paraglide/messages.js';
@@ -11,6 +12,7 @@
 
 	const visited = $derived(locationMarks.isVisited(location.id));
 	const wishlisted = $derived(locationMarks.isWishlisted(location.id));
+	const inTour = $derived(tour.has(location.id));
 	const imageSrc = $derived(location.image?.url ?? placeholderImage(location.categories));
 	const imageAlt = $derived(
 		location.image ? localize(location.image.alt) : localize(location.name)
@@ -34,7 +36,9 @@
 		<div class="mt-2 flex flex-wrap gap-1.5">
 			{#each location.categories as category, i (category)}
 				<span class="badge gap-1 badge-outline badge-primary">
-					<span aria-hidden="true">{i === 0 && location.icon ? location.icon : categoryIcons[category]}</span>
+					<span aria-hidden="true"
+						>{i === 0 && location.icon ? location.icon : categoryIcons[category]}</span
+					>
 					{categoryLabel(category)}
 				</span>
 			{/each}
@@ -104,6 +108,15 @@
 		</a>
 	{/if}
 	<!-- eslint-enable svelte/no-navigation-without-resolve -->
+
+	<div class="flex gap-2">
+		<button
+			class="btn flex-1 btn-sm {inTour ? 'btn-primary' : 'btn-outline'}"
+			onclick={() => tour.toggle(location.id)}
+		>
+			{inTour ? `✓ ${m.tour_in()}` : `➕ ${m.tour_add()}`}
+		</button>
+	</div>
 
 	<div class="flex gap-2">
 		<button

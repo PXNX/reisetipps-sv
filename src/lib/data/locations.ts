@@ -686,27 +686,27 @@ export const locations: Location[] = [
 		url: 'https://fesslerhof.com'
 	},
 	{
-		id: 'alma-kaeslaedele-lochau',
-		coordinates: [47.5315, 9.7509],
+		id: 'alma-kaeslaedele-hoerbranz',
+		coordinates: [47.5442, 9.7495],
 		categories: ['culinary'],
 		duration: ['short'],
 		nearestStation: 'Bregenz',
-		name: { de: 'Alma Käslädele Lochau', en: 'Alma Käslädele, Lochau' },
+		name: { de: 'Alma Käslädele Hörbranz', en: 'Alma Käslädele, Hörbranz' },
 		teaser: {
 			de: 'Käseladen von Alma und Rupp mit Vorarlberger Bergkäse direkt vom Senner — und dem Jersey Blue.',
 			en: 'A cheese shop by Alma and Rupp with Vorarlberg mountain cheese straight from the alpine dairy — including the Jersey Blue.'
 		},
 		description: {
-			de: 'Das gemeinsame Lädele von Alma und der Ölmühle Sailer führt Vorarlberger Käsespezialitäten direkt von den Sennern: den ursprungsgeschützten Berg- und Alpkäse g.U. aus den Alma-Bergsennereien, gereift auf Fichtenbrettern. Mit dabei ist der Jersey Blue, ein cremiger Blauschimmelkäse aus Jersey-Kuhmilch, dazu kaltgepresste Öle aus der Sailer Mühle. Der Laden liegt an der Alberlochstraße, nur wenige Minuten vom Bodensee entfernt.',
-			en: 'The joint shop by Alma and the Sailer mill carries Vorarlberg cheese specialties straight from the alpine dairies: the protected-origin Bergkäse and Alpkäse g.U. from Alma’s mountain dairies, ripened on spruce boards. Also on the shelf: the Jersey Blue, a creamy blue cheese made from Jersey cow’s milk, plus cold-pressed oils from the Sailer mill. The shop sits on Alberlochstraße, minutes from Lake Constance.'
+			de: 'Im Alma-Direktverkauf in der Krüzastraße in Hörbranz gibt es Käsespezialitäten der Bregenzerwälder Senner: den international ausgezeichneten Vorarlberger Bergkäse g.U., Alma Alp- und Schnittkäse, der cremige Rahmkäse aus dem Hörbranzer Schmelzkäsewerk und weitere regionale Sorten — dazu hausgemachte Aufstriche.',
+			en: 'The Alma direct-sales shop on Krüzastraße in Hörbranz carries cheese specialties from the Bregenzerwald alpine dairies: the award-winning Vorarlberg Bergkäse g.U., Alma alpine and semi-hard cheeses, the creamy Rahm-Käse from the Hörbranz cheese-melting works and more regional varieties, plus homemade spreads.'
 		},
 		tip: {
-			de: 'Die Öffnungszeiten sind knapp bemessen und ändern sich gelegentlich — vorher kurz prüfen oder anrufen. Von Bregenz aus ist das Lädele mit Bus oder Rad in wenigen Minuten am Fuß des Pfänders erreicht.',
-			en: 'Opening hours are slim and change from time to time — check or call ahead. From Bregenz the shop at the foot of the Pfänder is a few minutes away by bus or bike.'
+			de: 'Die Öffnungszeiten sind überschaubar — vorher kurz prüfen oder anrufen. Von Bregenz oder Lindau aus ist das Lädele mit der Bahn in wenigen Minuten erreicht.',
+			en: 'Opening hours are slim — check or call ahead. From Bregenz or Lindau the shop is a few minutes away by train.'
 		},
 		openingHours: {
-			de: 'Do 13:00–19:00, Fr 8:00–19:00, Sa 8:00–12:00 (Angabe von 2014 — vorher prüfen)',
-			en: 'Thu 1–7pm, Fri 8am–7pm, Sat 8am–noon (as of 2014 — check ahead)'
+			de: 'Di–Fr 9:00–18:00, Sa 9:00–16:00, So + Mo geschlossen',
+			en: 'Tue–Fri 9am–6pm, Sat 9am–4pm, closed Sun + Mon'
 		},
 		url: 'https://www.alma.at'
 	},

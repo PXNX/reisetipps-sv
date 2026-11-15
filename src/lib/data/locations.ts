@@ -598,7 +598,8 @@ export const locations: Location[] = [
 	},
 	{
 		id: 'open-air-kino-wasserburg',
-		coordinates: [47.5662, 9.6409],
+		// nudged ~100 m northwest off the Freibad Aquamarin pin so both markers stay clickable
+		coordinates: [47.5669, 9.6400],
 		categories: ['culture'],
 		duration: ['medium'],
 		nearestStation: 'Wasserburg (Bodensee)',
@@ -624,7 +625,8 @@ export const locations: Location[] = [
 	},
 	{
 		id: 'open-air-kino-lindau',
-		coordinates: [47.5487, 9.7175],
+		// nudged ~100 m northwest off the Strandbad Eichwald pin so both markers stay clickable
+		coordinates: [47.5494, 9.7166],
 		categories: ['culture'],
 		duration: ['medium'],
 		nearestStation: 'Lindau-Reutin',
@@ -2121,7 +2123,7 @@ export const locations: Location[] = [
 	},
 	{
 		id: 'open-air-kino-hagnau',
-		coordinates: [47.6764, 9.6213],
+		coordinates: [47.6725, 9.3267],
 		categories: ['culture'],
 		duration: ['short'],
 		nearestStation: 'Uhldingen-Mühlhofen',

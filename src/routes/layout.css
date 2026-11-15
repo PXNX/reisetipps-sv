@@ -42,3 +42,37 @@ body {
 body {
 	padding-bottom: env(safe-area-inset-bottom);
 }
+
+/* The wishlist badge pops every time a new place is starred. */
+.wishlist-count {
+	animation: wish-pop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes wish-pop {
+	0% {
+		transform: scale(0.3);
+	}
+	60% {
+		transform: scale(1.35);
+	}
+	100% {
+		transform: scale(1);
+	}
+}
+
+/* A small spin on the star when the button is pressed. */
+.wishlist-toggle:active .text-lg {
+	animation: wish-spin 0.45s ease-out;
+}
+
+@keyframes wish-spin {
+	0% {
+		transform: rotate(0deg) scale(0.7);
+	}
+	55% {
+		transform: rotate(360deg) scale(1.25);
+	}
+	100% {
+		transform: rotate(360deg) scale(1);
+	}
+}

@@ -8,6 +8,7 @@
 	import { browser } from '$app/environment';
 	import { onMount } from 'svelte';
 	import * as m from '$lib/paraglide/messages.js';
+	import { trackEvent } from '$lib/telemetry';
 	import BottomSheet from './BottomSheet.svelte';
 
 	interface BeforeInstallPromptEvent extends Event {
@@ -35,6 +36,7 @@
 
 		if (isIos) {
 			open = true;
+			trackEvent('install_offered', { platform: 'ios' });
 			return;
 		}
 
@@ -42,6 +44,7 @@
 			event.preventDefault();
 			deferredPrompt = event as BeforeInstallPromptEvent;
 			open = true;
+			trackEvent('install_offered', { platform: 'chromium' });
 		};
 		window.addEventListener('beforeinstallprompt', onPrompt);
 		return () => window.removeEventListener('beforeinstallprompt', onPrompt);
@@ -54,6 +57,7 @@
 		try {
 			await prompt.prompt();
 			const choice = await prompt.userChoice;
+			trackEvent('install_prompt_answer', { accepted: choice.outcome === 'accepted' });
 			if (choice.outcome === 'accepted') open = false;
 		} catch {
 			// The browser refused the prompt; the sheet stays up so the reader can dismiss it.

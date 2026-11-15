@@ -24,6 +24,11 @@
 	</section>
 
 	<section class="space-y-1">
+		<h2 class="text-sm font-semibold text-secondary uppercase">{m.privacy_analytics_heading()}</h2>
+		<p class="text-sm text-base-content/80">{m.privacy_analytics_body()}</p>
+	</section>
+
+	<section class="space-y-1">
 		<h2 class="text-sm font-semibold text-secondary uppercase">{m.privacy_external_heading()}</h2>
 		<p class="text-sm text-base-content/80">{m.privacy_external_body()}</p>
 	</section>

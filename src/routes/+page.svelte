@@ -10,6 +10,7 @@
 	} from '$lib/categories';
 	import type { Category, Duration, Location } from '$lib/data/locations';
 	import { pickRecommendation, type RecommendFilters } from '$lib/recommend';
+	import { trackEvent } from '$lib/telemetry';
 	import LocationDetails from '$lib/components/LocationDetails.svelte';
 
 	let selectedCategories = $state<Category[]>([]);
@@ -77,6 +78,12 @@
 		result = pick;
 		noMatches = pick === null;
 		if (pick) shown = [...shown, pick.id];
+		trackEvent('recommendation_shown', {
+			categories: selectedCategories.length,
+			duration: selectedDuration ?? 'any',
+			nearby: origin !== null,
+			place: pick?.id ?? null
+		});
 	}
 
 	function resetFilters() {

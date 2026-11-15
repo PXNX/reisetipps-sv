@@ -5,6 +5,7 @@
 	import { locationMarks } from '$lib/stores/locationMarks.svelte';
 	import { tour } from '$lib/stores/tour.svelte';
 	import { placeholderImage } from '$lib/placeholderImage';
+	import { trackEvent } from '$lib/telemetry';
 	import ZoomableImage from '$lib/components/ZoomableImage.svelte';
 	import * as m from '$lib/paraglide/messages.js';
 
@@ -13,6 +14,17 @@
 	const visited = $derived(locationMarks.isVisited(location.id));
 	const wishlisted = $derived(locationMarks.isWishlisted(location.id));
 	const inTour = $derived(tour.has(location.id));
+
+	function toggleVisited() {
+		locationMarks.toggleVisited(location.id);
+		trackEvent('visited_toggle', { action: visited ? 'remove' : 'add', place: location.id });
+	}
+
+	function toggleWishlist() {
+		locationMarks.toggleWishlist(location.id);
+		trackEvent('wishlist_toggle', { action: wishlisted ? 'remove' : 'add', place: location.id });
+	}
+
 	const imageSrc = $derived(location.image?.url ?? placeholderImage(location.categories));
 	const imageAlt = $derived(
 		location.image ? localize(location.image.alt) : localize(location.name)
@@ -121,15 +133,41 @@
 	<div class="flex gap-2">
 		<button
 			class="btn flex-1 btn-sm {visited ? 'btn-success' : 'btn-outline'}"
-			onclick={() => locationMarks.toggleVisited(location.id)}
+			onclick={toggleVisited}
 		>
 			{visited ? `✓ ${m.visited_badge()}` : m.mark_visited()}
 		</button>
 		<button
 			class="btn flex-1 btn-sm {wishlisted ? 'btn-secondary' : 'btn-outline'}"
-			onclick={() => locationMarks.toggleWishlist(location.id)}
+			onclick={toggleWishlist}
 		>
-			{wishlisted ? `★ ${m.wishlist_badge()}` : `☆ ${m.mark_wishlist()}`}
+			{#key wishlisted}
+				<span class="wish-twinkle"
+					>{wishlisted ? `★ ${m.wishlist_badge()}` : `☆ ${m.mark_wishlist()}`}</span
+				>
+			{/key}
 		</button>
 	</div>
 </div>
+
+<style>
+	/* The star twirls every time the wish list state flips. */
+	.wish-twinkle {
+		display: inline-block;
+		animation: wish-twinkle 0.4s ease-out;
+	}
+
+	@keyframes wish-twinkle {
+		0% {
+			transform: scale(0.6) rotate(-14deg);
+			opacity: 0.4;
+		}
+		60% {
+			transform: scale(1.18) rotate(5deg);
+		}
+		100% {
+			transform: scale(1) rotate(0deg);
+			opacity: 1;
+		}
+	}
+</style>

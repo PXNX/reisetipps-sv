@@ -7,12 +7,18 @@
 	import * as m from '$lib/paraglide/messages.js';
 	import { localize } from '$lib/i18n';
 	import { tour, tourRouteUrl } from '$lib/stores/tour.svelte';
+	import { trackEvent } from '$lib/telemetry';
 	import BottomSheet from './BottomSheet.svelte';
 
 	let open = $state(false);
 
 	const plan = $derived(tour.plan);
 	const routeUrl = $derived(tourRouteUrl(plan, tour.mode));
+
+	function openPlanner() {
+		open = true;
+		trackEvent('tour_opened', { stops: tour.count, mode: tour.mode });
+	}
 </script>
 
 {#if tour.count > 0}
@@ -20,7 +26,7 @@
 		type="button"
 		class="btn fixed right-4 z-30 gap-2 rounded-full shadow-lg btn-primary"
 		style="bottom: calc(4.75rem + env(safe-area-inset-bottom))"
-		onclick={() => (open = true)}
+		onclick={openPlanner}
 		aria-label={m.tour_title()}
 	>
 		<span aria-hidden="true">{tour.mode === 'bike' ? '🚲' : '🚶'}</span>
@@ -89,11 +95,18 @@
 				{/each}
 			</ol>
 
-			<!-- eslint-disable-next-line svelte/no-navigation-without-resolve -- external Google Maps route -->
-			<a href={routeUrl} target="_blank" rel="noreferrer" class="btn w-full btn-primary">
+			<!-- eslint-disable svelte/no-navigation-without-resolve -- external Google Maps route -->
+			<a
+				href={routeUrl}
+				target="_blank"
+				rel="noreferrer"
+				class="btn w-full btn-primary"
+				onclick={() => trackEvent('tour_route_opened', { stops: tour.count, mode: tour.mode })}
+			>
 				<span aria-hidden="true">🧭</span>
 				{m.tour_open()}
 			</a>
+			<!-- eslint-enable svelte/no-navigation-without-resolve -->
 			<p class="text-center text-xs text-base-content/50">{m.tour_open_hint()}</p>
 			<button class="btn w-full btn-ghost btn-sm" onclick={() => tour.clear()}>
 				{m.tour_clear()}

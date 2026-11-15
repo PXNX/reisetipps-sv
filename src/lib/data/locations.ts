@@ -76,7 +76,8 @@ export const stations = [
 	'Hergatz',
 	'Uhldingen-Mühlhofen',
 	'Sigmaringen',
-	'Aulendorf'
+	'Aulendorf',
+	'Oberstdorf'
 ] as const;
 
 export type Station = (typeof stations)[number];
@@ -2169,6 +2170,180 @@ export const locations: Location[] = [
 		url: 'https://kommprobier.de'
 	},
 	{
+		id: 'strandbad-eichwald',
+		coordinates: [47.5487, 9.7175],
+		categories: ['nature'],
+		duration: ['short', 'medium'],
+		nearestStation: 'Lindau-Insel',
+		name: { de: 'Strandbad Eichwald', en: 'Strandbad Eichwald Lido' },
+		teaser: {
+			de: 'Strandbad direkt am Bodensee mit Sandstrand, Seezugang und dem 50-Meter-Olympiabecken.',
+			en: 'Lido right on Lake Constance with a sandy beach, lake access and the 50-metre Olympic pool.'
+		},
+		description: {
+			de: 'Das Strandbad Eichwald in der Eichwaldstraße ist seit fast 100 Jahren ein beliebtes Badeziel am Bodensee. Neben dem herrlichen Sandstrand und dem direkten Seezugang bietet es ein 50-Meter-Olympiabecken, ein Beachvolleyballfeld, einen Spielplatz und eine Poolbar. Die Wasserwacht Lindau sorgt für die Sicherheit der Badegäste.',
+			en: 'Strandbad Eichwald in Eichwaldstraße has been a popular bathing spot on Lake Constance for almost 100 years. Besides the lovely sandy beach and direct lake access, it offers a 50-metre Olympic pool, a beach volleyball court, a playground and a pool bar. The Wasserwacht Lindau lifeguards keep bathers safe.'
+		},
+		tip: {
+			de: 'Der Eintritt kostet 6 € für Erwachsene und 3 € für Kinder (6–17 Jahre). Strandbad-Gäste dürfen die Außen-Poolbar „Lido“ der Therme mitnutzen. Aktuell Winterpause, Öffnung täglich 9 bis 20 Uhr.',
+			en: 'Admission is €6 for adults and €3 for children (6–17 years). Lido guests may also use the Therme\'s outdoor pool bar "Lido". Currently winter break, open daily 9am–8pm.'
+		},
+		openingHours: {
+			de: 'saisonal: täglich 9:00–20:00 Uhr, aktuell Winterpause',
+			en: 'seasonal: daily 9am–8pm, currently winter break'
+		},
+		image: {
+			url: '/images/locations/strandbad-eichwald.jpg',
+			alt: {
+				de: 'Strandbad Eichwald am Bodensee mit Sandstrand',
+				en: 'Strandbad Eichwald lido on Lake Constance with sandy beach'
+			},
+			attribution: '© Wald-Burger8, CC BY-SA 4.0, via Wikimedia Commons'
+		},
+		url: 'https://www.therme-lindau.com'
+	},
+	{
+		id: 'freibad-aquamarin-wasserburg',
+		coordinates: [47.5662, 9.6409],
+		categories: ['nature'],
+		duration: ['short', 'medium'],
+		nearestStation: 'Wasserburg (Bodensee)',
+		name: { de: 'Freibad Aquamarin Wasserburg', en: 'Freibad Aquamarin Wasserburg' },
+		teaser: {
+			de: 'Familienfreundliches Freibad direkt am Bodensee mit Alpenblick, beheizten Becken und Wassersportangebot.',
+			en: 'Family-friendly lido right on Lake Constance with Alpine views, heated pools and watersports.'
+		},
+		description: {
+			de: 'Das Freibad Aquamarin liegt in Wasserburg am Bodensee und bietet Badespaß mit grandiosem Alpenblick. Es gibt ein Mehrzweckbecken, ein Jugendbecken mit 15 Meter langer Wasserrutsche, ein Kinderbecken und „Augustins Kinderland“ mit Wasserspielgeräten. Zudem können Tretboote, Kanus und SUP-Boards gemietet werden. Die Becken werden auf 26 Grad beheizt.',
+			en: 'Freibad Aquamarin in Wasserburg on Lake Constance offers bathing fun with grand Alpine views. There is a multi-purpose pool, a youth pool with a 15-metre water slide, a children\'s pool and "Augustins Kinderland" with water play equipment. Pedal boats, canoes and SUP boards can be rented. The pools are heated to 26 degrees.'
+		},
+		tip: {
+			de: 'Eintritt Erwachsene 6 €, Kinder und Jugendliche bis 18 Jahre 3 €. Geöffnet bis voraussichtlich 20. September 2026. Parkplatz: erste Stunde frei, danach 2 € pro Stunde.',
+			en: 'Admission €6 for adults, €3 for children and young people up to 18. Open until 20 September 2026. Parking: first hour free, then €2 per hour.'
+		},
+		openingHours: {
+			de: 'saisonal: Mai–Sept, täglich (Mai 10:30–19:00, Juni–Aug 9:30–20:00)',
+			en: 'seasonal: May–Sept, daily (May 10:30am–7pm, Jun–Aug 9:30am–8pm)'
+		},
+		url: 'https://www.wasserburg-bodensee.de/wassererlebnisse/freibad-aquamarin/'
+	},
+	{
+		id: 'strandbad-degersee',
+		coordinates: [47.6131, 9.6540],
+		categories: ['nature'],
+		duration: ['short', 'medium'],
+		nearestStation: 'Kressbronn',
+		name: { de: 'Strandbad Degersee', en: 'Strandbad Degersee Lido' },
+		teaser: {
+			de: 'Naturbadesee am Degersee bei Tettnang mit Strandbad, Restaurant und Seeblick.',
+			en: 'Natural bathing lake at Degersee near Tettnang with lido, restaurant and lake views.'
+		},
+		description: {
+			de: 'Der Degersee ist ein warmer Moränensee bei Tettnang. Das angrenzende Strandbad lädt zum Baden ein, daneben verwöhnt die Degerseestube mit Terrasse und Seeblick mit regionalen und schwäbischen Spezialitäten.',
+			en: 'Degersee is a warm moraine lake near Tettnang. The adjacent lido invites swimming, and next door the Degerseestube pampers guests with regional and Swabian specialties on its terrace with lake views.'
+		},
+		tip: {
+			de: 'Von Kressbronn mit dem Bus (Linie 235) bis zur Haltestelle Tettnang, Degersee; Parkplatz am Haus (2 €/Tag).',
+			en: 'From Kressbronn take bus line 235 to the Tettnang, Degersee stop; parking on site (€2/day).'
+		},
+		image: {
+			url: '/images/locations/strandbad-degersee.jpg',
+			alt: {
+				de: 'Badefreude am Degersee mit Schwimmenden',
+				en: 'Bathing fun at Degersee with swimmers'
+			},
+			attribution: '© ANKAWÜ, CC BY-SA 3.0, via Wikimedia Commons'
+		},
+		url: 'https://www.degerseestube.de/'
+	},
+	{
+		id: 'waldsee-lindenberg',
+		coordinates: [47.6027, 9.8700],
+		categories: ['nature'],
+		duration: ['short', 'medium'],
+		nearestStation: 'Lindau-Insel',
+		name: { de: 'Waldsee Lindenberg', en: 'Waldsee Lindenberg' },
+		teaser: {
+			de: 'Idyllischer Moorwasser-Badesee bei Lindenberg im Allgäu mit freiem Eintritt und Liegewiesen.',
+			en: 'Idyllic moor-water bathing lake near Lindenberg im Allgäu with free admission and lawns.'
+		},
+		description: {
+			de: 'Der Waldsee liegt nur wenige Minuten vom Lindenberger Stadtzentrum entfernt und lädt zum Baden im weichen Moorwasser ein. Das Freizeitgelände mit Badestelle bietet Spaß und Erholung für die ganze Familie: Liegewiesen, Kinderspielplatz, Beachvolleyball, Tischtennis und im Sommer einen Kiosk mit Sonnenterrasse.',
+			en: 'The Waldsee lies just a few minutes from Lindenberg town centre and invites swimming in soft moor water. The recreational area with bathing spot offers fun and relaxation for the whole family: lawns, children\'s playground, beach volleyball, table tennis and a kiosk with sun terrace in summer.'
+		},
+		tip: {
+			de: 'Eintritt frei, täglich von 5 bis 22 Uhr, Zugang über das Drehkreuz. Hunde sind im Waldseebad nicht gestattet.',
+			en: 'Free admission, daily 5am–10pm, access via turnstile. Dogs are not allowed in the Waldseebad.'
+		},
+		openingHours: {
+			de: 'täglich 5:00–22:00 Uhr, Kiosk saisonal Mai–Sept',
+			en: 'daily 5am–10pm, kiosk seasonal May–Sept'
+		},
+		image: {
+			url: '/images/locations/waldsee-lindenberg.jpg',
+			alt: {
+				de: 'Blick auf den Waldsee vom Hotel Waldsee in Lindenberg',
+				en: 'View over the Waldsee from Hotel Waldsee in Lindenberg'
+			},
+			attribution: '© Photographix, GFDL, via Wikimedia Commons'
+		},
+		url: 'https://www.lindenberg.de/tourismus/waldsee'
+	},
+	{
+		id: 'schloss-sigmaringen',
+		coordinates: [48.0878, 9.2165],
+		categories: ['history'],
+		duration: ['short', 'medium'],
+		nearestStation: 'Sigmaringen',
+		name: { de: 'Schloss Sigmaringen', en: 'Sigmaringen Castle' },
+		teaser: {
+			de: 'Das weltberühmte Hohenzollernschloss thront hoch über der Donau in Sigmaringen.',
+			en: 'The world-famous Hohenzollern Castle towers high above the Danube in Sigmaringen.'
+		},
+		description: {
+			de: 'Das prächtige Hohenzollernschloss ragt aus der Mitte der ehemaligen Residenzstadt Sigmaringen empor, am Rande der Schwäbischen Alb, wo die Donau ihren Lauf durch mächtige Felsen und Wälder gegraben hat. Es zählt zu den größten privaten Schlössern Europas und ist seit Generationen Wohnsitz der Hohenzollern-Sigmaringen.',
+			en: 'The splendid Hohenzollern Castle rises from the centre of the former residence town of Sigmaringen, on the edge of the Swabian Alb, where the Danube has carved its course through mighty rocks and forests. It is one of the largest private castles in Europe and has been the home of the Hohenzollern-Sigmaringen family for generations.'
+		},
+		tip: {
+			de: 'Führungen durch das Schloss und die Schatzkammer werden angeboten; die malerische Altstadt liegt direkt am Fuße des Schlosses.',
+			en: 'Guided tours of the castle and treasury are offered; the picturesque old town lies directly at the foot of the castle.'
+		},
+		image: {
+			url: '/images/locations/schloss-sigmaringen.jpg',
+			alt: {
+				de: 'Schloss Sigmaringen, das Hohenzollernschloss über der Donau',
+				en: 'Sigmaringen Castle, the Hohenzollern castle above the Danube'
+			},
+			attribution: '© Jörg Braukmann, CC BY-SA 4.0, via Wikimedia Commons'
+		},
+		url: 'https://tourismus-sigmaringen.de/'
+	},
+	{
+		id: 'gasthaus-zum-rad-aulendorf',
+		coordinates: [47.9527611, 9.6383489],
+		categories: ['culinary'],
+		duration: ['short', 'medium'],
+		nearestStation: 'Aulendorf',
+		name: { de: 'Gasthaus zum Rad', en: 'Gasthaus zum Rad' },
+		teaser: {
+			de: 'Schwäbisches Gasthaus in Aulendorf mit regionaler kräuterfrischer Küche, täglich ab 11 Uhr.',
+			en: 'Swabian inn in Aulendorf with regional herb-fresh cuisine, open daily from 11am.'
+		},
+		description: {
+			de: 'Das Gasthaus zum Rad gehört zum Hotel Arthus & Ritterkeller in der Radgasse mitten in Aulendorf. „Schwäbisch. Gemütlich. Überraschend“ lautet das Versprechen: Die Kräuter wachsen im hoteleigenen Kräutergarten, die Lebensmittel stammen vorwiegend aus Oberschwaben. Für diese ehrlich regionale Küche wurde das Gasthaus mit 2 Löwen von „Schmeck-den-Süden“ ausgezeichnet. Dazu gibt es eine saisonale Speisekarte, eine Weinkarte und ein tägliches Mittagsessen.',
+			en: 'Gasthaus zum Rad is part of Hotel Arthus & Ritterkeller on Radgasse in the centre of Aulendorf. "Swabian. Cosy. Surprising" is its promise: the herbs grow in the hotel’s own herb garden, and the ingredients come predominantly from Oberschwaben. For this honest regional cuisine the inn has been awarded 2 lions by "Schmeck-den-Süden". There is also a seasonal menu, a wine list and a daily lunch dish.'
+		},
+		tip: {
+			de: 'Täglich 11:00–24:00 Uhr geöffnet, warme Küche 11:30–14:00 und 17:30–21:00 Uhr. Barrierefrei mit Außenbereich, WLAN für Gäste. Reservierung telefonisch unter +49 7525 92210.',
+			en: 'Open daily 11am–midnight, warm kitchen 11:30am–2pm and 5:30–9pm. Wheelchair accessible with outdoor seating, guest WiFi. Reserve by phone at +49 7525 92210.'
+		},
+		openingHours: {
+			de: 'täglich 11:00–24:00 Uhr, Küche 11:30–14:00 und 17:30–21:00 Uhr',
+			en: 'daily 11am–midnight, kitchen 11:30am–2pm and 5:30–9pm'
+		},
+		url: 'https://www.ritterkeller.de/gasthaus-zum-rad/'
+	},
+	{
 		id: 'bisongehege-bodenwald',
 		coordinates: [47.789, 9.0317],
 		categories: ['nature'],
@@ -2188,5 +2363,67 @@ export const locations: Location[] = [
 			en: 'From Wallhausen take the bus toward Bodman and get off at the stop, then walk uphill — the enclosure is on the way to the Altbodman ruin. Entry is free; sturdy shoes recommended.'
 		},
 		url: 'https://www.bisonzuchtbodenwald.com'
-	}
+	},
+	{
+		id: 'argen-muendung-langenargen',
+		coordinates: [47.5872, 9.5553],
+		categories: ['nature'],
+		duration: ['short', 'medium'],
+		nearestStation: 'Langenargen',
+		name: { de: 'Argenmündung Langenargen', en: 'Argen Delta at Langenargen' },
+		teaser: {
+			de: 'Naturnahe Mündung der Argen in den Bodensee mit flachen Uferwegen — ein tolles Revier fürs Rad.',
+			en: 'Natural mouth of the Argen into Lake Constance with flat lakeside paths — great territory for cycling.'
+		},
+		description: {
+			de: 'Zwischen Langenargen und Kressbronn mündet die Argen, mit rund 20 m³/s der drittgrößte Zufluss des Bodensees, in den See. Flusslauf, Steilufer und Auwälder liegen im Naturschutzgebiet Argen; die Mündung selbst wird von Marinas, Campingplätzen und Freizeiteinrichtungen flankiert. Der Bodensee-Radweg führt direkt durch Langenargen und überquert die Argen auf der historischen Kabelhängebrücke von 1898, die seit etwa 2010 nur noch Fußgängern und Radfahrern vorbehalten ist. Eine ruhigere, seenähere Variante für Radler führt über den Argensteg. Hinter Langenargen öffnet sich das Argental Richtung Tettnang: Die Nachbarstadt gibt dem Hopfenanbaugebiet Tettnang den Namen, und die Region ist noch immer ein bedeutendes Obst- und Hopfenanbaugebiet.',
+			en: 'Between Langenargen and Kressbronn, the Argen — with around 20 m³/s the third-largest tributary of Lake Constance — flows into the lake. The river bed, steep banks and riparian forests are part of the Argen nature reserve; the mouth itself is flanked by marinas, campsites and leisure facilities. The Bodensee-Radweg cycle route leads straight through Langenargen and crosses the Argen on the historic cable suspension bridge of 1898, which since about 2010 is reserved for pedestrians and cyclists. A quieter, lake-near alternative for cyclists runs over the Argensteg. Behind Langenargen the Argen valley opens towards Tettnang: the neighbouring town gives the Tettnang hop-growing region its name, and the area is still a significant fruit and hop growing region.'
+		},
+		tip: {
+			de: 'Für die Radtour den Bodensee-Radweg oder die ruhigere Variante über den Argensteg nehmen; die Uferwege sind flach und größtenteils asphaltiert. Von hier aus lohnt ein Abstecher nach Tettnang mit seinen Hopfengärten, dem Hopfenmuseum und dem rund vier Kilometer langen Hopfenpfad. Die Argen wurde 2014/15 zur „Flusslandschaft des Jahres“ gekürt.',
+			en: 'For the bike tour take the Bodensee-Radweg or the quieter variant over the Argensteg; the lakeside paths are flat and mostly paved. From here a detour to Tettnang with its hop fields, hop museum and the roughly four-kilometre hop trail is worthwhile. The Argen was named “River Landscape of the Year” 2014/15.'
+		},
+		image: {
+			url: '/images/locations/argen-muendung-langenargen.jpg',
+			alt: {
+				de: 'Mündung der Argen in den Bodensee bei Langenargen',
+				en: 'Mouth of the Argen river into Lake Constance at Langenargen'
+			},
+			attribution: '© Schusch75, CC BY-SA 3.0, via Wikimedia Commons'
+		},
+		url: 'https://www.langenargen.de'
+	},
+	{
+		id: 'breitachklamm-oberstdorf',
+		coordinates: [47.3935, 10.2321],
+		categories: ['nature'],
+		duration: ['short', 'medium'],
+		nearestStation: 'Oberstdorf',
+		name: { de: 'Breitachklamm', en: 'Breitach Gorge' },
+		teaser: {
+			de: 'Mit 2,5 km Länge und rund 150 m Tiefe eine der tiefsten Felsschluchten Mitteleuropas bei Oberstdorf.',
+			en: 'At 2.5 km long and around 150 m deep, one of the deepest rock gorges in Central Europe, near Oberstdorf.'
+		},
+		description: {
+			de: 'Unweit von Tiefenbach bahnt sich die Breitach zwischen Oberstdorf und dem Kleinwalsertal den Weg durch eine enge Schlucht mit teilweise über hundert Meter hohen senkrechten und überhängenden Wänden. Entstanden ist die Klamm beim Abschmelzen der Gletscher in der letzten Eiszeit vor über 8000 Jahren; 1904 machten mutige Tiefenbacher den Wanderweg durch die Klamm zugänglich. Donnernd stürzt das Wasser über hohe Felsbänke, gurgelt in tiefen Gumpen und versprüht sich in feinsten Tröpfchen, in denen das Licht spielt. Im Winter verwandeln meterhohe Eisvorhänge und schneebedeckte Felsen die Klamm in ein Winterwunderland — 2025 wurde sie zum Naturwunder des Jahres gekürt.',
+			en: 'Near Tiefenbach, the Breitach forces its way between Oberstdorf and the Kleinwalsertal through a narrow gorge with partly over-hundred-metre-high vertical and overhanging walls. The gorge was formed as the glaciers melted at the end of the last ice age, over 8000 years ago; in 1904, brave men from Tiefenbach made the trail through the gorge accessible. The water thunders over high rock ledges, gurgles in deep pools and sprays into finest droplets in which the light plays. In winter, metre-high curtains of ice and snow-covered rocks turn the gorge into a winter wonderland — in 2025 it was named Nature Wonder of the Year.'
+		},
+		tip: {
+			de: 'Eintritt Erwachsene 7,50 €, Kinder 5–15 Jahre 2,50 € (mit Allgäu-Walser-Card günstiger, ab 10 Personen Gruppenpreis 7 €). Sommer täglich 9–17 Uhr letzter Einlass (Schluss 17:30), Winter 9–16 Uhr (Schluss 16:30); geschlossen Mitte März bis Ende April und nach den bayerischen Herbstferien bis Weihnachten. Festes Schuhwerk tragen; ein Panoramaweg führt über den Zwingsteg zur Alpe Dornach und über die Klammkapelle zurück zum Parkplatz P1.',
+			en: 'Admission €7.50 for adults, €2.50 for children 5–15 (cheaper with the Allgäu-Walser-Card; group rate €7 from 10 people). Summer daily 9am–5pm last entry (closes 5:30pm), winter 9am–4pm (closes 4:30pm); closed mid-March to end of April and after the Bavarian autumn holidays until Christmas. Wear sturdy shoes; a panorama trail leads over the Zwingsteg to Alpe Dornach and via the gorge chapel back to car park P1.'
+		},
+		openingHours: {
+			de: 'saisonal: Sommer täglich 9:00–17:00 Uhr (letzter Einlass), Winter 9:00–16:00 Uhr',
+			en: 'seasonal: summer daily 9am–5pm (last entry), winter 9am–4pm'
+		},
+		image: {
+			url: '/images/locations/breitachklamm.jpg',
+			alt: {
+				de: 'Die Breitachklamm bei Oberstdorf mit tosendem Wasser',
+				en: 'The Breitach gorge near Oberstdorf with roaring water'
+			},
+			attribution: '© Laydii, CC BY-SA 4.0, via Wikimedia Commons'
+		},
+		url: 'https://www.breitachklamm.de/'
+	},
 ];

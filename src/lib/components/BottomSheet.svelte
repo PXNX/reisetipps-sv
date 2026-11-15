@@ -5,11 +5,13 @@
 
 	interface Props {
 		open: boolean;
-		onclose: () => void;
+		onclose?: () => void;
 		children: Snippet;
+		/** Sheets that must be answered (a pending update) opt out of every way of closing. */
+		dismissible?: boolean;
 	}
 
-	let { open, onclose, children }: Props = $props();
+	let { open, onclose = () => {}, children, dismissible = true }: Props = $props();
 
 	/**
 	 * Physics-driven sheet: `progress` runs 0 (fully open) → 1 (fully closed) and is owned by a
@@ -49,6 +51,7 @@
 	}
 
 	function onPointerDown(event: PointerEvent) {
+		if (!dismissible) return;
 		dragStartY = event.clientY;
 		lastDragY = event.clientY;
 		lastDragT = performance.now();
@@ -82,7 +85,7 @@
 	}
 
 	function onKeydown(event: KeyboardEvent) {
-		if (open && event.key === 'Escape') onclose();
+		if (open && dismissible && event.key === 'Escape') onclose();
 	}
 
 	const translate = $derived.by(() => Math.max(0, Math.min(1, progress.current)) * 100);
@@ -92,14 +95,22 @@
 <svelte:window onkeydown={onKeydown} />
 
 {#if rendered}
-	<button
-		type="button"
-		class="fixed inset-0 z-40 cursor-default bg-black/50"
-		style="opacity: {backdropOpacity}"
-		onclick={onclose}
-		aria-label={m.close()}
-		tabindex="-1"
-	></button>
+	{#if dismissible}
+		<button
+			type="button"
+			class="fixed inset-0 z-40 cursor-default bg-black/50"
+			style="opacity: {backdropOpacity}"
+			onclick={onclose}
+			aria-label={m.close()}
+			tabindex="-1"
+		></button>
+	{:else}
+		<div
+			class="fixed inset-0 z-40 bg-black/50"
+			style="opacity: {backdropOpacity}"
+			aria-hidden="true"
+		></div>
+	{/if}
 	<div
 		bind:this={sheet}
 		class="fixed inset-x-0 bottom-0 z-50 flex max-h-[80dvh] flex-col overflow-hidden rounded-t-2xl bg-base-200 shadow-xl"
@@ -110,19 +121,23 @@
 		<div
 			class="sticky top-0 z-10 flex shrink-0 touch-none justify-center bg-inherit py-2"
 			role="presentation"
-			onpointerdown={onPointerDown}
-			onpointermove={onPointerMove}
-			onpointerup={onPointerUp}
-			onpointercancel={onPointerUp}
+			onpointerdown={dismissible ? onPointerDown : undefined}
+			onpointermove={dismissible ? onPointerMove : undefined}
+			onpointerup={dismissible ? onPointerUp : undefined}
+			onpointercancel={dismissible ? onPointerUp : undefined}
 		>
-			<div class="h-1.5 w-12 rounded-full bg-base-content/30"></div>
-			<button
-				class="btn absolute top-1 right-2 btn-circle btn-ghost btn-sm"
-				onclick={onclose}
-				aria-label={m.close()}
-			>
-				✕
-			</button>
+			{#if dismissible}
+				<div class="h-1.5 w-12 rounded-full bg-base-content/30"></div>
+				<button
+					class="btn absolute top-1 right-2 btn-circle btn-ghost btn-sm"
+					onclick={onclose}
+					aria-label={m.close()}
+				>
+					✕
+				</button>
+			{:else}
+				<div class="h-1.5"></div>
+			{/if}
 		</div>
 		<div
 			class="min-h-0 overflow-y-auto overscroll-contain px-5"

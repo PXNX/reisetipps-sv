@@ -11,7 +11,15 @@
 
 		<meta name="text-scale" content="scale" />
 		<meta name="theme-color" content="#0b1f33" />
+		<!--
+			The manifest link is written here by hand: vite-plugin-pwa injects its own into an
+			index.html that Vite processes, but SvelteKit renders this template itself, so without
+			this line the install prompt never becomes available.
+		-->
+		<link rel="manifest" href="/manifest.webmanifest" />
+		<meta name="mobile-web-app-capable" content="yes" />
 		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-title" content="Bodensee" />
 		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 		<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 		%sveltekit.head%

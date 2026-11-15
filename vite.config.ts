@@ -9,6 +9,9 @@ export default defineConfig({
 	plugins: [
 		tailwindcss(),
 		sveltekit({
+			// Absolute URLs: the service worker then registers at /sw.js with scope / from every
+			// page, instead of a path relative to the current URL.
+			paths: { relative: false },
 			compilerOptions: {
 				// Force runes mode for the project, except for libraries. Can be removed in svelte 6.
 				runes: ({ filename }) =>
@@ -27,6 +30,7 @@ export default defineConfig({
 		SvelteKitPWA({
 			registerType: 'prompt',
 			manifest: {
+				id: '/',
 				name: 'Bodensee Guide',
 				short_name: 'Bodensee',
 				description: 'Persönliche Empfehlungen rund um den Bodensee – für unterwegs, auch offline.',

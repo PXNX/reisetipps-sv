@@ -53,14 +53,10 @@
 			updating = false;
 		}
 	}
-
-	function close() {
-		open = false;
-		needRefresh.set(false);
-	}
 </script>
 
-<BottomSheet {open} onclose={close}>
+<!-- Not dismissible: an outdated build stays in place until the reader taps the button. -->
+<BottomSheet {open} dismissible={false}>
 	<div class="flex flex-col items-center gap-4 pt-2 text-center">
 		<span class="text-4xl" aria-hidden="true">🌊</span>
 		<div>
@@ -70,6 +66,5 @@
 		<button class="btn w-full btn-primary" onclick={update} disabled={updating}>
 			{updating ? m.updating() : m.update_app_action()}
 		</button>
-		<button class="btn w-full btn-ghost" onclick={close}>{m.update_app_later()}</button>
 	</div>
 </BottomSheet>

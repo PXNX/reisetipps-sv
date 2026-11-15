@@ -378,12 +378,12 @@ export const locations: Location[] = [
 			en: 'A cathedral, historic town hall, and one of the longest lakeside promenades.'
 		},
 		description: {
-			de: 'Kompakte Altstadt direkt am Bahnhof, mit gotischem Münster und geschnitztem Ratssaal. Die Promenade lädt zu einem langen Spaziergang mit Seeblick ein.',
-			en: 'A compact old town right by the station, with a Gothic minster and a carved council chamber. The promenade invites a long lakeside walk.'
+			de: 'Kompakte Altstadt direkt am Bahnhof, mit gotischem Münster und geschnitztem Ratssaal. Die Promenade lädt zu einem langen Spaziergang mit Seeblick ein. Auch das Hexenhäusle im Stadtgarten, der Gallerturm der Stadtbefestigung und Schloss Rauenstein mit seinem Park lohnen einen Abstecher.',
+			en: 'A compact old town right by the station, with a Gothic minster and a carved council chamber. The promenade invites a long lakeside walk. The Hexenhäusle in the municipal garden, the Gallerturm of the town fortifications and Schloss Rauenstein palace with its park are also worth a detour.'
 		},
 		tip: {
-			de: 'Am späten Nachmittag an der Promenade entlang zur Therme spazieren — schöner Blick bei Sonnenuntergang.',
-			en: 'Walk the promenade toward the thermal baths in the late afternoon — the sunset views are worth it.'
+			de: 'Am späten Nachmittag an der Promenade entlang zur Therme spazieren — schöner Blick bei Sonnenuntergang. Für einen längeren Zwischenstopp: ostwärts zur Gletschermühle bei Goldbach weitergehen, dann hinauf zu den Churfirsten und der Burgruine auf der Burghalde und hinab nach Sipplingen ans Seeufer.',
+			en: 'Walk the promenade toward the thermal baths in the late afternoon — the sunset views are worth it. For a longer stop: head east to the Gletschermühle by Goldbach, then up to the Churfirsten peaks and the castle ruin on the Burghalde, and down to the lakeshore at Sipplingen.'
 		},
 		image: {
 			url: '/images/locations/ueberlingen-altstadt.jpg',
@@ -439,8 +439,8 @@ export const locations: Location[] = [
 			en: 'The Bavarian lion, a lighthouse, and a postcard-perfect harbour.'
 		},
 		description: {
-			de: 'Die Insel Lindau ist zu Fuß in einer Stunde umrundet. Der Hafeneingang mit Löwe und Leuchtturm ist eines der bekanntesten Bodensee-Motive.',
-			en: 'The island town of Lindau can be circled on foot in about an hour. The harbour entrance with its lion and lighthouse is one of the most photographed views on the lake.'
+			de: 'Die Insel Lindau ist zu Fuß in einer Stunde umrundet. Der Hafeneingang mit Löwe und Leuchtturm ist eines der bekanntesten Bodensee-Motive. Weitere Highlights: die Gerberschanze mit ihrer alten Linde, das Zitronengässle, der barocke Cavazzen am Marktplatz und der Pulverturm am Westende der Insel; am Ufer liegt der Märchenpark.',
+			en: 'The island town of Lindau can be circled on foot in about an hour. The harbour entrance with its lion and lighthouse is one of the most photographed views on the lake. Further highlights are the Gerberschanze viewpoint with its old lime tree, the Zitronengässle lane, the baroque Cavazzen house on the market square and the Pulverturm at the island’s western end; on the shore lies the Märchenpark.'
 		},
 		tip: {
 			de: 'Direkt vom Bahnhof aus links halten, in fünf Minuten steht man am Hafen.',

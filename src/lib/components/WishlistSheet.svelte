@@ -29,7 +29,7 @@
 		onclose();
 		trackEvent('wishlist_place_opened', { place: location.id });
 		// eslint-disable-next-line svelte/no-navigation-without-resolve -- localized internal jump
-		goto(localizeHref(`/karte?focus=${location.id}`));
+		goto(localizeHref(`/?focus=${location.id}`));
 	}
 
 	function remove(location: Location) {

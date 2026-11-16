@@ -68,7 +68,7 @@
 	"privacy_analytics_heading": "Reach measurement",
 	"privacy_analytics_body": "To see whether the app is used and which features people reach for, Vercel's cookieless reach measurement runs here. The script is served from this domain, sets no cookies, stores nothing on your device and builds no profiles: only page views and feature names are counted, as totals. Your wishlist, visited places, tours, filters and location are never transmitted.",
 	"privacy_external_heading": "External links",
-	"privacy_external_body": "Links to Google Maps, OpenStreetMap, OpenTopoMap, and individual location websites open the respective external site in a new tab. Those sites have their own privacy policies.",
+	"privacy_external_body": "The map loads tiles from OpenStreetMap and, if you choose Terrain, from OpenTopoMap. Links to Google Maps and individual places' websites open in a new tab. Those sites have their own privacy policies.",
 	"privacy_no_tracking_heading": "No advertising cookies",
 	"privacy_no_tracking_body": "There are no advertising or marketing cookies, no profiles across sites, and no sharing of data for advertising.",
 	"privacy_contact_heading": "Contact",
@@ -135,5 +135,17 @@
 	"map_count": "{count} places",
 	"map_no_results": "No places found.",
 	"map_clear_search": "Clear search",
-	"settings_install": "Install app"
+	"settings_install": "Install app",
+	"filter_title": "Filters",
+	"filter_hint": "Choose what you feel like. The map and suggestions then show only matching places.",
+	"filter_apply": "Apply filters",
+	"recommend_nearby": "Recommend a place nearby",
+	"nearby_another": "Another nearby place",
+	"nearby_from_gps": "Close to you",
+	"nearby_from_map": "From the centre of the map",
+	"nearby_distance": "{km} km away",
+	"nearby_fallback": "Location unavailable — the suggestion comes from the centre of the map.",
+	"map_layers": "Map layer",
+	"layer_standard": "Standard",
+	"layer_topo": "Terrain"
 }

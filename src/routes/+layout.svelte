@@ -1,7 +1,5 @@
 <script lang="ts">
-	import { page } from '$app/state';
 	import { onMount } from 'svelte';
-	import { deLocalizeUrl, localizeHref } from '$lib/paraglide/runtime';
 	import { initTelemetry } from '$lib/telemetry';
 	import * as m from '$lib/paraglide/messages.js';
 	import './layout.css';
@@ -27,10 +25,6 @@
 		trackEvent('wishlist_sheet_opened', { count: locationMarks.wishlist.size });
 	}
 
-	const tabs = [
-		{ href: '/', label: () => m.nav_recommend(), icon: '🧭' },
-		{ href: '/karte', label: () => m.nav_map(), icon: '🗺️' }
-	] as const;
 </script>
 
 <svelte:head><link rel="icon" href={favicon} /></svelte:head>
@@ -67,7 +61,7 @@
 		</div>
 	</header>
 
-	<main class="flex-1 pb-28">
+	<main class="flex-1 pb-4">
 		{@render children()}
 	</main>
 
@@ -77,23 +71,4 @@
 	<TourPlanner />
 	<WishlistSheet open={wishlistOpen} onclose={() => (wishlistOpen = false)} />
 	<SettingsSheet open={settingsOpen} onclose={() => (settingsOpen = false)} />
-
-	<nav
-		class="fixed inset-x-0 bottom-0 z-30 flex border-t border-base-300/60 bg-base-100/95 backdrop-blur"
-		style="padding-bottom: env(safe-area-inset-bottom)"
-	>
-		{#each tabs as tab (tab.href)}
-			{@const active = deLocalizeUrl(page.url).pathname === tab.href}
-			<a
-				href={localizeHref(tab.href)}
-				class="flex min-h-16 flex-1 flex-col items-center justify-center gap-1 text-sm font-medium {active
-					? 'bg-primary/10 text-primary'
-					: 'text-base-content/80'}"
-				aria-current={active ? 'page' : undefined}
-			>
-				<span class="text-2xl leading-none" aria-hidden="true">{tab.icon}</span>
-				{tab.label()}
-			</a>
-		{/each}
-	</nav>
 </div>

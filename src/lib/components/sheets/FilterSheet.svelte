@@ -43,10 +43,9 @@
 	}
 </script>
 
-<BottomSheet {open} {onclose}>
+<BottomSheet {open} {onclose} title={m.filter_title()}>
 	<div class="space-y-5 pt-1">
 		<div>
-			<h2 class="text-xl font-bold">{m.filter_title()}</h2>
 			<p class="mt-1 text-sm text-base-content/80">{m.filter_hint()}</p>
 		</div>
 

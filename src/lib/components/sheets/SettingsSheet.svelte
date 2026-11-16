@@ -21,10 +21,8 @@
 	let { open, onclose }: Props = $props();
 </script>
 
-<BottomSheet {open} {onclose}>
+<BottomSheet {open} {onclose} title={m.settings_title()}>
 	<div class="space-y-6 pt-1">
-		<h2 class="text-xl font-bold">{m.settings_title()}</h2>
-
 		<section class="space-y-2">
 			<h3 class="text-base font-semibold">{m.settings_text_size()}</h3>
 			<p class="text-sm text-base-content/80">{m.settings_text_hint()}</p>

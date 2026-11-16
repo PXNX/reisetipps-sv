@@ -78,10 +78,9 @@
 	}
 </script>
 
-<BottomSheet open={installHint.open} onclose={dismiss}>
+<BottomSheet open={installHint.open} onclose={dismiss} title={m.install_sheet_title()}>
 	<div class="flex flex-col gap-4 pt-2">
 		<span class="self-center text-4xl" aria-hidden="true">📲</span>
-		<h2 class="text-xl font-bold">{m.install_sheet_title()}</h2>
 		<p class="leading-relaxed text-base-content/80">
 			{isIos ? m.install_hint_ios() : m.install_hint_body()}
 		</p>

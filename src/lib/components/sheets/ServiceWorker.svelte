@@ -58,13 +58,10 @@
 </script>
 
 <!-- Not dismissible: an outdated build stays in place until the reader taps the button. -->
-<BottomSheet {open} dismissible={false}>
+<BottomSheet {open} dismissible={false} title={m.update_app_title()}>
 	<div class="flex flex-col items-center gap-4 pt-2 text-center">
 		<span class="text-4xl" aria-hidden="true">🌊</span>
-		<div>
-			<h2 class="text-xl font-bold">{m.update_app_title()}</h2>
-			<p class="mt-2 leading-relaxed text-base-content/80">{m.update_app_body()}</p>
-		</div>
+		<p class="leading-relaxed text-base-content/80">{m.update_app_body()}</p>
 		<button class="btn w-full btn-lg btn-primary" onclick={update} disabled={updating}>
 			{updating ? m.updating() : m.update_app_action()}
 		</button>

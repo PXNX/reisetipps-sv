@@ -25,7 +25,7 @@
 </script>
 
 <!-- eslint-disable svelte/no-navigation-without-resolve -->
-<BottomSheet {open} onclose={close}>
+<BottomSheet {open} onclose={close} title={m.greeting_heading()}>
 	<div class="flex flex-col gap-4 pt-2">
 		<img
 			src={bodenseeLogo}
@@ -33,7 +33,6 @@
 			class="h-20 w-auto self-center drop-shadow-[0_0_12px_rgba(127,211,234,0.35)]"
 		/>
 
-		<h2 class="text-2xl font-bold">{m.greeting_heading()}</h2>
 		<p class="leading-relaxed whitespace-pre-line">{m.greeting_body()}</p>
 
 		<button class="btn w-full btn-lg btn-primary" onclick={close}>{m.greeting_close()}</button>

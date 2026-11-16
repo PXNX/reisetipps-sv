@@ -7,21 +7,18 @@
 		open: boolean;
 		onclose?: () => void;
 		children: Snippet;
-		/** Sheets that must be answered (a pending update) opt out of every way of closing. */
+		/** Shown in the sheet header, so every sheet has a clear subject. */
+		title?: string;
+		/** A pending update must be answered — it cannot be swiped or clicked away. */
 		dismissible?: boolean;
 	}
 
-	let { open, onclose = () => {}, children, dismissible = true }: Props = $props();
+	let { open, onclose = () => {}, children, title = '', dismissible = true }: Props = $props();
 
 	const reduceMotion =
 		typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-	/**
-	 * Physics-driven sheet: `progress` runs 0 (fully open) → 1 (fully closed) and is owned by a
-	 * spring, so opening overshoots slightly and closing settles naturally. Dragging the handle
-	 * writes straight into the spring; releasing it either flings it shut or springs it back open.
-	 * Readers who prefer reduced motion get an instant open/close instead.
-	 */
+	/** progress: 0 = open, 1 = closed. Spring gives a small, playful settle on open. */
 	const progress = new Spring(1, { stiffness: 0.12, damping: 0.55 });
 
 	let rendered = $state(false);
@@ -40,7 +37,6 @@
 			}
 			progress.stiffness = 0.12;
 			progress.damping = 0.5;
-			// Fresh open: start from the closed position so the spring pops in.
 			if (progress.current > 0.9) progress.set(1, { instant: true });
 			progress.set(0);
 		} else if (rendered) {
@@ -78,7 +74,7 @@
 		progress.set(target, { instant: true });
 		const now = performance.now();
 		const dt = Math.max(1, now - lastDragT);
-		dragVelocity = (event.clientY - lastDragY) / dt; // px per ms
+		dragVelocity = (event.clientY - lastDragY) / dt;
 		lastDragY = event.clientY;
 		lastDragT = now;
 	}
@@ -86,7 +82,6 @@
 	function onPointerUp() {
 		if (dragStartY === null) return;
 		dragStartY = null;
-		// Fling downwards or drag past 40%: let it go, otherwise spring back open.
 		if (progress.current > 0.4 || dragVelocity > 0.4) {
 			onclose();
 		} else {
@@ -123,39 +118,50 @@
 			aria-hidden="true"
 		></div>
 	{/if}
+
 	<div
 		bind:this={sheet}
-		class="fixed inset-x-0 bottom-0 z-50 flex max-h-[80dvh] flex-col overflow-hidden rounded-t-2xl bg-base-200 shadow-xl"
+		class="fixed inset-x-0 bottom-0 z-50 flex max-h-[85dvh] flex-col overflow-hidden rounded-t-2xl bg-base-200 shadow-2xl"
 		style="transform: translateY({translate}%)"
 		role="dialog"
 		aria-modal="true"
+		aria-label={title || undefined}
 	>
-		<div
-			class="sticky top-0 z-10 flex shrink-0 touch-none items-center justify-center bg-inherit px-4 py-2"
-			role="presentation"
-			onpointerdown={dismissible ? onPointerDown : undefined}
-			onpointermove={dismissible ? onPointerMove : undefined}
-			onpointerup={dismissible ? onPointerUp : undefined}
-			onpointercancel={dismissible ? onPointerUp : undefined}
-		>
+		<div class="shrink-0 bg-base-200 px-4 pt-2 pb-2 shadow-[0_1px_0_rgba(255,255,255,0.06)]">
 			{#if dismissible}
-				<div class="h-1.5 w-12 rounded-full bg-base-content/40"></div>
-				<button
-					type="button"
-					class="btn absolute top-2 right-3 gap-2"
-					onclick={onclose}
-					aria-label={m.close()}
+				<div
+					class="flex touch-none justify-center py-1"
+					role="presentation"
+					onpointerdown={onPointerDown}
+					onpointermove={onPointerMove}
+					onpointerup={onPointerUp}
+					onpointercancel={onPointerUp}
 				>
-					<span aria-hidden="true">✕</span>
-					{m.close()}
-				</button>
-			{:else}
-				<div class="h-2"></div>
+					<div class="h-1.5 w-12 rounded-full bg-base-content/35"></div>
+				</div>
 			{/if}
+			<div class="flex min-h-11 items-center justify-between gap-3 pt-1">
+				{#if title}
+					<h2 class="text-xl font-bold">{title}</h2>
+				{:else}
+					<span></span>
+				{/if}
+				{#if dismissible}
+					<button
+						type="button"
+						class="btn gap-1.5 bg-base-300/70 btn-ghost px-3 text-sm"
+						onclick={onclose}
+						aria-label={m.close()}
+					>
+						<span class="text-lg leading-none" aria-hidden="true">✕</span>
+						{m.close()}
+					</button>
+				{/if}
+			</div>
 		</div>
 		<div
-			class="min-h-0 overflow-y-auto overscroll-contain px-5"
-			style="padding-bottom: max(2rem, env(safe-area-inset-bottom))"
+			class="min-h-0 flex-1 overflow-y-auto overscroll-contain px-4 pb-6 sm:px-5"
+			style="padding-bottom: max(1.5rem, env(safe-area-inset-bottom))"
 		>
 			{@render children()}
 		</div>

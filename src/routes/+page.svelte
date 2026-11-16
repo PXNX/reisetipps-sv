@@ -16,6 +16,7 @@
 	import LocationDetails from '$lib/components/places/LocationDetails.svelte';
 
 	let selected = $state<Location | null>(null);
+	let layer = $state<'standard' | 'topo'>('standard');
 	let focusId = $state<string | null>(null);
 	let query = $state('');
 	let hideVisited = $state(false);
@@ -81,6 +82,11 @@
 	function toggleHideVisited() {
 		hideVisited = !hideVisited;
 		trackEvent('map_hide_visited', { hidden: hideVisited });
+	}
+
+	function setLayer(next: 'standard' | 'topo') {
+		layer = next;
+		trackEvent('map_layer_changed', { layer: next });
 	}
 
 	function openList() {
@@ -192,13 +198,14 @@
 				{focusId}
 				highlightId={selected?.id ?? null}
 				{onselect}
+				{layer}
 				oncenterchange={(center) => (mapCenter = center)}
 			/>
 		{/await}
 	</div>
 
 	<!-- Search floats over the map; results replace the map until a place is picked. -->
-	<div class="pointer-events-none absolute inset-x-3 top-20 z-[1000]">
+	<div class="pointer-events-none absolute inset-x-3 top-14 z-[1000]">
 		<div
 			class="pointer-events-auto flex items-center gap-1 rounded-field bg-base-100/95 p-1 shadow-lg backdrop-blur"
 		>
@@ -254,7 +261,7 @@
 
 	{#if notice}
 		<div
-			class="absolute inset-x-3 top-[8.5rem] z-[1000] rounded-field bg-base-300/95 p-3 text-sm shadow-lg"
+			class="absolute inset-x-3 top-[6.5rem] z-[1000] rounded-field bg-base-300/95 p-3 text-sm shadow-lg"
 			role="status"
 		>
 			<p>{notice === 'fallback' ? m.nearby_fallback() : m.no_matches_body()}</p>
@@ -266,12 +273,40 @@
 		</div>
 	{/if}
 
+	<!-- Mode switcher sits under the search bar, clear of both the pins and the thumb controls. -->
 	<div
-		class="absolute inset-x-3 bottom-3 z-[1000] flex items-end gap-2"
+		class="absolute right-2 top-[7rem] z-[1000] flex gap-1 rounded-field bg-base-100/90 p-1 shadow-lg backdrop-blur"
+		role="group"
+		aria-label={m.map_layers()}
+	>
+		<button
+			type="button"
+			class="btn gap-1 btn-xs {layer === 'standard' ? 'btn-primary' : 'btn-ghost'}"
+			aria-pressed={layer === 'standard'}
+			aria-label={m.layer_standard()}
+			onclick={() => setLayer('standard')}
+		>
+			<span aria-hidden="true">🗺️</span>
+			<span class="hidden sm:inline">{m.layer_standard()}</span>
+		</button>
+		<button
+			type="button"
+			class="btn gap-1 btn-xs {layer === 'topo' ? 'btn-primary' : 'btn-ghost'}"
+			aria-pressed={layer === 'topo'}
+			aria-label={m.layer_topo()}
+			onclick={() => setLayer('topo')}
+		>
+			<span aria-hidden="true">⛰️</span>
+			<span class="hidden sm:inline">{m.layer_topo()}</span>
+		</button>
+	</div>
+
+	<div
+		class="absolute inset-x-2 bottom-2 z-[1000] flex items-end gap-1.5"
 		style="padding-bottom: env(safe-area-inset-bottom)"
 	>
 		<button
-			class="btn gap-1 btn-outline shadow-lg"
+			class="btn gap-1 btn-outline px-2 text-sm shadow-lg"
 			onclick={openList}
 			aria-label={m.map_view_list()}
 		>
@@ -279,7 +314,7 @@
 			<span class="hidden sm:inline">{m.map_view_list()}</span>
 		</button>
 		<button
-			class="btn flex-1 gap-2 shadow-lg btn-lg btn-primary"
+			class="btn min-w-0 flex-1 gap-2 shadow-lg btn-lg btn-primary"
 			onclick={recommendNearby}
 			disabled={locating}
 		>
@@ -287,7 +322,7 @@
 			{locating ? m.locating() : m.nearby_short()}
 		</button>
 		<button
-			class="btn gap-1 btn-outline shadow-lg"
+			class="btn gap-1 btn-outline px-2 text-sm shadow-lg"
 			onclick={() => {
 				filterOpen = true;
 				trackEvent('filter_sheet_opened', {});
@@ -310,14 +345,9 @@
 	onclearLocation={clearLocation}
 />
 
-<BottomSheet open={listOpen} onclose={() => (listOpen = false)}>
+<BottomSheet open={listOpen} onclose={() => (listOpen = false)} title={m.map_title()}>
 	<div class="space-y-3 pt-1">
-		<div class="flex items-center justify-between gap-2">
-			<h2 class="text-xl font-bold">{m.map_title()}</h2>
-			<span class="text-sm text-base-content/80"
-				>{m.map_count({ count: shownLocations.length })}</span
-			>
-		</div>
+		<p class="text-sm text-base-content/80">{m.map_count({ count: shownLocations.length })}</p>
 		<button
 			class="btn {hideVisited ? 'btn-primary' : 'btn-outline'} w-full"
 			aria-pressed={hideVisited}

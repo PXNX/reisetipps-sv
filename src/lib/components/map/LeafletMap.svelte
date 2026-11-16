@@ -6,8 +6,6 @@
 	import { localize } from '$lib/i18n';
 	import { locationMarks } from '$lib/stores/locationMarks.svelte';
 	import { categoryIcons } from '$lib/categories';
-	import { trackEvent } from '$lib/telemetry';
-	import * as m from '$lib/paraglide/messages.js';
 
 	type Layer = 'standard' | 'topo';
 
@@ -38,16 +36,18 @@
 		highlightId?: string | null;
 		onselect: (location: Location) => void;
 		oncenterchange?: (center: [number, number]) => void;
+		layer?: Layer;
 	}
-	let { locations, focusId = null, highlightId = null, onselect, oncenterchange }: Props = $props();
+	let {
+		locations,
+		focusId = null,
+		highlightId = null,
+		onselect,
+		oncenterchange,
+		layer = 'standard'
+	}: Props = $props();
 
 	let map: LeafletMapInstance | undefined = $state();
-	let layer = $state<Layer>('standard');
-
-	function setLayer(next: Layer) {
-		layer = next;
-		trackEvent('map_layer_changed', { layer: next });
-	}
 
 	$effect(() => {
 		if (!map || !focusId) return;
@@ -94,29 +94,6 @@
 			{/each}
 		</LMap>
 	{/if}
-
-	<div
-		class="absolute top-1/3 right-2 z-[1000] flex -translate-y-1/2 flex-col gap-1 rounded-field bg-base-200/95 p-1 shadow-md"
-		role="group"
-		aria-label={m.map_layers()}
-	>
-		<button
-			type="button"
-			class="btn btn-xs {layer === 'standard' ? 'btn-primary' : 'btn-ghost'}"
-			aria-pressed={layer === 'standard'}
-			onclick={() => setLayer('standard')}
-		>
-			{m.layer_standard()}
-		</button>
-		<button
-			type="button"
-			class="btn btn-xs {layer === 'topo' ? 'btn-primary' : 'btn-ghost'}"
-			aria-pressed={layer === 'topo'}
-			onclick={() => setLayer('topo')}
-		>
-			{m.layer_topo()}
-		</button>
-	</div>
 </div>
 
 <style>
@@ -149,16 +126,38 @@
 	}
 	/* Leave room for the floating header and search pill. */
 	:global(.leaflet-top.leaflet-left) {
-		top: 9rem;
+		top: 7.5rem;
+	}
+	:global(.leaflet-control-zoom) {
+		border: 0 !important;
+		border-radius: 0.75rem !important;
+		overflow: hidden;
+		box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
 	}
 	:global(.leaflet-control-zoom a) {
 		width: 46px !important;
 		height: 46px !important;
 		line-height: 44px !important;
 		font-size: 26px !important;
+		background: #0e2740 !important;
+		color: #f3f8fb !important;
+		border-bottom: 1px solid #123049 !important;
+	}
+	:global(.leaflet-control-zoom a:hover) {
+		background: #123049 !important;
+		color: #7fd3ea !important;
+	}
+	:global(.leaflet-bottom.leaflet-right) {
+		bottom: 4.25rem;
 	}
 	:global(.leaflet-control-attribution) {
-		font-size: 12px;
+		background: rgba(11, 31, 51, 0.8) !important;
+		color: #cfdde6 !important;
+		font-size: 11px;
+		padding: 2px 6px !important;
+	}
+	:global(.leaflet-control-attribution a) {
+		color: #7fd3ea !important;
 	}
 
 	@keyframes pin-pulse {

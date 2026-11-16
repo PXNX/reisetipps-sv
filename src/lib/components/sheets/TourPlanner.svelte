@@ -34,12 +34,9 @@
 	</button>
 {/if}
 
-<BottomSheet {open} onclose={() => (open = false)}>
+<BottomSheet {open} onclose={() => (open = false)} title={m.tour_title()}>
 	<div class="space-y-4 pt-1">
-		<div class="flex items-baseline justify-between gap-2">
-			<h2 class="text-xl font-bold">{m.tour_title()}</h2>
-			<span class="text-sm text-base-content/80">{m.tour_stops_count({ count: tour.count })}</span>
-		</div>
+		<p class="text-sm text-base-content/80">{m.tour_stops_count({ count: tour.count })}</p>
 
 		<div class="join w-full">
 			<button

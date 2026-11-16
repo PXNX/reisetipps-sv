@@ -39,16 +39,13 @@
 	}
 </script>
 
-<BottomSheet {open} {onclose}>
+<BottomSheet {open} {onclose} title={m.wishlist_title()}>
 	<div class="space-y-3 pt-1">
-		<div class="flex items-baseline justify-between gap-2">
-			<h2 class="text-xl font-bold">{m.wishlist_title()}</h2>
-			<span class="text-sm text-base-content/60"
-				>{entries.length === 1
-					? m.wishlist_count_one()
-					: m.wishlist_count_other({ count: entries.length })}</span
-			>
-		</div>
+		<p class="text-sm text-base-content/80">
+			{entries.length === 1
+				? m.wishlist_count_one()
+				: m.wishlist_count_other({ count: entries.length })}
+		</p>
 
 		{#if entries.length === 0}
 			<p class="py-4 text-center leading-relaxed text-base-content/80">

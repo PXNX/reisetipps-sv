@@ -760,7 +760,29 @@ export const locations: Location[] = [
 			de: 'Der Einstieg liegt versteckt im Tobel — feste Schuhe mitnehmen und an der B 31 orientieren; gut mit einem Spaziergang durch den Spetzgarter Tobel zu kombinieren.',
 			en: 'The entrance is hidden in the gorge — bring sturdy shoes and orient yourself from the B31; combines well with a walk through the Spetzgarter Tobel.'
 		},
-		url: 'https://lgrbwissen.lgrb-bw.de/geotourismus/glazialformen/alpenvorland/gletschermuehle-ueberlingen'
+		url: 'https://lgrbwissen.lgrb-bw.de/geotourismus/glazialformen/alpenvorland/gletschermuehle-ueberlingen',
+		image: {
+			url: '/images/locations/viewpoint/gletschermuehle-goldbach-1.jpg',
+			alt: { de: 'Die Gletschermühle am Katharinenfelsen bei Goldbach', en: 'The glacier mill at Katharinenfelsen near Goldbach' },
+			attribution: 'Frank Vincentz, CC BY-SA 3.0'
+		},
+		images: [
+			{
+				url: '/images/locations/viewpoint/gletschermuehle-goldbach-1.jpg',
+				alt: { de: 'Die Gletschermühle am Katharinenfelsen bei Goldbach', en: 'The glacier mill at Katharinenfelsen near Goldbach' },
+				attribution: 'Frank Vincentz, CC BY-SA 3.0'
+			},
+			{
+				url: '/images/locations/viewpoint/gletschermuehle-goldbach-2.jpg',
+				alt: { de: 'Detail der Gletschermühle bei Überlingen', en: 'Detail of the glacier mill near Überlingen' },
+				attribution: 'Frank Vincentz, CC BY-SA 3.0'
+			},
+			{
+				url: '/images/locations/viewpoint/gletschermuehle-goldbach-3.jpg',
+				alt: { de: 'Felsformation und Mühle am Goldbach', en: 'Rock formation and mill at Goldbach' },
+				attribution: 'Frank Vincentz, CC BY-SA 3.0'
+			}
+		],
 	},
 	{
 		id: 'burghalde-sipplingen',
@@ -781,7 +803,29 @@ export const locations: Location[] = [
 			de: 'Der Aufstieg startet in Sipplingen und führt über den bewaldeten Rücken zum Burgstall — gut mit den nahen Sieben Churfirsten zu kombinieren.',
 			en: 'The ascent starts in Sipplingen and leads over the wooded ridge to the castle site — easy to combine with the nearby Seven Churfirsten rocks.'
 		},
-		url: 'https://de.wikipedia.org/wiki/Burgrest_H%C3%BCneberg'
+		url: 'https://de.wikipedia.org/wiki/Burgrest_H%C3%BCneberg',
+		image: {
+			url: '/images/locations/viewpoint/burghalde-sipplingen-1.jpg',
+			alt: { de: 'Burghalde bei Sipplingen', en: 'Burghalde near Sipplingen' },
+			attribution: 'Dietrich Krieger, CC BY-SA 3.0'
+		},
+		images: [
+			{
+				url: '/images/locations/viewpoint/burghalde-sipplingen-1.jpg',
+				alt: { de: 'Burghalde bei Sipplingen', en: 'Burghalde near Sipplingen' },
+				attribution: 'Dietrich Krieger, CC BY-SA 3.0'
+			},
+			{
+				url: '/images/locations/viewpoint/burghalde-sipplingen-2.jpg',
+				alt: { de: 'Aussicht von der Burghalde', en: 'View from Burghalde' },
+				attribution: 'Dietrich Krieger, CC BY-SA 3.0'
+			},
+			{
+				url: '/images/locations/viewpoint/burghalde-sipplingen-3.jpg',
+				alt: { de: 'Überreste der Burg Hüneberg', en: 'Remains of Hüneberg castle' },
+				attribution: 'Dietrich Krieger, CC BY-SA 3.0'
+			}
+		],
 	},
 	{
 		id: 'katharinenfelsen-ueberlingen',
@@ -1616,7 +1660,12 @@ export const locations: Location[] = [
 			de: 'Ideal für einen schnellen Zwischenstopp oder eine ausführliche Pause am Seeufer; Öffnungszeiten Mo–Fr 11:00–24:00, Sa 9:00–24:00, So 10:00–24:00.',
 			en: 'Ideal for a quick stop or a leisurely break by the lake; opening hours Mon–Fri 11am–midnight, Sat 9am–midnight, Sun 10am–midnight.'
 		},
-		url: 'https://www.xn--humpis-gaststtte-7nb.de/'
+		url: 'https://www.xn--humpis-gaststtte-7nb.de/',
+		image: {
+			url: '/images/locations/culinary/humpis-ravensburg-1.jpg',
+			alt: { de: 'Grüner Saal im Humpisquartier Ravensburg', en: 'Green Hall in the Humpis quarter in Ravensburg' },
+			attribution: 'Photo: Andreas Praefcke, Public domain'
+		},
 	},
 	{
 		id: 'alpsee-coaster',
@@ -2103,7 +2152,29 @@ export const locations: Location[] = [
 			de: 'Di–So 10:00–17:00, Mo geschlossen; an Feiertagen und in der Saison abweichend',
 			en: 'Tue–Sun 10am–5pm, closed Mon; different on public holidays and in season'
 		},
-		url: 'https://www.dorniermuseum.de'
+		url: 'https://www.dorniermuseum.de',
+		image: {
+			url: '/images/locations/technology/dornier-museum-1.jpg',
+			alt: { de: 'Dornier Museum Friedrichshafen', en: 'Dornier Museum Friedrichshafen' },
+			attribution: 'PJT56, CC BY-SA 4.0'
+		},
+		images: [
+			{
+				url: '/images/locations/technology/dornier-museum-1.jpg',
+				alt: { de: 'Dornier Museum Friedrichshafen', en: 'Dornier Museum Friedrichshafen' },
+				attribution: 'PJT56, CC BY-SA 4.0'
+			},
+			{
+				url: '/images/locations/technology/dornier-museum-2.jpg',
+				alt: { de: 'Dornier Kiebitz im Museum', en: 'Dornier Kiebitz in the museum' },
+				attribution: 'Matti Blume, CC BY-SA 4.0'
+			},
+			{
+				url: '/images/locations/technology/dornier-museum-3.jpg',
+				alt: { de: 'Dornier CL289 im Museum', en: 'Dornier CL289 in the museum' },
+				attribution: 'Matti Blume, CC BY-SA 4.0'
+			}
+		],
 	},
 	{
 		id: 'langenargen',
@@ -2478,7 +2549,29 @@ export const locations: Location[] = [
 			de: 'Zum Sonnenuntergang kommen, wenn das Licht auf dem Hafeneingang warm wird.',
 			en: 'Come at sunset, when the light on the harbour entrance turns warm.'
 		},
-		icon: '🌳'
+		icon: '🌳',
+		image: {
+			url: '/images/locations/viewpoint/gerberschanze-1.jpg',
+			alt: { de: 'Gerberschanze in Lindau', en: 'Gerberschanze in Lindau' },
+			attribution: 'HJunghans, CC BY-SA 4.0'
+		},
+		images: [
+			{
+				url: '/images/locations/viewpoint/gerberschanze-1.jpg',
+				alt: { de: 'Gerberschanze in Lindau', en: 'Gerberschanze in Lindau' },
+				attribution: 'HJunghans, CC BY-SA 4.0'
+			},
+			{
+				url: '/images/locations/viewpoint/gerberschanze-2.jpg',
+				alt: { de: 'Bastion Gerberschanze', en: 'Gerberschanze bastion' },
+				attribution: 'HJunghans, CC BY-SA 4.0'
+			},
+			{
+				url: '/images/locations/viewpoint/gerberschanze-3.jpg',
+				alt: { de: 'Bastion Gerberschanze in Lindau', en: 'Gerberschanze bastion in Lindau' },
+				attribution: 'Molgreen, CC BY-SA 4.0'
+			}
+		],
 	},
 	{
 		id: 'lindau-hafen',
@@ -2499,7 +2592,29 @@ export const locations: Location[] = [
 			de: 'Für das klassische Foto am besten am frühen Morgen oder Abend kommen, wenn weniger Betrieb ist.',
 			en: 'For the classic photo come early in the morning or in the evening, when it is quieter.'
 		},
-		icon: '⚓'
+		icon: '⚓',
+		image: {
+			url: '/images/locations/viewpoint/lindau-hafen-1.jpg',
+			alt: { de: 'Neuer Leuchtturm am Lindauer Hafen', en: 'New lighthouse at Lindau harbour' },
+			attribution: 'Flocci Nivis, CC BY 4.0'
+		},
+		images: [
+			{
+				url: '/images/locations/viewpoint/lindau-hafen-1.jpg',
+				alt: { de: 'Neuer Leuchtturm am Lindauer Hafen', en: 'New lighthouse at Lindau harbour' },
+				attribution: 'Flocci Nivis, CC BY 4.0'
+			},
+			{
+				url: '/images/locations/viewpoint/lindau-hafen-2.jpg',
+				alt: { de: 'Lindauer Hafen mit MS Schwaben', en: 'Lindau harbour with MS Schwaben' },
+				attribution: 'Julian Herzog, CC BY 4.0'
+			},
+			{
+				url: '/images/locations/viewpoint/lindau-hafen-3.jpg',
+				alt: { de: 'Lindauer Hafen am Abend', en: 'Lindau harbour in the evening' },
+				attribution: 'Franzfoto, CC BY 3.0'
+			}
+		],
 	},
 	{
 		id: 'obsthof-weber',

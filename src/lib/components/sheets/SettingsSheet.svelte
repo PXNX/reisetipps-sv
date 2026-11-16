@@ -6,12 +6,13 @@
 	 */
 	import { page } from '$app/state';
 	import { localizeHref, locales } from '$lib/paraglide/runtime';
-	import { currentLocale } from '$lib/i18n';
+	import { currentLocale, LOCALE_CHOICE_KEY } from '$lib/i18n';
 	import { textSize } from '$lib/stores/textSize.svelte';
 	import { installHint } from '$lib/stores/installHint.svelte';
 	import { trackEvent } from '$lib/telemetry';
 	import * as m from '$lib/paraglide/messages.js';
 	import BottomSheet from './BottomSheet.svelte';
+	import Icon from '../ui/Icon.svelte';
 
 	interface Props {
 		open: boolean;
@@ -69,7 +70,14 @@
 							? 'btn-primary'
 							: 'btn-outline'}"
 						aria-current={currentLocale() === locale}
-						onclick={() => trackEvent('language_changed', { locale })}
+						onclick={() => {
+							try {
+								localStorage.setItem(LOCALE_CHOICE_KEY, '1');
+							} catch {
+								// Storage can be unavailable; the chosen locale still applies this visit.
+							}
+							trackEvent('language_changed', { locale });
+						}}
 					>
 						{locale === 'de' ? 'Deutsch' : 'English'}
 					</a>
@@ -87,7 +95,7 @@
 					trackEvent('install_opened_from_settings', {});
 				}}
 			>
-				<span aria-hidden="true">📲</span>
+				<Icon name="download" />
 				{m.settings_install()}
 			</button>
 		</section>

@@ -140,7 +140,7 @@
 				<div class="absolute bottom-4 flex items-center gap-2">
 					<button
 						type="button"
-						class="btn btn-lg gap-1 text-white"
+						class="btn gap-1 text-white"
 						onclick={() => show(index - 1)}
 						aria-label={m.gallery_previous()}
 					>
@@ -152,7 +152,7 @@
 					</span>
 					<button
 						type="button"
-						class="btn btn-lg gap-1 text-white"
+						class="btn gap-1 text-white"
 						onclick={() => show(index + 1)}
 						aria-label={m.gallery_next()}
 					>
@@ -163,7 +163,7 @@
 			{/if}
 			<button
 				type="button"
-				class="btn btn-lg absolute top-3 right-3 gap-2 text-white"
+				class="btn absolute top-3 right-3 gap-2 text-white"
 				onclick={close}
 				aria-label={m.close()}
 			>

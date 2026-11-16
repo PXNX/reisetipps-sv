@@ -7,41 +7,41 @@
 	<p class="text-base-content/80">{m.privacy_intro()}</p>
 
 	<section class="space-y-1">
-		<h2 class="text-sm font-semibold text-secondary uppercase">{m.privacy_data_heading()}</h2>
-		<p class="text-sm text-base-content/80">{m.privacy_data_body()}</p>
+		<h2 class="text-base font-semibold text-secondary uppercase">{m.privacy_data_heading()}</h2>
+		<p class="text-base text-base-content/80">{m.privacy_data_body()}</p>
 	</section>
 
 	<section class="space-y-1">
-		<h2 class="text-sm font-semibold text-secondary uppercase">
+		<h2 class="text-base font-semibold text-secondary uppercase">
 			{m.privacy_geolocation_heading()}
 		</h2>
-		<p class="text-sm text-base-content/80">{m.privacy_geolocation_body()}</p>
+		<p class="text-base text-base-content/80">{m.privacy_geolocation_body()}</p>
 	</section>
 
 	<section class="space-y-1">
-		<h2 class="text-sm font-semibold text-secondary uppercase">{m.privacy_storage_heading()}</h2>
-		<p class="text-sm text-base-content/80">{m.privacy_storage_body()}</p>
+		<h2 class="text-base font-semibold text-secondary uppercase">{m.privacy_storage_heading()}</h2>
+		<p class="text-base text-base-content/80">{m.privacy_storage_body()}</p>
 	</section>
 
 	<section class="space-y-1">
-		<h2 class="text-sm font-semibold text-secondary uppercase">{m.privacy_analytics_heading()}</h2>
-		<p class="text-sm text-base-content/80">{m.privacy_analytics_body()}</p>
+		<h2 class="text-base font-semibold text-secondary uppercase">{m.privacy_analytics_heading()}</h2>
+		<p class="text-base text-base-content/80">{m.privacy_analytics_body()}</p>
 	</section>
 
 	<section class="space-y-1">
-		<h2 class="text-sm font-semibold text-secondary uppercase">{m.privacy_external_heading()}</h2>
-		<p class="text-sm text-base-content/80">{m.privacy_external_body()}</p>
+		<h2 class="text-base font-semibold text-secondary uppercase">{m.privacy_external_heading()}</h2>
+		<p class="text-base text-base-content/80">{m.privacy_external_body()}</p>
 	</section>
 
 	<section class="space-y-1">
-		<h2 class="text-sm font-semibold text-secondary uppercase">
+		<h2 class="text-base font-semibold text-secondary uppercase">
 			{m.privacy_no_tracking_heading()}
 		</h2>
-		<p class="text-sm text-base-content/80">{m.privacy_no_tracking_body()}</p>
+		<p class="text-base text-base-content/80">{m.privacy_no_tracking_body()}</p>
 	</section>
 
 	<section class="space-y-1">
-		<h2 class="text-sm font-semibold text-secondary uppercase">{m.privacy_contact_heading()}</h2>
-		<p class="text-sm text-base-content/80">{m.privacy_contact_body()}</p>
+		<h2 class="text-base font-semibold text-secondary uppercase">{m.privacy_contact_heading()}</h2>
+		<p class="text-base text-base-content/80">{m.privacy_contact_body()}</p>
 	</section>
 </div>

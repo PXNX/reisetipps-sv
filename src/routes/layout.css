@@ -36,11 +36,11 @@
  * phone everywhere; the settings sheet can raise it to 22px.
  */
 html {
-	font-size: 18px;
+	font-size: 17px;
 }
 
 html.text-large {
-	font-size: 22px;
+	font-size: 20px;
 }
 
 html,
@@ -54,20 +54,20 @@ body {
 
 body {
 	padding-bottom: env(safe-area-inset-bottom);
-	line-height: 1.6;
+	line-height: 1.55;
 }
 
-/* Every control is at least 48px tall — comfortably tappable without precision. */
+/* Comfortably tappable without feeling bulky. */
 .btn,
 .btn-xs,
 .btn-sm {
-	min-height: 2.75rem;
+	min-height: 2.6rem;
 	font-size: 1rem;
 }
 
 .btn-lg {
-	min-height: 3.4rem;
-	font-size: 1.1rem;
+	min-height: 3.1rem;
+	font-size: 1.08rem;
 }
 
 /* Clear, high-contrast keyboard focus for readers who use a keyboard or switch. */

@@ -55,12 +55,12 @@
 			alt={imageAlt}
 			attribution={location.image?.attribution}
 			gallery={photos}
-			class="h-56 sm:h-72"
+			class="h-48 sm:h-60"
 		/>
 	</figure>
 
 	<div>
-		<h2 class="text-3xl leading-tight font-bold">{localize(location.name)}</h2>
+		<h2 class="text-2xl leading-tight font-bold">{localize(location.name)}</h2>
 		<div class="mt-3 flex flex-wrap gap-2">
 			{#each location.categories as category, i (category)}
 				<span class="badge badge-lg gap-1 badge-outline badge-primary">
@@ -79,11 +79,11 @@
 		</div>
 	</div>
 
-	<p class="text-lg leading-relaxed">{localize(location.description)}</p>
+	<p class="text-base leading-relaxed">{localize(location.description)}</p>
 
 	<div class="rounded-box border-l-4 border-secondary bg-base-300/80 p-4">
 		<p class="text-sm font-bold tracking-wide text-secondary uppercase">{m.personal_tip()}</p>
-		<p class="mt-1 text-lg leading-relaxed">{localize(location.tip)}</p>
+		<p class="mt-1 text-base leading-relaxed">{localize(location.tip)}</p>
 	</div>
 
 	<dl class="divide-y divide-base-300 rounded-box border border-base-300">

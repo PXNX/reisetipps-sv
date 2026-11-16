@@ -1,42 +1,44 @@
-# sv
+# Bodensee Guide (reisetipps.sv)
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+A small, offline-capable travel guide for the Lake Constance region. Built with SvelteKit,
+Tailwind/daisyUI and Paraglide; the web app is a static site.
 
-## Creating a project
+## Develop
 
-If you're seeing this, you've probably already done this step. Congrats!
-
-```sh
-# create a new project
-npx sv create my-app
-```
-
-To recreate this project with the same configuration:
+Everything uses [Bun](https://bun.sh):
 
 ```sh
-# recreate this project
-bun x sv@0.17.0 create --template minimal --types ts --add prettier eslint vitest="usages:unit" tailwindcss="plugins:none" paraglide="languageTags:de,en+demo:no" sveltekit-adapter="adapter:static" --no-download-check --install bun .
+bun install
+bun run dev
 ```
 
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+Other useful commands:
 
 ```sh
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
+bun run check        # Svelte + TypeScript diagnostics
+bun lint             # Bun's built-in lint for JS/TS
+bun fmt              # Bun's built-in formatter (uses the Prettier config)
+bun run lint:strict  # Prettier + ESLint, including .svelte files
+bun run test         # Vitest unit tests
+bun run i18n:compile # Regenerate messages after editing messages/*.json
 ```
 
-## Building
+`bun run lint` and `bun fmt` are intentionally not package scripts, so the built-in Bun
+commands are used. The stricter Prettier/ESLint pair remains available as `lint:strict`.
 
-To create a production version of your app:
+## Deploy
+
+Deployment is handled by Vercel and needs no manual step:
+
+1. Push to `main` — Vercel builds and publishes the site automatically.
+2. `vercel.json` pins the SvelteKit framework, the Bun install (`bun install --frozen-lockfile`),
+   `bun run build` and the static output directory `build`. Pretty URLs are on and trailing
+   slashes are off, so localized paths stay clean.
+3. Web Analytics is cookieless; enable it for the project in Vercel. No environment variables are
+   needed for the app itself.
+
+Local check before pushing:
 
 ```sh
-npm run build
+bun run check && bun run test && bun run build
 ```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.

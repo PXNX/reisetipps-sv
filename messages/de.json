@@ -148,5 +148,12 @@
 	"map_layers": "Kartenansicht",
 	"layer_standard": "Standard",
 	"layer_topo": "Gelände",
-	"nearby_short": "In der Nähe"
+	"nearby_short": "In der Nähe",
+	"error_code": "Fehler {status}",
+	"error_404_title": "Diesen Ort gibt es nicht.",
+	"error_404_body": "Die Seite ist verschwunden oder der Link war falsch. Zur Karte – dort geht es immer weiter.",
+	"error_generic_title": "Da ist etwas schiefgelaufen.",
+	"error_generic_body": "Die App konnte diese Seite nicht laden. Ein neuer Versuch hilft meistens.",
+	"error_home": "Zur Karte",
+	"error_reload": "Erneut versuchen"
 }

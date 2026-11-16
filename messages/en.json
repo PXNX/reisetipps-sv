@@ -148,5 +148,12 @@
 	"map_layers": "Map layer",
 	"layer_standard": "Standard",
 	"layer_topo": "Terrain",
-	"nearby_short": "Nearby"
+	"nearby_short": "Nearby",
+	"error_code": "Error {status}",
+	"error_404_title": "This place doesn't exist.",
+	"error_404_body": "The page is gone or the link was wrong. Head to the map — there is always more to see.",
+	"error_generic_title": "Something went wrong.",
+	"error_generic_body": "The app could not load this page. Trying again usually helps.",
+	"error_home": "Back to the map",
+	"error_reload": "Try again"
 }

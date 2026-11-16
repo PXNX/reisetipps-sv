@@ -24,7 +24,7 @@
 {#if tour.count > 0}
 	<button
 		type="button"
-		class="btn btn-primary btn-lg fixed right-4 z-30 gap-2 rounded-full shadow-lg"
+		class="btn fixed right-4 z-30 gap-2 rounded-full shadow-lg btn-lg btn-primary"
 		style="bottom: calc(1rem + env(safe-area-inset-bottom))"
 		onclick={openPlanner}
 		aria-label={`${m.tour_title()} (${tour.count})`}
@@ -66,7 +66,7 @@
 			<ol class="space-y-2">
 				{#each plan as stop, index (stop.id)}
 					<li class="flex items-center gap-2 rounded-field bg-base-300/60 px-2 py-2">
-						<span class="badge badge-neutral shrink-0">{index + 1}</span>
+						<span class="badge shrink-0 badge-neutral">{index + 1}</span>
 						<span class="min-w-0 flex-1 truncate text-base font-medium">{localize(stop.name)}</span>
 						<button
 							class="btn btn-ghost px-2"
@@ -85,7 +85,7 @@
 							↓
 						</button>
 						<button
-							class="btn btn-ghost gap-1 px-2 text-sm"
+							class="btn gap-1 btn-ghost px-2 text-sm"
 							onclick={() => tour.remove(stop.id)}
 							aria-label={m.tour_remove()}
 						>
@@ -100,7 +100,7 @@
 				href={routeUrl}
 				target="_blank"
 				rel="noreferrer"
-				class="btn btn-primary btn-lg w-full"
+				class="btn w-full btn-lg btn-primary"
 				onclick={() => trackEvent('tour_route_opened', { stops: tour.count, mode: tour.mode })}
 			>
 				<span aria-hidden="true">🧭</span>
@@ -108,7 +108,7 @@
 			</a>
 			<!-- eslint-enable svelte/no-navigation-without-resolve -->
 			<p class="text-center text-sm text-base-content/80">{m.tour_open_hint()}</p>
-			<button class="btn btn-ghost w-full" onclick={() => tour.clear()}>
+			<button class="btn w-full btn-ghost" onclick={() => tour.clear()}>
 				{m.tour_clear()}
 			</button>
 		{/if}

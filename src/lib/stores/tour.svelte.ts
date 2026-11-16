@@ -1,6 +1,7 @@
 import { browser } from '$app/environment';
 import { SvelteSet } from 'svelte/reactivity';
-import { locations, type Location } from '$lib/data/locations';
+import { locations } from '$lib/data/locations';
+import type { Location } from '$lib/data/types';
 
 export type TourMode = 'walk' | 'bike';
 

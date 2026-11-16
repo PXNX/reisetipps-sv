@@ -23,8 +23,41 @@ bun run test         # Vitest unit tests
 bun run i18n:compile # Regenerate messages after editing messages/*.json
 ```
 
-`bun run lint` and `bun fmt` are intentionally not package scripts, so the built-in Bun
-commands are used. The stricter Prettier/ESLint pair remains available as `lint:strict`.
+`bun run lint` is intentionally not a package script, so `bun lint` and `bun fmt` use Bun's
+built-in tools. The stricter Prettier/ESLint pair remains available as `lint:strict`.
+
+## Project layout
+
+```
+src/
+├── routes/                 # SvelteKit routes: map screen, privacy, redirects, error pages
+│   ├── +page.svelte        # the single full-screen map view
+│   ├── +layout.svelte      # floating header, shared sheets
+│   ├── +error.svelte       # localised, themed error view
+│   └── layout.css          # theme, type scale, motion and focus styles
+├── lib/
+│   ├── components/
+│   │   ├── map/            # Leaflet map and layer switcher
+│   │   ├── places/         # place card and zoomable photo gallery
+│   │   └── sheets/         # bottom sheets (filters, lists, tour, settings, install, updates)
+│   ├── data/
+│   │   ├── locations.ts    # the place entries only
+│   │   └── types.ts        # shared types, stations and map links
+│   ├── stores/             # localStorage-backed wishlist, tour, filters, text size
+│   ├── assets/             # logo and favicon source SVGs
+│   └── paraglide/          # generated i18n output (do not edit)
+├── error.html              # standalone fallback for the static adapter
+└── app.html                # document shell and meta tags
+
+messages/                   # German and English source strings
+project.inlang/             # inlang / Paraglide configuration
+static/images/locations/    # photos grouped by category: <category>/<place-id>-<n>.jpg
+docs/                       # design, accessibility and content research notes
+```
+
+Add a photo by dropping it into `static/images/locations/<category>/<place-id>-<n>.jpg` and
+referencing that path from `src/lib/data/locations.ts`, including alt text and attribution in the
+entry.
 
 ## Deploy
 

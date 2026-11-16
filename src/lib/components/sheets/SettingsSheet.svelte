@@ -31,7 +31,7 @@
 			<div class="grid grid-cols-2 gap-3 pt-1">
 				<button
 					type="button"
-					class="btn btn-lg flex-col gap-0 {textSize.value === 'normal'
+					class="btn flex-col gap-0 btn-lg {textSize.value === 'normal'
 						? 'btn-primary'
 						: 'btn-outline'}"
 					aria-pressed={textSize.value === 'normal'}
@@ -45,7 +45,7 @@
 				</button>
 				<button
 					type="button"
-					class="btn btn-lg flex-col gap-0 {textSize.value === 'large'
+					class="btn flex-col gap-0 btn-lg {textSize.value === 'large'
 						? 'btn-primary'
 						: 'btn-outline'}"
 					aria-pressed={textSize.value === 'large'}
@@ -67,7 +67,9 @@
 					<!-- eslint-disable-next-line svelte/no-navigation-without-resolve -- localized internal link -->
 					<a
 						href={localizeHref(page.url.pathname, { locale })}
-						class="btn join-item flex-1 {currentLocale() === locale ? 'btn-primary' : 'btn-outline'}"
+						class="btn join-item flex-1 {currentLocale() === locale
+							? 'btn-primary'
+							: 'btn-outline'}"
 						aria-current={currentLocale() === locale}
 						onclick={() => trackEvent('language_changed', { locale })}
 					>
@@ -80,7 +82,7 @@
 		<section class="border-t border-base-300 pt-4">
 			<button
 				type="button"
-				class="btn btn-outline w-full gap-2"
+				class="btn w-full gap-2 btn-outline"
 				onclick={() => {
 					onclose();
 					installHint.show();
@@ -95,7 +97,7 @@
 		<section class="space-y-2 border-t border-base-300 pt-4 text-sm text-base-content/80">
 			<p>{m.settings_about()}</p>
 			<!-- eslint-disable-next-line svelte/no-navigation-without-resolve -- localized internal link -->
-			<a href={localizeHref('/datenschutz')} class="link link-primary text-base">
+			<a href={localizeHref('/datenschutz')} class="link text-base link-primary">
 				{m.privacy_link()}
 			</a>
 		</section>

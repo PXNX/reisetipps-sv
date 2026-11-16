@@ -2,7 +2,7 @@
 	import { Map as LMap, TileLayer, Marker, DivIcon, Tooltip } from 'sveaflet';
 	import type { Map as LeafletMapInstance } from 'leaflet';
 	import { browser } from '$app/environment';
-	import type { Location } from '$lib/data/locations';
+	import type { Location } from '$lib/data/types';
 	import { localize } from '$lib/i18n';
 	import { locationMarks } from '$lib/stores/locationMarks.svelte';
 	import { categoryIcons } from '$lib/categories';
@@ -39,13 +39,7 @@
 		onselect: (location: Location) => void;
 		oncenterchange?: (center: [number, number]) => void;
 	}
-	let {
-		locations,
-		focusId = null,
-		highlightId = null,
-		onselect,
-		oncenterchange
-	}: Props = $props();
+	let { locations, focusId = null, highlightId = null, onselect, oncenterchange }: Props = $props();
 
 	let map: LeafletMapInstance | undefined = $state();
 	let layer = $state<Layer>('standard');

@@ -65,7 +65,7 @@
 			<h2 class="text-xl font-bold">{m.update_app_title()}</h2>
 			<p class="mt-2 leading-relaxed text-base-content/80">{m.update_app_body()}</p>
 		</div>
-		<button class="btn btn-primary btn-lg w-full" onclick={update} disabled={updating}>
+		<button class="btn w-full btn-lg btn-primary" onclick={update} disabled={updating}>
 			{updating ? m.updating() : m.update_app_action()}
 		</button>
 	</div>

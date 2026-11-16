@@ -1,91 +1,4 @@
-export type Category =
-	| 'nature'
-	| 'culture'
-	| 'culinary'
-	| 'history'
-	| 'technology'
-	| 'viewpoint'
-	| 'cheese'
-	| 'butcher'
-	| 'ruins'
-	| 'drinks'
-	| 'sweets';
-
-export type Duration = 'short' | 'medium' | 'long';
-
-export interface LocalizedText {
-	de: string;
-	en: string;
-}
-
-export interface LocationImage {
-	url: string;
-	alt: LocalizedText;
-	attribution: string;
-}
-
-export interface Location {
-	id: string;
-	/** [lat, lng] */
-	coordinates: [number, number];
-	categories: Category[];
-	duration: Duration[];
-	nearestStation: string;
-	name: LocalizedText;
-	teaser: LocalizedText;
-	description: LocalizedText;
-	tip: LocalizedText;
-	openingHours?: LocalizedText;
-	url?: string;
-	image?: LocationImage;
-	/**
-	 * Up to three photos for the swipeable gallery. The first entry should be
-	 * the same as `image`, which stays the fallback cover photo.
-	 */
-	images?: LocationImage[];
-	/** Emoji that overrides the category icon for this location, e.g. 🎥 for cinema events. */
-	icon?: string;
-}
-
-export function googleMapsUrl(location: Location): string {
-	const [lat, lng] = location.coordinates;
-	return `https://www.google.com/maps/search/?api=1&query=${lat},${lng}`;
-}
-
-export function hikingMapUrl(location: Location): string {
-	const [lat, lng] = location.coordinates;
-	return `https://www.opentopomap.org/#marker=15/${lat}/${lng}`;
-}
-
-export function cyclingMapUrl(location: Location): string {
-	const [lat, lng] = location.coordinates;
-	return `https://www.openstreetmap.org/?mlat=${lat}&mlon=${lng}#map=15/${lat}/${lng}&layers=Y`;
-}
-
-export const stations = [
-	'Lindau-Insel',
-	'Lindau-Reutin',
-	'Bregenz',
-	'Friedrichshafen Stadt',
-	'Friedrichshafen Hafen',
-	'Friedrichshafen Flughafen',
-	'Wasserburg (Bodensee)',
-	'Langenargen',
-	'Überlingen',
-	'Radolfzell',
-	'Konstanz',
-	'Singen (Hohentwiel)',
-	'Riehen',
-	'Kaiseraugst',
-	'Markdorf',
-	'Hergatz',
-	'Uhldingen-Mühlhofen',
-	'Sigmaringen',
-	'Aulendorf',
-	'Oberstdorf'
-] as const;
-
-export type Station = (typeof stations)[number];
+import type { Location } from './types';
 
 export const locations: Location[] = [
 	{
@@ -152,7 +65,7 @@ export const locations: Location[] = [
 	},
 	{
 		id: 'sealife-konstanz',
-		coordinates: [47.6570, 9.1801],
+		coordinates: [47.657, 9.1801],
 		categories: ['nature'],
 		duration: ['short', 'medium'],
 		nearestStation: 'Konstanz',
@@ -185,7 +98,7 @@ export const locations: Location[] = [
 	},
 	{
 		id: 'reichenau',
-		coordinates: [47.6990, 9.0618],
+		coordinates: [47.699, 9.0618],
 		categories: ['history', 'culture'],
 		duration: ['medium', 'long'],
 		nearestStation: 'Konstanz',
@@ -292,7 +205,10 @@ export const locations: Location[] = [
 			de: 'Mit der Buslinie 110 ab Überlingen bis "Affenberg Salem" fahren — oder den Besuch mit dem Kloster Salem kombinieren.',
 			en: 'Bus line 110 runs from Überlingen straight to "Affenberg Salem" — or combine the visit with nearby Salem Abbey.'
 		},
-		openingHours: { de: 'saisonal, März bis Mitte November', en: 'seasonal, March to mid-November' },
+		openingHours: {
+			de: 'saisonal, März bis Mitte November',
+			en: 'seasonal, March to mid-November'
+		},
 		url: 'https://www.affenberg-salem.de',
 		image: {
 			url: '/images/locations/nature/affenberg-salem-1.jpg',
@@ -511,7 +427,7 @@ export const locations: Location[] = [
 	},
 	{
 		id: 'kunsthaus-bregenz',
-		coordinates: [47.5050, 9.7473],
+		coordinates: [47.505, 9.7473],
 		categories: ['culture'],
 		duration: ['short', 'medium'],
 		nearestStation: 'Bregenz',
@@ -604,7 +520,7 @@ export const locations: Location[] = [
 	{
 		id: 'open-air-kino-wasserburg',
 		// nudged ~100 m northwest off the Freibad Aquamarin pin so both markers stay clickable
-		coordinates: [47.5669, 9.6400],
+		coordinates: [47.5669, 9.64],
 		categories: ['culture'],
 		duration: ['medium'],
 		nearestStation: 'Wasserburg (Bodensee)',
@@ -763,26 +679,38 @@ export const locations: Location[] = [
 		url: 'https://lgrbwissen.lgrb-bw.de/geotourismus/glazialformen/alpenvorland/gletschermuehle-ueberlingen',
 		image: {
 			url: '/images/locations/viewpoint/gletschermuehle-goldbach-1.jpg',
-			alt: { de: 'Die Gletschermühle am Katharinenfelsen bei Goldbach', en: 'The glacier mill at Katharinenfelsen near Goldbach' },
+			alt: {
+				de: 'Die Gletschermühle am Katharinenfelsen bei Goldbach',
+				en: 'The glacier mill at Katharinenfelsen near Goldbach'
+			},
 			attribution: 'Frank Vincentz, CC BY-SA 3.0'
 		},
 		images: [
 			{
 				url: '/images/locations/viewpoint/gletschermuehle-goldbach-1.jpg',
-				alt: { de: 'Die Gletschermühle am Katharinenfelsen bei Goldbach', en: 'The glacier mill at Katharinenfelsen near Goldbach' },
+				alt: {
+					de: 'Die Gletschermühle am Katharinenfelsen bei Goldbach',
+					en: 'The glacier mill at Katharinenfelsen near Goldbach'
+				},
 				attribution: 'Frank Vincentz, CC BY-SA 3.0'
 			},
 			{
 				url: '/images/locations/viewpoint/gletschermuehle-goldbach-2.jpg',
-				alt: { de: 'Detail der Gletschermühle bei Überlingen', en: 'Detail of the glacier mill near Überlingen' },
+				alt: {
+					de: 'Detail der Gletschermühle bei Überlingen',
+					en: 'Detail of the glacier mill near Überlingen'
+				},
 				attribution: 'Frank Vincentz, CC BY-SA 3.0'
 			},
 			{
 				url: '/images/locations/viewpoint/gletschermuehle-goldbach-3.jpg',
-				alt: { de: 'Felsformation und Mühle am Goldbach', en: 'Rock formation and mill at Goldbach' },
+				alt: {
+					de: 'Felsformation und Mühle am Goldbach',
+					en: 'Rock formation and mill at Goldbach'
+				},
 				attribution: 'Frank Vincentz, CC BY-SA 3.0'
 			}
-		],
+		]
 	},
 	{
 		id: 'burghalde-sipplingen',
@@ -825,7 +753,7 @@ export const locations: Location[] = [
 				alt: { de: 'Überreste der Burg Hüneberg', en: 'Remains of Hüneberg castle' },
 				attribution: 'Dietrich Krieger, CC BY-SA 3.0'
 			}
-		],
+		]
 	},
 	{
 		id: 'katharinenfelsen-ueberlingen',
@@ -979,7 +907,10 @@ export const locations: Location[] = [
 		duration: ['short'],
 		icon: '🥐',
 		nearestStation: 'Markdorf',
-		name: { de: 'Landbäckerei Baader im Bahnhof Markdorf', en: 'Landbäckerei Baader at Markdorf Station' },
+		name: {
+			de: 'Landbäckerei Baader im Bahnhof Markdorf',
+			en: 'Landbäckerei Baader at Markdorf Station'
+		},
 		teaser: {
 			de: 'Traditionsreiche Landbäckerei im renovierten Bahnhofsgebäude — Frühstück, Brezeln und Bäcker-Snacks direkt am Gleis.',
 			en: 'A traditional country bakery in the renovated station building — breakfast, pretzels and baker’s snacks right by the platform.'
@@ -1032,7 +963,7 @@ export const locations: Location[] = [
 				en: 'View over the Rheindelta nature reserve on Lake Constance'
 			},
 			attribution: '© JoachimKohler-HB, CC BY-SA 4.0, via Wikimedia Commons'
-		},
+		}
 	},
 	{
 		id: 'kleines-cafe',
@@ -1064,7 +995,10 @@ export const locations: Location[] = [
 		duration: ['short'],
 		icon: '🍦',
 		nearestStation: 'Bregenz',
-		name: { de: 'La Dolce Vita Eis-Manufaktur Lochau', en: 'La Dolce Vita Ice Cream Parlour, Lochau' },
+		name: {
+			de: 'La Dolce Vita Eis-Manufaktur Lochau',
+			en: 'La Dolce Vita Ice Cream Parlour, Lochau'
+		},
 		teaser: {
 			de: 'Eismanufaktur in Lochau mit selbst gemachten Eissorten, täglich geöffnet.',
 			en: 'Ice cream parlour in Lochau with homemade flavors, open daily.'
@@ -1099,7 +1033,10 @@ export const locations: Location[] = [
 			de: 'In Lindenberg im Allgäu gelegen — gut als Zwischenstopp auf einer Tour durch das Allgäu; samstags nur bis Mittag geöffnet.',
 			en: 'Located in Lindenberg im Allgäu — a good stop on a tour through the Allgäu; on Saturdays only open until midday.'
 		},
-		openingHours: { de: 'Mo–Fr 07:30–18:00, Sa 07:00–12:30', en: 'Mon–Fri 7:30am–6pm, Sat 7am–12:30pm' },
+		openingHours: {
+			de: 'Mo–Fr 07:30–18:00, Sa 07:00–12:30',
+			en: 'Mon–Fri 7:30am–6pm, Sat 7am–12:30pm'
+		},
 		url: 'https://www.metzgerei-giray.de/'
 	},
 	{
@@ -1121,7 +1058,10 @@ export const locations: Location[] = [
 			de: 'Mitten in der Stadt, nur wenige Gehminuten vom Bahnhof Friedrichshafen Stadt entfernt — gut als Abendprogramm nach der Ankunft.',
 			en: 'Right in the city, a few minutes on foot from Friedrichshafen Stadt station — good evening plans after arriving.'
 		},
-		openingHours: { de: 'Di–So 17:00–24:00, Mo geschlossen', en: 'Tue–Sun 5pm–midnight, Mon closed' },
+		openingHours: {
+			de: 'Di–So 17:00–24:00, Mo geschlossen',
+			en: 'Tue–Sun 5pm–midnight, Mon closed'
+		},
 		url: 'https://www.acapulco-restaurant-bar.de/friedrichshafen'
 	},
 	{
@@ -1144,7 +1084,10 @@ export const locations: Location[] = [
 			de: 'Im Stadtteil Fischbach gelegen — gut mit dem Rad vom Hafen aus zu erreichen; montags und dienstags bleibt das Café zu.',
 			en: 'In the Fischbach district — an easy ride from the harbour; the café rests on Mondays and Tuesdays.'
 		},
-		openingHours: { de: 'Mi–Sa 09:30–18:00, So 10:00–18:00', en: 'Wed–Sat 9:30am–6pm, Sun 10am–6pm' },
+		openingHours: {
+			de: 'Mi–Sa 09:30–18:00, So 10:00–18:00',
+			en: 'Wed–Sat 9:30am–6pm, Sun 10am–6pm'
+		},
 		url: 'https://www.cafe-hoepker.de/'
 	},
 	{
@@ -1210,7 +1153,10 @@ export const locations: Location[] = [
 			de: 'Termine vor der Anreise prüfen — das Fest findet einmal im Jahr statt. Der Bahnhof Nonnenhorn liegt an der Bodenseegürtelbahn zwischen Friedrichshafen und Lindau.',
 			en: 'Check the dates before travelling — the festival takes place once a year. Nonnenhorn station is on the Bodensee ring line between Friedrichshafen and Lindau.'
 		},
-		openingHours: { de: 'Jährliche Veranstaltung, Termine auf nonnenhorn.de', en: 'Annual event, dates at nonnenhorn.de' },
+		openingHours: {
+			de: 'Jährliche Veranstaltung, Termine auf nonnenhorn.de',
+			en: 'Annual event, dates at nonnenhorn.de'
+		},
 		url: 'https://www.nonnenhorn.de'
 	},
 	{
@@ -1268,7 +1214,7 @@ export const locations: Location[] = [
 				en: 'The Altbodman castle ruin on the Bodanrück ridge'
 			},
 			attribution: '© Johannes Robalotoff, CC BY-SA 4.0, via Wikimedia Commons'
-		},
+		}
 	},
 	{
 		id: 'landmetzgerei-schaedler-oberlangnau',
@@ -1567,11 +1513,11 @@ export const locations: Location[] = [
 		name: { de: 'Nebelhorn Oberstdorf', en: 'Nebelhorn, Oberstdorf' },
 		teaser: {
 			de: 'Mit 2,224 m ist der Nebelhorn der höchste Berg im Allgäu und bietet ein 400-Grad-Panorama über Bodensee, Allgäu und Alpen.',
-			en: 'At 2,224 m, Nebelhorn is the Allgäu\'s highest peak and offers a 400° panorama over Lake Constance, Allgäu and the Alps.'
+			en: "At 2,224 m, Nebelhorn is the Allgäu's highest peak and offers a 400° panorama over Lake Constance, Allgäu and the Alps."
 		},
 		description: {
 			de: 'Der Nebelhorn ist ein beliebtes Ziel für Bergsteiger und Wanderer. Von Oberstdorf aus führt die Nebelhornbahn (2,224 m) über den Hindelanger Klettersteig, der eine der längsten und spektakulärsten Abfahrten der Alpen ist.',
-			en: 'Nebelhorn is a popular destination for climbers and hikers. From Oberstdorf, the Nebelhornbahn (2,224 m) ascends via the Hindelanger climbing route, one of the Alps\' longest and most spectacular descents.'
+			en: "Nebelhorn is a popular destination for climbers and hikers. From Oberstdorf, the Nebelhornbahn (2,224 m) ascends via the Hindelanger climbing route, one of the Alps' longest and most spectacular descents."
 		},
 		tip: {
 			de: 'Die Nebelhornbahn fährt von Oberstdorf aus; die letzte Station liegt auf 2,224 m. Der Hindelanger Klettersteig ist bis zu 7,5 km lang und erfordert solide Schuhe und Kondition.',
@@ -1663,9 +1609,12 @@ export const locations: Location[] = [
 		url: 'https://www.xn--humpis-gaststtte-7nb.de/',
 		image: {
 			url: '/images/locations/culinary/humpis-ravensburg-1.jpg',
-			alt: { de: 'Grüner Saal im Humpisquartier Ravensburg', en: 'Green Hall in the Humpis quarter in Ravensburg' },
+			alt: {
+				de: 'Grüner Saal im Humpisquartier Ravensburg',
+				en: 'Green Hall in the Humpis quarter in Ravensburg'
+			},
 			attribution: 'Photo: Andreas Praefcke, Public domain'
-		},
+		}
 	},
 	{
 		id: 'alpsee-coaster',
@@ -1734,7 +1683,7 @@ export const locations: Location[] = [
 		name: { de: 'Stiftsbezirk St. Gallen', en: 'St. Gallen Abbey District' },
 		teaser: {
 			de: 'UNESCO-Weltkulturerbe: die barocke Stiftsbibliothek und die gotische Kathedrale.',
-		en: 'UNESCO World Heritage site: the baroque abbey library and the Gothic cathedral.'
+			en: 'UNESCO World Heritage site: the baroque abbey library and the Gothic cathedral.'
 		},
 		description: {
 			de: 'Der Stiftsbezirk von St. Gallen ist ein UNESCO-Weltkulturerbe und beherbergt die gotische Kathedrale sowie die barocke Stiftsbibliothek, eine der wertvollsten historischen Bibliotheken der Welt.',
@@ -1742,7 +1691,7 @@ export const locations: Location[] = [
 		},
 		tip: {
 			de: 'Die Stiftsbibliothek ist ein absolutes Highlight — die Deckenfresken und Holzdecken lohnen einen Besuch.',
-		en: 'The abbey library is an absolute highlight — the ceiling frescoes and wooden ceilings are worth a visit.'
+			en: 'The abbey library is an absolute highlight — the ceiling frescoes and wooden ceilings are worth a visit.'
 		},
 		image: {
 			url: '/images/locations/culture/st-gallen-stiftsbezirk-1.jpg',
@@ -1792,7 +1741,7 @@ export const locations: Location[] = [
 		name: { de: 'Walderlebnispfad Möggers', en: 'Walderlebnispfad Möggers' },
 		teaser: {
 			de: '2,7 km Rundweg mit Hängebrücken und Erlebnisstationen.',
-		en: 'A 2.7 km loop with hanging bridges and adventure stations.'
+			en: 'A 2.7 km loop with hanging bridges and adventure stations.'
 		},
 		description: {
 			de: 'Der Walderlebnispfad in Möggers ist ein 2,7 km langer Rundweg mit Hängebrücken, Kletterelementen und verschiedenen Erlebnisstationen. Der Eintritt ist frei.',
@@ -1800,7 +1749,7 @@ export const locations: Location[] = [
 		},
 		tip: {
 			de: 'Mit dem Landbus 12 zu erreichen. Der Rundweg ist ideal für Familien.',
-		en: 'Reachable by Landbus 12. The loop is ideal for families.'
+			en: 'Reachable by Landbus 12. The loop is ideal for families.'
 		},
 		url: 'https://www.walderlebnispfad.at'
 	},
@@ -2174,7 +2123,7 @@ export const locations: Location[] = [
 				alt: { de: 'Dornier CL289 im Museum', en: 'Dornier CL289 in the museum' },
 				attribution: 'Matti Blume, CC BY-SA 4.0'
 			}
-		],
+		]
 	},
 	{
 		id: 'langenargen',
@@ -2307,7 +2256,7 @@ export const locations: Location[] = [
 	},
 	{
 		id: 'strandbad-degersee',
-		coordinates: [47.6131, 9.6540],
+		coordinates: [47.6131, 9.654],
 		categories: ['nature'],
 		duration: ['short', 'medium'],
 		nearestStation: 'Kressbronn',
@@ -2336,7 +2285,7 @@ export const locations: Location[] = [
 	},
 	{
 		id: 'waldsee-lindenberg',
-		coordinates: [47.6027, 9.8700],
+		coordinates: [47.6027, 9.87],
 		categories: ['nature'],
 		duration: ['short', 'medium'],
 		nearestStation: 'Lindau-Insel',
@@ -2347,7 +2296,7 @@ export const locations: Location[] = [
 		},
 		description: {
 			de: 'Der Waldsee liegt nur wenige Minuten vom Lindenberger Stadtzentrum entfernt und lädt zum Baden im weichen Moorwasser ein. Das Freizeitgelände mit Badestelle bietet Spaß und Erholung für die ganze Familie: Liegewiesen, Kinderspielplatz, Beachvolleyball, Tischtennis und im Sommer einen Kiosk mit Sonnenterrasse.',
-			en: 'The Waldsee lies just a few minutes from Lindenberg town centre and invites swimming in soft moor water. The recreational area with bathing spot offers fun and relaxation for the whole family: lawns, children\'s playground, beach volleyball, table tennis and a kiosk with sun terrace in summer.'
+			en: "The Waldsee lies just a few minutes from Lindenberg town centre and invites swimming in soft moor water. The recreational area with bathing spot offers fun and relaxation for the whole family: lawns, children's playground, beach volleyball, table tennis and a kiosk with sun terrace in summer."
 		},
 		tip: {
 			de: 'Eintritt frei, täglich von 5 bis 22 Uhr, Zugang über das Drehkreuz. Hunde sind im Waldseebad nicht gestattet.',
@@ -2571,7 +2520,7 @@ export const locations: Location[] = [
 				alt: { de: 'Bastion Gerberschanze in Lindau', en: 'Gerberschanze bastion in Lindau' },
 				attribution: 'Molgreen, CC BY-SA 4.0'
 			}
-		],
+		]
 	},
 	{
 		id: 'lindau-hafen',
@@ -2614,7 +2563,7 @@ export const locations: Location[] = [
 				alt: { de: 'Lindauer Hafen am Abend', en: 'Lindau harbour in the evening' },
 				attribution: 'Franzfoto, CC BY 3.0'
 			}
-		],
+		]
 	},
 	{
 		id: 'obsthof-weber',
@@ -2636,5 +2585,5 @@ export const locations: Location[] = [
 			en: 'Harvest time from late summer to autumn is the best moment for a detour; the offer and the times change with the season.'
 		},
 		icon: '🍎'
-	},
+	}
 ];

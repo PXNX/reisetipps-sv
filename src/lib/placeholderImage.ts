@@ -1,4 +1,4 @@
-import type { Category } from './data/locations';
+import type { Category } from './data/types';
 import { categoryIcons } from './categories';
 
 const categoryGradients: Record<Category, [string, string]> = {

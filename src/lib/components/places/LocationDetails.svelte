@@ -1,12 +1,12 @@
 <script lang="ts">
-	import { cyclingMapUrl, googleMapsUrl, hikingMapUrl, type Location } from '$lib/data/locations';
+	import { cyclingMapUrl, googleMapsUrl, hikingMapUrl, type Location } from '$lib/data/types';
 	import { localize } from '$lib/i18n';
 	import { categoryIcons, categoryLabel } from '$lib/categories';
 	import { locationMarks } from '$lib/stores/locationMarks.svelte';
 	import { tour } from '$lib/stores/tour.svelte';
 	import { placeholderImage } from '$lib/placeholderImage';
 	import { trackEvent } from '$lib/telemetry';
-	import ZoomableImage from '$lib/components/ZoomableImage.svelte';
+	import ZoomableImage from './ZoomableImage.svelte';
 	import * as m from '$lib/paraglide/messages.js';
 
 	let { location }: { location: Location } = $props();
@@ -63,7 +63,7 @@
 		<h2 class="text-2xl leading-tight font-bold">{localize(location.name)}</h2>
 		<div class="mt-3 flex flex-wrap gap-2">
 			{#each location.categories as category, i (category)}
-				<span class="badge badge-lg gap-1 badge-outline badge-primary">
+				<span class="badge gap-1 badge-outline badge-lg badge-primary">
 					<span aria-hidden="true"
 						>{i === 0 && location.icon ? location.icon : categoryIcons[category]}</span
 					>
@@ -105,7 +105,7 @@
 			href={googleMapsUrl(location)}
 			target="_blank"
 			rel="noreferrer"
-			class="btn btn-outline btn-lg w-full justify-start gap-3"
+			class="btn w-full justify-start gap-3 btn-outline btn-lg"
 			onclick={() => openLink('maps')}
 		>
 			<span class="w-8 text-2xl" aria-hidden="true">🧭</span>
@@ -118,7 +118,7 @@
 			href={hikingMapUrl(location)}
 			target="_blank"
 			rel="noreferrer"
-			class="btn btn-outline btn-lg w-full justify-start gap-3"
+			class="btn w-full justify-start gap-3 btn-outline btn-lg"
 			onclick={() => openLink('hiking')}
 		>
 			<span class="w-8 text-2xl" aria-hidden="true">🥾</span>
@@ -131,7 +131,7 @@
 			href={cyclingMapUrl(location)}
 			target="_blank"
 			rel="noreferrer"
-			class="btn btn-outline btn-lg w-full justify-start gap-3"
+			class="btn w-full justify-start gap-3 btn-outline btn-lg"
 			onclick={() => openLink('cycling')}
 		>
 			<span class="w-8 text-2xl" aria-hidden="true">🚴</span>
@@ -147,7 +147,7 @@
 			href={location.url}
 			target="_blank"
 			rel="noreferrer"
-			class="link link-primary inline-block text-base font-semibold"
+			class="inline-block link text-base font-semibold link-primary"
 			onclick={() => openLink('website')}
 		>
 			{m.more_info()} →
@@ -156,11 +156,7 @@
 	<!-- eslint-enable svelte/no-navigation-without-resolve -->
 
 	<div class="space-y-3 border-t border-base-300 pt-4">
-		<button
-			class="btn btn-primary btn-lg w-full"
-			onclick={toggleTour}
-			aria-pressed={inTour}
-		>
+		<button class="btn w-full btn-lg btn-primary" onclick={toggleTour} aria-pressed={inTour}>
 			{inTour ? `✓ ${m.tour_in()}` : `➕ ${m.tour_add()}`}
 		</button>
 		<div class="grid grid-cols-1 gap-3 sm:grid-cols-2">

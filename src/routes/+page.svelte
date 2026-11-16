@@ -1,7 +1,8 @@
 <script lang="ts">
 	import { page } from '$app/state';
 	import * as m from '$lib/paraglide/messages.js';
-	import { locations, type Location } from '$lib/data/locations';
+	import { locations } from '$lib/data/locations';
+	import type { Location } from '$lib/data/types';
 	import { categoryLabel } from '$lib/categories';
 	import { localize } from '$lib/i18n';
 	import { findMatches } from '$lib/recommend';
@@ -10,9 +11,9 @@
 	import { filters } from '$lib/stores/filters.svelte';
 	import { trackEvent } from '$lib/telemetry';
 	import { placeholderImage } from '$lib/placeholderImage';
-	import BottomSheet from '$lib/components/BottomSheet.svelte';
-	import FilterSheet from '$lib/components/FilterSheet.svelte';
-	import LocationDetails from '$lib/components/LocationDetails.svelte';
+	import BottomSheet from '$lib/components/sheets/BottomSheet.svelte';
+	import FilterSheet from '$lib/components/sheets/FilterSheet.svelte';
+	import LocationDetails from '$lib/components/places/LocationDetails.svelte';
 
 	let selected = $state<Location | null>(null);
 	let focusId = $state<string | null>(null);
@@ -181,7 +182,7 @@
 
 <div class="relative h-dvh w-full overflow-hidden bg-base-200">
 	<div class="absolute inset-0">
-		{#await import('$lib/components/LeafletMap.svelte')}
+		{#await import('$lib/components/map/LeafletMap.svelte')}
 			<div class="flex h-full items-center justify-center">
 				<span class="loading loading-lg loading-spinner text-primary"></span>
 			</div>
@@ -204,13 +205,13 @@
 			<span class="pl-2 text-lg" aria-hidden="true">🔍</span>
 			<input
 				type="search"
-				class="input input-ghost min-w-0 flex-1"
+				class="input min-w-0 flex-1 input-ghost"
 				bind:value={query}
 				placeholder={m.map_search_placeholder()}
 				aria-label={m.map_search_placeholder()}
 			/>
 			{#if query}
-				<button class="btn btn-ghost gap-1 text-sm" onclick={() => (query = '')}>
+				<button class="btn gap-1 btn-ghost text-sm" onclick={() => (query = '')}>
 					<span aria-hidden="true">✕</span>
 					{m.map_clear_search()}
 				</button>
@@ -252,10 +253,13 @@
 	</div>
 
 	{#if notice}
-		<div class="absolute inset-x-3 top-[8.5rem] z-[1000] rounded-field bg-base-300/95 p-3 text-sm shadow-lg" role="status">
+		<div
+			class="absolute inset-x-3 top-[8.5rem] z-[1000] rounded-field bg-base-300/95 p-3 text-sm shadow-lg"
+			role="status"
+		>
 			<p>{notice === 'fallback' ? m.nearby_fallback() : m.no_matches_body()}</p>
 			{#if notice === 'no-matches'}
-				<button class="btn btn-outline mt-2" onclick={() => (filterOpen = true)}>
+				<button class="btn mt-2 btn-outline" onclick={() => (filterOpen = true)}>
 					{m.reset_filters()}
 				</button>
 			{/if}
@@ -266,12 +270,16 @@
 		class="absolute inset-x-3 bottom-3 z-[1000] flex items-end gap-2"
 		style="padding-bottom: env(safe-area-inset-bottom)"
 	>
-		<button class="btn btn-outline gap-1 shadow-lg" onclick={openList} aria-label={m.map_view_list()}>
+		<button
+			class="btn gap-1 btn-outline shadow-lg"
+			onclick={openList}
+			aria-label={m.map_view_list()}
+		>
 			<span aria-hidden="true">☰</span>
 			<span class="hidden sm:inline">{m.map_view_list()}</span>
 		</button>
 		<button
-			class="btn btn-primary btn-lg flex-1 gap-2 shadow-lg"
+			class="btn flex-1 gap-2 shadow-lg btn-lg btn-primary"
 			onclick={recommendNearby}
 			disabled={locating}
 		>
@@ -279,7 +287,7 @@
 			{locating ? m.locating() : m.nearby_short()}
 		</button>
 		<button
-			class="btn btn-outline gap-1 shadow-lg"
+			class="btn gap-1 btn-outline shadow-lg"
 			onclick={() => {
 				filterOpen = true;
 				trackEvent('filter_sheet_opened', {});
@@ -306,7 +314,9 @@
 	<div class="space-y-3 pt-1">
 		<div class="flex items-center justify-between gap-2">
 			<h2 class="text-xl font-bold">{m.map_title()}</h2>
-			<span class="text-sm text-base-content/80">{m.map_count({ count: shownLocations.length })}</span>
+			<span class="text-sm text-base-content/80"
+				>{m.map_count({ count: shownLocations.length })}</span
+			>
 		</div>
 		<button
 			class="btn {hideVisited ? 'btn-primary' : 'btn-outline'} w-full"
@@ -359,12 +369,14 @@
 					{resultSource === 'gps' ? m.nearby_from_gps() : m.nearby_from_map()}
 				</p>
 				{#if resultDistance !== null}
-					<span class="badge badge-outline">{m.nearby_distance({ km: resultDistance.toFixed(1) })}</span>
+					<span class="badge badge-outline"
+						>{m.nearby_distance({ km: resultDistance.toFixed(1) })}</span
+					>
 				{/if}
 			</div>
 			<LocationDetails location={selected} />
 			<div class="grid gap-2 sm:grid-cols-2">
-				<button class="btn btn-primary btn-lg" onclick={recommendNearby} disabled={locating}>
+				<button class="btn btn-lg btn-primary" onclick={recommendNearby} disabled={locating}>
 					{m.nearby_another()}
 				</button>
 				<button class="btn btn-outline btn-lg" onclick={close}>{m.show_on_map()}</button>

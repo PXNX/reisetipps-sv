@@ -4,12 +4,12 @@
 	import * as m from '$lib/paraglide/messages.js';
 	import './layout.css';
 	import favicon from '$lib/assets/favicon.svg';
-	import GreetingSheet from '$lib/components/GreetingSheet.svelte';
-	import InstallHint from '$lib/components/InstallHint.svelte';
-	import ServiceWorker from '$lib/components/ServiceWorker.svelte';
-	import SettingsSheet from '$lib/components/SettingsSheet.svelte';
-	import TourPlanner from '$lib/components/TourPlanner.svelte';
-	import WishlistSheet from '$lib/components/WishlistSheet.svelte';
+	import GreetingSheet from '$lib/components/sheets/GreetingSheet.svelte';
+	import InstallHint from '$lib/components/sheets/InstallHint.svelte';
+	import ServiceWorker from '$lib/components/sheets/ServiceWorker.svelte';
+	import SettingsSheet from '$lib/components/sheets/SettingsSheet.svelte';
+	import TourPlanner from '$lib/components/sheets/TourPlanner.svelte';
+	import WishlistSheet from '$lib/components/sheets/WishlistSheet.svelte';
 	import { locationMarks } from '$lib/stores/locationMarks.svelte';
 	import { trackEvent } from '$lib/telemetry';
 
@@ -25,7 +25,6 @@
 		wishlistOpen = true;
 		trackEvent('wishlist_sheet_opened', { count: locationMarks.wishlist.size });
 	}
-
 </script>
 
 <svelte:head><link rel="icon" href={favicon} /></svelte:head>

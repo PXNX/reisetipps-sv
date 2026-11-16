@@ -1,6 +1,6 @@
 import { browser } from '$app/environment';
 import { allCategories, allDurations } from '$lib/categories';
-import type { Category, Duration } from '$lib/data/locations';
+import type { Category, Duration } from '$lib/data/types';
 
 const KEY = 'recommend-filters';
 
@@ -18,9 +18,7 @@ function load(): StoredFilters {
 		const parsed = JSON.parse(raw) as Partial<StoredFilters>;
 		return {
 			categories: Array.isArray(parsed.categories)
-				? parsed.categories.filter((c): c is Category =>
-						(allCategories as string[]).includes(c)
-					)
+				? parsed.categories.filter((c): c is Category => (allCategories as string[]).includes(c))
 				: [],
 			duration:
 				parsed.duration && (allDurations as string[]).includes(parsed.duration)

@@ -8,7 +8,7 @@
 		categoryLabel,
 		durationLabel
 	} from '$lib/categories';
-	import type { Category, Duration } from '$lib/data/locations';
+	import type { Category, Duration } from '$lib/data/types';
 	import { filters } from '$lib/stores/filters.svelte';
 	import { trackEvent } from '$lib/telemetry';
 	import BottomSheet from './BottomSheet.svelte';
@@ -23,15 +23,8 @@
 		onclearLocation: () => void;
 	}
 
-	let {
-		open,
-		onclose,
-		origin,
-		locating,
-		locationError,
-		onuseLocation,
-		onclearLocation
-	}: Props = $props();
+	let { open, onclose, origin, locating, locationError, onuseLocation, onclearLocation }: Props =
+		$props();
 
 	function toggleCategory(category: Category) {
 		filters.toggleCategory(category);
@@ -98,14 +91,15 @@
 			{#if origin}
 				<div class="rounded-field bg-base-300/70 p-3">
 					<p class="text-sm">
-						<span aria-hidden="true">📍</span> {m.location_set()}: {origin[0].toFixed(2)}, {origin[1].toFixed(2)}
+						<span aria-hidden="true">📍</span>
+						{m.location_set()}: {origin[0].toFixed(2)}, {origin[1].toFixed(2)}
 					</p>
-					<button class="btn btn-outline mt-2 w-full" onclick={onclearLocation}>
+					<button class="btn mt-2 w-full btn-outline" onclick={onclearLocation}>
 						{m.clear_location()}
 					</button>
 				</div>
 			{:else}
-				<button class="btn btn-outline w-full gap-2" onclick={onuseLocation} disabled={locating}>
+				<button class="btn w-full gap-2 btn-outline" onclick={onuseLocation} disabled={locating}>
 					<span aria-hidden="true">📍</span>
 					{locating ? m.locating() : m.use_my_location()}
 				</button>
@@ -117,11 +111,11 @@
 		</section>
 
 		<div class="space-y-2 border-t border-base-300 pt-4">
-			<button class="btn btn-primary btn-lg w-full" onclick={onclose}>
+			<button class="btn w-full btn-lg btn-primary" onclick={onclose}>
 				{m.filter_apply()}
 			</button>
 			{#if filters.active || origin}
-				<button class="btn btn-ghost w-full" onclick={clear}>{m.reset_filters()}</button>
+				<button class="btn w-full btn-ghost" onclick={clear}>{m.reset_filters()}</button>
 			{/if}
 		</div>
 	</div>

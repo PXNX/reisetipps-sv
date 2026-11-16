@@ -80,16 +80,16 @@
 
 <BottomSheet open={installHint.open} onclose={dismiss}>
 	<div class="flex flex-col gap-4 pt-2">
-		<span class="text-4xl self-center" aria-hidden="true">📲</span>
+		<span class="self-center text-4xl" aria-hidden="true">📲</span>
 		<h2 class="text-xl font-bold">{m.install_sheet_title()}</h2>
 		<p class="leading-relaxed text-base-content/80">
 			{isIos ? m.install_hint_ios() : m.install_hint_body()}
 		</p>
 		{#if !isIos}
-			<button class="btn btn-primary btn-lg w-full" onclick={install} disabled={!deferredPrompt}>
+			<button class="btn w-full btn-lg btn-primary" onclick={install} disabled={!deferredPrompt}>
 				{m.install_action()}
 			</button>
 		{/if}
-		<button class="btn btn-ghost w-full" onclick={dismiss}>{m.update_app_later()}</button>
+		<button class="btn w-full btn-ghost" onclick={dismiss}>{m.update_app_later()}</button>
 	</div>
 </BottomSheet>

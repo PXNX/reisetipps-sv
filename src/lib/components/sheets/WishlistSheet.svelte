@@ -10,7 +10,8 @@
 	import { localize } from '$lib/i18n';
 	import { locationMarks } from '$lib/stores/locationMarks.svelte';
 	import { trackEvent } from '$lib/telemetry';
-	import { locations, type Location } from '$lib/data/locations';
+	import { locations } from '$lib/data/locations';
+	import type { Location } from '$lib/data/types';
 	import { categoryIcons } from '$lib/categories';
 	import { placeholderImage } from '$lib/placeholderImage';
 	import BottomSheet from './BottomSheet.svelte';
@@ -78,7 +79,7 @@
 						</button>
 						<button
 							type="button"
-							class="btn btn-ghost gap-1 text-sm"
+							class="btn gap-1 btn-ghost text-sm"
 							aria-label={m.wishlist_remove()}
 							onclick={() => remove(location)}
 						>

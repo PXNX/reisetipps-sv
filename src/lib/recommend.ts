@@ -1,4 +1,5 @@
-import { locations, type Category, type Duration, type Location } from './data/locations';
+import { locations } from './data/locations';
+import type { Category, Duration, Location } from './data/types';
 import { haversineDistanceKm, type Coordinates } from './geo';
 
 export interface RecommendFilters {

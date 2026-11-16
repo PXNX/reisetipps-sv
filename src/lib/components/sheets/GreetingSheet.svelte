@@ -34,14 +34,11 @@
 		/>
 
 		<h2 class="text-2xl font-bold">{m.greeting_heading()}</h2>
-		<p class="whitespace-pre-line leading-relaxed">{m.greeting_body()}</p>
+		<p class="leading-relaxed whitespace-pre-line">{m.greeting_body()}</p>
 
-		<button class="btn btn-primary btn-lg w-full" onclick={close}>{m.greeting_close()}</button>
+		<button class="btn w-full btn-lg btn-primary" onclick={close}>{m.greeting_close()}</button>
 
-		<a
-			href={localizeHref('/datenschutz')}
-			class="link link-primary self-center text-sm"
-		>
+		<a href={localizeHref('/datenschutz')} class="link self-center text-sm link-primary">
 			{m.privacy_link()}
 		</a>
 

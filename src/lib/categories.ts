@@ -1,5 +1,5 @@
 import * as m from '$lib/paraglide/messages.js';
-import type { Category, Duration } from './data/locations';
+import type { Category, Duration } from './data/types';
 
 export const allCategories: Category[] = [
 	'nature',

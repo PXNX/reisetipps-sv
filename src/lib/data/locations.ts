@@ -113,7 +113,7 @@ export const locations: Location[] = [
 		},
 		url: 'https://www.mainau.de',
 		image: {
-			url: '/images/locations/mainau.jpg',
+			url: '/images/locations/nature/mainau-1.jpg',
 			alt: {
 				de: 'Blick über die Blumeninsel Mainau mit Parkanlage und See',
 				en: 'View over Mainau flower island with gardens and the lake'
@@ -142,7 +142,7 @@ export const locations: Location[] = [
 		},
 		url: 'https://www.konstanz-tourismus.de',
 		image: {
-			url: '/images/locations/konstanz-altstadt.jpg',
+			url: '/images/locations/culture/konstanz-altstadt-1.jpg',
 			alt: {
 				de: 'Der Hafen von Konstanz mit Schiffen und Hafeneinfahrt',
 				en: 'Constance harbour with boats at the entrance'
@@ -175,7 +175,7 @@ export const locations: Location[] = [
 		},
 		url: 'https://www.visitsealife.com/konstanz',
 		image: {
-			url: '/images/locations/sealife-konstanz.jpg',
+			url: '/images/locations/nature/sealife-konstanz-1.jpg',
 			alt: {
 				de: 'Das Sea Life Konstanz am Hafen',
 				en: 'The Sea Life Konstanz aquarium at the harbour'
@@ -204,7 +204,7 @@ export const locations: Location[] = [
 		},
 		url: 'https://www.reichenau-tourismus.de',
 		image: {
-			url: '/images/locations/reichenau.jpg',
+			url: '/images/locations/history/reichenau-1.jpg',
 			alt: {
 				de: 'Die romanische Kirche St. Georg auf der Insel Reichenau',
 				en: 'The Romanesque St George church on Reichenau Island'
@@ -232,7 +232,7 @@ export const locations: Location[] = [
 			en: 'A 15-minute walk straight from Radolfzell station — no need to change transport.'
 		},
 		image: {
-			url: '/images/locations/mettnau.jpg',
+			url: '/images/locations/nature/mettnau-1.jpg',
 			alt: {
 				de: 'Luftbild der Mettnau-Halbinsel über dem Zeller See',
 				en: 'Aerial view of the Mettnau peninsula over Lake Zell'
@@ -265,7 +265,7 @@ export const locations: Location[] = [
 		},
 		url: 'https://www.pfahlbauten.de',
 		image: {
-			url: '/images/locations/pfahlbauten.jpg',
+			url: '/images/locations/history/pfahlbauten-1.jpg',
 			alt: {
 				de: 'Nachgebaute Pfahlhäuser des Pfahlbaumuseums Unteruhldingen am See',
 				en: 'Reconstructed pile dwellings of the Unteruhldingen museum at the lake'
@@ -295,7 +295,7 @@ export const locations: Location[] = [
 		openingHours: { de: 'saisonal, März bis Mitte November', en: 'seasonal, March to mid-November' },
 		url: 'https://www.affenberg-salem.de',
 		image: {
-			url: '/images/locations/affenberg-salem.jpg',
+			url: '/images/locations/nature/affenberg-salem-1.jpg',
 			alt: {
 				de: 'Ein Berberaffe im Wald des Affenbergs Salem',
 				en: 'A Barbary macaque in the forest of Affenberg Salem'
@@ -323,7 +323,7 @@ export const locations: Location[] = [
 			en: 'The estate winery runs a small tasting room — a good way to round off the visit.'
 		},
 		image: {
-			url: '/images/locations/kloster-salem.jpg',
+			url: '/images/locations/history/kloster-salem-1.jpg',
 			alt: {
 				de: 'Schloss Salem mit dem Münster der ehemaligen Reichsabtei',
 				en: 'Salem Palace with the minster of the former imperial abbey'
@@ -351,7 +351,7 @@ export const locations: Location[] = [
 			en: 'Walk ten minutes up and rest at one of the vineyard estates at the top or bottom — or head down to the lakeside Seehalde restaurant afterwards.'
 		},
 		image: {
-			url: '/images/locations/birnau.jpg',
+			url: '/images/locations/history/birnau-1.jpg',
 			alt: {
 				de: 'Die Wallfahrtskirche Birnau über dem Bodensee',
 				en: 'The Birnau pilgrimage church above Lake Constance'
@@ -379,7 +379,7 @@ export const locations: Location[] = [
 			en: 'Meersburg has no train station of its own — take the car ferry from Konstanz-Staad, which is part of the experience.'
 		},
 		image: {
-			url: '/images/locations/meersburg-altstadt.jpg',
+			url: '/images/locations/culture/meersburg-altstadt-1.jpg',
 			alt: {
 				de: 'Die Burg Meersburg hoch über dem Bodensee',
 				en: 'Meersburg Castle high above Lake Constance'
@@ -407,7 +407,7 @@ export const locations: Location[] = [
 			en: 'Walk the promenade toward the thermal baths in the late afternoon — the sunset views are worth it. For a longer stop: head east to the Gletschermühle by Goldbach, then up to the Churfirsten peaks and the castle ruin on the Burghalde, and down to the lakeshore at Sipplingen.'
 		},
 		image: {
-			url: '/images/locations/ueberlingen-altstadt.jpg',
+			url: '/images/locations/culture/ueberlingen-altstadt-1.jpg',
 			alt: {
 				de: 'Die Überlinger Altstadt mit Münster vom Garten des Stadtmuseums aus gesehen',
 				en: 'Überlingen old town with the minster, seen from the town museum garden'
@@ -440,7 +440,7 @@ export const locations: Location[] = [
 		},
 		url: 'https://www.zeppelin-museum.de',
 		image: {
-			url: '/images/locations/zeppelin-museum.jpg',
+			url: '/images/locations/technology/zeppelin-museum-1.jpg',
 			alt: {
 				de: 'Ausstellungshalle des Zeppelin Museums mit historischem Fahrzeug',
 				en: 'Exhibition hall of the Zeppelin Museum with a historic vehicle'
@@ -468,7 +468,7 @@ export const locations: Location[] = [
 			en: 'Keep left straight out of the station — five minutes and you’re at the harbour.'
 		},
 		image: {
-			url: '/images/locations/lindau-altstadt.jpg',
+			url: '/images/locations/culture/lindau-altstadt-1.jpg',
 			alt: {
 				de: 'Der Lindauer Hafen mit Leuchtturm und Bavaria',
 				en: 'The Lindau harbour with lighthouse and Bavaria statue'
@@ -501,7 +501,7 @@ export const locations: Location[] = [
 		},
 		url: 'https://www.pfaenderbahn.at',
 		image: {
-			url: '/images/locations/pfaender.jpg',
+			url: '/images/locations/viewpoint/pfaender-1.jpg',
 			alt: {
 				de: 'Eine Gondel der Pfänderbahn über Bregenz',
 				en: 'A cable car gondola of the Pfänderbahn above Bregenz'
@@ -531,7 +531,7 @@ export const locations: Location[] = [
 		openingHours: { de: 'Di–So 10:00–18:00, Do bis 20:00', en: 'Tue–Sun 10am–6pm, Thu until 8pm' },
 		url: 'https://www.kunsthaus-bregenz.at',
 		image: {
-			url: '/images/locations/kunsthaus-bregenz.jpg',
+			url: '/images/locations/culture/kunsthaus-bregenz-1.jpg',
 			alt: {
 				de: 'Die gestapelte Betonfassade des Kunsthauses Bregenz',
 				en: 'The stacked concrete façade of the Kunsthaus Bregenz'
@@ -564,7 +564,7 @@ export const locations: Location[] = [
 		},
 		url: 'https://www.kaese-bestellung.de',
 		image: {
-			url: '/images/locations/sennerei-bremenried.jpg',
+			url: '/images/locations/cheese/sennerei-bremenried-1.jpg',
 			alt: {
 				de: 'Das Empfangsgebäude der Sennerei Bremenried mit Käseladen',
 				en: 'The reception building of the Bremenried dairy with its cheese shop'
@@ -593,7 +593,7 @@ export const locations: Location[] = [
 		},
 		url: 'https://www.rappenloch.at/startseite/sehenswertes/kirchle/',
 		image: {
-			url: '/images/locations/kirchle-ebnit.jpg',
+			url: '/images/locations/nature/kirchle-ebnit-1.jpg',
 			alt: {
 				de: 'Die trockene Klamm des Kirchle über dem Ebniter Tal',
 				en: 'The dry gorge of the Kirchle above the Ebnit valley'
@@ -682,7 +682,7 @@ export const locations: Location[] = [
 			en: 'open daily all year, free admission'
 		},
 		image: {
-			url: '/images/locations/lindenhofpark-bad-schachen.jpg',
+			url: '/images/locations/nature/lindenhofpark-bad-schachen-1.jpg',
 			alt: {
 				de: 'Im Lindenhofpark in Bad Schachen mit altem Baumbestand',
 				en: 'In the Lindenhofpark at Bad Schachen with its old trees'
@@ -803,7 +803,7 @@ export const locations: Location[] = [
 			en: 'The reserve lies just west of Überlingen by the B31 — stay on the paths, the slope is steep.'
 		},
 		image: {
-			url: '/images/locations/katharinenfelsen-ueberlingen.jpg',
+			url: '/images/locations/viewpoint/katharinenfelsen-ueberlingen-1.jpg',
 			alt: {
 				de: 'Blick vom Katharinenfelsen über den Überlinger See bei Goldbach',
 				en: 'View from the Katharinenfelsen rock over Lake Überlingen near Goldbach'
@@ -832,7 +832,7 @@ export const locations: Location[] = [
 			en: 'The rocks lie above Süßenmühle at the edge of Sipplingen — ideal combined with a visit to the nearby castle ruins on the Burghalde.'
 		},
 		image: {
-			url: '/images/locations/sieben-churfirsten-sipplingen.jpg',
+			url: '/images/locations/culture/sieben-churfirsten-sipplingen-1.jpg',
 			alt: {
 				de: 'Die Felstürme der Sieben Churfirsten oberhalb von Sipplingen',
 				en: 'The Sieben Churfirsten rock towers above Sipplingen'
@@ -953,7 +953,7 @@ export const locations: Location[] = [
 			en: 'Mon–Fri 6am–6pm, Sat 6:30am–2pm, Sun 7am–5pm'
 		},
 		image: {
-			url: '/images/locations/landbaeckerei-baader-markdorf.jpg',
+			url: '/images/locations/sweets/landbaeckerei-baader-markdorf-1.jpg',
 			alt: {
 				de: 'Das Bahnhofsgebäude von Markdorf mit der Landbäckerei Baader',
 				en: 'The Markdorf station building housing the Landbäckerei Baader'
@@ -982,7 +982,7 @@ export const locations: Location[] = [
 			en: 'Bring your own grill and enjoy it at the marked picnic spots by the dam; parts of the nature reserve are off-limits. Especially lovely by bike along the Rheindamm from Hard or Fußach.'
 		},
 		image: {
-			url: '/images/locations/rheindamm.jpg',
+			url: '/images/locations/nature/rheindamm-1.jpg',
 			alt: {
 				de: 'Blick über das Naturschutzgebiet Rheindelta am Bodensee',
 				en: 'View over the Rheindelta nature reserve on Lake Constance'
@@ -1189,7 +1189,7 @@ export const locations: Location[] = [
 			en: 'From Wallhausen take the bus toward Bodman and get off at the stop, then walk to the gorge; on the way across the Bodanrück you pass the bison enclosure at Hofgut Bodenwald.'
 		},
 		image: {
-			url: '/images/locations/marienschlucht.jpg',
+			url: '/images/locations/nature/marienschlucht-1.jpg',
 			alt: {
 				de: 'Blick vom Schiffsanleger zur Marienschlucht am Überlinger See',
 				en: 'View from the boat landing toward the Marienschlucht gorge on Lake Überlingen'
@@ -1218,7 +1218,7 @@ export const locations: Location[] = [
 			en: 'From Wallhausen take the bus toward Bodman and get off at the stop, then hike across the Bodanrück — the bison enclosure is on the way.'
 		},
 		image: {
-			url: '/images/locations/altbodman.jpg',
+			url: '/images/locations/nature/altbodman-1.jpg',
 			alt: {
 				de: 'Die Burgruine Altbodman auf dem Bodanrück',
 				en: 'The Altbodman castle ruin on the Bodanrück ridge'
@@ -1275,7 +1275,7 @@ export const locations: Location[] = [
 			en: 'Apr–Oct: Wed–Sun 10:30am–10pm, Mon–Tue closed'
 		},
 		image: {
-			url: '/images/locations/degerseestube.jpg',
+			url: '/images/locations/culinary/degerseestube-1.jpg',
 			alt: {
 				de: 'Die Degerseestube am Ufer des Degersees, vom Wasser aus gesehen',
 				en: 'The Degerseestube on the shore of the Degersee, seen from the water'
@@ -1334,7 +1334,7 @@ export const locations: Location[] = [
 			en: '29 Mar–31 Oct daily 9:30am–6:30pm, 19 Oct–28 Mar Thu–Sun & holidays 10am–4pm; last admission 30 min before'
 		},
 		image: {
-			url: '/images/locations/hohentwiel.jpg',
+			url: '/images/locations/history/hohentwiel-1.jpg',
 			alt: {
 				de: 'Luftbild der Festungsruine Hohentwiel auf dem Felshoch über Singen',
 				en: 'Aerial view of the Hohentwiel fortress ruins on the rock spur above Singen'
@@ -1396,7 +1396,7 @@ export const locations: Location[] = [
 			en: 'seasonal: Roman festival on the last August weekend; museum & Roman house Mar–Oct daily 10am–5pm, Nov–Feb Tue–Sun 10am–3pm; outdoor grounds open at all times'
 		},
 		image: {
-			url: '/images/locations/roemerfest-augusta-raurica.jpg',
+			url: '/images/locations/culture/roemerfest-augusta-raurica-1.jpg',
 			alt: {
 				de: 'Das Amphitheater der Römerstadt Augusta Raurica',
 				en: 'The amphitheatre of the Augusta Raurica Roman city'
@@ -1476,7 +1476,7 @@ export const locations: Location[] = [
 			en: 'A small lane leads from the hamlet of Kinberg to the chapel — a lovely detour on foot or by bike, with far views as far as Lake Constance.'
 		},
 		image: {
-			url: '/images/locations/wendelinskapelle-kinberg.jpg',
+			url: '/images/locations/viewpoint/wendelinskapelle-kinberg-1.jpg',
 			alt: {
 				de: 'Die Wendelinskapelle auf dem Kinberg, frei im Feld stehend',
 				en: 'The Wendelinskapelle on the Kinberg, standing free in a field'
@@ -1505,7 +1505,7 @@ export const locations: Location[] = [
 			en: 'The stone sits between the Stein and Haggen districts right on the panoramic trail — a short detour from Lochau-Wellenhof; continuing on reaches the Altreute chapel and the Pfänder mountain station.'
 		},
 		image: {
-			url: '/images/locations/rhombergstein.jpg',
+			url: '/images/locations/history/rhombergstein-1.jpg',
 			alt: {
 				de: 'Der Rhombergstein mit der Gedenktafel für Thomas Rhomberg',
 				en: 'The Rhombergstein memorial stone with its plaque for Thomas Rhomberg'
@@ -1538,7 +1538,7 @@ export const locations: Location[] = [
 			en: 'Nebelhornbahn 9am–6pm (seasonal); hiking trails are open year-round.'
 		},
 		image: {
-			url: '/images/locations/nebelhorn-oberstdorf.jpg',
+			url: '/images/locations/nature/nebelhorn-oberstdorf-1.jpg',
 			alt: {
 				de: 'Der Gipfel des Nebelhorns bei Oberstdorf',
 				en: 'The summit of the Nebelhorn near Oberstdorf'
@@ -1638,7 +1638,7 @@ export const locations: Location[] = [
 			en: 'Take the train to Immenstadt, then the bus to "Ratholz – Jägerhaus". Closed in winter when there is snow.'
 		},
 		image: {
-			url: '/images/locations/alpsee-coaster.jpg',
+			url: '/images/locations/nature/alpsee-coaster-1.jpg',
 			alt: {
 				de: 'Die Alpsee-Coaster-Rodelbahn bei Immenstadt',
 				en: 'The Alpsee Coaster summer toboggan run near Immenstadt'
@@ -1667,7 +1667,7 @@ export const locations: Location[] = [
 			en: 'The entrance is at the Gütle car park — bring sturdy shoes. Closed in winter.'
 		},
 		image: {
-			url: '/images/locations/rappenlochschlucht.jpg',
+			url: '/images/locations/nature/rappenlochschlucht-1.jpg',
 			alt: {
 				de: 'Die Rappenlochschlucht bei Dornbirn mit Felswänden und Wasser',
 				en: 'The Rappenloch gorge near Dornbirn with rock walls and water'
@@ -1696,7 +1696,7 @@ export const locations: Location[] = [
 		en: 'The abbey library is an absolute highlight — the ceiling frescoes and wooden ceilings are worth a visit.'
 		},
 		image: {
-			url: '/images/locations/st-gallen-stiftsbezirk.jpg',
+			url: '/images/locations/culture/st-gallen-stiftsbezirk-1.jpg',
 			alt: {
 				de: 'Der Barocksaal der Stiftsbibliothek St. Gallen',
 				en: 'The baroque hall of the St. Gallen Abbey Library'
@@ -1725,7 +1725,7 @@ export const locations: Location[] = [
 			en: 'The Hoyerberg is a short walk from the island.'
 		},
 		image: {
-			url: '/images/locations/bismarck-denkmal-lindau.jpg',
+			url: '/images/locations/history/bismarck-denkmal-lindau-1.jpg',
 			alt: {
 				de: 'Das Bismarckdenkmal auf dem Hoyerberg über Lindau',
 				en: 'The Bismarck monument on the Hoyerberg above Lindau'
@@ -1775,7 +1775,7 @@ export const locations: Location[] = [
 			en: 'The palace chapel and museum are worth a visit. From Markdorf station about 5 km to Tettnang.'
 		},
 		image: {
-			url: '/images/locations/schloss-tettnang.jpg',
+			url: '/images/locations/culture/schloss-tettnang-1.jpg',
 			alt: {
 				de: 'Luftbild von Schloss Tettnang',
 				en: 'Aerial view of Tettnang Castle'
@@ -1804,7 +1804,7 @@ export const locations: Location[] = [
 			en: 'Easily reached from Markdorf station — ideal for a stop with hop specialties.'
 		},
 		image: {
-			url: '/images/locations/hopfengut-no20-tettnang.jpg',
+			url: '/images/locations/drinks/hopfengut-no20-tettnang-1.jpg',
 			alt: {
 				de: 'Hopfenfeld beim Hopfengut No. 20 in Tettnang',
 				en: 'Hop field at the Hopfengut No. 20 in Tettnang'
@@ -1833,7 +1833,7 @@ export const locations: Location[] = [
 			en: 'Accessible by bus or on foot from Hergatz. Guided tours offer insight into the bunker installations.'
 		},
 		image: {
-			url: '/images/locations/festungsmuseum-heldsberg.jpg',
+			url: '/images/locations/history/festungsmuseum-heldsberg-1.jpg',
 			alt: {
 				de: 'Kanone des Artilleriewerks Heldsberg',
 				en: 'Cannon of the Heldsberg artillery fort'
@@ -1912,7 +1912,7 @@ export const locations: Location[] = [
 		},
 		url: 'https://www.bauernhausmuseum-wolfegg.de',
 		image: {
-			url: '/images/locations/bauernhausmuseum-wolfegg.jpg',
+			url: '/images/locations/history/bauernhausmuseum-wolfegg-1.jpg',
 			alt: {
 				de: 'Kornspeicher und Fischerhaus im Bauernhaus-Museum Wolfegg',
 				en: 'Granary and fishing cottage at the Wolfegg farmhouse museum'
@@ -1941,7 +1941,7 @@ export const locations: Location[] = [
 		},
 		url: 'https://www.hotel-post-wolfegg.de/',
 		image: {
-			url: '/images/locations/zur-post-wolfegg.jpg',
+			url: '/images/locations/culinary/zur-post-wolfegg-1.jpg',
 			alt: {
 				de: 'Die grüne Ortsmitte von Wolfegg mit Teich und Bäumen',
 				en: 'The green village centre of Wolfegg with its pond and trees'
@@ -1973,7 +1973,7 @@ export const locations: Location[] = [
 			en: 'Mon–Sat 5:30am–6pm, Sun 7:30am–6pm, closed on public holidays'
 		},
 		image: {
-			url: '/images/locations/gleisneun-kisslegg.jpg',
+			url: '/images/locations/culinary/gleisneun-kisslegg-1.jpg',
 			alt: {
 				de: 'Ortsansicht von Kißlegg',
 				en: 'View of Kißlegg'
@@ -2006,7 +2006,7 @@ export const locations: Location[] = [
 		},
 		url: 'https://www.fidelisbaeck.de',
 		image: {
-			url: '/images/locations/fidelisbaeck-wangen.jpg',
+			url: '/images/locations/culinary/fidelisbaeck-wangen-1.jpg',
 			alt: {
 				de: 'Der Marktplatz von Wangen im Allgäu',
 				en: 'The market square of Wangen im Allgäu'
@@ -2039,7 +2039,7 @@ export const locations: Location[] = [
 		},
 		url: 'https://cafe-engel-scheidegg.de/',
 		image: {
-			url: '/images/locations/cafe-engel-scheidegg.jpg',
+			url: '/images/locations/culinary/cafe-engel-scheidegg-1.jpg',
 			alt: {
 				de: 'Die Kirche St. Gallus mit Brunnen im Ortszentrum von Scheidegg',
 				en: 'St Gallus church with its fountain in the centre of Scheidegg'
@@ -2072,7 +2072,7 @@ export const locations: Location[] = [
 		},
 		url: 'https://www.meckatzer-braeustueble.de/',
 		image: {
-			url: '/images/locations/meckatzer-brauestueble.jpg',
+			url: '/images/locations/culinary/meckatzer-brauestueble-1.jpg',
 			alt: {
 				de: 'Luftbild der Meckatzer Brauerei in Meckatz',
 				en: 'Aerial view of the Meckatzer brewery at Meckatz'
@@ -2200,7 +2200,7 @@ export const locations: Location[] = [
 			en: 'seasonal: daily 9am–8pm, currently winter break'
 		},
 		image: {
-			url: '/images/locations/strandbad-eichwald.jpg',
+			url: '/images/locations/nature/strandbad-eichwald-1.jpg',
 			alt: {
 				de: 'Strandbad Eichwald am Bodensee mit Sandstrand',
 				en: 'Strandbad Eichwald lido on Lake Constance with sandy beach'
@@ -2254,7 +2254,7 @@ export const locations: Location[] = [
 			en: 'From Kressbronn take bus line 235 to the Tettnang, Degersee stop; parking on site (€2/day).'
 		},
 		image: {
-			url: '/images/locations/strandbad-degersee.jpg',
+			url: '/images/locations/nature/strandbad-degersee-1.jpg',
 			alt: {
 				de: 'Badefreude am Degersee mit Schwimmenden',
 				en: 'Bathing fun at Degersee with swimmers'
@@ -2287,7 +2287,7 @@ export const locations: Location[] = [
 			en: 'daily 5am–10pm, kiosk seasonal May–Sept'
 		},
 		image: {
-			url: '/images/locations/waldsee-lindenberg.jpg',
+			url: '/images/locations/nature/waldsee-lindenberg-1.jpg',
 			alt: {
 				de: 'Blick auf den Waldsee vom Hotel Waldsee in Lindenberg',
 				en: 'View over the Waldsee from Hotel Waldsee in Lindenberg'
@@ -2316,7 +2316,7 @@ export const locations: Location[] = [
 			en: 'Guided tours of the castle and treasury are offered; the picturesque old town lies directly at the foot of the castle.'
 		},
 		image: {
-			url: '/images/locations/schloss-sigmaringen.jpg',
+			url: '/images/locations/history/schloss-sigmaringen-1.jpg',
 			alt: {
 				de: 'Schloss Sigmaringen, das Hohenzollernschloss über der Donau',
 				en: 'Sigmaringen Castle, the Hohenzollern castle above the Danube'
@@ -2391,7 +2391,7 @@ export const locations: Location[] = [
 			en: 'For the bike tour take the Bodensee-Radweg or the quieter variant over the Argensteg; the lakeside paths are flat and mostly paved. From here a detour to Tettnang with its hop fields, hop museum and the roughly four-kilometre hop trail is worthwhile. The Argen was named “River Landscape of the Year” 2014/15.'
 		},
 		image: {
-			url: '/images/locations/argen-muendung-langenargen.jpg',
+			url: '/images/locations/nature/argen-muendung-langenargen-1.jpg',
 			alt: {
 				de: 'Mündung der Argen in den Bodensee bei Langenargen',
 				en: 'Mouth of the Argen river into Lake Constance at Langenargen'
@@ -2424,7 +2424,7 @@ export const locations: Location[] = [
 			en: 'seasonal: summer daily 9am–5pm (last entry), winter 9am–4pm'
 		},
 		image: {
-			url: '/images/locations/breitachklamm.jpg',
+			url: '/images/locations/nature/breitachklamm-oberstdorf-1.jpg',
 			alt: {
 				de: 'Die Breitachklamm bei Oberstdorf mit tosendem Wasser',
 				en: 'The Breitach gorge near Oberstdorf with roaring water'
@@ -2433,7 +2433,7 @@ export const locations: Location[] = [
 		},
 		images: [
 			{
-				url: '/images/locations/breitachklamm.jpg',
+				url: '/images/locations/nature/breitachklamm-oberstdorf-2.jpg',
 				alt: {
 					de: 'Die Breitachklamm bei Oberstdorf mit tosendem Wasser',
 					en: 'The Breitach gorge near Oberstdorf with roaring water'
@@ -2441,7 +2441,7 @@ export const locations: Location[] = [
 				attribution: '© Laydii, CC BY-SA 4.0, via Wikimedia Commons'
 			},
 			{
-				url: '/images/locations/breitachklamm-panoramio.jpg',
+				url: '/images/locations/nature/breitachklamm-oberstdorf-3.jpg',
 				alt: {
 					de: 'Blick durch die Breitachklamm nach oben zu einem Steg über den Felsen',
 					en: 'Looking up through the Breitach gorge to a footbridge spanning the rocks'
@@ -2449,7 +2449,7 @@ export const locations: Location[] = [
 				attribution: '© qwesy qwesy, CC BY 3.0, via Wikimedia Commons'
 			},
 			{
-				url: '/images/locations/breitachklamm-winter.jpg',
+				url: '/images/locations/nature/breitachklamm-oberstdorf-4.jpg',
 				alt: {
 					de: 'Die Breitachklamm im Winter mit Eiszapfen und schneebedeckten Felsen',
 					en: 'The Breitach gorge in winter with icicles and snow-covered rocks'

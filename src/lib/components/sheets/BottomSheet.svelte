@@ -2,6 +2,7 @@
 	import { Spring } from 'svelte/motion';
 	import * as m from '$lib/paraglide/messages.js';
 	import type { Snippet } from 'svelte';
+	import Icon from '../ui/Icon.svelte';
 
 	interface Props {
 		open: boolean;
@@ -105,7 +106,7 @@
 	{#if dismissible}
 		<button
 			type="button"
-			class="fixed inset-0 z-40 cursor-default bg-black/60"
+			class="fixed inset-0 z-[1050] cursor-default bg-black/60"
 			style="opacity: {backdropOpacity}"
 			onclick={onclose}
 			aria-label={m.close()}
@@ -113,7 +114,7 @@
 		></button>
 	{:else}
 		<div
-			class="fixed inset-0 z-40 bg-black/60"
+			class="fixed inset-0 z-[1050] bg-black/60"
 			style="opacity: {backdropOpacity}"
 			aria-hidden="true"
 		></div>
@@ -121,7 +122,7 @@
 
 	<div
 		bind:this={sheet}
-		class="fixed inset-x-0 bottom-0 z-50 flex max-h-[85dvh] flex-col overflow-hidden rounded-t-2xl bg-base-200 shadow-2xl"
+		class="fixed inset-x-0 bottom-0 z-[1100] flex max-h-[85dvh] flex-col overflow-hidden rounded-t-2xl bg-base-200 shadow-2xl"
 		style="transform: translateY({translate}%)"
 		role="dialog"
 		aria-modal="true"
@@ -153,7 +154,7 @@
 						onclick={onclose}
 						aria-label={m.close()}
 					>
-						<span class="text-lg leading-none" aria-hidden="true">✕</span>
+						<Icon name="close" class="text-lg" />
 						{m.close()}
 					</button>
 				{/if}

@@ -9,6 +9,7 @@
 	import { tour, tourRouteUrl } from '$lib/stores/tour.svelte';
 	import { trackEvent } from '$lib/telemetry';
 	import BottomSheet from './BottomSheet.svelte';
+	import Icon from '../ui/Icon.svelte';
 
 	let open = $state(false);
 
@@ -24,12 +25,12 @@
 {#if tour.count > 0}
 	<button
 		type="button"
-		class="btn fixed right-4 z-30 gap-2 rounded-full shadow-lg btn-lg btn-primary"
+		class="btn fixed right-4 z-[1000] gap-2 rounded-full shadow-lg btn-lg btn-primary"
 		style="bottom: calc(1rem + env(safe-area-inset-bottom))"
 		onclick={openPlanner}
 		aria-label={`${m.tour_title()} (${tour.count})`}
 	>
-		<span aria-hidden="true">{tour.mode === 'bike' ? '🚲' : '🚶'}</span>
+		<Icon name={tour.mode === 'bike' ? 'bike' : 'walk'} />
 		<span>{m.tour_title()} ({tour.count})</span>
 	</button>
 {/if}
@@ -44,7 +45,7 @@
 				aria-pressed={tour.mode === 'walk'}
 				onclick={() => tour.setMode('walk')}
 			>
-				<span aria-hidden="true">🚶</span>
+				<Icon name="walk" />
 				{m.tour_mode_walk()}
 			</button>
 			<button
@@ -52,7 +53,7 @@
 				aria-pressed={tour.mode === 'bike'}
 				onclick={() => tour.setMode('bike')}
 			>
-				<span aria-hidden="true">🚲</span>
+				<Icon name="bike" />
 				{m.tour_mode_bike()}
 			</button>
 		</div>
@@ -71,7 +72,7 @@
 							disabled={index === 0}
 							aria-label={m.tour_move_up()}
 						>
-							↑
+							<Icon name="chevron-up" />
 						</button>
 						<button
 							class="btn btn-ghost px-2"
@@ -79,14 +80,14 @@
 							disabled={index === plan.length - 1}
 							aria-label={m.tour_move_down()}
 						>
-							↓
+							<Icon name="chevron-down" />
 						</button>
 						<button
 							class="btn gap-1 btn-ghost px-2 text-sm"
 							onclick={() => tour.remove(stop.id)}
 							aria-label={m.tour_remove()}
 						>
-							<span aria-hidden="true">✕</span>
+							<Icon name="close" />
 						</button>
 					</li>
 				{/each}
@@ -100,7 +101,7 @@
 				class="btn w-full btn-lg btn-primary"
 				onclick={() => trackEvent('tour_route_opened', { stops: tour.count, mode: tour.mode })}
 			>
-				<span aria-hidden="true">🧭</span>
+				<Icon name="navigation" />
 				{m.tour_open()}
 			</a>
 			<!-- eslint-enable svelte/no-navigation-without-resolve -->

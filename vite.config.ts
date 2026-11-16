@@ -4,10 +4,12 @@ import { defineConfig } from 'vitest/config';
 import adapter from '@sveltejs/adapter-static';
 import { sveltekit } from '@sveltejs/kit/vite';
 import { SvelteKitPWA } from '@vite-pwa/sveltekit';
+import Icons from 'unplugin-icons/vite';
 
 export default defineConfig({
 	plugins: [
 		tailwindcss(),
+		Icons({ compiler: 'svelte', autoInstall: false }),
 		sveltekit({
 			// Absolute URLs: the service worker then registers at /sw.js with scope / from every
 			// page, instead of a path relative to the current URL.
@@ -55,11 +57,31 @@ export default defineConfig({
 				globPatterns: ['**/*.{js,css,html,svg,png,webp,woff2}'],
 				runtimeCaching: [
 					{
+						// Map tiles change rarely. A generous, bounded cache keeps panning fast and
+						// lets the map work offline once an area has been visited.
 						urlPattern: /^https:\/\/[a-z]\.tile\.openstreetmap\.org\/.*/i,
 						handler: 'CacheFirst',
 						options: {
-							cacheName: 'osm-tiles',
-							expiration: { maxEntries: 200, maxAgeSeconds: 60 * 60 * 24 * 30 },
+							cacheName: 'map-tiles-standard',
+							expiration: { maxEntries: 500, maxAgeSeconds: 60 * 60 * 24 * 90 },
+							cacheableResponse: { statuses: [0, 200] }
+						}
+					},
+					{
+						urlPattern: /^https:\/\/[a-z]\.tile\.opentopomap\.org\/.*/i,
+						handler: 'CacheFirst',
+						options: {
+							cacheName: 'map-tiles-terrain',
+							expiration: { maxEntries: 300, maxAgeSeconds: 60 * 60 * 24 * 90 },
+							cacheableResponse: { statuses: [0, 200] }
+						}
+					},
+					{
+						urlPattern: /^https:\/\/tileserver\.memomaps\.de\/.*/i,
+						handler: 'CacheFirst',
+						options: {
+							cacheName: 'map-tiles-transit',
+							expiration: { maxEntries: 300, maxAgeSeconds: 60 * 60 * 24 * 90 },
 							cacheableResponse: { statuses: [0, 200] }
 						}
 					},
@@ -68,7 +90,7 @@ export default defineConfig({
 						handler: 'CacheFirst',
 						options: {
 							cacheName: 'location-photos',
-							expiration: { maxEntries: 60, maxAgeSeconds: 60 * 60 * 24 * 30 },
+							expiration: { maxEntries: 120, maxAgeSeconds: 60 * 60 * 24 * 90 },
 							cacheableResponse: { statuses: [0, 200] }
 						}
 					}

@@ -12,11 +12,12 @@
 	import { trackEvent } from '$lib/telemetry';
 	import { placeholderImage } from '$lib/placeholderImage';
 	import BottomSheet from '$lib/components/sheets/BottomSheet.svelte';
+	import Icon from '$lib/components/ui/Icon.svelte';
 	import FilterSheet from '$lib/components/sheets/FilterSheet.svelte';
 	import LocationDetails from '$lib/components/places/LocationDetails.svelte';
 
 	let selected = $state<Location | null>(null);
-	let layer = $state<'standard' | 'topo'>('standard');
+	let layer = $state<'standard' | 'topo' | 'transit'>('standard');
 	let focusId = $state<string | null>(null);
 	let query = $state('');
 	let hideVisited = $state(false);
@@ -84,7 +85,7 @@
 		trackEvent('map_hide_visited', { hidden: hideVisited });
 	}
 
-	function setLayer(next: 'standard' | 'topo') {
+	function setLayer(next: 'standard' | 'topo' | 'transit') {
 		layer = next;
 		trackEvent('map_layer_changed', { layer: next });
 	}
@@ -209,7 +210,7 @@
 		<div
 			class="pointer-events-auto flex items-center gap-1 rounded-field bg-base-100/95 p-1 shadow-lg backdrop-blur"
 		>
-			<span class="pl-2 text-lg" aria-hidden="true">🔍</span>
+			<Icon name="search" class="pl-2 text-lg" />
 			<input
 				type="search"
 				class="input min-w-0 flex-1 input-ghost"
@@ -219,7 +220,7 @@
 			/>
 			{#if query}
 				<button class="btn gap-1 btn-ghost text-sm" onclick={() => (query = '')}>
-					<span aria-hidden="true">✕</span>
+					<Icon name="close" class="text-lg" />
 					{m.map_clear_search()}
 				</button>
 			{/if}
@@ -275,7 +276,7 @@
 
 	<!-- Mode switcher sits under the search bar, clear of both the pins and the thumb controls. -->
 	<div
-		class="absolute right-2 top-[7rem] z-[1000] flex gap-1 rounded-field bg-base-100/90 p-1 shadow-lg backdrop-blur"
+		class="absolute top-[7rem] right-2 z-[1000] flex gap-1 rounded-field bg-base-100/90 p-1 shadow-lg backdrop-blur"
 		role="group"
 		aria-label={m.map_layers()}
 	>
@@ -286,7 +287,7 @@
 			aria-label={m.layer_standard()}
 			onclick={() => setLayer('standard')}
 		>
-			<span aria-hidden="true">🗺️</span>
+			<Icon name="map" />
 			<span class="hidden sm:inline">{m.layer_standard()}</span>
 		</button>
 		<button
@@ -296,8 +297,18 @@
 			aria-label={m.layer_topo()}
 			onclick={() => setLayer('topo')}
 		>
-			<span aria-hidden="true">⛰️</span>
+			<Icon name="terrain" />
 			<span class="hidden sm:inline">{m.layer_topo()}</span>
+		</button>
+		<button
+			type="button"
+			class="btn gap-1 btn-xs {layer === 'transit' ? 'btn-primary' : 'btn-ghost'}"
+			aria-pressed={layer === 'transit'}
+			aria-label={m.layer_transit()}
+			onclick={() => setLayer('transit')}
+		>
+			<Icon name="bus" />
+			<span class="hidden sm:inline">{m.layer_transit()}</span>
 		</button>
 	</div>
 
@@ -310,7 +321,7 @@
 			onclick={openList}
 			aria-label={m.map_view_list()}
 		>
-			<span aria-hidden="true">☰</span>
+			<Icon name="list" />
 			<span class="hidden sm:inline">{m.map_view_list()}</span>
 		</button>
 		<button
@@ -318,7 +329,7 @@
 			onclick={recommendNearby}
 			disabled={locating}
 		>
-			<span aria-hidden="true">📍</span>
+			<Icon name="location" />
 			{locating ? m.locating() : m.nearby_short()}
 		</button>
 		<button
@@ -329,7 +340,7 @@
 			}}
 			aria-label={m.filter_title()}
 		>
-			<span aria-hidden="true">🎚</span>
+			<Icon name="filter" />
 			<span class="hidden sm:inline">{m.filter_title()}</span>
 		</button>
 	</div>
@@ -383,7 +394,7 @@
 									: ''}
 							</span>
 						</span>
-						<span class="text-2xl text-primary" aria-hidden="true">›</span>
+						<Icon name="chevron-right" class="text-2xl text-primary" />
 					</button>
 				{/each}
 			</div>

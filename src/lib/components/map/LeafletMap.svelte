@@ -1,13 +1,20 @@
 <script lang="ts">
-	import { Map as LMap, TileLayer, Marker, DivIcon, Tooltip } from 'sveaflet';
-	import type { Map as LeafletMapInstance } from 'leaflet';
+	import {
+		Map as LMap,
+		TileLayer,
+		Marker,
+		DivIcon,
+		Tooltip,
+		ControlZoom,
+		ControlAttribution
+	} from 'sveaflet';
 	import { browser } from '$app/environment';
 	import type { Location } from '$lib/data/types';
 	import { localize } from '$lib/i18n';
 	import { locationMarks } from '$lib/stores/locationMarks.svelte';
-	import { categoryIcons } from '$lib/categories';
+	import { fluentSvg, locationIconName } from '$lib/icons';
 
-	type Layer = 'standard' | 'topo';
+	type Layer = 'standard' | 'topo' | 'transit';
 
 	const tiles: Record<Layer, { url: string; attribution: string; maxZoom: number }> = {
 		standard: {
@@ -19,6 +26,11 @@
 			url: 'https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png',
 			attribution: '&copy; OpenTopoMap (CC BY-SA) &copy; OpenStreetMap contributors',
 			maxZoom: 17
+		},
+		transit: {
+			url: 'https://tileserver.memomaps.de/tilegen/{z}/{x}/{y}.png',
+			attribution: '&copy; OpenStreetMap contributors, &copy; memomaps.de',
+			maxZoom: 18
 		}
 	};
 
@@ -47,29 +59,30 @@
 		layer = 'standard'
 	}: Props = $props();
 
-	let map: LeafletMapInstance | undefined = $state();
-
-	$effect(() => {
-		if (!map || !focusId) return;
-		const target = locations.find((l) => l.id === focusId);
-		if (target) map.setView(target.coordinates, 13);
+	// sveaflet watches options and calls setView when `center` changes, so focusing a place
+	// stays declarative — no imperative Leaflet instance handling here.
+	const focusCoordinates = $derived(
+		locations.find((location) => location.id === focusId)?.coordinates ??
+			([47.66, 9.35] as [number, number])
+	);
+	const mapOptions = $derived({
+		center: focusCoordinates,
+		zoom: 10,
+		zoomControl: false,
+		attributionControl: false
 	});
 
-	$effect(() => {
-		if (!map || !oncenterchange) return;
-		const instance = map;
-		const report = () => {
-			const center = instance.getCenter();
-			oncenterchange([center.lat, center.lng]);
-		};
-		instance.on('moveend', report);
-		return () => instance.off('moveend', report);
-	});
+	function reportMove(event: { target: { getCenter: () => { lat: number; lng: number } } }) {
+		const center = event.target.getCenter();
+		oncenterchange?.([center.lat, center.lng]);
+	}
 </script>
 
 <div class="relative h-full w-full touch-none">
 	{#if browser}
-		<LMap bind:instance={map} options={{ center: [47.66, 9.35], zoom: 10 }}>
+		<LMap options={mapOptions} onmoveend={reportMove}>
+			<ControlZoom options={{ position: 'topleft' }} />
+			<ControlAttribution options={{ position: 'bottomright', prefix: false }} />
 			{#key layer}
 				<TileLayer
 					url={tiles[layer].url}
@@ -85,7 +98,7 @@
 							iconAnchor: [19, 19]
 						}}
 					>
-						<span>{location.icon ?? categoryIcons[location.categories[0] ?? 'nature']}</span>
+						{@html fluentSvg(locationIconName(location))}
 					</DivIcon>
 					<Tooltip options={{ direction: 'top', offset: [0, -20] }}
 						>{localize(location.name)}</Tooltip
@@ -100,7 +113,7 @@
 	:global(.leaflet-container) {
 		touch-action: none;
 	}
-	:global(.map-pin span) {
+	:global(.map-pin > div) {
 		display: flex;
 		align-items: center;
 		justify-content: center;
@@ -109,19 +122,24 @@
 		border-radius: 9999px;
 		font-size: 22px;
 		line-height: 1;
+		color: #062330;
 		background: #ffc078;
 		border: 3px solid #0b1f33;
 		box-shadow: 0 0 0 3px rgba(127, 211, 234, 0.7);
 	}
-	:global(.map-pin-visited span) {
+	:global(.map-pin > div svg) {
+		width: 22px;
+		height: 22px;
+	}
+	:global(.map-pin-visited > div) {
 		background: #9aa0aa;
 		box-shadow: 0 0 0 3px rgba(154, 160, 170, 0.55);
 	}
-	:global(.map-pin-wishlist span) {
+	:global(.map-pin-wishlist > div) {
 		background: #7fd3ea;
 		box-shadow: 0 0 0 3px rgba(255, 192, 120, 0.8);
 	}
-	:global(.map-pin-highlight span) {
+	:global(.map-pin-highlight > div) {
 		animation: pin-pulse 1.8s ease-in-out infinite;
 	}
 	/* Leave room for the floating header and search pill. */

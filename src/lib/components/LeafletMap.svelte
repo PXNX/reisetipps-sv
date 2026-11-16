@@ -42,13 +42,13 @@
 					<DivIcon
 						options={{
 							className: pinClass(location),
-							iconSize: [28, 28],
-							iconAnchor: [14, 14]
+							iconSize: [38, 38],
+							iconAnchor: [19, 19]
 						}}
 					>
 						<span>{location.icon ?? categoryIcons[location.categories[0] ?? 'nature']}</span>
 					</DivIcon>
-					<Tooltip options={{ direction: 'top', offset: [0, -16] }}
+					<Tooltip options={{ direction: 'top', offset: [0, -20] }}
 						>{localize(location.name)}</Tooltip
 					>
 				</Marker>
@@ -65,21 +65,31 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		width: 28px;
-		height: 28px;
+		width: 38px;
+		height: 38px;
 		border-radius: 9999px;
-		font-size: 17px;
+		font-size: 22px;
 		line-height: 1;
-		background: #f2a65a;
-		border: 2px solid #0b1f33;
-		box-shadow: 0 0 0 2px rgba(98, 195, 221, 0.6);
+		background: #ffc078;
+		border: 3px solid #0b1f33;
+		box-shadow: 0 0 0 3px rgba(127, 211, 234, 0.7);
 	}
 	:global(.map-pin-visited span) {
-		background: #8a8f98;
-		box-shadow: 0 0 0 2px rgba(138, 143, 152, 0.5);
+		background: #9aa0aa;
+		box-shadow: 0 0 0 3px rgba(154, 160, 170, 0.55);
 	}
 	:global(.map-pin-wishlist span) {
-		background: #62c3dd;
-		box-shadow: 0 0 0 2px rgba(242, 166, 90, 0.7);
+		background: #7fd3ea;
+		box-shadow: 0 0 0 3px rgba(255, 192, 120, 0.8);
+	}
+	/* Large zoom buttons — the default Leaflet ones are far too small. */
+	:global(.leaflet-control-zoom a) {
+		width: 46px !important;
+		height: 46px !important;
+		line-height: 44px !important;
+		font-size: 26px !important;
+	}
+	:global(.leaflet-control-attribution) {
+		font-size: 12px;
 	}
 </style>

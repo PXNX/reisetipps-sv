@@ -128,5 +128,11 @@
 	"home_filter_cta": "Passenden Ort zeigen",
 	"link_maps_desc": "Route und Adresse anzeigen",
 	"link_hiking_desc": "Wanderwege und Höhenunterschiede",
-	"link_cycling_desc": "Radroute und Verkehrslage"
+	"link_cycling_desc": "Radroute und Verkehrslage",
+	"map_view_map": "Karte",
+	"map_view_list": "Liste",
+	"map_search_placeholder": "Ort oder Bahnhof suchen",
+	"map_count": "{count} Orte",
+	"map_no_results": "Keine Orte gefunden.",
+	"map_clear_search": "Suche löschen"
 }

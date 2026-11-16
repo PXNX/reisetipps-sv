@@ -128,5 +128,11 @@
 	"home_filter_cta": "Show me a matching place",
 	"link_maps_desc": "See the route and address",
 	"link_hiking_desc": "Trails and elevation on a map",
-	"link_cycling_desc": "Cycle routes and traffic"
+	"link_cycling_desc": "Cycle routes and traffic",
+	"map_view_map": "Map",
+	"map_view_list": "List",
+	"map_search_placeholder": "Search a place or station",
+	"map_count": "{count} places",
+	"map_no_results": "No places found.",
+	"map_clear_search": "Clear search"
 }

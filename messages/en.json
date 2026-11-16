@@ -108,5 +108,13 @@
 	"gallery_next": "Next image",
 	"gallery_counter": "Image {index} of {total}",
 	"gallery_count": "{count} photos",
-	"gallery_swipe_hint": "Swipe or use the arrows to browse the images."
+	"gallery_swipe_hint": "Swipe or use the arrows to browse the images.",
+	"settings_open": "Settings",
+	"settings_title": "Settings",
+	"settings_text_size": "Text size",
+	"settings_text_hint": "Larger text is easier to read. Everything grows with it.",
+	"settings_text_normal": "Normal",
+	"settings_text_large": "Large",
+	"settings_language": "Language",
+	"settings_about": "Personal recommendations for days out around Lake Constance — take them with you, even offline."
 }

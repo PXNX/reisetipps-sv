@@ -1,8 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/state';
 	import { onMount } from 'svelte';
-	import { deLocalizeUrl, localizeHref, locales } from '$lib/paraglide/runtime';
-	import { currentLocale } from '$lib/i18n';
+	import { deLocalizeUrl, localizeHref } from '$lib/paraglide/runtime';
 	import { initTelemetry } from '$lib/telemetry';
 	import * as m from '$lib/paraglide/messages.js';
 	import './layout.css';
@@ -10,6 +9,7 @@
 	import GreetingSheet from '$lib/components/GreetingSheet.svelte';
 	import InstallHint from '$lib/components/InstallHint.svelte';
 	import ServiceWorker from '$lib/components/ServiceWorker.svelte';
+	import SettingsSheet from '$lib/components/SettingsSheet.svelte';
 	import TourPlanner from '$lib/components/TourPlanner.svelte';
 	import WishlistSheet from '$lib/components/WishlistSheet.svelte';
 	import { locationMarks } from '$lib/stores/locationMarks.svelte';
@@ -20,6 +20,7 @@
 	onMount(initTelemetry);
 
 	let wishlistOpen = $state(false);
+	let settingsOpen = $state(false);
 
 	function openWishlist() {
 		wishlistOpen = true;
@@ -35,49 +36,38 @@
 <svelte:head><link rel="icon" href={favicon} /></svelte:head>
 
 <div class="flex min-h-dvh flex-col bg-base-100 text-base-content">
-	<header class="flex items-center justify-between border-b border-base-300/60 px-4 py-3">
-		<span class="text-lg font-semibold tracking-tight">{m.app_name()}</span>
-		<div class="flex items-center gap-3">
+	<header class="flex items-center justify-between gap-3 border-b border-base-300/60 px-4 py-2">
+		<span class="text-xl leading-tight font-bold tracking-tight">{m.app_name()}</span>
+		<div class="flex items-center gap-1">
 			<button
 				type="button"
-				class="wishlist-toggle btn relative btn-circle btn-ghost btn-sm"
+				class="relative flex min-w-16 flex-col items-center rounded-field px-2 py-1 text-sm font-medium hover:bg-base-200"
 				onclick={openWishlist}
 				aria-label={m.nav_wishlist()}
 			>
-				<span class="text-lg" aria-hidden="true">★</span>
+				<span class="text-2xl leading-none" aria-hidden="true">★</span>
+				<span>{m.nav_wishlist()}</span>
 				{#if locationMarks.wishlist.size > 0}
-					{#key locationMarks.wishlist.size}
-						<span
-							class="wishlist-count absolute -top-0.5 -right-0.5 flex h-4 min-w-4 items-center justify-center rounded-full bg-secondary px-1 text-[10px] font-bold text-secondary-content"
-						>
-							{locationMarks.wishlist.size}
-						</span>
-					{/key}
+					<span
+						class="absolute -top-0.5 right-0 flex h-5 min-w-5 items-center justify-center rounded-full bg-secondary px-1 text-xs font-bold text-secondary-content"
+					>
+						{locationMarks.wishlist.size}
+					</span>
 				{/if}
 			</button>
-			<!-- eslint-disable svelte/no-navigation-without-resolve -->
-			<a
-				href={localizeHref('/datenschutz')}
-				class="text-xs text-base-content/50 underline-offset-2 hover:underline"
+			<button
+				type="button"
+				class="flex min-w-16 flex-col items-center rounded-field px-2 py-1 text-sm font-medium hover:bg-base-200"
+				onclick={() => (settingsOpen = true)}
+				aria-label={m.settings_open()}
 			>
-				{m.privacy_link()}
-			</a>
-			<!-- eslint-enable svelte/no-navigation-without-resolve -->
-			<div class="join">
-				{#each locales as locale (locale)}
-					<a
-						href={localizeHref(page.url.pathname, { locale })}
-						class="btn join-item btn-xs {currentLocale() === locale ? 'btn-primary' : 'btn-ghost'}"
-						aria-current={currentLocale() === locale}
-					>
-						{locale.toUpperCase()}
-					</a>
-				{/each}
-			</div>
+				<span class="text-2xl leading-none" aria-hidden="true">⚙</span>
+				<span>{m.settings_open()}</span>
+			</button>
 		</div>
 	</header>
 
-	<main class="flex-1 pb-20">
+	<main class="flex-1 pb-28">
 		{@render children()}
 	</main>
 
@@ -86,6 +76,7 @@
 	<ServiceWorker />
 	<TourPlanner />
 	<WishlistSheet open={wishlistOpen} onclose={() => (wishlistOpen = false)} />
+	<SettingsSheet open={settingsOpen} onclose={() => (settingsOpen = false)} />
 
 	<nav
 		class="fixed inset-x-0 bottom-0 z-30 flex border-t border-base-300/60 bg-base-100/95 backdrop-blur"
@@ -95,12 +86,12 @@
 			{@const active = deLocalizeUrl(page.url).pathname === tab.href}
 			<a
 				href={localizeHref(tab.href)}
-				class="flex flex-1 flex-col items-center gap-0.5 py-2.5 text-xs {active
-					? 'text-primary'
-					: 'text-base-content/60'}"
+				class="flex min-h-16 flex-1 flex-col items-center justify-center gap-1 text-sm font-medium {active
+					? 'bg-primary/10 text-primary'
+					: 'text-base-content/80'}"
 				aria-current={active ? 'page' : undefined}
 			>
-				<span class="text-xl" aria-hidden="true">{tab.icon}</span>
+				<span class="text-2xl leading-none" aria-hidden="true">{tab.icon}</span>
 				{tab.label()}
 			</a>
 		{/each}

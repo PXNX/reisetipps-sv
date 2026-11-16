@@ -108,5 +108,13 @@
 	"gallery_next": "Nächstes Bild",
 	"gallery_counter": "Bild {index} von {total}",
 	"gallery_count": "{count} Bilder",
-	"gallery_swipe_hint": "Wischen oder die Pfeile nutzen, um durch die Bilder zu blättern."
+	"gallery_swipe_hint": "Wischen oder die Pfeile nutzen, um durch die Bilder zu blättern.",
+	"settings_open": "Einstellungen",
+	"settings_title": "Einstellungen",
+	"settings_text_size": "Schriftgröße",
+	"settings_text_hint": "Größere Schrift ist angenehmer zu lesen. Alles wird dadurch größer.",
+	"settings_text_normal": "Normal",
+	"settings_text_large": "Groß",
+	"settings_language": "Sprache",
+	"settings_about": "Persönliche Empfehlungen für Ausflüge rund um den Bodensee – zum Mitnehmen und auch offline."
 }

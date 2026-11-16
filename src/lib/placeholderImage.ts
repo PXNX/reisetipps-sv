@@ -1,5 +1,5 @@
 import type { Category } from './data/types';
-import { categoryIcons } from './categories';
+import { categoryIcons, fluentSvg } from './icons';
 
 const categoryGradients: Record<Category, [string, string]> = {
 	nature: ['#1f4d3a', '#62c3dd'],
@@ -23,7 +23,7 @@ const categoryGradients: Record<Category, [string, string]> = {
 export function placeholderImage(categories: Category[]): string {
 	const primary = categories[0] ?? 'nature';
 	const [from, to] = categoryGradients[primary];
-	const icon = categoryIcons[primary];
+	const icon = fluentSvg(categoryIcons[primary], 140);
 	const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="640" height="360" viewBox="0 0 640 360">
 <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
 <stop offset="0" stop-color="${from}"/><stop offset="1" stop-color="${to}"/>
@@ -31,7 +31,7 @@ export function placeholderImage(categories: Category[]): string {
 <rect width="640" height="360" fill="url(#g)"/>
 <circle cx="540" cy="90" r="120" fill="#ffffff" opacity="0.06"/>
 <circle cx="90" cy="300" r="160" fill="#000000" opacity="0.08"/>
-<text x="50%" y="54%" font-size="120" text-anchor="middle" dominant-baseline="middle">${icon}</text>
+<g transform="translate(250,110)" fill="#ffffff" opacity="0.9">${icon}</g>
 </svg>`;
 	return `data:image/svg+xml,${encodeURIComponent(svg)}`;
 }

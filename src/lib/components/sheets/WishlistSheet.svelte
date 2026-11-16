@@ -12,7 +12,8 @@
 	import { trackEvent } from '$lib/telemetry';
 	import { locations } from '$lib/data/locations';
 	import type { Location } from '$lib/data/types';
-	import { categoryIcons } from '$lib/categories';
+	import { categoryIcons } from '$lib/icons';
+	import Icon from '../ui/Icon.svelte';
 	import { placeholderImage } from '$lib/placeholderImage';
 	import BottomSheet from './BottomSheet.svelte';
 
@@ -71,7 +72,7 @@
 						>
 							<span class="block truncate text-base font-semibold">{localize(location.name)}</span>
 							<span class="block truncate text-sm text-base-content/80"
-								>{categoryIcons[location.categories[0] ?? 'nature']} {location.nearestStation}</span
+								>{location.nearestStation}</span
 							>
 						</button>
 						<button
@@ -80,7 +81,7 @@
 							aria-label={m.wishlist_remove()}
 							onclick={() => remove(location)}
 						>
-							<span aria-hidden="true">✕</span>
+							<Icon name="close" />
 							{m.wishlist_remove()}
 						</button>
 					</li>

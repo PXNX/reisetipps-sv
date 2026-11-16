@@ -1,7 +1,9 @@
 <script lang="ts">
 	import { cyclingMapUrl, googleMapsUrl, hikingMapUrl, type Location } from '$lib/data/types';
 	import { localize } from '$lib/i18n';
-	import { categoryIcons, categoryLabel } from '$lib/categories';
+	import { categoryLabel } from '$lib/categories';
+	import { locationIconName, categoryIcons } from '$lib/icons';
+	import Icon from '../ui/Icon.svelte';
 	import { locationMarks } from '$lib/stores/locationMarks.svelte';
 	import { tour } from '$lib/stores/tour.svelte';
 	import { placeholderImage } from '$lib/placeholderImage';
@@ -64,17 +66,22 @@
 		<div class="mt-3 flex flex-wrap gap-2">
 			{#each location.categories as category, i (category)}
 				<span class="badge gap-1 badge-outline badge-lg badge-primary">
-					<span aria-hidden="true"
-						>{i === 0 && location.icon ? location.icon : categoryIcons[category]}</span
-					>
+					<Icon
+						name={i === 0 && location.icon ? locationIconName(location) : categoryIcons[category]}
+						class="text-lg"
+					/>
 					{categoryLabel(category)}
 				</span>
 			{/each}
 			{#if visited}
-				<span class="badge badge-lg badge-success">✓ {m.visited_badge()}</span>
+				<span class="badge gap-1 badge-lg badge-success"
+					><Icon name="check" /> {m.visited_badge()}</span
+				>
 			{/if}
 			{#if wishlisted}
-				<span class="badge badge-lg badge-secondary">★ {m.wishlist_badge()}</span>
+				<span class="badge gap-1 badge-lg badge-secondary"
+					><Icon name="star-filled" /> {m.wishlist_badge()}</span
+				>
 			{/if}
 		</div>
 	</div>
@@ -108,7 +115,7 @@
 			class="btn w-full justify-start gap-3 btn-outline btn-lg"
 			onclick={() => openLink('maps')}
 		>
-			<span class="w-8 text-2xl" aria-hidden="true">🧭</span>
+			<Icon name="map" class="w-6" size={24} />
 			<span class="flex flex-col items-start leading-tight">
 				<span>{m.link_maps()}</span>
 				<span class="text-sm font-normal">{m.link_maps_desc()}</span>
@@ -121,7 +128,7 @@
 			class="btn w-full justify-start gap-3 btn-outline btn-lg"
 			onclick={() => openLink('hiking')}
 		>
-			<span class="w-8 text-2xl" aria-hidden="true">🥾</span>
+			<Icon name="walk" class="w-6" size={24} />
 			<span class="flex flex-col items-start leading-tight">
 				<span>{m.link_hiking()}</span>
 				<span class="text-sm font-normal">{m.link_hiking_desc()}</span>
@@ -134,7 +141,7 @@
 			class="btn w-full justify-start gap-3 btn-outline btn-lg"
 			onclick={() => openLink('cycling')}
 		>
-			<span class="w-8 text-2xl" aria-hidden="true">🚴</span>
+			<Icon name="bike" class="w-6" size={24} />
 			<span class="flex flex-col items-start leading-tight">
 				<span>{m.link_cycling()}</span>
 				<span class="text-sm font-normal">{m.link_cycling_desc()}</span>
@@ -157,7 +164,7 @@
 
 	<div class="space-y-3 border-t border-base-300 pt-4">
 		<button class="btn w-full btn-lg btn-primary" onclick={toggleTour} aria-pressed={inTour}>
-			{inTour ? `✓ ${m.tour_in()}` : `➕ ${m.tour_add()}`}
+			{inTour ? m.tour_in() : m.tour_add()}
 		</button>
 		<div class="grid grid-cols-1 gap-3 sm:grid-cols-2">
 			<button
@@ -165,14 +172,14 @@
 				onclick={toggleVisited}
 				aria-pressed={visited}
 			>
-				{visited ? `✓ ${m.unmark_visited()}` : m.mark_visited()}
+				{visited ? m.unmark_visited() : m.mark_visited()}
 			</button>
 			<button
 				class="btn btn-lg {wishlisted ? 'btn-secondary' : 'btn-outline'}"
 				onclick={toggleWishlist}
 				aria-pressed={wishlisted}
 			>
-				{wishlisted ? `★ ${m.unmark_wishlist()}` : `☆ ${m.mark_wishlist()}`}
+				{wishlisted ? m.unmark_wishlist() : m.mark_wishlist()}
 			</button>
 		</div>
 	</div>

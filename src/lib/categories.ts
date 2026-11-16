@@ -16,20 +16,6 @@ export const allCategories: Category[] = [
 ];
 export const allDurations: Duration[] = ['short', 'medium', 'long'];
 
-export const categoryIcons: Record<Category, string> = {
-	nature: '🌿',
-	culture: '🏛️',
-	culinary: '🍴',
-	history: '🏺',
-	technology: '⚙️',
-	viewpoint: '🌄',
-	cheese: '🧀',
-	butcher: '🥩',
-	ruins: '🏰',
-	drinks: '🍷',
-	sweets: '🍦'
-};
-
 export function categoryLabel(category: Category): string {
 	switch (category) {
 		case 'nature':

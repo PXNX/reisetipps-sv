@@ -12,6 +12,7 @@
 	import { useRegisterSW } from 'virtual:pwa-register/svelte';
 	import { trackEvent } from '$lib/telemetry';
 	import BottomSheet from './BottomSheet.svelte';
+	import Icon from '../ui/Icon.svelte';
 
 	const { needRefresh, updateServiceWorker } = useRegisterSW({ immediate: true });
 
@@ -60,7 +61,7 @@
 <!-- Not dismissible: an outdated build stays in place until the reader taps the button. -->
 <BottomSheet {open} dismissible={false} title={m.update_app_title()}>
 	<div class="flex flex-col items-center gap-4 pt-2 text-center">
-		<span class="text-4xl" aria-hidden="true">🌊</span>
+		<Icon name="refresh" class="text-primary" size={40} />
 		<p class="leading-relaxed text-base-content/80">{m.update_app_body()}</p>
 		<button class="btn w-full btn-lg btn-primary" onclick={update} disabled={updating}>
 			{updating ? m.updating() : m.update_app_action()}

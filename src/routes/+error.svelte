@@ -3,6 +3,7 @@
 	import { page } from '$app/state';
 	import { localizeHref } from '$lib/paraglide/runtime';
 	import { trackEvent } from '$lib/telemetry';
+	import Icon from '$lib/components/ui/Icon.svelte';
 	import * as m from '$lib/paraglide/messages.js';
 
 	const status = $derived(page.status);
@@ -20,7 +21,7 @@
 
 <div class="flex min-h-dvh items-center justify-center bg-base-100 px-6 py-10 text-base-content">
 	<div class="w-full max-w-md space-y-5 text-center">
-		<div class="text-5xl" aria-hidden="true">🧭</div>
+		<div class="text-primary"><Icon name="compass" size={48} /></div>
 		<p class="text-sm font-semibold tracking-wide text-primary uppercase">
 			{m.error_code({ status })}
 		</p>
@@ -36,7 +37,7 @@
 		<div class="grid gap-3 pt-2">
 			<!-- eslint-disable-next-line svelte/no-navigation-without-resolve -- localized internal link -->
 			<a
-				class="btn btn-primary btn-lg"
+				class="btn btn-lg btn-primary"
 				href={localizeHref('/')}
 				onclick={() => trackEvent('error_home_clicked', { status })}
 			>

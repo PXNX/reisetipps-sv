@@ -12,6 +12,7 @@
 	import WishlistSheet from '$lib/components/sheets/WishlistSheet.svelte';
 	import { locationMarks } from '$lib/stores/locationMarks.svelte';
 	import { trackEvent } from '$lib/telemetry';
+	import Icon from '$lib/components/ui/Icon.svelte';
 
 	let { children } = $props();
 
@@ -42,7 +43,7 @@
 			onclick={openWishlist}
 			aria-label={m.nav_wishlist()}
 		>
-			<span class="text-xl leading-none" aria-hidden="true">★</span>
+			<Icon name="star-filled" class="text-xl" />
 			<span class="hidden sm:inline">{m.nav_wishlist()}</span>
 			{#if locationMarks.wishlist.size > 0}
 				<span
@@ -61,7 +62,7 @@
 			}}
 			aria-label={m.settings_open()}
 		>
-			<span class="text-xl leading-none" aria-hidden="true">⚙</span>
+			<Icon name="settings" class="text-xl" />
 			<span class="hidden sm:inline">{m.settings_open()}</span>
 		</button>
 	</header>

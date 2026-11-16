@@ -11,6 +11,7 @@
 	import { trackEvent } from '$lib/telemetry';
 	import { installHint } from '$lib/stores/installHint.svelte';
 	import BottomSheet from './BottomSheet.svelte';
+	import Icon from '../ui/Icon.svelte';
 
 	interface BeforeInstallPromptEvent extends Event {
 		prompt: () => Promise<void>;
@@ -80,7 +81,7 @@
 
 <BottomSheet open={installHint.open} onclose={dismiss} title={m.install_sheet_title()}>
 	<div class="flex flex-col gap-4 pt-2">
-		<span class="self-center text-4xl" aria-hidden="true">📲</span>
+		<Icon name="download" class="self-center text-primary" size={40} />
 		<p class="leading-relaxed text-base-content/80">
 			{isIos ? m.install_hint_ios() : m.install_hint_body()}
 		</p>

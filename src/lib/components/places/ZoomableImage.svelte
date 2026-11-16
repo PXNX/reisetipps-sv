@@ -1,6 +1,7 @@
 <script lang="ts">
 	import * as m from '$lib/paraglide/messages.js';
 	import { trackEvent } from '$lib/telemetry';
+	import Icon from '../ui/Icon.svelte';
 
 	interface Slide {
 		src: string;
@@ -144,7 +145,7 @@
 						onclick={() => show(index - 1)}
 						aria-label={m.gallery_previous()}
 					>
-						<span aria-hidden="true">‹</span>
+						<Icon name="chevron-left" />
 						{m.gallery_previous()}
 					</button>
 					<span class="px-1 text-base text-white tabular-nums">
@@ -157,7 +158,7 @@
 						aria-label={m.gallery_next()}
 					>
 						{m.gallery_next()}
-						<span aria-hidden="true">›</span>
+						<Icon name="chevron-right" />
 					</button>
 				</div>
 			{/if}
@@ -167,7 +168,7 @@
 				onclick={close}
 				aria-label={m.close()}
 			>
-				<span aria-hidden="true">✕</span>
+				<Icon name="close" />
 				{m.close()}
 			</button>
 		</div>

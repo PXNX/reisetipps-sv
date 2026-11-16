@@ -1,14 +1,10 @@
 <script lang="ts">
 	/** All recommendation choices, kept in a sheet so the map itself stays calm. */
 	import * as m from '$lib/paraglide/messages.js';
-	import {
-		allCategories,
-		allDurations,
-		categoryIcons,
-		categoryLabel,
-		durationLabel
-	} from '$lib/categories';
+	import Icon from '../ui/Icon.svelte';
+	import { allCategories, allDurations, categoryLabel, durationLabel } from '$lib/categories';
 	import type { Category, Duration } from '$lib/data/types';
+	import { categoryIcons } from '$lib/icons';
 	import { filters } from '$lib/stores/filters.svelte';
 	import { trackEvent } from '$lib/telemetry';
 	import BottomSheet from './BottomSheet.svelte';
@@ -60,9 +56,7 @@
 						aria-pressed={selected}
 						onclick={() => toggleCategory(category)}
 					>
-						<span class="text-lg leading-none" aria-hidden="true"
-							>{selected ? '✓' : categoryIcons[category]}</span
-						>
+						<Icon name={selected ? 'check' : categoryIcons[category]} class="text-lg" />
 						<span class="leading-tight">{categoryLabel(category)}</span>
 					</button>
 				{/each}
@@ -90,7 +84,7 @@
 			{#if origin}
 				<div class="rounded-field bg-base-300/70 p-3">
 					<p class="text-sm">
-						<span aria-hidden="true">📍</span>
+						<Icon name="location" />
 						{m.location_set()}: {origin[0].toFixed(2)}, {origin[1].toFixed(2)}
 					</p>
 					<button class="btn mt-2 w-full btn-outline" onclick={onclearLocation}>
@@ -99,7 +93,7 @@
 				</div>
 			{:else}
 				<button class="btn w-full gap-2 btn-outline" onclick={onuseLocation} disabled={locating}>
-					<span aria-hidden="true">📍</span>
+					<Icon name="location" />
 					{locating ? m.locating() : m.use_my_location()}
 				</button>
 				<p class="mt-1 text-sm text-base-content/80">{m.location_optional_hint()}</p>

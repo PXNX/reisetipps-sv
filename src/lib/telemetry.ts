@@ -1,29 +1,28 @@
 import { browser, dev } from '$app/environment';
-import { inject, track } from '@vercel/analytics';
+import { injectAnalytics, track } from '@vercel/analytics/sveltekit';
 
 /**
- * Anonymous, cookieless usage counting. Vercel's script is served from this app's own domain,
- * stores nothing on the device and only produces aggregate numbers — it never identifies a
- * reader and never sees the wishlist, visited marks or a position. Nothing is sent from a local
- * dev build, where the endpoint does not exist.
+ * Anonymous, cookieless usage counting. The SvelteKit helper sends a page view for every client-side
+ * navigation with the route id, and disables the script's own pushState tracking so we never count a
+ * route twice. It also sets up the event queue immediately, so interactions during mount are kept.
+ * The script comes from this app's own domain, stores nothing on the device, and never sees the
+ * wishlist, visited marks or a position. Nothing is sent from a local dev build.
  */
-function enabled(): boolean {
-	return browser && !dev;
-}
+const active = browser && !dev;
 
-/** Starts the page-view counting. Call once, in the root layout. */
-export function initTelemetry() {
-	if (!enabled()) return;
-	inject({ mode: 'production' });
+if (active) {
+	injectAnalytics({ mode: 'production' });
 }
 
 export type TelemetryProperties = Record<string, string | number | boolean | null>;
 
-/**
- * Counts one interaction, e.g. which feature was opened. The values are feature facts (a place
- * id, a travel mode), never anything that points back to a person.
- */
+/** Counts one interaction, e.g. which feature was opened. Values are feature facts only. */
 export function trackEvent(name: string, properties: TelemetryProperties = {}) {
-	if (!enabled()) return;
+	if (dev && browser) {
+		// In development, show what would be sent without contacting Vercel.
+		console.debug('[telemetry]', name, properties);
+		return;
+	}
+	if (!active) return;
 	track(name, properties);
 }

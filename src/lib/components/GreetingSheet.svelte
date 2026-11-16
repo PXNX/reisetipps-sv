@@ -2,6 +2,7 @@
 	import { browser } from '$app/environment';
 	import { onMount } from 'svelte';
 	import { localizeHref } from '$lib/paraglide/runtime';
+	import { trackEvent } from '$lib/telemetry';
 	import * as m from '$lib/paraglide/messages.js';
 	import BottomSheet from './BottomSheet.svelte';
 	import bodenseeLogo from '$lib/assets/bodensee-logo.svg';
@@ -19,6 +20,7 @@
 
 	function close() {
 		open = false;
+		trackEvent('greeting_dismissed', {});
 	}
 </script>
 

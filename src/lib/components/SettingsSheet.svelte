@@ -9,6 +9,7 @@
 	import { currentLocale } from '$lib/i18n';
 	import { textSize } from '$lib/stores/textSize.svelte';
 	import { installHint } from '$lib/stores/installHint.svelte';
+	import { trackEvent } from '$lib/telemetry';
 	import * as m from '$lib/paraglide/messages.js';
 	import BottomSheet from './BottomSheet.svelte';
 
@@ -34,7 +35,10 @@
 						? 'btn-primary'
 						: 'btn-outline'}"
 					aria-pressed={textSize.value === 'normal'}
-					onclick={() => textSize.set('normal')}
+					onclick={() => {
+						textSize.set('normal');
+						trackEvent('text_size_changed', { size: 'normal' });
+					}}
 				>
 					<span class="text-xl leading-none" aria-hidden="true">A</span>
 					<span class="text-sm">{m.settings_text_normal()}</span>
@@ -45,7 +49,10 @@
 						? 'btn-primary'
 						: 'btn-outline'}"
 					aria-pressed={textSize.value === 'large'}
-					onclick={() => textSize.set('large')}
+					onclick={() => {
+						textSize.set('large');
+						trackEvent('text_size_changed', { size: 'large' });
+					}}
 				>
 					<span class="text-3xl leading-none" aria-hidden="true">A</span>
 					<span class="text-sm">{m.settings_text_large()}</span>
@@ -62,6 +69,7 @@
 						href={localizeHref(page.url.pathname, { locale })}
 						class="btn join-item flex-1 {currentLocale() === locale ? 'btn-primary' : 'btn-outline'}"
 						aria-current={currentLocale() === locale}
+						onclick={() => trackEvent('language_changed', { locale })}
 					>
 						{locale === 'de' ? 'Deutsch' : 'English'}
 					</a>
@@ -76,6 +84,7 @@
 				onclick={() => {
 					onclose();
 					installHint.show();
+					trackEvent('install_opened_from_settings', {});
 				}}
 			>
 				<span aria-hidden="true">📲</span>

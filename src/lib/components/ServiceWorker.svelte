@@ -10,6 +10,7 @@
 	import { onMount } from 'svelte';
 	import * as m from '$lib/paraglide/messages.js';
 	import { useRegisterSW } from 'virtual:pwa-register/svelte';
+	import { trackEvent } from '$lib/telemetry';
 	import BottomSheet from './BottomSheet.svelte';
 
 	const { needRefresh, updateServiceWorker } = useRegisterSW({ immediate: true });
@@ -43,6 +44,7 @@
 	});
 
 	async function update() {
+		trackEvent('app_update_requested', {});
 		updating = true;
 		try {
 			await updateServiceWorker();

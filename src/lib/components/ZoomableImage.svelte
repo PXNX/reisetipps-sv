@@ -1,5 +1,6 @@
 <script lang="ts">
 	import * as m from '$lib/paraglide/messages.js';
+	import { trackEvent } from '$lib/telemetry';
 
 	interface Slide {
 		src: string;
@@ -30,6 +31,11 @@
 
 	function show(next: number) {
 		index = (next + slides.length) % slides.length;
+	}
+
+	function openGallery() {
+		open = true;
+		trackEvent('gallery_opened', { photos: slides.length });
 	}
 
 	function close() {
@@ -72,16 +78,16 @@
 <button
 	type="button"
 	class="relative block w-full cursor-zoom-in"
-	onclick={() => (open = true)}
+	onclick={openGallery}
 	aria-label={alt}
 >
 	<img {src} {alt} loading="lazy" class="w-full rounded-box object-cover {className}" />
 	{#if slides.length > 1}
 		<span
-			class="absolute right-2 bottom-2 flex items-center gap-1 rounded-full bg-black/60 px-2 py-0.5 text-xs font-medium text-white"
+			class="absolute right-2 bottom-2 flex items-center gap-1 rounded-full bg-black/70 px-3 py-1 text-sm font-semibold text-white"
 		>
 			<svg
-				class="h-3.5 w-3.5"
+				class="h-4 w-4"
 				viewBox="0 0 24 24"
 				fill="none"
 				stroke="currentColor"
@@ -108,7 +114,7 @@
 	>
 		<button
 			type="button"
-			class="absolute inset-0 cursor-zoom-out bg-black/80"
+			class="absolute inset-0 cursor-zoom-out bg-black/85"
 			onclick={close}
 			aria-label={m.close()}
 		></button>
@@ -120,46 +126,49 @@
 					<img
 						src={slides[index].src}
 						alt={slides[index].alt}
-						class="gallery-fade max-h-[70dvh] w-auto max-w-full rounded-box object-contain shadow-2xl"
+						class="gallery-fade max-h-[65dvh] w-auto max-w-full rounded-box object-contain shadow-2xl"
 					/>
 				{/key}
 				{#if slides[index].attribution}
-					<figcaption class="mt-2 text-center text-xs text-white/70">
+					<figcaption class="mt-2 text-center text-sm text-white/80">
 						{m.image_credit()}: {slides[index].attribution}
 					</figcaption>
 				{/if}
 			</figure>
 			{#if slides.length > 1}
 				<p class="sr-only">{m.gallery_swipe_hint()}</p>
-				<div class="absolute bottom-4 flex items-center gap-4">
+				<div class="absolute bottom-4 flex items-center gap-2">
 					<button
 						type="button"
-						class="btn btn-circle btn-ghost text-white"
+						class="btn btn-lg gap-1 text-white"
 						onclick={() => show(index - 1)}
 						aria-label={m.gallery_previous()}
 					>
-						‹
+						<span aria-hidden="true">‹</span>
+						{m.gallery_previous()}
 					</button>
-					<span class="text-sm text-white/80 tabular-nums">
+					<span class="px-1 text-base text-white tabular-nums">
 						{m.gallery_counter({ index: index + 1, total: slides.length })}
 					</span>
 					<button
 						type="button"
-						class="btn btn-circle btn-ghost text-white"
+						class="btn btn-lg gap-1 text-white"
 						onclick={() => show(index + 1)}
 						aria-label={m.gallery_next()}
 					>
-						›
+						{m.gallery_next()}
+						<span aria-hidden="true">›</span>
 					</button>
 				</div>
 			{/if}
 			<button
 				type="button"
-				class="btn absolute top-3 right-3 btn-circle btn-ghost text-white"
+				class="btn btn-lg absolute top-3 right-3 gap-2 text-white"
 				onclick={close}
 				aria-label={m.close()}
 			>
-				✕
+				<span aria-hidden="true">✕</span>
+				{m.close()}
 			</button>
 		</div>
 	</div>

@@ -125,5 +125,8 @@
 	"home_result_heading": "My suggestion for you",
 	"home_choose_heading": "Or choose for yourself",
 	"home_choose_hint": "You can pick several things — or nothing at all. Either way works.",
-	"home_filter_cta": "Show me a matching place"
+	"home_filter_cta": "Show me a matching place",
+	"link_maps_desc": "See the route and address",
+	"link_hiking_desc": "Trails and elevation on a map",
+	"link_cycling_desc": "Cycle routes and traffic"
 }

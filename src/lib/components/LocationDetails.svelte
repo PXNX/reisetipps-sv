@@ -25,6 +25,15 @@
 		trackEvent('wishlist_toggle', { action: wishlisted ? 'remove' : 'add', place: location.id });
 	}
 
+	function toggleTour() {
+		tour.toggle(location.id);
+		trackEvent('tour_toggle', { action: inTour ? 'remove' : 'add', place: location.id });
+	}
+
+	function openLink(kind: 'maps' | 'hiking' | 'cycling' | 'website') {
+		trackEvent('place_link_opened', { kind, place: location.id });
+	}
+
 	const imageSrc = $derived(location.image?.url ?? placeholderImage(location.categories));
 	const imageAlt = $derived(
 		location.image ? localize(location.image.alt) : localize(location.name)
@@ -39,24 +48,22 @@
 	);
 </script>
 
-<div class="space-y-4">
-	<figure class="-mx-1">
+<div class="space-y-5">
+	<figure>
 		<ZoomableImage
 			src={imageSrc}
 			alt={imageAlt}
 			attribution={location.image?.attribution}
 			gallery={photos}
-			class="h-40 sm:h-52"
+			class="h-56 sm:h-72"
 		/>
 	</figure>
 
 	<div>
-		<div class="flex items-start justify-between gap-2">
-			<h2 class="text-2xl font-semibold">{localize(location.name)}</h2>
-		</div>
-		<div class="mt-2 flex flex-wrap gap-1.5">
+		<h2 class="text-3xl leading-tight font-bold">{localize(location.name)}</h2>
+		<div class="mt-3 flex flex-wrap gap-2">
 			{#each location.categories as category, i (category)}
-				<span class="badge gap-1 badge-outline badge-primary">
+				<span class="badge badge-lg gap-1 badge-outline badge-primary">
 					<span aria-hidden="true"
 						>{i === 0 && location.icon ? location.icon : categoryIcons[category]}</span
 					>
@@ -64,119 +71,113 @@
 				</span>
 			{/each}
 			{#if visited}
-				<span class="badge gap-1 badge-success">✓ {m.visited_badge()}</span>
+				<span class="badge badge-lg badge-success">✓ {m.visited_badge()}</span>
 			{/if}
 			{#if wishlisted}
-				<span class="badge gap-1 badge-secondary">★ {m.wishlist_badge()}</span>
+				<span class="badge badge-lg badge-secondary">★ {m.wishlist_badge()}</span>
 			{/if}
 		</div>
 	</div>
 
-	<p class="leading-relaxed text-base-content/90">{localize(location.description)}</p>
+	<p class="text-lg leading-relaxed">{localize(location.description)}</p>
 
-	<div class="rounded-box bg-base-300/60 p-3">
-		<p class="text-xs font-semibold tracking-wide text-secondary uppercase">{m.personal_tip()}</p>
-		<p class="mt-1 text-sm">{localize(location.tip)}</p>
+	<div class="rounded-box border-l-4 border-secondary bg-base-300/80 p-4">
+		<p class="text-sm font-bold tracking-wide text-secondary uppercase">{m.personal_tip()}</p>
+		<p class="mt-1 text-lg leading-relaxed">{localize(location.tip)}</p>
 	</div>
 
-	<dl class="grid grid-cols-2 gap-3 text-sm">
-		<div>
-			<dt class="text-base-content/60">{m.nearest_station()}</dt>
-			<dd>{location.nearestStation}</dd>
+	<dl class="divide-y divide-base-300 rounded-box border border-base-300">
+		<div class="flex flex-wrap items-baseline justify-between gap-1 px-4 py-3">
+			<dt class="text-base text-base-content/75">{m.nearest_station()}</dt>
+			<dd class="text-lg font-semibold">{location.nearestStation}</dd>
 		</div>
 		{#if location.openingHours}
-			<div>
-				<dt class="text-base-content/60">{m.opening_hours()}</dt>
-				<dd>{localize(location.openingHours)}</dd>
+			<div class="flex flex-wrap items-baseline justify-between gap-1 px-4 py-3">
+				<dt class="text-base text-base-content/75">{m.opening_hours()}</dt>
+				<dd class="text-lg font-semibold">{localize(location.openingHours)}</dd>
 			</div>
 		{/if}
 	</dl>
 
 	<!-- eslint-disable svelte/no-navigation-without-resolve -- these are external URLs, not SvelteKit routes -->
-	<div class="grid grid-cols-3 gap-2">
+	<div class="space-y-3">
 		<a
 			href={googleMapsUrl(location)}
 			target="_blank"
 			rel="noreferrer"
-			class="btn h-auto flex-col gap-1 btn-outline py-2"
+			class="btn btn-outline btn-lg w-full justify-start gap-3"
+			onclick={() => openLink('maps')}
 		>
-			<span class="text-lg" aria-hidden="true">🧭</span>
-			<span class="text-xs">{m.link_maps()}</span>
+			<span class="w-8 text-2xl" aria-hidden="true">🧭</span>
+			<span class="flex flex-col items-start leading-tight">
+				<span>{m.link_maps()}</span>
+				<span class="text-sm font-normal">{m.link_maps_desc()}</span>
+			</span>
 		</a>
 		<a
 			href={hikingMapUrl(location)}
 			target="_blank"
 			rel="noreferrer"
-			class="btn h-auto flex-col gap-1 btn-outline py-2"
+			class="btn btn-outline btn-lg w-full justify-start gap-3"
+			onclick={() => openLink('hiking')}
 		>
-			<span class="text-lg" aria-hidden="true">🥾</span>
-			<span class="text-xs">{m.link_hiking()}</span>
+			<span class="w-8 text-2xl" aria-hidden="true">🥾</span>
+			<span class="flex flex-col items-start leading-tight">
+				<span>{m.link_hiking()}</span>
+				<span class="text-sm font-normal">{m.link_hiking_desc()}</span>
+			</span>
 		</a>
 		<a
 			href={cyclingMapUrl(location)}
 			target="_blank"
 			rel="noreferrer"
-			class="btn h-auto flex-col gap-1 btn-outline py-2"
+			class="btn btn-outline btn-lg w-full justify-start gap-3"
+			onclick={() => openLink('cycling')}
 		>
-			<span class="text-lg" aria-hidden="true">🚴</span>
-			<span class="text-xs">{m.link_cycling()}</span>
+			<span class="w-8 text-2xl" aria-hidden="true">🚴</span>
+			<span class="flex flex-col items-start leading-tight">
+				<span>{m.link_cycling()}</span>
+				<span class="text-sm font-normal">{m.link_cycling_desc()}</span>
+			</span>
 		</a>
 	</div>
 
 	{#if location.url}
-		<a href={location.url} target="_blank" rel="noreferrer" class="link text-sm link-primary">
+		<a
+			href={location.url}
+			target="_blank"
+			rel="noreferrer"
+			class="link link-primary inline-block text-base font-semibold"
+			onclick={() => openLink('website')}
+		>
 			{m.more_info()} →
 		</a>
 	{/if}
 	<!-- eslint-enable svelte/no-navigation-without-resolve -->
 
-	<div class="flex gap-2">
+	<div class="space-y-3 border-t border-base-300 pt-4">
 		<button
-			class="btn flex-1 btn-sm {inTour ? 'btn-primary' : 'btn-outline'}"
-			onclick={() => tour.toggle(location.id)}
+			class="btn btn-primary btn-lg w-full"
+			onclick={toggleTour}
+			aria-pressed={inTour}
 		>
 			{inTour ? `✓ ${m.tour_in()}` : `➕ ${m.tour_add()}`}
 		</button>
-	</div>
-
-	<div class="flex gap-2">
-		<button
-			class="btn flex-1 btn-sm {visited ? 'btn-success' : 'btn-outline'}"
-			onclick={toggleVisited}
-		>
-			{visited ? `✓ ${m.visited_badge()}` : m.mark_visited()}
-		</button>
-		<button
-			class="btn flex-1 btn-sm {wishlisted ? 'btn-secondary' : 'btn-outline'}"
-			onclick={toggleWishlist}
-		>
-			{#key wishlisted}
-				<span class="wish-twinkle"
-					>{wishlisted ? `★ ${m.wishlist_badge()}` : `☆ ${m.mark_wishlist()}`}</span
-				>
-			{/key}
-		</button>
+		<div class="grid grid-cols-1 gap-3 sm:grid-cols-2">
+			<button
+				class="btn btn-lg {visited ? 'btn-success' : 'btn-outline'}"
+				onclick={toggleVisited}
+				aria-pressed={visited}
+			>
+				{visited ? `✓ ${m.unmark_visited()}` : m.mark_visited()}
+			</button>
+			<button
+				class="btn btn-lg {wishlisted ? 'btn-secondary' : 'btn-outline'}"
+				onclick={toggleWishlist}
+				aria-pressed={wishlisted}
+			>
+				{wishlisted ? `★ ${m.unmark_wishlist()}` : `☆ ${m.mark_wishlist()}`}
+			</button>
+		</div>
 	</div>
 </div>
-
-<style>
-	/* The star twirls every time the wish list state flips. */
-	.wish-twinkle {
-		display: inline-block;
-		animation: wish-twinkle 0.4s ease-out;
-	}
-
-	@keyframes wish-twinkle {
-		0% {
-			transform: scale(0.6) rotate(-14deg);
-			opacity: 0.4;
-		}
-		60% {
-			transform: scale(1.18) rotate(5deg);
-		}
-		100% {
-			transform: scale(1) rotate(0deg);
-			opacity: 1;
-		}
-	}
-</style>

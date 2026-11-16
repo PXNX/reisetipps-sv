@@ -125,5 +125,8 @@
 	"home_result_heading": "Mein Vorschlag für dich",
 	"home_choose_heading": "Oder wähle selbst",
 	"home_choose_hint": "Du kannst mehrere Dinge auswählen – oder nichts. Dann überrasche ich dich.",
-	"home_filter_cta": "Passenden Ort zeigen"
+	"home_filter_cta": "Passenden Ort zeigen",
+	"link_maps_desc": "Route und Adresse anzeigen",
+	"link_hiking_desc": "Wanderwege und Höhenunterschiede",
+	"link_cycling_desc": "Radroute und Verkehrslage"
 }

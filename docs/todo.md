@@ -18,3 +18,41 @@
 - [ ] Meckatzer Bräustüble: genaue Öffnungszeiten der Gastronomie nicht ermittelt – im Eintrag stehen nur die Fanshop-Zeiten (Di–Sa 11:00–16:30).
 - [ ] Bauernhaus-Museum Wolfegg: Öffnungszeiten von der Website übernommen (Saison 19. März – 11. November); Saisonjahr prüfen.
 - [ ] Bildnachweise der neuen Einträge sind Platzhalter im Sinne der Rechteprüfung – bei Gelegenheit gegen die finalen Wikimedia-Commons-Angaben verifizieren.
+
+## Ohne Foto (Recherche, Stand 11/2026)
+
+Für diese 33 Orte gibt es keine frei nutzbaren, eindeutig zuzuordnenden Fotos. Sie zeigen weiterhin das generierte Platzhalterbild. Bitte nur echte, lizenzierte Bilder nachtragen – keine generischen Motive, die einen anderen Ort vortäuschen.
+
+- Open Air Kino Wasserburg (`open-air-kino-wasserburg`)
+- Open Air Kino im Strandbad Eichwald (`open-air-kino-lindau`)
+- Bergmetzgerei Fesslerhof (`fesslerhof-eichenberg`)
+- Alma Käslädele Hörbranz (`alma-kaeslaedele-hoerbranz`)
+- Streitelsfingen (`streitelsfingen`)
+- Weißensberger Halde (`weissensberger-halde`)
+- Organic Distillery Friedrichshafen (`organic-distillery-friedrichshafen`)
+- Obst- und Beerenhof Pfleghaar (`obst-und-beerenhof-pfleghaar`)
+- Kleines Café (`kleines-cafe`)
+- La Dolce Vita Eis-Manufaktur Lochau (`la-dolce-vita-lochau`)
+- Metzgerei Giray (`metzgerei-giray`)
+- Acapulco (`acapulco-friedrichshafen`)
+- Cafe Confiserie Höpker (`cafe-hoepker`)
+- Webers Backstube (`webers-backstube-friedrichshafen`)
+- Backhaus Mahl (`backhaus-mahl-ueberlingen`)
+- Winzerfest Nonnenhorn (`winzerfest-nonnenhorn`)
+- Landmetzgerei Eugen Schädler (`landmetzgerei-schaedler-oberlangnau`)
+- Weingut Kress (`weingut-kress-ueberlingen`)
+- Patrizias Schoggiparadies (`schoggiparadies-riehen`)
+- Restaurant Grüner Baum, Moos (`gruener-baum-moos`)
+- Weingut Teresa Deufel (`weingut-teresa-deufel`)
+- Seehalde Birnau (`seehalde-birnau`)
+- Schinkenstadl Waldburger (`waldburger-schinken`)
+- Walderlebnispfad Möggers (`walderlebnispfad-moeggers`)
+- Pizzeria Lindo (`pizzeria-lindo-lindau`)
+- La Gondola Nonnenhorn (`la-gondola-nonnenhorn`)
+- Langenargen & Maurischer Kiosk (`langenargen`)
+- Open Air Kino Hagnau (`open-air-kino-hagnau`)
+- KommproBier Langenargen (`kommprobier-langenargen`)
+- Freibad Aquamarin Wasserburg (`freibad-aquamarin-wasserburg`)
+- Gasthaus zum Rad (`gasthaus-zum-rad-aulendorf`)
+- Bisongehege am Hofgut Bodenwald (`bisongehege-bodenwald`)
+- Obsthof Weber Wildberg (`obsthof-weber`)

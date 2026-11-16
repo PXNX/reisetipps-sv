@@ -102,7 +102,7 @@
 	{/if}
 
 	<div
-		class="absolute top-12 right-2 z-[1000] flex gap-1 rounded-field bg-base-200/95 p-1 shadow-md"
+		class="absolute top-1/3 right-2 z-[1000] flex -translate-y-1/2 flex-col gap-1 rounded-field bg-base-200/95 p-1 shadow-md"
 		role="group"
 		aria-label={m.map_layers()}
 	>
@@ -152,6 +152,10 @@
 	}
 	:global(.map-pin-highlight span) {
 		animation: pin-pulse 1.8s ease-in-out infinite;
+	}
+	/* Leave room for the floating header and search pill. */
+	:global(.leaflet-top.leaflet-left) {
+		top: 9rem;
 	}
 	:global(.leaflet-control-zoom a) {
 		width: 46px !important;

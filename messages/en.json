@@ -147,5 +147,6 @@
 	"nearby_fallback": "Location unavailable — the suggestion comes from the centre of the map.",
 	"map_layers": "Map layer",
 	"layer_standard": "Standard",
-	"layer_topo": "Terrain"
+	"layer_topo": "Terrain",
+	"nearby_short": "Nearby"
 }

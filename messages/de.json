@@ -147,5 +147,6 @@
 	"nearby_fallback": "Standort nicht verfügbar – der Vorschlag kommt aus der Kartenmitte.",
 	"map_layers": "Kartenansicht",
 	"layer_standard": "Standard",
-	"layer_topo": "Gelände"
+	"layer_topo": "Gelände",
+	"nearby_short": "In der Nähe"
 }

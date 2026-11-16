@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
-	import { initTelemetry } from '$lib/telemetry';
+	import { page } from '$app/state';
+	import { deLocalizeUrl } from '$lib/paraglide/runtime';
 	import * as m from '$lib/paraglide/messages.js';
 	import './layout.css';
 	import favicon from '$lib/assets/favicon.svg';
@@ -15,7 +15,8 @@
 
 	let { children } = $props();
 
-	onMount(initTelemetry);
+	/** On the map the header floats above the full-screen canvas instead of taking a row. */
+	const onMap = $derived(deLocalizeUrl(page.url).pathname === '/');
 
 	let wishlistOpen = $state(false);
 	let settingsOpen = $state(false);
@@ -30,7 +31,11 @@
 <svelte:head><link rel="icon" href={favicon} /></svelte:head>
 
 <div class="flex min-h-dvh flex-col bg-base-100 text-base-content">
-	<header class="flex items-center justify-between gap-3 border-b border-base-300/60 px-4 py-2">
+	<header
+		class="flex items-center justify-between gap-3 px-4 py-2 {onMap
+			? 'absolute inset-x-0 top-0 z-[900] bg-gradient-to-b from-base-100/95 to-transparent'
+			: 'border-b border-base-300/60'}"
+	>
 		<span class="text-xl leading-tight font-bold tracking-tight">{m.app_name()}</span>
 		<div class="flex items-center gap-1">
 			<button
@@ -52,7 +57,10 @@
 			<button
 				type="button"
 				class="flex min-w-16 flex-col items-center rounded-field px-2 py-1 text-sm font-medium hover:bg-base-200"
-				onclick={() => (settingsOpen = true)}
+				onclick={() => {
+					settingsOpen = true;
+					trackEvent('settings_opened', {});
+				}}
 				aria-label={m.settings_open()}
 			>
 				<span class="text-2xl leading-none" aria-hidden="true">⚙</span>
@@ -61,7 +69,7 @@
 		</div>
 	</header>
 
-	<main class="flex-1 pb-4">
+	<main class="flex-1 {onMap ? '' : 'pb-4'}">
 		{@render children()}
 	</main>
 

@@ -14,18 +14,16 @@
 	import FilterSheet from '$lib/components/FilterSheet.svelte';
 	import LocationDetails from '$lib/components/LocationDetails.svelte';
 
-	type View = 'map' | 'list';
-
 	let selected = $state<Location | null>(null);
-	let view = $state<View>('map');
+	let focusId = $state<string | null>(null);
 	let query = $state('');
 	let hideVisited = $state(false);
-	let focusId = $state<string | null>(null);
 	let origin = $state<[number, number] | null>(null);
 	let mapCenter = $state<[number, number]>([47.66, 9.35]);
 	let locating = $state(false);
 	let locationError = $state(false);
 	let filterOpen = $state(false);
+	let listOpen = $state(false);
 	let notice = $state<'fallback' | 'no-matches' | null>(null);
 	let shown = $state<string[]>([]);
 	let resultDistance = $state<number | null>(null);
@@ -40,7 +38,7 @@
 		}
 	});
 
-	/** What the map and the list show: filters, search and visited state applied. */
+	/** Places on the map: filters, search and visited state applied, nearest first when located. */
 	const shownLocations = $derived.by(() => {
 		const needle = query.trim().toLocaleLowerCase();
 		const cats = filters.categories;
@@ -67,16 +65,6 @@
 		);
 	});
 
-	function setView(next: View) {
-		view = next;
-		trackEvent('map_view_changed', { view: next });
-	}
-
-	function toggleHideVisited() {
-		hideVisited = !hideVisited;
-		trackEvent('map_hide_visited', { hidden: hideVisited });
-	}
-
 	function onselect(location: Location) {
 		selected = location;
 		focusId = location.id;
@@ -87,6 +75,16 @@
 
 	function close() {
 		selected = null;
+	}
+
+	function toggleHideVisited() {
+		hideVisited = !hideVisited;
+		trackEvent('map_hide_visited', { hidden: hideVisited });
+	}
+
+	function openList() {
+		listOpen = true;
+		trackEvent('map_list_opened', { places: shownLocations.length });
 	}
 
 	function useMyLocation() {
@@ -127,10 +125,7 @@
 		});
 	}
 
-	/**
-	 * The primary action: rank the matching places by distance from the reader (or from the
-	 * current map centre if location is unavailable) and offer one of the three closest.
-	 */
+	/** Rank matching places by distance from the reader (or the map centre) and offer the closest. */
 	async function recommendNearby() {
 		locating = true;
 		notice = null;
@@ -155,9 +150,11 @@
 		}
 		locating = false;
 
-		const matches = findMatches(
-			{ categories: filters.categories, duration: filters.duration, origin: center },
-		);
+		const matches = findMatches({
+			categories: filters.categories,
+			duration: filters.duration,
+			origin: center
+		});
 		const unseen = matches.filter((location) => !shown.includes(location.id));
 		const pool = unseen.length > 0 ? unseen : matches;
 		if (pool.length === 0) {
@@ -182,80 +179,79 @@
 	}
 </script>
 
-<div class="flex h-[calc(100dvh-5.5rem)] min-h-[30rem] flex-col gap-2 px-3 pt-3 pb-3">
-	<div class="flex gap-2">
-		<button
-			class="btn btn-primary btn-lg flex-1 gap-2"
-			onclick={recommendNearby}
-			disabled={locating}
-		>
-			<span aria-hidden="true">📍</span>
-			{locating ? m.locating() : m.recommend_nearby()}
-		</button>
-		<button
-			class="btn btn-outline btn-lg gap-2"
-			onclick={() => {
-				filterOpen = true;
-				trackEvent('filter_sheet_opened', {});
-			}}
-			aria-label={m.filter_title()}
-		>
-			<span aria-hidden="true">🎚</span>
-			{m.filter_title()}
-		</button>
+<div class="relative h-dvh w-full overflow-hidden bg-base-200">
+	<div class="absolute inset-0">
+		{#await import('$lib/components/LeafletMap.svelte')}
+			<div class="flex h-full items-center justify-center">
+				<span class="loading loading-lg loading-spinner text-primary"></span>
+			</div>
+		{:then { default: LeafletMap }}
+			<LeafletMap
+				locations={shownLocations}
+				{focusId}
+				highlightId={selected?.id ?? null}
+				{onselect}
+				oncenterchange={(center) => (mapCenter = center)}
+			/>
+		{/await}
 	</div>
 
-	<div class="flex gap-2">
-		<input
-			type="search"
-			class="input min-w-0 flex-1"
-			bind:value={query}
-			placeholder={m.map_search_placeholder()}
-			aria-label={m.map_search_placeholder()}
-		/>
-		<div class="join shrink-0" role="group" aria-label={m.map_title()}>
-			<button
-				type="button"
-				class="btn join-item {view === 'map' ? 'btn-primary' : 'btn-outline'}"
-				aria-pressed={view === 'map'}
-				onclick={() => setView('map')}
-			>
-				{m.map_view_map()}
-			</button>
-			<button
-				type="button"
-				class="btn join-item {view === 'list' ? 'btn-primary' : 'btn-outline'}"
-				aria-pressed={view === 'list'}
-				onclick={() => setView('list')}
-			>
-				{m.map_view_list()}
-			</button>
-		</div>
-	</div>
-
-	<div class="flex items-center justify-between gap-2">
-		<span class="text-sm text-base-content/80">
-			{m.map_count({ count: shownLocations.length })}
-		</span>
-		<div class="flex gap-2">
-			{#if filters.active}
-				<button class="btn btn-outline gap-1 text-sm" onclick={() => (filterOpen = true)}>
-					✓ {m.filter_title()}
+	<!-- Search floats over the map; results replace the map until a place is picked. -->
+	<div class="pointer-events-none absolute inset-x-3 top-20 z-[1000]">
+		<div
+			class="pointer-events-auto flex items-center gap-1 rounded-field bg-base-100/95 p-1 shadow-lg backdrop-blur"
+		>
+			<span class="pl-2 text-lg" aria-hidden="true">🔍</span>
+			<input
+				type="search"
+				class="input input-ghost min-w-0 flex-1"
+				bind:value={query}
+				placeholder={m.map_search_placeholder()}
+				aria-label={m.map_search_placeholder()}
+			/>
+			{#if query}
+				<button class="btn btn-ghost gap-1 text-sm" onclick={() => (query = '')}>
+					<span aria-hidden="true">✕</span>
+					{m.map_clear_search()}
 				</button>
 			{/if}
-			<button
-				type="button"
-				class="btn text-sm {hideVisited ? 'btn-primary' : 'btn-outline'}"
-				aria-pressed={hideVisited}
-				onclick={toggleHideVisited}
-			>
-				{hideVisited ? m.map_show_visited() : m.map_hide_visited()}
-			</button>
 		</div>
+
+		{#if query.trim()}
+			<div
+				class="pointer-events-auto mt-2 max-h-[45dvh] space-y-1 overflow-y-auto rounded-box bg-base-100/98 p-2 shadow-xl"
+			>
+				{#each shownLocations.slice(0, 25) as location (location.id)}
+					<button
+						type="button"
+						class="flex w-full items-center gap-3 rounded-field p-2 text-left hover:bg-base-200"
+						onclick={() => {
+							onselect(location);
+							query = '';
+						}}
+					>
+						<img
+							src={location.image?.url ?? placeholderImage(location.categories)}
+							alt=""
+							class="h-12 w-12 shrink-0 rounded-field object-cover"
+							loading="lazy"
+						/>
+						<span class="min-w-0 flex-1">
+							<span class="block truncate font-semibold">{localize(location.name)}</span>
+							<span class="block truncate text-sm text-base-content/80">
+								{location.nearestStation} · {categoryLabel(location.categories[0] ?? 'nature')}
+							</span>
+						</span>
+					</button>
+				{:else}
+					<p class="p-4 text-center">{m.map_no_results()}</p>
+				{/each}
+			</div>
+		{/if}
 	</div>
 
 	{#if notice}
-		<div class="rounded-field bg-base-300 p-3 text-sm" role="status">
+		<div class="absolute inset-x-3 top-[8.5rem] z-[1000] rounded-field bg-base-300/95 p-3 text-sm shadow-lg" role="status">
 			<p>{notice === 'fallback' ? m.nearby_fallback() : m.no_matches_body()}</p>
 			{#if notice === 'no-matches'}
 				<button class="btn btn-outline mt-2" onclick={() => (filterOpen = true)}>
@@ -265,61 +261,34 @@
 		</div>
 	{/if}
 
-	{#if view === 'map'}
-		<div class="relative isolate min-h-0 flex-1 overflow-hidden rounded-box bg-base-200">
-			<div
-				class="pointer-events-none absolute inset-x-0 top-0 z-[1000] bg-base-200/95 px-4 py-2 text-center text-sm"
-			>
-				{m.map_hint()}
-			</div>
-			{#await import('$lib/components/LeafletMap.svelte')}
-				<div class="flex h-full items-center justify-center">
-					<span class="loading loading-lg loading-spinner text-primary"></span>
-				</div>
-			{:then { default: LeafletMap }}
-				<LeafletMap
-					locations={shownLocations}
-					{focusId}
-					highlightId={selected?.id ?? null}
-					{onselect}
-					oncenterchange={(center) => (mapCenter = center)}
-				/>
-			{/await}
-		</div>
-	{:else if shownLocations.length === 0}
-		<div class="card bg-base-200 p-5 text-center">
-			<p class="text-lg">{m.map_no_results()}</p>
-			<button class="btn btn-outline mt-3" onclick={() => (query = '')}>
-				{m.map_clear_search()}
-			</button>
-		</div>
-	{:else}
-		<div class="min-h-0 flex-1 space-y-2 overflow-y-auto pb-4">
-			{#each shownLocations as location (location.id)}
-				<button
-					type="button"
-					class="flex w-full items-center gap-3 rounded-box bg-base-200 p-3 text-left"
-					onclick={() => onselect(location)}
-				>
-					<img
-						src={location.image?.url ?? placeholderImage(location.categories)}
-						alt=""
-						class="h-14 w-14 shrink-0 rounded-field object-cover"
-						loading="lazy"
-					/>
-					<span class="min-w-0 flex-1">
-						<span class="block text-base leading-tight font-semibold">{localize(location.name)}</span>
-						<span class="block truncate text-sm text-base-content/80">
-							{location.nearestStation}{origin
-								? ` · ${Math.round(haversineDistanceKm(origin, location.coordinates))} km`
-								: ''}
-						</span>
-					</span>
-					<span class="text-2xl text-primary" aria-hidden="true">›</span>
-				</button>
-			{/each}
-		</div>
-	{/if}
+	<div
+		class="absolute inset-x-3 bottom-3 z-[1000] flex items-end gap-2"
+		style="padding-bottom: env(safe-area-inset-bottom)"
+	>
+		<button class="btn btn-outline gap-1 shadow-lg" onclick={openList} aria-label={m.map_view_list()}>
+			<span aria-hidden="true">☰</span>
+			<span class="hidden sm:inline">{m.map_view_list()}</span>
+		</button>
+		<button
+			class="btn btn-primary btn-lg flex-1 gap-2 shadow-lg"
+			onclick={recommendNearby}
+			disabled={locating}
+		>
+			<span aria-hidden="true">📍</span>
+			{locating ? m.locating() : m.nearby_short()}
+		</button>
+		<button
+			class="btn btn-outline gap-1 shadow-lg"
+			onclick={() => {
+				filterOpen = true;
+				trackEvent('filter_sheet_opened', {});
+			}}
+			aria-label={m.filter_title()}
+		>
+			<span aria-hidden="true">🎚</span>
+			<span class="hidden sm:inline">{m.filter_title()}</span>
+		</button>
+	</div>
 </div>
 
 <FilterSheet
@@ -331,6 +300,54 @@
 	onuseLocation={useMyLocation}
 	onclearLocation={clearLocation}
 />
+
+<BottomSheet open={listOpen} onclose={() => (listOpen = false)}>
+	<div class="space-y-3 pt-1">
+		<div class="flex items-center justify-between gap-2">
+			<h2 class="text-xl font-bold">{m.map_title()}</h2>
+			<span class="text-sm text-base-content/80">{m.map_count({ count: shownLocations.length })}</span>
+		</div>
+		<button
+			class="btn {hideVisited ? 'btn-primary' : 'btn-outline'} w-full"
+			aria-pressed={hideVisited}
+			onclick={toggleHideVisited}
+		>
+			{hideVisited ? m.map_show_visited() : m.map_hide_visited()}
+		</button>
+		{#if shownLocations.length === 0}
+			<p class="py-4 text-center">{m.map_no_results()}</p>
+		{:else}
+			<div class="space-y-2">
+				{#each shownLocations as location (location.id)}
+					<button
+						type="button"
+						class="flex w-full items-center gap-3 rounded-field bg-base-300/60 p-2 text-left"
+						onclick={() => {
+							listOpen = false;
+							onselect(location);
+						}}
+					>
+						<img
+							src={location.image?.url ?? placeholderImage(location.categories)}
+							alt=""
+							class="h-12 w-12 shrink-0 rounded-field object-cover"
+							loading="lazy"
+						/>
+						<span class="min-w-0 flex-1">
+							<span class="block truncate font-semibold">{localize(location.name)}</span>
+							<span class="block truncate text-sm text-base-content/80">
+								{location.nearestStation}{origin
+									? ` · ${Math.round(haversineDistanceKm(origin, location.coordinates))} km`
+									: ''}
+							</span>
+						</span>
+						<span class="text-2xl text-primary" aria-hidden="true">›</span>
+					</button>
+				{/each}
+			</div>
+		{/if}
+	</div>
+</BottomSheet>
 
 <BottomSheet open={selected !== null} onclose={close}>
 	{#if selected}

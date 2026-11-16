@@ -63,6 +63,30 @@ body {
 .btn-sm {
 	min-height: 2.6rem;
 	font-size: 1rem;
+	transition:
+		transform 120ms ease-out,
+		background-color 160ms ease-out,
+		border-color 160ms ease-out;
+}
+
+.btn:active {
+	transform: scale(0.98);
+}
+
+/* A small, content-first entrance — never a bounce or a slide across the screen. */
+.rise-in {
+	animation: rise-in 240ms ease-out both;
+}
+
+@keyframes rise-in {
+	from {
+		opacity: 0;
+		transform: translateY(8px);
+	}
+	to {
+		opacity: 1;
+		transform: none;
+	}
 }
 
 .btn-lg {

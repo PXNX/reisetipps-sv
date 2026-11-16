@@ -221,10 +221,11 @@
 			<div
 				class="pointer-events-auto mt-2 max-h-[45dvh] space-y-1 overflow-y-auto rounded-box bg-base-100/98 p-2 shadow-xl"
 			>
-				{#each shownLocations.slice(0, 25) as location (location.id)}
+				{#each shownLocations.slice(0, 25) as location, index (location.id)}
 					<button
 						type="button"
-						class="flex w-full items-center gap-3 rounded-field p-2 text-left hover:bg-base-200"
+						class="rise-in flex w-full items-center gap-3 rounded-field p-2 text-left hover:bg-base-200"
+						style="animation-delay: {Math.min(index, 8) * 25}ms"
 						onclick={() => {
 							onselect(location);
 							query = '';
@@ -318,10 +319,11 @@
 			<p class="py-4 text-center">{m.map_no_results()}</p>
 		{:else}
 			<div class="space-y-2">
-				{#each shownLocations as location (location.id)}
+				{#each shownLocations as location, index (location.id)}
 					<button
 						type="button"
-						class="flex w-full items-center gap-3 rounded-field bg-base-300/60 p-2 text-left"
+						class="rise-in flex w-full items-center gap-3 rounded-field bg-base-300/60 p-2 text-left"
+						style="animation-delay: {Math.min(index, 8) * 25}ms"
 						onclick={() => {
 							listOpen = false;
 							onselect(location);

@@ -48,7 +48,7 @@
 	);
 </script>
 
-<div class="space-y-5">
+<div class="rise-in space-y-5">
 	<figure>
 		<ZoomableImage
 			src={imageSrc}

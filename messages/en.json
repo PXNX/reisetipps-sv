@@ -116,5 +116,14 @@
 	"settings_text_normal": "Normal",
 	"settings_text_large": "Large",
 	"settings_language": "Language",
-	"settings_about": "Personal recommendations for days out around Lake Constance — take them with you, even offline."
+	"settings_about": "Personal recommendations for days out around Lake Constance — take them with you, even offline.",
+	"home_eyebrow": "Days out around Lake Constance",
+	"home_heading": "Where shall we go?",
+	"home_intro": "I know a few lovely places around here. Tell me what you feel like — or let me surprise you.",
+	"home_surprise": "Surprise me",
+	"home_all_places": "All places on the map",
+	"home_result_heading": "My suggestion for you",
+	"home_choose_heading": "Or choose for yourself",
+	"home_choose_hint": "You can pick several things — or nothing at all. Either way works.",
+	"home_filter_cta": "Show me a matching place"
 }

@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { tick } from 'svelte';
 	import { localizeHref } from '$lib/paraglide/runtime';
 	import * as m from '$lib/paraglide/messages.js';
 	import {
@@ -9,18 +10,18 @@
 		durationLabel
 	} from '$lib/categories';
 	import type { Category, Duration, Location } from '$lib/data/locations';
-	import { pickRecommendation, type RecommendFilters } from '$lib/recommend';
+	import { pickRecommendation } from '$lib/recommend';
 	import { trackEvent } from '$lib/telemetry';
+	import { filters } from '$lib/stores/filters.svelte';
 	import LocationDetails from '$lib/components/LocationDetails.svelte';
 
-	let selectedCategories = $state<Category[]>([]);
-	let selectedDuration = $state<Duration | null>(null);
 	let origin = $state<[number, number] | null>(null);
 	let locating = $state(false);
 	let locationError = $state(false);
 	let result = $state<Location | null>(null);
 	let shown = $state<string[]>([]);
 	let noMatches = $state(false);
+	let resultEl = $state<HTMLElement | null>(null);
 
 	function resetResult() {
 		result = null;
@@ -29,15 +30,18 @@
 	}
 
 	function toggleCategory(category: Category) {
-		selectedCategories = selectedCategories.includes(category)
-			? selectedCategories.filter((c) => c !== category)
-			: [...selectedCategories, category];
+		filters.toggleCategory(category);
 		resetResult();
+		trackEvent('filter_category', {
+			category,
+			selected: filters.categories.includes(category)
+		});
 	}
 
 	function setDuration(duration: Duration) {
-		selectedDuration = selectedDuration === duration ? null : duration;
+		filters.setDuration(duration);
 		resetResult();
+		trackEvent('filter_duration', { duration: filters.duration ?? 'any' });
 	}
 
 	function useMyLocation() {
@@ -52,6 +56,7 @@
 				origin = [position.coords.latitude, position.coords.longitude];
 				locating = false;
 				resetResult();
+				trackEvent('filter_location', { used: true });
 			},
 			() => {
 				locating = false;
@@ -66,58 +71,130 @@
 		origin = null;
 		locationError = false;
 		resetResult();
+		trackEvent('filter_location', { used: false });
 	}
 
-	function recommend() {
-		const filters: RecommendFilters = {
-			categories: selectedCategories,
-			duration: selectedDuration,
-			origin
-		};
-		const pick = pickRecommendation(filters, shown);
+	async function scrollToResult() {
+		await tick();
+		if (!resultEl) return;
+		const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+		resultEl.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'start' });
+	}
+
+	function recommend(trigger: 'surprise' | 'filters' | 'again' = 'filters') {
+		const pick = pickRecommendation(
+			{ categories: filters.categories, duration: filters.duration, origin },
+			shown
+		);
 		result = pick;
 		noMatches = pick === null;
 		if (pick) shown = [...shown, pick.id];
 		trackEvent('recommendation_shown', {
-			categories: selectedCategories.length,
-			duration: selectedDuration ?? 'any',
+			trigger,
+			categories: filters.categories.length,
+			duration: filters.duration ?? 'any',
 			nearby: origin !== null,
 			place: pick?.id ?? null
 		});
+		void scrollToResult();
+	}
+
+	/** The one-tap path: clear any choices and let the app pick purely at random. */
+	function surprise() {
+		filters.reset();
+		resetResult();
+		recommend('surprise');
 	}
 
 	function resetFilters() {
-		selectedCategories = [];
-		selectedDuration = null;
+		filters.reset();
 		clearLocation();
 	}
 </script>
 
-<div class="mx-auto max-w-xl space-y-6 px-4 pt-6">
-	<section class="space-y-4">
+<div class="mx-auto max-w-2xl space-y-6 px-4 pt-6 pb-8">
+	<section class="rounded-box bg-gradient-to-br from-base-200 to-base-300 p-5 shadow-md">
+		<p class="text-sm font-semibold tracking-wide text-primary uppercase">{m.home_eyebrow()}</p>
+		<h1 class="mt-1 text-3xl leading-tight font-bold">{m.home_heading()}</h1>
+		<p class="mt-2">{m.home_intro()}</p>
+		<div class="mt-5 grid gap-3">
+			<button class="btn btn-primary btn-lg w-full" onclick={surprise}>
+				{m.home_surprise()}
+			</button>
+			<a class="btn btn-outline btn-lg w-full" href={localizeHref('/karte')}>
+				{m.home_all_places()}
+			</a>
+		</div>
+	</section>
+
+	{#if result || noMatches}
+		<section bind:this={resultEl} class="scroll-mt-4 space-y-3">
+			<h2 class="text-xl font-bold">{m.home_result_heading()}</h2>
+			{#if result}
+				<section class="card bg-base-200 shadow-md">
+					<div class="card-body p-4 sm:p-5">
+						<LocationDetails location={result} />
+					</div>
+				</section>
+				<div class="grid gap-3 sm:grid-cols-2">
+					<button class="btn btn-primary btn-lg" onclick={() => recommend('again')}>
+						{m.try_again()}
+					</button>
+					<a
+						class="btn btn-outline btn-lg"
+						href={`${localizeHref('/karte')}?focus=${result.id}`}
+					>
+						{m.show_on_map()}
+					</a>
+				</div>
+			{:else}
+				<section class="card bg-base-200 p-5 text-center shadow-md">
+					<h3 class="text-xl font-semibold">{m.no_matches_title()}</h3>
+					<p class="mt-2">{m.no_matches_body()}</p>
+					<button class="btn btn-outline btn-lg mt-4" onclick={resetFilters}>
+						{m.reset_filters()}
+					</button>
+				</section>
+			{/if}
+		</section>
+	{/if}
+
+	<section class="card space-y-6 bg-base-200/60 p-4 sm:p-5">
 		<div>
-			<h2 class="mb-2 text-sm font-semibold">{m.filter_categories_label()}</h2>
-			<div class="flex flex-wrap gap-2">
+			<h2 class="text-2xl font-bold">{m.home_choose_heading()}</h2>
+			<p class="mt-1 text-base text-base-content/80">{m.home_choose_hint()}</p>
+		</div>
+
+		<div>
+			<h3 class="mb-2 text-lg font-semibold">{m.filter_categories_label()}</h3>
+			<div class="grid grid-cols-2 gap-3">
 				{#each allCategories as category (category)}
+					{@const selected = filters.categories.includes(category)}
 					<button
-						class="btn btn-sm {selectedCategories.includes(category)
+						type="button"
+						class="btn btn-lg justify-start gap-2 text-left {selected
 							? 'btn-primary'
 							: 'btn-outline'}"
+						aria-pressed={selected}
 						onclick={() => toggleCategory(category)}
 					>
-						<span aria-hidden="true">{categoryIcons[category]}</span>
-						{categoryLabel(category)}
+						<span class="text-xl leading-none" aria-hidden="true"
+							>{selected ? '✓' : categoryIcons[category]}</span
+						>
+						<span class="leading-tight">{categoryLabel(category)}</span>
 					</button>
 				{/each}
 			</div>
 		</div>
 
 		<div>
-			<h2 class="mb-2 text-sm font-semibold">{m.filter_duration_label()}</h2>
-			<div class="flex flex-wrap gap-2">
+			<h3 class="mb-2 text-lg font-semibold">{m.filter_duration_label()}</h3>
+			<div class="grid grid-cols-1 gap-3 sm:grid-cols-3">
 				{#each allDurations as duration (duration)}
 					<button
-						class="btn btn-sm {selectedDuration === duration ? 'btn-primary' : 'btn-outline'}"
+						type="button"
+						class="btn btn-lg {filters.duration === duration ? 'btn-primary' : 'btn-outline'}"
+						aria-pressed={filters.duration === duration}
 						onclick={() => setDuration(duration)}
 					>
 						{durationLabel(duration)}
@@ -127,55 +204,37 @@
 		</div>
 
 		<div>
-			<h2 class="mb-2 text-sm font-semibold">{m.filter_location_label()}</h2>
+			<h3 class="mb-2 text-lg font-semibold">{m.filter_location_label()}</h3>
 			{#if origin}
-				<div
-					class="flex items-center justify-between gap-2 rounded-field bg-base-300/60 px-3 py-2 text-sm"
-				>
-					<span>📍 {m.location_set()}: {origin[0].toFixed(3)}, {origin[1].toFixed(3)}</span>
-					<button
-						class="btn btn-circle btn-ghost btn-xs"
-						onclick={clearLocation}
-						aria-label={m.clear_location()}
-					>
-						✕
+				<div class="rounded-field bg-base-300/70 p-3">
+					<p class="text-base">
+						<span aria-hidden="true">📍</span> {m.location_set()}: {origin[0].toFixed(2)}, {origin[1].toFixed(2)}
+					</p>
+					<button class="btn btn-outline mt-3 w-full" onclick={clearLocation}>
+						{m.clear_location()}
 					</button>
 				</div>
 			{:else}
-				<button class="btn btn-outline btn-sm" onclick={useMyLocation} disabled={locating}>
-					📍 {locating ? m.locating() : m.use_my_location()}
+				<button class="btn btn-outline btn-lg w-full gap-2" onclick={useMyLocation} disabled={locating}>
+					<span aria-hidden="true">📍</span>
+					{locating ? m.locating() : m.use_my_location()}
 				</button>
-				<p class="mt-1 text-xs text-base-content/50">{m.location_optional_hint()}</p>
+				<p class="mt-2 text-base text-base-content/80">{m.location_optional_hint()}</p>
 				{#if locationError}
-					<p class="mt-1 text-xs text-error">{m.location_error()}</p>
+					<p class="mt-1 text-base text-error">{m.location_error()}</p>
 				{/if}
 			{/if}
 		</div>
-	</section>
 
-	{#if result}
-		<section class="card bg-base-200 shadow-md">
-			<div class="card-body">
-				<LocationDetails location={result} />
-			</div>
-		</section>
-		<div class="flex gap-2 pb-4">
-			<button class="btn flex-1 btn-primary" onclick={recommend}>{m.try_again()}</button>
-			<a class="btn flex-1 btn-outline" href={`${localizeHref('/karte')}?focus=${result.id}`}>
-				{m.show_on_map()}
-			</a>
+		<div class="space-y-3 border-t border-base-300 pt-4">
+			<button class="btn btn-primary btn-lg w-full" onclick={() => recommend('filters')}>
+				{m.home_filter_cta()}
+			</button>
+			{#if filters.active}
+				<button class="btn btn-ghost w-full" onclick={resetFilters}>
+					{m.reset_filters()}
+				</button>
+			{/if}
 		</div>
-	{:else if noMatches}
-		<section class="card bg-base-200 shadow-md">
-			<div class="card-body items-center text-center">
-				<h2 class="text-lg font-semibold">{m.no_matches_title()}</h2>
-				<p class="text-base-content/70">{m.no_matches_body()}</p>
-				<button class="btn mt-2 btn-outline" onclick={resetFilters}>{m.reset_filters()}</button>
-			</div>
-		</section>
-	{:else}
-		<button class="btn w-full btn-lg btn-primary" onclick={recommend}
-			>{m.get_recommendation()}</button
-		>
-	{/if}
+	</section>
 </div>

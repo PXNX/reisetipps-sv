@@ -116,5 +116,14 @@
 	"settings_text_normal": "Normal",
 	"settings_text_large": "Groß",
 	"settings_language": "Sprache",
-	"settings_about": "Persönliche Empfehlungen für Ausflüge rund um den Bodensee – zum Mitnehmen und auch offline."
+	"settings_about": "Persönliche Empfehlungen für Ausflüge rund um den Bodensee – zum Mitnehmen und auch offline.",
+	"home_eyebrow": "Ausflüge am Bodensee",
+	"home_heading": "Wohin soll es gehen?",
+	"home_intro": "Ich kenne hier ein paar schöne Orte. Sag mir kurz, wonach dir ist – oder lass dich überraschen.",
+	"home_surprise": "Überrasch mich",
+	"home_all_places": "Alle Orte auf der Karte",
+	"home_result_heading": "Mein Vorschlag für dich",
+	"home_choose_heading": "Oder wähle selbst",
+	"home_choose_hint": "Du kannst mehrere Dinge auswählen – oder nichts. Dann überrasche ich dich.",
+	"home_filter_cta": "Passenden Ort zeigen"
 }

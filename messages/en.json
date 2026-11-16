@@ -134,5 +134,6 @@
 	"map_search_placeholder": "Search a place or station",
 	"map_count": "{count} places",
 	"map_no_results": "No places found.",
-	"map_clear_search": "Clear search"
+	"map_clear_search": "Clear search",
+	"settings_install": "Install app"
 }

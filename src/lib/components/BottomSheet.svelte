@@ -13,11 +13,15 @@
 
 	let { open, onclose = () => {}, children, dismissible = true }: Props = $props();
 
+	const reduceMotion =
+		typeof window !== 'undefined' &&
+		window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
 	/**
 	 * Physics-driven sheet: `progress` runs 0 (fully open) → 1 (fully closed) and is owned by a
-	 * spring, so opening overshoots slightly (the joyful bounce) and closing settles naturally.
-	 * Dragging the handle writes straight into the spring; releasing it either flings it shut
-	 * (distance or downward velocity) or springs it back open.
+	 * spring, so opening overshoots slightly and closing settles naturally. Dragging the handle
+	 * writes straight into the spring; releasing it either flings it shut or springs it back open.
+	 * Readers who prefer reduced motion get an instant open/close instead.
 	 */
 	const progress = new Spring(1, { stiffness: 0.12, damping: 0.55 });
 
@@ -31,12 +35,21 @@
 	$effect(() => {
 		if (open) {
 			rendered = true;
+			if (reduceMotion) {
+				progress.set(0, { instant: true });
+				return;
+			}
 			progress.stiffness = 0.12;
 			progress.damping = 0.5;
 			// Fresh open: start from the closed position so the spring pops in.
 			if (progress.current > 0.9) progress.set(1, { instant: true });
 			progress.set(0);
 		} else if (rendered) {
+			if (reduceMotion) {
+				progress.set(1, { instant: true });
+				rendered = false;
+				return;
+			}
 			progress.stiffness = 0.25;
 			progress.damping = 0.8;
 			progress.set(1);
@@ -98,7 +111,7 @@
 	{#if dismissible}
 		<button
 			type="button"
-			class="fixed inset-0 z-40 cursor-default bg-black/50"
+			class="fixed inset-0 z-40 cursor-default bg-black/60"
 			style="opacity: {backdropOpacity}"
 			onclick={onclose}
 			aria-label={m.close()}
@@ -106,7 +119,7 @@
 		></button>
 	{:else}
 		<div
-			class="fixed inset-0 z-40 bg-black/50"
+			class="fixed inset-0 z-40 bg-black/60"
 			style="opacity: {backdropOpacity}"
 			aria-hidden="true"
 		></div>
@@ -119,7 +132,7 @@
 		aria-modal="true"
 	>
 		<div
-			class="sticky top-0 z-10 flex shrink-0 touch-none justify-center bg-inherit py-2"
+			class="sticky top-0 z-10 flex shrink-0 touch-none items-center justify-center bg-inherit px-4 py-2"
 			role="presentation"
 			onpointerdown={dismissible ? onPointerDown : undefined}
 			onpointermove={dismissible ? onPointerMove : undefined}
@@ -127,16 +140,18 @@
 			onpointercancel={dismissible ? onPointerUp : undefined}
 		>
 			{#if dismissible}
-				<div class="h-1.5 w-12 rounded-full bg-base-content/30"></div>
+				<div class="h-1.5 w-12 rounded-full bg-base-content/40"></div>
 				<button
-					class="btn absolute top-1 right-2 btn-circle btn-ghost btn-sm"
+					type="button"
+					class="btn absolute top-2 right-3 gap-2"
 					onclick={onclose}
 					aria-label={m.close()}
 				>
-					✕
+					<span aria-hidden="true">✕</span>
+					{m.close()}
 				</button>
 			{:else}
-				<div class="h-1.5"></div>
+				<div class="h-2"></div>
 			{/if}
 		</div>
 		<div

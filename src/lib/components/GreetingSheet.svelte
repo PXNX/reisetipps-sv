@@ -24,30 +24,26 @@
 
 <!-- eslint-disable svelte/no-navigation-without-resolve -->
 <BottomSheet {open} onclose={close}>
-	<div class="flex flex-col items-center gap-4 pt-2 text-center">
+	<div class="flex flex-col gap-4 pt-2">
 		<img
 			src={bodenseeLogo}
 			alt=""
-			class="h-20 w-auto drop-shadow-[0_0_12px_rgba(98,195,221,0.35)]"
+			class="h-20 w-auto self-center drop-shadow-[0_0_12px_rgba(127,211,234,0.35)]"
 		/>
 
-		<div>
-			<h2 class="text-2xl font-semibold">{m.greeting_heading()}</h2>
-			<p class="mt-2 text-sm leading-relaxed whitespace-pre-line text-base-content/80">
-				{m.greeting_body()}
-			</p>
-		</div>
+		<h2 class="text-2xl font-bold">{m.greeting_heading()}</h2>
+		<p class="whitespace-pre-line leading-relaxed">{m.greeting_body()}</p>
 
-		<button class="btn w-full btn-primary" onclick={close}>{m.greeting_close()}</button>
+		<button class="btn btn-primary btn-lg w-full" onclick={close}>{m.greeting_close()}</button>
 
 		<a
 			href={localizeHref('/datenschutz')}
-			class="text-xs text-base-content/50 underline-offset-2 hover:underline"
+			class="link link-primary self-center text-sm"
 		>
 			{m.privacy_link()}
 		</a>
 
-		<p class="text-[10px] text-base-content/30">{m.logo_credit()}</p>
+		<p class="text-center text-sm text-base-content/70">{m.logo_credit()}</p>
 	</div>
 </BottomSheet>
 <!-- eslint-enable svelte/no-navigation-without-resolve -->

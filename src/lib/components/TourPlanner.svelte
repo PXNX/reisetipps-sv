@@ -1,6 +1,6 @@
 <script lang="ts">
 	/**
-	 * The tour planner: a small floating button once stops exist, opening a sheet where the reader
+	 * The tour planner: a floating button once stops exist, opening a sheet where the reader
 	 * orders the stops, picks walking or cycling and hands the route to Google Maps. Stops are added
 	 * from the details view of any place.
 	 */
@@ -24,26 +24,27 @@
 {#if tour.count > 0}
 	<button
 		type="button"
-		class="btn fixed right-4 z-30 gap-2 rounded-full shadow-lg btn-primary"
-		style="bottom: calc(4.75rem + env(safe-area-inset-bottom))"
+		class="btn btn-primary btn-lg fixed right-4 z-30 gap-2 rounded-full shadow-lg"
+		style="bottom: calc(1rem + env(safe-area-inset-bottom))"
 		onclick={openPlanner}
-		aria-label={m.tour_title()}
+		aria-label={`${m.tour_title()} (${tour.count})`}
 	>
 		<span aria-hidden="true">{tour.mode === 'bike' ? '🚲' : '🚶'}</span>
-		<span>{tour.count}</span>
+		<span>{m.tour_title()} ({tour.count})</span>
 	</button>
 {/if}
 
 <BottomSheet {open} onclose={() => (open = false)}>
 	<div class="space-y-4 pt-1">
 		<div class="flex items-baseline justify-between gap-2">
-			<h2 class="text-xl font-semibold">{m.tour_title()}</h2>
-			<span class="text-sm text-base-content/60">{m.tour_stops_count({ count: tour.count })}</span>
+			<h2 class="text-xl font-bold">{m.tour_title()}</h2>
+			<span class="text-sm text-base-content/80">{m.tour_stops_count({ count: tour.count })}</span>
 		</div>
 
 		<div class="join w-full">
 			<button
 				class="btn join-item flex-1 {tour.mode === 'walk' ? 'btn-primary' : 'btn-outline'}"
+				aria-pressed={tour.mode === 'walk'}
 				onclick={() => tour.setMode('walk')}
 			>
 				<span aria-hidden="true">🚶</span>
@@ -51,6 +52,7 @@
 			</button>
 			<button
 				class="btn join-item flex-1 {tour.mode === 'bike' ? 'btn-primary' : 'btn-outline'}"
+				aria-pressed={tour.mode === 'bike'}
 				onclick={() => tour.setMode('bike')}
 			>
 				<span aria-hidden="true">🚲</span>
@@ -59,17 +61,15 @@
 		</div>
 
 		{#if plan.length === 0}
-			<p class="text-sm text-base-content/70">{m.tour_empty()}</p>
+			<p>{m.tour_empty()}</p>
 		{:else}
 			<ol class="space-y-2">
 				{#each plan as stop, index (stop.id)}
-					<li class="flex items-center gap-1 rounded-field bg-base-300/60 px-2 py-1.5">
-						<span class="w-5 shrink-0 text-center text-xs font-semibold text-base-content/50">
-							{index + 1}
-						</span>
-						<span class="min-w-0 flex-1 truncate text-sm">{localize(stop.name)}</span>
+					<li class="flex items-center gap-2 rounded-field bg-base-300/60 px-2 py-2">
+						<span class="badge badge-neutral shrink-0">{index + 1}</span>
+						<span class="min-w-0 flex-1 truncate text-base font-medium">{localize(stop.name)}</span>
 						<button
-							class="btn btn-circle btn-ghost btn-xs"
+							class="btn btn-ghost px-2"
 							onclick={() => tour.move(stop.id, -1)}
 							disabled={index === 0}
 							aria-label={m.tour_move_up()}
@@ -77,7 +77,7 @@
 							↑
 						</button>
 						<button
-							class="btn btn-circle btn-ghost btn-xs"
+							class="btn btn-ghost px-2"
 							onclick={() => tour.move(stop.id, 1)}
 							disabled={index === plan.length - 1}
 							aria-label={m.tour_move_down()}
@@ -85,11 +85,11 @@
 							↓
 						</button>
 						<button
-							class="btn btn-circle btn-ghost btn-xs"
+							class="btn btn-ghost gap-1 px-2 text-sm"
 							onclick={() => tour.remove(stop.id)}
 							aria-label={m.tour_remove()}
 						>
-							✕
+							<span aria-hidden="true">✕</span>
 						</button>
 					</li>
 				{/each}
@@ -100,15 +100,15 @@
 				href={routeUrl}
 				target="_blank"
 				rel="noreferrer"
-				class="btn w-full btn-primary"
+				class="btn btn-primary btn-lg w-full"
 				onclick={() => trackEvent('tour_route_opened', { stops: tour.count, mode: tour.mode })}
 			>
 				<span aria-hidden="true">🧭</span>
 				{m.tour_open()}
 			</a>
 			<!-- eslint-enable svelte/no-navigation-without-resolve -->
-			<p class="text-center text-xs text-base-content/50">{m.tour_open_hint()}</p>
-			<button class="btn w-full btn-ghost btn-sm" onclick={() => tour.clear()}>
+			<p class="text-center text-sm text-base-content/80">{m.tour_open_hint()}</p>
+			<button class="btn btn-ghost w-full" onclick={() => tour.clear()}>
 				{m.tour_clear()}
 			</button>
 		{/if}

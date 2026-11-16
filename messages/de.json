@@ -134,5 +134,6 @@
 	"map_search_placeholder": "Ort oder Bahnhof suchen",
 	"map_count": "{count} Orte",
 	"map_no_results": "Keine Orte gefunden.",
-	"map_clear_search": "Suche löschen"
+	"map_clear_search": "Suche löschen",
+	"settings_install": "App installieren"
 }

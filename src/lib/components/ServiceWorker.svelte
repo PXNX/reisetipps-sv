@@ -60,10 +60,10 @@
 	<div class="flex flex-col items-center gap-4 pt-2 text-center">
 		<span class="text-4xl" aria-hidden="true">🌊</span>
 		<div>
-			<h2 class="text-xl font-semibold">{m.update_app_title()}</h2>
-			<p class="mt-2 text-sm leading-relaxed text-base-content/80">{m.update_app_body()}</p>
+			<h2 class="text-xl font-bold">{m.update_app_title()}</h2>
+			<p class="mt-2 leading-relaxed text-base-content/80">{m.update_app_body()}</p>
 		</div>
-		<button class="btn w-full btn-primary" onclick={update} disabled={updating}>
+		<button class="btn btn-primary btn-lg w-full" onclick={update} disabled={updating}>
 			{updating ? m.updating() : m.update_app_action()}
 		</button>
 	</div>

@@ -41,7 +41,7 @@
 <BottomSheet {open} {onclose}>
 	<div class="space-y-3 pt-1">
 		<div class="flex items-baseline justify-between gap-2">
-			<h2 class="text-xl font-semibold">{m.wishlist_title()}</h2>
+			<h2 class="text-xl font-bold">{m.wishlist_title()}</h2>
 			<span class="text-sm text-base-content/60"
 				>{entries.length === 1
 					? m.wishlist_count_one()
@@ -50,7 +50,7 @@
 		</div>
 
 		{#if entries.length === 0}
-			<p class="py-4 text-center text-sm leading-relaxed text-base-content/70">
+			<p class="py-4 text-center leading-relaxed text-base-content/80">
 				{m.wishlist_empty()}
 			</p>
 		{:else}
@@ -63,7 +63,7 @@
 						<img
 							src={location.image?.url ?? placeholderImage(location.categories)}
 							alt=""
-							class="h-10 w-10 shrink-0 rounded-field object-cover"
+							class="h-12 w-12 shrink-0 rounded-field object-cover"
 							loading="lazy"
 						/>
 						<button
@@ -71,18 +71,19 @@
 							class="min-w-0 flex-1 text-left"
 							onclick={() => showOnMap(location)}
 						>
-							<span class="block truncate text-sm font-medium">{localize(location.name)}</span>
-							<span class="text-xs text-base-content/60"
+							<span class="block truncate text-base font-semibold">{localize(location.name)}</span>
+							<span class="block truncate text-sm text-base-content/80"
 								>{categoryIcons[location.categories[0] ?? 'nature']} {location.nearestStation}</span
 							>
 						</button>
 						<button
 							type="button"
-							class="btn btn-circle btn-ghost btn-xs"
+							class="btn btn-ghost gap-1 text-sm"
 							aria-label={m.wishlist_remove()}
 							onclick={() => remove(location)}
 						>
-							✕
+							<span aria-hidden="true">✕</span>
+							{m.wishlist_remove()}
 						</button>
 					</li>
 				{/each}

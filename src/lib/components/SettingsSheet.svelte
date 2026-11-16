@@ -8,6 +8,7 @@
 	import { localizeHref, locales } from '$lib/paraglide/runtime';
 	import { currentLocale } from '$lib/i18n';
 	import { textSize } from '$lib/stores/textSize.svelte';
+	import { installHint } from '$lib/stores/installHint.svelte';
 	import * as m from '$lib/paraglide/messages.js';
 	import BottomSheet from './BottomSheet.svelte';
 
@@ -66,6 +67,20 @@
 					</a>
 				{/each}
 			</div>
+		</section>
+
+		<section class="border-t border-base-300 pt-4">
+			<button
+				type="button"
+				class="btn btn-outline w-full gap-2"
+				onclick={() => {
+					onclose();
+					installHint.show();
+				}}
+			>
+				<span aria-hidden="true">📲</span>
+				{m.settings_install()}
+			</button>
 		</section>
 
 		<section class="space-y-2 border-t border-base-300 pt-4 text-sm text-base-content/80">

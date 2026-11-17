@@ -11,7 +11,7 @@
 	color-scheme: dark;
 	--color-base-100: #0b1f33;
 	--color-base-200: #0e2740;
-	--color-base-300: #123049;
+	--color-base-300: #16395a;
 	--color-base-content: #f3f8fb;
 	--color-primary: #7fd3ea;
 	--color-primary-content: #062330;
@@ -19,24 +19,27 @@
 	--color-secondary-content: #2c1806;
 	--color-accent: #ffc078;
 	--color-accent-content: #2c1806;
-	--color-neutral: #123049;
+	--color-neutral: #14334f;
 	--color-neutral-content: #f3f8fb;
 	--color-info: #7fd3ea;
 	--color-success: #9ce6a8;
 	--color-warning: #ffc078;
 	--color-error: #ff9c9c;
-	--radius-box: 1rem;
-	--radius-field: 0.75rem;
-	--radius-selector: 0.75rem;
+	--radius-box: 1.25rem;
+	--radius-field: 0.85rem;
+	--radius-selector: 0.85rem;
+	--depth: 0;
+	--border: 1px;
 }
 
 /*
  * The whole app is built in rem, so a larger root size scales text, spacing and
- * controls together. 18px is a readable default for readers who do not carry a
- * phone everywhere; the settings sheet can raise it to 22px.
+ * controls together. 17px is a readable default for readers who do not carry a
+ * phone everywhere; the settings sheet can raise it to 20px.
  */
 html {
 	font-size: 17px;
+	-webkit-tap-highlight-color: transparent;
 }
 
 html.text-large {
@@ -55,27 +58,316 @@ body {
 body {
 	padding-bottom: env(safe-area-inset-bottom);
 	line-height: 1.55;
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
 }
 
-/* Comfortably tappable without feeling bulky. */
-.btn,
-.btn-xs,
-.btn-sm {
-	min-height: 2.6rem;
-	font-size: 1rem;
+/* ---------------------------------------------------------------- tokens -- */
+
+:root {
+	--line: color-mix(in oklab, var(--color-base-content) 12%, transparent);
+	--line-strong: color-mix(in oklab, var(--color-base-content) 20%, transparent);
+	--surface: color-mix(in oklab, #ffffff 5%, transparent);
+	--surface-hover: color-mix(in oklab, #ffffff 10%, transparent);
+	--glass: color-mix(in oklab, var(--color-base-100) 82%, transparent);
+	--glass-strong: color-mix(in oklab, var(--color-base-100) 94%, transparent);
+	--shadow-float: 0 18px 40px -22px rgb(0 0 0 / 0.8), 0 2px 10px -4px rgb(0 0 0 / 0.45);
+	--shadow-sheet: 0 -24px 70px -28px rgb(0 0 0 / 0.9);
+	--ease-out-soft: cubic-bezier(0.22, 0.8, 0.24, 1);
+	--ease-spring: cubic-bezier(0.34, 1.4, 0.5, 1);
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.015em;
+}
+
+/* --------------------------------------------------------------- buttons -- */
+
+.btn {
+	--depth: 0;
+	border-width: 1px;
+	font-weight: 600;
+	letter-spacing: -0.005em;
+	min-height: 2.75rem;
 	transition:
-		transform 120ms ease-out,
-		background-color 160ms ease-out,
-		border-color 160ms ease-out;
+		transform 160ms var(--ease-out-soft),
+		background-color 180ms ease-out,
+		border-color 180ms ease-out,
+		box-shadow 180ms ease-out,
+		color 180ms ease-out;
 }
 
-.btn:active {
-	transform: scale(0.98);
+.btn:not(:disabled, [aria-disabled='true']):active {
+	transform: scale(0.97);
 }
+
+.btn-primary {
+	box-shadow: 0 12px 26px -14px color-mix(in oklab, var(--color-primary) 75%, transparent);
+}
+
+/* The quiet, content-first button. Replaces the old hard white outlines. */
+.btn.btn-soft {
+	--btn-bg: var(--surface);
+	--btn-border: var(--line);
+	--btn-inset: 0 0 0 0 transparent;
+	--btn-shadow: 0 0 0 0 transparent;
+	color: var(--color-base-content);
+}
+
+.btn.btn-soft:hover {
+	--btn-bg: var(--surface-hover);
+	--btn-border: var(--line-strong);
+}
+
+.btn.btn-outline {
+	--btn-bg: color-mix(in oklab, var(--color-base-100) 35%, transparent);
+	--btn-border: var(--line-strong);
+	color: var(--color-base-content);
+}
+
+.btn.btn-outline:hover {
+	--btn-bg: var(--surface-hover);
+	--btn-border: color-mix(in oklab, var(--color-primary) 45%, transparent);
+}
+
+.btn-ghost {
+	color: color-mix(in oklab, var(--color-base-content) 82%, transparent);
+}
+
+.btn-ghost:hover {
+	color: var(--color-base-content);
+	background: var(--surface);
+}
+
+.btn-lg {
+	min-height: 3rem;
+	font-size: 1.05rem;
+}
+
+.btn-sm {
+	min-height: 2.25rem;
+	font-size: 0.925rem;
+}
+
+/* ----------------------------------------------------------- small parts -- */
+
+.surface {
+	background: var(--surface);
+	border: 1px solid var(--line);
+	border-radius: var(--radius-box);
+}
+
+.chip {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.4rem;
+	padding: 0.28rem 0.7rem;
+	border: 1px solid var(--line);
+	border-radius: 999px;
+	background: var(--surface);
+	color: color-mix(in oklab, var(--color-base-content) 92%, transparent);
+	font-size: 0.86rem;
+	font-weight: 500;
+	line-height: 1.3;
+	white-space: nowrap;
+}
+
+.chip-primary {
+	border-color: color-mix(in oklab, var(--color-primary) 30%, transparent);
+	background: color-mix(in oklab, var(--color-primary) 14%, transparent);
+	color: var(--color-primary);
+}
+
+.chip-secondary {
+	border-color: color-mix(in oklab, var(--color-secondary) 30%, transparent);
+	background: color-mix(in oklab, var(--color-secondary) 14%, transparent);
+	color: var(--color-secondary);
+}
+
+.chip-success {
+	border-color: color-mix(in oklab, var(--color-success) 32%, transparent);
+	background: color-mix(in oklab, var(--color-success) 14%, transparent);
+	color: var(--color-success);
+}
+
+.icon-btn {
+	display: inline-grid;
+	place-items: center;
+	width: 2.75rem;
+	height: 2.75rem;
+	flex: none;
+	border: 1px solid var(--line);
+	border-radius: 999px;
+	background: var(--glass);
+	backdrop-filter: blur(14px) saturate(1.15);
+	transition:
+		transform 160ms var(--ease-out-soft),
+		background-color 180ms ease-out,
+		border-color 180ms ease-out;
+}
+
+.icon-btn:hover {
+	background: var(--glass-strong);
+	border-color: var(--line-strong);
+	transform: translateY(-1px);
+}
+
+.icon-btn:active {
+	transform: scale(0.94);
+}
+
+.glass-panel {
+	background: var(--glass);
+	border: 1px solid var(--line);
+	box-shadow: var(--shadow-float);
+	backdrop-filter: blur(16px) saturate(1.2);
+}
+
+/* A full-width, tappable row for links and secondary actions. */
+.row-link {
+	display: flex;
+	align-items: center;
+	gap: 0.85rem;
+	width: 100%;
+	padding: 0.7rem 0.8rem;
+	border: 1px solid transparent;
+	border-radius: var(--radius-field);
+	background: color-mix(in oklab, #ffffff 4%, transparent);
+	text-align: left;
+	transition:
+		transform 160ms var(--ease-out-soft),
+		background-color 180ms ease-out,
+		border-color 180ms ease-out;
+}
+
+.row-link:hover {
+	background: var(--surface-hover);
+	border-color: var(--line);
+	transform: translateY(-1px);
+}
+
+.row-link:active {
+	transform: none;
+}
+
+.icon-tile {
+	display: grid;
+	place-items: center;
+	width: 2.5rem;
+	height: 2.5rem;
+	flex: none;
+	border-radius: 0.8rem;
+	background: color-mix(in oklab, var(--color-primary) 14%, transparent);
+	color: var(--color-primary);
+}
+
+/* --------------------------------------------------------- segmented bar -- */
+
+.seg {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.2rem;
+	padding: 0.22rem;
+	border: 1px solid var(--line);
+	border-radius: 999px;
+	background: var(--glass);
+	box-shadow: var(--shadow-float);
+	backdrop-filter: blur(14px) saturate(1.15);
+}
+
+.seg-btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 0.4rem;
+	height: 2.2rem;
+	padding: 0 0.85rem;
+	border-radius: 999px;
+	color: color-mix(in oklab, var(--color-base-content) 72%, transparent);
+	font-size: 0.86rem;
+	font-weight: 600;
+	white-space: nowrap;
+	transition:
+		background-color 180ms ease-out,
+		color 180ms ease-out,
+		transform 160ms var(--ease-out-soft);
+}
+
+.seg-btn:hover {
+	color: var(--color-base-content);
+	background: var(--surface);
+}
+
+.seg-btn[aria-pressed='true'],
+.seg-btn[aria-current='page'],
+.seg-btn[aria-current='true'] {
+	background: var(--color-primary);
+	color: var(--color-primary-content);
+	box-shadow: 0 8px 18px -12px var(--color-primary);
+}
+
+.seg-btn:active {
+	transform: scale(0.96);
+}
+
+/* ---------------------------------------------------------------- fields -- */
+
+.input,
+.select,
+.textarea {
+	background: var(--surface);
+	border: 1px solid var(--line);
+	color: var(--color-base-content);
+}
+
+/* A field that sits inside its own pill already shows focus on the pill. */
+.field-bare:focus-visible {
+	outline: none;
+}
+
+.input:focus,
+.input:focus-within,
+.select:focus,
+.textarea:focus {
+	outline: 2px solid color-mix(in oklab, var(--color-primary) 70%, transparent);
+	outline-offset: 1px;
+	border-color: color-mix(in oklab, var(--color-primary) 55%, transparent);
+}
+
+input[type='search']::-webkit-search-cancel-button,
+input[type='search']::-webkit-search-decoration {
+	-webkit-appearance: none;
+	appearance: none;
+}
+
+input,
+select,
+textarea {
+	font-size: 1rem;
+}
+
+/* ------------------------------------------------------------- scrolling -- */
+
+.scroll-slim {
+	scrollbar-width: thin;
+	scrollbar-color: color-mix(in oklab, var(--color-base-content) 28%, transparent) transparent;
+	-webkit-overflow-scrolling: touch;
+}
+
+/* Clear, high-contrast keyboard focus for readers who use a keyboard or switch. */
+:where(a, button, input, [tabindex]):focus-visible {
+	outline: 3px solid var(--color-primary);
+	outline-offset: 3px;
+	border-radius: 0.5rem;
+}
+
+/* ----------------------------------------------------------------- motion -- */
 
 /* A small, content-first entrance — never a bounce or a slide across the screen. */
 .rise-in {
-	animation: rise-in 240ms ease-out both;
+	animation: rise-in 260ms var(--ease-out-soft) both;
 }
 
 @keyframes rise-in {
@@ -89,26 +381,39 @@ body {
 	}
 }
 
-.btn-lg {
-	min-height: 3.1rem;
-	font-size: 1.08rem;
+.pop-in {
+	animation: pop-in 260ms var(--ease-spring) both;
 }
 
-/* Clear, high-contrast keyboard focus for readers who use a keyboard or switch. */
-:where(a, button, input, [tabindex]):focus-visible {
-	outline: 3px solid var(--color-primary);
-	outline-offset: 3px;
+@keyframes pop-in {
+	from {
+		opacity: 0;
+		transform: scale(0.92);
+	}
+	to {
+		opacity: 1;
+		transform: none;
+	}
 }
 
-input,
-select,
-textarea {
-	font-size: 1rem;
+/* A slow, barely-there drift for decorative artwork. */
+.float-soft {
+	animation: float-soft 7s ease-in-out infinite;
+}
+
+@keyframes float-soft {
+	0%,
+	100% {
+		transform: translateY(0);
+	}
+	50% {
+		transform: translateY(-5px);
+	}
 }
 
 /* The wishlist badge pops every time a new place is starred. */
 .wishlist-count {
-	animation: wish-pop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+	animation: wish-pop 0.4s var(--ease-spring);
 }
 
 @keyframes wish-pop {
@@ -124,7 +429,7 @@ textarea {
 }
 
 /* A small spin on the star when the button is pressed. */
-.wishlist-toggle:active .text-lg {
+.wishlist-toggle:active svg {
 	animation: wish-spin 0.45s ease-out;
 }
 
@@ -137,6 +442,23 @@ textarea {
 	}
 	100% {
 		transform: rotate(360deg) scale(1);
+	}
+}
+
+/* Decorative sparkle used next to a picked recommendation. */
+.twinkle {
+	animation: twinkle 2.4s ease-in-out infinite;
+}
+
+@keyframes twinkle {
+	0%,
+	100% {
+		opacity: 0.55;
+		transform: scale(0.92);
+	}
+	50% {
+		opacity: 1;
+		transform: scale(1.06);
 	}
 }
 

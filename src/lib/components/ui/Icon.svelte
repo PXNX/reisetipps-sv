@@ -50,6 +50,14 @@
 	import DrinksColor from '~icons/fluent-emoji/wine-glass';
 	import SweetsColor from '~icons/fluent-emoji/ice-cream';
 	import BusColor from '~icons/fluent-emoji/bus';
+	import Transit from '~icons/fluent/vehicle-bus-20-regular';
+	import ArrowLeft from '~icons/fluent/arrow-left-20-regular';
+	import Sparkle from '~icons/fluent/sparkle-20-filled';
+	import CheckCircle from '~icons/fluent/checkmark-circle-20-filled';
+	import Lightbulb from '~icons/fluent/lightbulb-20-regular';
+	import LocationFilled from '~icons/fluent/location-20-filled';
+	import Eye from '~icons/fluent/eye-20-regular';
+	import EyeOff from '~icons/fluent/eye-off-20-regular';
 
 	const icons: Record<string, Component> = {
 		'star-filled': StarFilled,
@@ -97,6 +105,14 @@
 		drinks: DrinksColor,
 		sweets: SweetsColor,
 		bus: BusColor,
+		transit: Transit,
+		'arrow-left': ArrowLeft,
+		sparkle: Sparkle,
+		'check-circle': CheckCircle,
+		bulb: Lightbulb,
+		'location-filled': LocationFilled,
+		eye: Eye,
+		'eye-off': EyeOff,
 		fallback: Info
 	};
 

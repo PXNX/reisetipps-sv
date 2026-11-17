@@ -10,11 +10,20 @@
 		children: Snippet;
 		/** Shown in the sheet header, so every sheet has a clear subject. */
 		title?: string;
+		/** A quiet second line under the title, e.g. the place's station. */
+		subtitle?: string;
 		/** A pending update must be answered — it cannot be swiped or clicked away. */
 		dismissible?: boolean;
 	}
 
-	let { open, onclose = () => {}, children, title = '', dismissible = true }: Props = $props();
+	let {
+		open,
+		onclose = () => {},
+		children,
+		title = '',
+		subtitle = '',
+		dismissible = true
+	}: Props = $props();
 
 	const reduceMotion =
 		typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -28,6 +37,7 @@
 	let dragVelocity = 0;
 	let lastDragY = 0;
 	let lastDragT = 0;
+	let titleId = $derived(`sheet-title-${Math.random().toString(36).slice(2, 8)}`);
 
 	$effect(() => {
 		if (open) {
@@ -106,7 +116,7 @@
 	{#if dismissible}
 		<button
 			type="button"
-			class="fixed inset-0 z-[1050] cursor-default bg-black/60"
+			class="fixed inset-0 z-[1050] cursor-default bg-[#04101c]/70 backdrop-blur-[2px]"
 			style="opacity: {backdropOpacity}"
 			onclick={onclose}
 			aria-label={m.close()}
@@ -114,7 +124,7 @@
 		></button>
 	{:else}
 		<div
-			class="fixed inset-0 z-[1050] bg-black/60"
+			class="fixed inset-0 z-[1050] bg-[#04101c]/70 backdrop-blur-[2px]"
 			style="opacity: {backdropOpacity}"
 			aria-hidden="true"
 		></div>
@@ -122,49 +132,80 @@
 
 	<div
 		bind:this={sheet}
-		class="fixed inset-x-0 bottom-0 z-[1100] flex max-h-[85dvh] flex-col overflow-hidden rounded-t-2xl bg-base-200 shadow-2xl"
+		class="sheet fixed inset-x-0 bottom-0 z-[1100] mx-auto flex max-h-[88dvh] w-full max-w-2xl flex-col overflow-hidden rounded-t-[1.6rem] bg-base-200"
 		style="transform: translateY({translate}%)"
 		role="dialog"
 		aria-modal="true"
-		aria-label={title || undefined}
+		aria-labelledby={title ? titleId : undefined}
+		aria-label={title ? undefined : m.close()}
 	>
-		<div class="shrink-0 bg-base-200 px-4 pt-2 pb-2 shadow-[0_1px_0_rgba(255,255,255,0.06)]">
+		<div class="shrink-0 px-4 pt-2 pb-3 sm:px-5">
 			{#if dismissible}
 				<div
-					class="flex touch-none justify-center py-1"
+					class="flex touch-none justify-center py-1.5"
 					role="presentation"
 					onpointerdown={onPointerDown}
 					onpointermove={onPointerMove}
 					onpointerup={onPointerUp}
 					onpointercancel={onPointerUp}
 				>
-					<div class="h-1.5 w-12 rounded-full bg-base-content/35"></div>
+					<div class="h-1.5 w-11 rounded-full bg-base-content/30"></div>
 				</div>
 			{/if}
-			<div class="flex min-h-11 items-center justify-between gap-3 pt-1">
-				{#if title}
-					<h2 class="text-xl font-bold">{title}</h2>
-				{:else}
-					<span></span>
-				{/if}
+			<div class="flex min-h-11 items-center gap-3 pt-0.5">
+				<div class="min-w-0 flex-1">
+					{#if title}
+						<h2 id={titleId} class="truncate text-lg leading-tight font-bold">{title}</h2>
+					{:else}
+						<span class="sr-only">{m.close()}</span>
+					{/if}
+					{#if subtitle}
+						<p class="truncate text-sm text-base-content/65">{subtitle}</p>
+					{/if}
+				</div>
 				{#if dismissible}
 					<button
 						type="button"
-						class="btn gap-1.5 bg-base-300/70 btn-ghost px-3 text-sm"
+						class="icon-btn -mr-1 text-base-content/80 hover:text-base-content"
 						onclick={onclose}
 						aria-label={m.close()}
 					>
-						<Icon name="close" class="text-lg" />
-						{m.close()}
+						<Icon name="close" size={22} />
 					</button>
 				{/if}
 			</div>
 		</div>
+		<div class="sheet-divider h-px shrink-0"></div>
 		<div
-			class="min-h-0 flex-1 overflow-y-auto overscroll-contain px-4 pb-6 sm:px-5"
+			class="scroll-slim min-h-0 flex-1 overflow-y-auto overscroll-contain px-4 pt-4 pb-6 sm:px-5"
 			style="padding-bottom: max(1.5rem, env(safe-area-inset-bottom))"
 		>
 			{@render children()}
 		</div>
 	</div>
 {/if}
+
+<style>
+	.sheet {
+		box-shadow: var(--shadow-sheet);
+		border: 1px solid color-mix(in oklab, #ffffff 10%, transparent);
+		border-bottom: none;
+	}
+
+	.sheet-divider {
+		background: linear-gradient(
+			to right,
+			transparent,
+			color-mix(in oklab, #ffffff 12%, transparent),
+			transparent
+		);
+	}
+
+	@media (width >= 640px) {
+		.sheet {
+			bottom: 1.25rem;
+			border-radius: 1.6rem;
+			border-bottom: 1px solid color-mix(in oklab, #ffffff 10%, transparent);
+		}
+	}
+</style>

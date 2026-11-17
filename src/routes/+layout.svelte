@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/state';
-	import { deLocalizeUrl } from '$lib/paraglide/runtime';
+	import { deLocalizeUrl, localizeHref } from '$lib/paraglide/runtime';
 	import * as m from '$lib/paraglide/messages.js';
 	import './layout.css';
 	import favicon from '$lib/assets/favicon.svg';
@@ -31,40 +31,60 @@
 <svelte:head><link rel="icon" href={favicon} /></svelte:head>
 
 <div class="flex min-h-dvh flex-col bg-base-100 text-base-content">
-	<!-- No title row: on the map these two controls simply float over the canvas. -->
 	<header
-		class="flex items-center justify-end gap-1 px-3 py-2 {onMap
-			? 'absolute inset-x-0 top-0 z-[900]'
-			: 'border-b border-base-300/60'}"
+		class="flex items-center gap-2 px-3 py-2 {onMap
+			? 'pointer-events-none absolute inset-x-0 top-0 z-[900]'
+			: 'sticky top-0 z-[900] border-b border-white/8 bg-base-100/85 backdrop-blur-md'}"
+		style="padding-top: max(0.5rem, env(safe-area-inset-top))"
 	>
-		<button
-			type="button"
-			class="btn relative gap-1 bg-base-100/85 btn-ghost text-sm backdrop-blur"
-			onclick={openWishlist}
-			aria-label={m.nav_wishlist()}
-		>
-			<Icon name="star-filled" class="text-xl" />
-			<span class="hidden sm:inline">{m.nav_wishlist()}</span>
-			{#if locationMarks.wishlist.size > 0}
-				<span
-					class="absolute -top-0.5 -right-0.5 flex h-5 min-w-5 items-center justify-center rounded-full bg-secondary px-1 text-xs font-bold text-secondary-content"
-				>
-					{locationMarks.wishlist.size}
-				</span>
-			{/if}
-		</button>
-		<button
-			type="button"
-			class="btn gap-1 bg-base-100/85 btn-ghost text-sm backdrop-blur"
-			onclick={() => {
-				settingsOpen = true;
-				trackEvent('settings_opened', {});
-			}}
-			aria-label={m.settings_open()}
-		>
-			<Icon name="settings" class="text-xl" />
-			<span class="hidden sm:inline">{m.settings_open()}</span>
-		</button>
+		{#if onMap}
+			<span class="sr-only">{m.app_name()}</span>
+		{:else}
+			<!-- eslint-disable-next-line svelte/no-navigation-without-resolve -- localized internal link -->
+			<a
+				href={localizeHref('/')}
+				class="btn gap-2 btn-ghost -ml-1 h-11 px-2.5 text-base-content/85"
+				aria-label={m.nav_map()}
+			>
+				<Icon name="arrow-left" size={18} />
+				<span>{m.nav_map()}</span>
+			</a>
+		{/if}
+
+		<div class="pointer-events-auto ml-auto flex items-center gap-2">
+			<button
+				type="button"
+				class="icon-btn relative text-secondary"
+				onclick={openWishlist}
+				aria-label="{m.nav_wishlist()}{locationMarks.wishlist.size > 0
+					? ` (${locationMarks.wishlist.size})`
+					: ''}"
+				title={m.nav_wishlist()}
+			>
+				<Icon name={locationMarks.wishlist.size > 0 ? 'star-filled' : 'star'} size={21} />
+				{#if locationMarks.wishlist.size > 0}
+					{#key locationMarks.wishlist.size}
+						<span
+							class="wishlist-count absolute -top-1 -right-1 flex h-5 min-w-5 items-center justify-center rounded-full bg-secondary px-1 text-xs font-bold text-secondary-content shadow"
+						>
+							{locationMarks.wishlist.size}
+						</span>
+					{/key}
+				{/if}
+			</button>
+			<button
+				type="button"
+				class="icon-btn text-base-content/85 hover:text-base-content"
+				onclick={() => {
+					settingsOpen = true;
+					trackEvent('settings_opened', {});
+				}}
+				aria-label={m.settings_open()}
+				title={m.settings_open()}
+			>
+				<Icon name="settings" size={21} />
+			</button>
+		</div>
 	</header>
 
 	<main class="flex-1 {onMap ? '' : 'pb-4'}">

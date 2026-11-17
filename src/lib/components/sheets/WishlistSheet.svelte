@@ -12,7 +12,6 @@
 	import { trackEvent } from '$lib/telemetry';
 	import { locations } from '$lib/data/locations';
 	import type { Location } from '$lib/data/types';
-	import { categoryIcons } from '$lib/icons';
 	import Icon from '../ui/Icon.svelte';
 	import { placeholderImage } from '$lib/placeholderImage';
 	import BottomSheet from './BottomSheet.svelte';
@@ -41,48 +40,60 @@
 </script>
 
 <BottomSheet {open} {onclose} title={m.wishlist_title()}>
-	<div class="space-y-3 pt-1">
-		<p class="text-sm text-base-content/80">
-			{entries.length === 1
-				? m.wishlist_count_one()
-				: m.wishlist_count_other({ count: entries.length })}
-		</p>
-
+	<div class="space-y-4">
 		{#if entries.length === 0}
-			<p class="py-4 text-center leading-relaxed text-base-content/80">
-				{m.wishlist_empty()}
-			</p>
+			<div class="flex flex-col items-center gap-3 px-4 py-10 text-center">
+				<span
+					class="grid h-16 w-16 place-items-center rounded-full bg-secondary/12 text-secondary"
+				>
+					<Icon name="star" size={30} />
+				</span>
+				<p class="max-w-sm leading-relaxed text-base-content/70">{m.wishlist_empty()}</p>
+				<button class="btn mt-1 gap-2 btn-soft" onclick={onclose}>
+					<Icon name="map" size={18} />
+					{m.nav_map()}
+				</button>
+			</div>
 		{:else}
+			<p class="text-sm text-base-content/65">
+				{entries.length === 1
+					? m.wishlist_count_one()
+					: m.wishlist_count_other({ count: entries.length })}
+			</p>
+
 			<ul class="space-y-2">
 				{#each entries as location, index (location.id)}
 					<li
-						class="wishlist-row flex items-center gap-2 rounded-field bg-base-300/60 py-2 pr-1 pl-2"
-						style="animation-delay: {index * 60}ms"
+						class="wishlist-row flex items-center gap-1 rounded-xl border border-white/8 bg-white/4 pr-1.5 pl-2 py-2"
+						style="animation-delay: {Math.min(index, 8) * 45}ms"
 					>
-						<img
-							src={location.image?.url ?? placeholderImage(location.categories)}
-							alt=""
-							class="h-12 w-12 shrink-0 rounded-field object-cover"
-							loading="lazy"
-						/>
 						<button
 							type="button"
-							class="min-w-0 flex-1 text-left"
+							class="flex min-w-0 flex-1 items-center gap-3 rounded-lg py-0.5 text-left"
 							onclick={() => showOnMap(location)}
 						>
-							<span class="block truncate text-base font-semibold">{localize(location.name)}</span>
-							<span class="block truncate text-sm text-base-content/80"
-								>{location.nearestStation}</span
-							>
+							<img
+								src={location.image?.url ?? placeholderImage(location.categories)}
+								alt=""
+								class="h-12 w-12 shrink-0 rounded-lg object-cover ring-1 ring-white/10"
+								loading="lazy"
+							/>
+							<span class="min-w-0 flex-1">
+								<span class="block truncate font-semibold">{localize(location.name)}</span>
+								<span class="block truncate text-sm text-base-content/60"
+									>{location.nearestStation}</span
+								>
+							</span>
+							<Icon name="chevron-right" class="shrink-0 text-base-content/35" />
 						</button>
 						<button
 							type="button"
-							class="btn gap-1 btn-ghost text-sm"
+							class="icon-btn h-9 w-9 shrink-0 border-0 bg-transparent text-base-content/50 hover:bg-white/8 hover:text-error"
 							aria-label={m.wishlist_remove()}
+							title={m.wishlist_remove()}
 							onclick={() => remove(location)}
 						>
-							<Icon name="close" />
-							{m.wishlist_remove()}
+							<Icon name="close" size={18} />
 						</button>
 					</li>
 				{/each}
@@ -94,7 +105,7 @@
 <style>
 	/* Rows slide up one after another when the sheet opens. */
 	.wishlist-row {
-		animation: row-in 0.3s ease-out both;
+		animation: row-in 0.32s var(--ease-out-soft) both;
 	}
 
 	@keyframes row-in {

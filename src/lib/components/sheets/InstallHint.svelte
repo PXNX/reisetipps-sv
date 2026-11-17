@@ -80,13 +80,18 @@
 </script>
 
 <BottomSheet open={installHint.open} onclose={dismiss} title={m.install_sheet_title()}>
-	<div class="flex flex-col gap-4 pt-2">
-		<Icon name="download" class="self-center text-primary" size={40} />
-		<p class="leading-relaxed text-base-content/80">
-			{isIos ? m.install_hint_ios() : m.install_hint_body()}
-		</p>
+	<div class="flex flex-col gap-5 pt-1">
+		<div class="flex items-start gap-3.5">
+			<span class="icon-tile h-12 w-12 rounded-2xl bg-primary/14">
+				<Icon name="download" size={24} />
+			</span>
+			<p class="pt-1 leading-relaxed text-base-content/80">
+				{isIos ? m.install_hint_ios() : m.install_hint_body()}
+			</p>
+		</div>
 		{#if !isIos}
-			<button class="btn w-full btn-lg btn-primary" onclick={install} disabled={!deferredPrompt}>
+			<button class="btn w-full gap-2 btn-lg btn-primary" onclick={install} disabled={!deferredPrompt}>
+				<Icon name="download" size={20} />
 				{m.install_action()}
 			</button>
 		{/if}

@@ -23,16 +23,19 @@
 </script>
 
 <BottomSheet {open} {onclose} title={m.settings_title()}>
-	<div class="space-y-6 pt-1">
-		<section class="space-y-2">
-			<h3 class="text-base font-semibold">{m.settings_text_size()}</h3>
-			<p class="text-sm text-base-content/80">{m.settings_text_hint()}</p>
-			<div class="grid grid-cols-2 gap-3 pt-1">
+	<div class="space-y-7">
+		<section class="space-y-3">
+			<div class="flex items-center gap-2.5">
+				<span class="icon-tile"><Icon name="text" size={20} /></span>
+				<div>
+					<h3 class="text-base leading-tight font-semibold">{m.settings_text_size()}</h3>
+					<p class="text-sm text-base-content/60">{m.settings_text_hint()}</p>
+				</div>
+			</div>
+			<div class="grid grid-cols-2 gap-2">
 				<button
 					type="button"
-					class="btn flex-col gap-0 btn-lg {textSize.value === 'normal'
-						? 'btn-primary'
-						: 'btn-outline'}"
+					class="option flex-col gap-0.5 py-3"
 					aria-pressed={textSize.value === 'normal'}
 					onclick={() => {
 						textSize.set('normal');
@@ -44,31 +47,30 @@
 				</button>
 				<button
 					type="button"
-					class="btn flex-col gap-0 btn-lg {textSize.value === 'large'
-						? 'btn-primary'
-						: 'btn-outline'}"
+					class="option flex-col gap-0.5 py-3"
 					aria-pressed={textSize.value === 'large'}
 					onclick={() => {
 						textSize.set('large');
 						trackEvent('text_size_changed', { size: 'large' });
 					}}
 				>
-					<span class="text-3xl leading-none" aria-hidden="true">A</span>
+					<span class="text-[1.6rem] leading-none" aria-hidden="true">A</span>
 					<span class="text-sm">{m.settings_text_large()}</span>
 				</button>
 			</div>
 		</section>
 
-		<section class="space-y-2">
-			<h3 class="text-lg font-semibold">{m.settings_language()}</h3>
-			<div class="join w-full">
+		<section class="space-y-3">
+			<div class="flex items-center gap-2.5">
+				<span class="icon-tile"><Icon name="language" size={20} /></span>
+				<h3 class="text-base font-semibold">{m.settings_language()}</h3>
+			</div>
+			<div class="seg w-full">
 				{#each locales as locale (locale)}
 					<!-- eslint-disable-next-line svelte/no-navigation-without-resolve -- localized internal link -->
 					<a
 						href={localizeHref(page.url.pathname, { locale })}
-						class="btn join-item flex-1 {currentLocale() === locale
-							? 'btn-primary'
-							: 'btn-outline'}"
+						class="seg-btn h-10 flex-1"
 						aria-current={currentLocale() === locale}
 						onclick={() => {
 							try {
@@ -85,27 +87,65 @@
 			</div>
 		</section>
 
-		<section class="border-t border-base-300 pt-4">
+		<section class="space-y-2 border-t border-white/8 pt-5">
 			<button
 				type="button"
-				class="btn w-full gap-2 btn-outline"
+				class="row-link"
 				onclick={() => {
 					onclose();
 					installHint.show();
 					trackEvent('install_opened_from_settings', {});
 				}}
 			>
-				<Icon name="download" />
-				{m.settings_install()}
+				<span class="icon-tile"><Icon name="download" size={20} /></span>
+				<span class="min-w-0 flex-1 font-semibold">{m.settings_install()}</span>
+				<Icon name="chevron-right" class="shrink-0 text-base-content/35" />
 			</button>
-		</section>
 
-		<section class="space-y-2 border-t border-base-300 pt-4 text-sm text-base-content/80">
-			<p>{m.settings_about()}</p>
 			<!-- eslint-disable-next-line svelte/no-navigation-without-resolve -- localized internal link -->
-			<a href={localizeHref('/datenschutz')} class="link text-base link-primary">
-				{m.privacy_link()}
+			<a href={localizeHref('/datenschutz')} class="row-link">
+				<span class="icon-tile bg-white/6 text-base-content/80"
+					><Icon name="shield" size={20} /></span
+				>
+				<span class="min-w-0 flex-1">
+					<span class="block font-semibold">{m.privacy_link()}</span>
+					<span class="block truncate text-sm text-base-content/60">{m.settings_about()}</span>
+				</span>
+				<Icon name="chevron-right" class="shrink-0 text-base-content/35" />
 			</a>
 		</section>
 	</div>
 </BottomSheet>
+
+<style>
+	.option {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		min-height: 3rem;
+		padding: 0.5rem 0.7rem;
+		border: 1px solid var(--line);
+		border-radius: 0.9rem;
+		background: var(--surface);
+		text-align: center;
+		transition:
+			background-color 180ms ease-out,
+			border-color 180ms ease-out,
+			color 180ms ease-out,
+			transform 160ms var(--ease-out-soft);
+	}
+
+	.option:hover {
+		background: var(--surface-hover);
+	}
+
+	.option:active {
+		transform: scale(0.97);
+	}
+
+	.option[aria-pressed='true'] {
+		border-color: color-mix(in oklab, var(--color-primary) 45%, transparent);
+		background: color-mix(in oklab, var(--color-primary) 14%, transparent);
+		color: var(--color-primary);
+	}
+</style>

@@ -60,10 +60,17 @@
 
 <!-- Not dismissible: an outdated build stays in place until the reader taps the button. -->
 <BottomSheet {open} dismissible={false} title={m.update_app_title()}>
-	<div class="flex flex-col items-center gap-4 pt-2 text-center">
-		<Icon name="refresh" class="text-primary" size={40} />
+	<div class="flex flex-col items-center gap-5 pt-1 text-center">
+		<span class="grid h-14 w-14 place-items-center rounded-full bg-primary/12 text-primary">
+			<Icon name="refresh" size={26} />
+		</span>
 		<p class="leading-relaxed text-base-content/80">{m.update_app_body()}</p>
-		<button class="btn w-full btn-lg btn-primary" onclick={update} disabled={updating}>
+		<button class="btn w-full gap-2 btn-lg btn-primary" onclick={update} disabled={updating}>
+			{#if updating}
+				<span class="loading loading-sm loading-spinner"></span>
+			{:else}
+				<Icon name="refresh" size={20} />
+			{/if}
 			{updating ? m.updating() : m.update_app_action()}
 		</button>
 	</div>

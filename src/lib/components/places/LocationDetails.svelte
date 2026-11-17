@@ -50,137 +50,175 @@
 	);
 </script>
 
-<div class="rise-in space-y-5">
-	<figure>
+<div class="space-y-5">
+	<figure class="rise-in">
 		<ZoomableImage
 			src={imageSrc}
 			alt={imageAlt}
 			attribution={location.image?.attribution}
 			gallery={photos}
-			class="h-48 sm:h-60"
+			class="h-52 sm:h-64"
 		/>
 	</figure>
 
-	<div>
-		<h2 class="text-2xl leading-tight font-bold">{localize(location.name)}</h2>
-		<div class="mt-3 flex flex-wrap gap-2">
-			{#each location.categories as category, i (category)}
-				<span class="badge gap-1 badge-outline badge-lg badge-primary">
-					<Icon
-						name={i === 0 && location.icon ? locationIconName(location) : categoryIcons[category]}
-						class="text-lg"
-					/>
-					{categoryLabel(category)}
-				</span>
-			{/each}
-			{#if visited}
-				<span class="badge gap-1 badge-lg badge-success"
-					><Icon name="check" /> {m.visited_badge()}</span
-				>
-			{/if}
-			{#if wishlisted}
-				<span class="badge gap-1 badge-lg badge-secondary"
-					><Icon name="star-filled" /> {m.wishlist_badge()}</span
-				>
-			{/if}
+	<div class="flex flex-wrap gap-1.5">
+		{#each location.categories as category, i (category)}
+			<span class="chip">
+				<Icon
+					name={i === 0 && location.icon ? locationIconName(location) : categoryIcons[category]}
+					size={17}
+				/>
+				{categoryLabel(category)}
+			</span>
+		{/each}
+	</div>
+
+	<p class="text-base leading-relaxed text-base-content/90">{localize(location.description)}</p>
+
+	<div class="tip">
+		<div class="flex items-center gap-2 text-secondary">
+			<Icon name="bulb" size={18} />
+			<span class="text-xs font-bold tracking-wide uppercase">{m.personal_tip()}</span>
 		</div>
+		<p class="mt-1.5 text-base leading-relaxed">{localize(location.tip)}</p>
 	</div>
 
-	<p class="text-base leading-relaxed">{localize(location.description)}</p>
-
-	<div class="rounded-box border-l-4 border-secondary bg-base-300/80 p-4">
-		<p class="text-sm font-bold tracking-wide text-secondary uppercase">{m.personal_tip()}</p>
-		<p class="mt-1 text-base leading-relaxed">{localize(location.tip)}</p>
-	</div>
-
-	<dl class="divide-y divide-base-300 rounded-box border border-base-300">
+	<dl class="surface divide-y divide-white/8 overflow-hidden">
 		<div class="flex flex-wrap items-baseline justify-between gap-1 px-4 py-3">
-			<dt class="text-base text-base-content/75">{m.nearest_station()}</dt>
-			<dd class="text-lg font-semibold">{location.nearestStation}</dd>
+			<dt class="text-sm text-base-content/65">{m.nearest_station()}</dt>
+			<dd class="text-base font-semibold">{location.nearestStation}</dd>
 		</div>
 		{#if location.openingHours}
 			<div class="flex flex-wrap items-baseline justify-between gap-1 px-4 py-3">
-				<dt class="text-base text-base-content/75">{m.opening_hours()}</dt>
-				<dd class="text-lg font-semibold">{localize(location.openingHours)}</dd>
+				<dt class="text-sm text-base-content/65">{m.opening_hours()}</dt>
+				<dd class="text-base font-semibold">{localize(location.openingHours)}</dd>
 			</div>
 		{/if}
 	</dl>
 
 	<!-- eslint-disable svelte/no-navigation-without-resolve -- these are external URLs, not SvelteKit routes -->
-	<div class="space-y-3">
+	<div class="space-y-2">
 		<a
 			href={googleMapsUrl(location)}
 			target="_blank"
 			rel="noreferrer"
-			class="btn w-full justify-start gap-3 btn-outline btn-lg"
+			class="row-link"
 			onclick={() => openLink('maps')}
 		>
-			<Icon name="map" class="w-6" size={24} />
-			<span class="flex flex-col items-start leading-tight">
-				<span>{m.link_maps()}</span>
-				<span class="text-sm font-normal">{m.link_maps_desc()}</span>
+			<span class="icon-tile"><Icon name="map" size={20} /></span>
+			<span class="min-w-0 flex-1">
+				<span class="block font-semibold">{m.link_maps()}</span>
+				<span class="block text-sm text-base-content/60">{m.link_maps_desc()}</span>
 			</span>
+			<Icon name="chevron-right" class="shrink-0 text-base-content/35" />
 		</a>
 		<a
 			href={hikingMapUrl(location)}
 			target="_blank"
 			rel="noreferrer"
-			class="btn w-full justify-start gap-3 btn-outline btn-lg"
+			class="row-link"
 			onclick={() => openLink('hiking')}
 		>
-			<Icon name="walk" class="w-6" size={24} />
-			<span class="flex flex-col items-start leading-tight">
-				<span>{m.link_hiking()}</span>
-				<span class="text-sm font-normal">{m.link_hiking_desc()}</span>
+			<span class="icon-tile"><Icon name="walk" size={20} /></span>
+			<span class="min-w-0 flex-1">
+				<span class="block font-semibold">{m.link_hiking()}</span>
+				<span class="block text-sm text-base-content/60">{m.link_hiking_desc()}</span>
 			</span>
+			<Icon name="chevron-right" class="shrink-0 text-base-content/35" />
 		</a>
 		<a
 			href={cyclingMapUrl(location)}
 			target="_blank"
 			rel="noreferrer"
-			class="btn w-full justify-start gap-3 btn-outline btn-lg"
+			class="row-link"
 			onclick={() => openLink('cycling')}
 		>
-			<Icon name="bike" class="w-6" size={24} />
-			<span class="flex flex-col items-start leading-tight">
-				<span>{m.link_cycling()}</span>
-				<span class="text-sm font-normal">{m.link_cycling_desc()}</span>
+			<span class="icon-tile"><Icon name="bike" size={20} /></span>
+			<span class="min-w-0 flex-1">
+				<span class="block font-semibold">{m.link_cycling()}</span>
+				<span class="block text-sm text-base-content/60">{m.link_cycling_desc()}</span>
 			</span>
+			<Icon name="chevron-right" class="shrink-0 text-base-content/35" />
 		</a>
-	</div>
 
-	{#if location.url}
-		<a
-			href={location.url}
-			target="_blank"
-			rel="noreferrer"
-			class="inline-block link text-base font-semibold link-primary"
-			onclick={() => openLink('website')}
-		>
-			{m.more_info()} →
-		</a>
-	{/if}
+		{#if location.url}
+			<a href={location.url} target="_blank" rel="noreferrer" class="row-link" onclick={() => openLink('website')}>
+				<span class="icon-tile"><Icon name="globe" size={20} /></span>
+				<span class="min-w-0 flex-1 font-semibold">{m.more_info()}</span>
+				<Icon name="chevron-right" class="shrink-0 text-base-content/35" />
+			</a>
+		{/if}
+	</div>
 	<!-- eslint-enable svelte/no-navigation-without-resolve -->
 
-	<div class="space-y-3 border-t border-base-300 pt-4">
-		<button class="btn w-full btn-lg btn-primary" onclick={toggleTour} aria-pressed={inTour}>
+	<div class="space-y-3 border-t border-white/8 pt-5">
+		<button
+			class="btn w-full gap-2 btn-lg {inTour ? 'btn-soft' : 'btn-primary'}"
+			class:tour-added={inTour}
+			onclick={toggleTour}
+			aria-pressed={inTour}
+		>
+			<Icon name={inTour ? 'check' : 'add'} size={20} />
 			{inTour ? m.tour_in() : m.tour_add()}
 		</button>
-		<div class="grid grid-cols-1 gap-3 sm:grid-cols-2">
+		<div class="grid grid-cols-1 gap-2 sm:grid-cols-2">
 			<button
-				class="btn btn-lg {visited ? 'btn-success' : 'btn-outline'}"
+				class="btn toggle-mark toggle-visited gap-2"
+				class:is-on={visited}
 				onclick={toggleVisited}
 				aria-pressed={visited}
 			>
+				<Icon name={visited ? 'check-circle' : 'check'} size={18} />
 				{visited ? m.unmark_visited() : m.mark_visited()}
 			</button>
 			<button
-				class="btn btn-lg {wishlisted ? 'btn-secondary' : 'btn-outline'}"
+				class="btn toggle-mark toggle-wishlist wishlist-toggle gap-2"
+				class:is-on={wishlisted}
 				onclick={toggleWishlist}
 				aria-pressed={wishlisted}
 			>
+				<Icon name={wishlisted ? 'star-filled' : 'star'} size={18} />
 				{wishlisted ? m.unmark_wishlist() : m.mark_wishlist()}
 			</button>
 		</div>
 	</div>
 </div>
+
+<style>
+	.tip {
+		border: 1px solid color-mix(in oklab, var(--color-secondary) 24%, transparent);
+		border-left: 3px solid var(--color-secondary);
+		border-radius: var(--radius-field);
+		background: color-mix(in oklab, var(--color-secondary) 8%, transparent);
+		padding: 0.9rem 1rem;
+	}
+
+	.btn.btn-soft.tour-added {
+		--btn-bg: color-mix(in oklab, var(--color-primary) 14%, transparent);
+		--btn-border: color-mix(in oklab, var(--color-primary) 32%, transparent);
+		color: var(--color-primary);
+	}
+
+	/* The two bookmark toggles stay quiet until they are actually on. */
+	.btn.toggle-mark {
+		--btn-bg: var(--surface);
+		--btn-border: var(--line);
+		min-height: 3rem;
+	}
+
+	.btn.toggle-mark:hover {
+		--btn-bg: var(--surface-hover);
+	}
+
+	.btn.toggle-mark.is-on.toggle-visited {
+		--btn-bg: color-mix(in oklab, var(--color-success) 14%, transparent);
+		--btn-border: color-mix(in oklab, var(--color-success) 38%, transparent);
+		color: var(--color-success);
+	}
+
+	.btn.toggle-mark.is-on.toggle-wishlist {
+		--btn-bg: color-mix(in oklab, var(--color-secondary) 14%, transparent);
+		--btn-border: color-mix(in oklab, var(--color-secondary) 38%, transparent);
+		color: var(--color-secondary);
+	}
+</style>

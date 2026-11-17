@@ -29,6 +29,12 @@
 
 	let open = $state(false);
 	let index = $state(0);
+	let dialog = $state<HTMLDivElement | null>(null);
+
+	// Keyboard and screen-reader focus belongs inside the overlay while it is open.
+	$effect(() => {
+		if (open) dialog?.focus();
+	});
 
 	function show(next: number) {
 		index = (next + slides.length) % slides.length;
@@ -60,6 +66,20 @@
 		};
 	});
 
+	/**
+	 * The details view lives inside a sheet, and the sheet's transform would trap the fixed
+	 * lightbox inside it. Moving the node to <body> keeps it a true full-screen overlay;
+	 * Svelte keeps its scope class and event handlers, so nothing else changes.
+	 */
+	function portal(node: HTMLElement) {
+		document.body.appendChild(node);
+		return {
+			destroy() {
+				node.remove();
+			}
+		};
+	}
+
 	// Horizontal swipe between the slides.
 	let touchX = $state(0);
 
@@ -78,26 +98,24 @@
 
 <button
 	type="button"
-	class="relative block w-full cursor-zoom-in"
+	class="group relative block w-full cursor-zoom-in overflow-hidden rounded-[1.15rem] ring-1 ring-white/10"
 	onclick={openGallery}
 	aria-label={alt}
 >
-	<img {src} {alt} loading="lazy" class="w-full rounded-box object-cover {className}" />
+	<img
+		{src}
+		{alt}
+		loading="lazy"
+		class="w-full rounded-[1.15rem] object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03] {className}"
+	/>
+	<span
+		class="pointer-events-none absolute inset-0 rounded-[1.15rem] bg-gradient-to-t from-black/35 via-transparent to-transparent opacity-70 transition-opacity group-hover:opacity-90"
+	></span>
 	{#if slides.length > 1}
 		<span
-			class="absolute right-2 bottom-2 flex items-center gap-1 rounded-full bg-black/70 px-3 py-1 text-sm font-semibold text-white"
+			class="absolute right-2.5 bottom-2.5 flex items-center gap-1.5 rounded-full border border-white/15 bg-black/55 px-2.5 py-1 text-xs font-semibold text-white backdrop-blur-md"
 		>
-			<svg
-				class="h-4 w-4"
-				viewBox="0 0 24 24"
-				fill="none"
-				stroke="currentColor"
-				stroke-width="2"
-				aria-hidden="true"
-			>
-				<rect x="9" y="9" width="11" height="11" rx="2" />
-				<path d="M16 5H7a2 2 0 0 0-2 2v9" />
-			</svg>
+			<Icon name="film" size={14} />
 			{m.gallery_count({ count: slides.length })}
 		</span>
 	{/if}
@@ -105,7 +123,9 @@
 
 {#if open}
 	<div
-		class="fixed inset-0 z-50"
+		use:portal
+		bind:this={dialog}
+		class="fixed inset-0 z-[1300] flex flex-col outline-none"
 		role="dialog"
 		aria-modal="true"
 		aria-label={alt}
@@ -115,78 +135,121 @@
 	>
 		<button
 			type="button"
-			class="absolute inset-0 cursor-zoom-out bg-black/85"
+			class="lightbox-backdrop absolute inset-0 cursor-zoom-out bg-[#04101c]/93 backdrop-blur-md"
 			onclick={close}
 			aria-label={m.close()}
 		></button>
-		<div class="relative flex h-full flex-col items-center justify-center p-4">
-			<!-- Flex column keeps the credit underneath the image even when the
-			     credit line is longer than the photo is wide. -->
-			<figure class="flex max-w-4xl flex-col items-center">
+
+		<div class="relative flex min-h-0 flex-1 flex-col px-3 pt-3 pb-3 sm:px-6 sm:pt-5">
+			<div class="flex items-center justify-between gap-3">
+				{#if slides.length > 1}
+					<span class="chip border-white/15 bg-black/35 text-white tabular-nums">
+						{m.gallery_counter({ index: index + 1, total: slides.length })}
+					</span>
+				{:else}
+					<span></span>
+				{/if}
+				<button
+					type="button"
+					class="icon-btn border-white/15 bg-black/40 text-white hover:bg-black/60"
+					onclick={close}
+					aria-label={m.close()}
+				>
+					<Icon name="close" size={22} />
+				</button>
+			</div>
+
+			<div class="relative flex min-h-0 flex-1 items-center justify-center py-3">
+				{#if slides.length > 1}
+					<button
+						type="button"
+						class="icon-btn absolute left-0 z-10 border-white/15 bg-black/45 text-white hover:bg-black/65"
+						onclick={() => show(index - 1)}
+						aria-label={m.gallery_previous()}
+					>
+						<Icon name="chevron-left" size={22} />
+					</button>
+				{/if}
 				{#key index}
 					<img
 						src={slides[index].src}
 						alt={slides[index].alt}
-						class="gallery-fade max-h-[65dvh] w-auto max-w-full rounded-box object-contain shadow-2xl"
+						class="gallery-fade max-h-[68dvh] w-auto max-w-full rounded-xl object-contain shadow-2xl ring-1 ring-white/10"
 					/>
 				{/key}
-				{#if slides[index].attribution}
-					<figcaption class="mt-2 text-center text-sm text-white/80">
-						{m.image_credit()}: {slides[index].attribution}
-					</figcaption>
-				{/if}
-			</figure>
-			{#if slides.length > 1}
-				<p class="sr-only">{m.gallery_swipe_hint()}</p>
-				<div class="absolute bottom-4 flex items-center gap-2">
+				{#if slides.length > 1}
 					<button
 						type="button"
-						class="btn gap-1 text-white"
-						onclick={() => show(index - 1)}
-						aria-label={m.gallery_previous()}
-					>
-						<Icon name="chevron-left" />
-						{m.gallery_previous()}
-					</button>
-					<span class="px-1 text-base text-white tabular-nums">
-						{m.gallery_counter({ index: index + 1, total: slides.length })}
-					</span>
-					<button
-						type="button"
-						class="btn gap-1 text-white"
+						class="icon-btn absolute right-0 z-10 border-white/15 bg-black/45 text-white hover:bg-black/65"
 						onclick={() => show(index + 1)}
 						aria-label={m.gallery_next()}
 					>
-						{m.gallery_next()}
-						<Icon name="chevron-right" />
+						<Icon name="chevron-right" size={22} />
 					</button>
-				</div>
-			{/if}
-			<button
-				type="button"
-				class="btn absolute top-3 right-3 gap-2 text-white"
-				onclick={close}
-				aria-label={m.close()}
-			>
-				<Icon name="close" />
-				{m.close()}
-			</button>
+				{/if}
+			</div>
+
+			<div class="flex flex-col items-center gap-2.5 pb-[max(0.25rem,env(safe-area-inset-bottom))]">
+				{#if slides.length > 1}
+					<div class="flex items-center gap-1.5" role="tablist" aria-label={m.gallery_count({ count: slides.length })}>
+						{#each slides as slide, i (slide.src)}
+							<button
+								type="button"
+								class="h-2 rounded-full transition-all duration-200 {i === index
+									? 'w-6 bg-primary'
+									: 'w-2 bg-white/35 hover:bg-white/60'}"
+								onclick={() => (index = i)}
+								aria-label={m.gallery_counter({ index: i + 1, total: slides.length })}
+								aria-selected={i === index}
+								role="tab"
+							></button>
+						{/each}
+					</div>
+				{/if}
+				{#if slides[index].attribution}
+					<p class="max-w-lg text-center text-xs text-white/65">
+						{m.image_credit()}: {slides[index].attribution}
+					</p>
+				{/if}
+				<p class="sr-only">{m.gallery_swipe_hint()}</p>
+			</div>
 		</div>
 	</div>
 {/if}
 
 <style>
+	.lightbox-backdrop {
+		animation: backdrop-in 200ms ease-out both;
+	}
+
 	/* Brief fade so slide changes feel responsive when swiping. */
 	.gallery-fade {
-		animation: gallery-fade 0.18s ease-out;
+		animation: gallery-fade 220ms var(--ease-out-soft) both;
+	}
+
+	@keyframes backdrop-in {
+		from {
+			opacity: 0;
+		}
+		to {
+			opacity: 1;
+		}
 	}
 
 	@keyframes gallery-fade {
 		from {
-			opacity: 0.3;
+			opacity: 0;
+			transform: scale(0.985);
 		}
 		to {
 			opacity: 1;
+			transform: none;
+		}
+	}
+
+	@media (width < 640px) {
+		.gallery-fade {
+			max-height: 58dvh;
 		}
 	}
 </style>

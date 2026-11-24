@@ -13,7 +13,7 @@
 	import { locations } from '$lib/data/locations';
 	import type { Location } from '$lib/data/types';
 	import Icon from '../ui/Icon.svelte';
-	import { placeholderImage } from '$lib/placeholderImage';
+	import { thumbnail } from '$lib/photos';
 	import BottomSheet from './BottomSheet.svelte';
 
 	interface Props {
@@ -43,9 +43,7 @@
 	<div class="space-y-4">
 		{#if entries.length === 0}
 			<div class="flex flex-col items-center gap-3 px-4 py-10 text-center">
-				<span
-					class="grid h-16 w-16 place-items-center rounded-full bg-secondary/12 text-secondary"
-				>
+				<span class="grid h-16 w-16 place-items-center rounded-full bg-secondary/12 text-secondary">
 					<Icon name="star" size={30} />
 				</span>
 				<p class="max-w-sm leading-relaxed text-base-content/70">{m.wishlist_empty()}</p>
@@ -64,7 +62,7 @@
 			<ul class="space-y-2">
 				{#each entries as location, index (location.id)}
 					<li
-						class="wishlist-row flex items-center gap-1 rounded-xl border border-white/8 bg-white/4 pr-1.5 pl-2 py-2"
+						class="wishlist-row flex items-center gap-1 rounded-xl border border-white/8 bg-white/4 py-2 pr-1.5 pl-2"
 						style="animation-delay: {Math.min(index, 8) * 45}ms"
 					>
 						<button
@@ -73,7 +71,7 @@
 							onclick={() => showOnMap(location)}
 						>
 							<img
-								src={location.image?.url ?? placeholderImage(location.categories)}
+								src={thumbnail(location)}
 								alt=""
 								class="h-12 w-12 shrink-0 rounded-lg object-cover ring-1 ring-white/10"
 								loading="lazy"

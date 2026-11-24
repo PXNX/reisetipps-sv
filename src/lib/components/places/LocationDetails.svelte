@@ -7,6 +7,7 @@
 	import { locationMarks } from '$lib/stores/locationMarks.svelte';
 	import { tour } from '$lib/stores/tour.svelte';
 	import { placeholderImage } from '$lib/placeholderImage';
+	import { mediumPhoto } from '$lib/photos';
 	import { trackEvent } from '$lib/telemetry';
 	import ZoomableImage from './ZoomableImage.svelte';
 	import * as m from '$lib/paraglide/messages.js';
@@ -36,7 +37,9 @@
 		trackEvent('place_link_opened', { kind, place: location.id });
 	}
 
-	const imageSrc = $derived(location.image?.url ?? placeholderImage(location.categories));
+	const imageSrc = $derived(
+		location.image ? mediumPhoto(location.image.url) : placeholderImage(location.categories)
+	);
 	const imageAlt = $derived(
 		location.image ? localize(location.image.alt) : localize(location.name)
 	);
@@ -142,7 +145,13 @@
 		</a>
 
 		{#if location.url}
-			<a href={location.url} target="_blank" rel="noreferrer" class="row-link" onclick={() => openLink('website')}>
+			<a
+				href={location.url}
+				target="_blank"
+				rel="noreferrer"
+				class="row-link"
+				onclick={() => openLink('website')}
+			>
 				<span class="icon-tile"><Icon name="globe" size={20} /></span>
 				<span class="min-w-0 flex-1 font-semibold">{m.more_info()}</span>
 				<Icon name="chevron-right" class="shrink-0 text-base-content/35" />
@@ -163,7 +172,7 @@
 		</button>
 		<div class="grid grid-cols-1 gap-2 sm:grid-cols-2">
 			<button
-				class="btn toggle-mark toggle-visited gap-2"
+				class="toggle-mark toggle-visited btn gap-2"
 				class:is-on={visited}
 				onclick={toggleVisited}
 				aria-pressed={visited}
@@ -172,7 +181,7 @@
 				{visited ? m.unmark_visited() : m.mark_visited()}
 			</button>
 			<button
-				class="btn toggle-mark toggle-wishlist wishlist-toggle gap-2"
+				class="toggle-mark toggle-wishlist wishlist-toggle btn gap-2"
 				class:is-on={wishlisted}
 				onclick={toggleWishlist}
 				aria-pressed={wishlisted}

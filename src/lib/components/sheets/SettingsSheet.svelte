@@ -10,6 +10,7 @@
 	import { textSize } from '$lib/stores/textSize.svelte';
 	import { installHint } from '$lib/stores/installHint.svelte';
 	import { trackEvent } from '$lib/telemetry';
+	import { mapTiles } from '$lib/mapTiles';
 	import * as m from '$lib/paraglide/messages.js';
 	import BottomSheet from './BottomSheet.svelte';
 	import Icon from '../ui/Icon.svelte';
@@ -20,6 +21,11 @@
 	}
 
 	let { open, onclose }: Props = $props();
+
+	/** Each tile source's credit once, in the order the layers appear on the map. */
+	const mapCredits = [
+		...new Set(Object.values(mapTiles).flatMap((tile) => tile.attribution.split(', ')))
+	];
 </script>
 
 <BottomSheet {open} {onclose} title={m.settings_title()}>
@@ -113,6 +119,15 @@
 				</span>
 				<Icon name="chevron-right" class="shrink-0 text-base-content/35" />
 			</a>
+		</section>
+
+		<!-- Credits for the map tiles and artwork live here, so the map itself stays uncluttered. -->
+		<section class="space-y-2 text-sm text-base-content/60">
+			<h3 class="text-xs font-semibold tracking-wide text-base-content/70 uppercase">
+				{m.settings_credits()}
+			</h3>
+			<p>{m.settings_credits_map()}: {mapCredits.join(', ')}</p>
+			<p>{m.logo_credit()}</p>
 		</section>
 	</div>
 </BottomSheet>

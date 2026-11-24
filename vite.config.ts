@@ -55,16 +55,35 @@ export default defineConfig({
 			},
 			workbox: {
 				globPatterns: ['**/*.{js,css,html,svg,png,webp,woff2}'],
+				// Thumbnails are tiny and precached for offline lists; the larger photos are cached
+				// once a place has been opened instead of all being downloaded on install.
+				globIgnores: ['**/images/medium/**', '**/images/locations/**'],
 				runtimeCaching: [
+					{
+						urlPattern: ({ url }) =>
+							url.pathname.startsWith('/images/medium/') ||
+							url.pathname.startsWith('/images/locations/'),
+						handler: 'CacheFirst',
+						options: {
+							cacheName: 'place-photos',
+							expiration: { maxEntries: 150, maxAgeSeconds: 60 * 60 * 24 * 90 }
+						}
+					},
 					{
 						// Map tiles change rarely. A generous, bounded cache keeps panning fast and
 						// lets the map work offline once an area has been visited.
-						urlPattern: /^https:\/\/[a-z]\.tile\.openstreetmap\.org\/.*/i,
+						// Tiles are fetched with CORS, so only real 200 responses are stored. Opaque responses
+						// count as several MB each against the storage quota and got the cache evicted.
+						urlPattern: /^https:\/\/(?:[a-c]\.)?tile\.openstreetmap\.org\/.*/i,
 						handler: 'CacheFirst',
 						options: {
 							cacheName: 'map-tiles-standard',
-							expiration: { maxEntries: 500, maxAgeSeconds: 60 * 60 * 24 * 90 },
-							cacheableResponse: { statuses: [0, 200] }
+							expiration: {
+								maxEntries: 3000,
+								maxAgeSeconds: 60 * 60 * 24 * 60,
+								purgeOnQuotaError: true
+							},
+							cacheableResponse: { statuses: [200] }
 						}
 					},
 					{
@@ -72,8 +91,12 @@ export default defineConfig({
 						handler: 'CacheFirst',
 						options: {
 							cacheName: 'map-tiles-terrain',
-							expiration: { maxEntries: 300, maxAgeSeconds: 60 * 60 * 24 * 90 },
-							cacheableResponse: { statuses: [0, 200] }
+							expiration: {
+								maxEntries: 1500,
+								maxAgeSeconds: 60 * 60 * 24 * 60,
+								purgeOnQuotaError: true
+							},
+							cacheableResponse: { statuses: [200] }
 						}
 					},
 					{
@@ -81,7 +104,12 @@ export default defineConfig({
 						handler: 'CacheFirst',
 						options: {
 							cacheName: 'map-tiles-transit',
-							expiration: { maxEntries: 300, maxAgeSeconds: 60 * 60 * 24 * 90 },
+							// This server has no CORS, so responses are opaque: keep the count modest.
+							expiration: {
+								maxEntries: 400,
+								maxAgeSeconds: 60 * 60 * 24 * 60,
+								purgeOnQuotaError: true
+							},
 							cacheableResponse: { statuses: [0, 200] }
 						}
 					},

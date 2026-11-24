@@ -135,7 +135,7 @@
 	>
 		<button
 			type="button"
-			class="lightbox-backdrop absolute inset-0 cursor-zoom-out bg-[#04101c]/93 backdrop-blur-md"
+			class="lightbox-backdrop absolute inset-0 cursor-zoom-out bg-[#04101c]/95"
 			onclick={close}
 			aria-label={m.close()}
 		></button>

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { Spring } from 'svelte/motion';
 	import * as m from '$lib/paraglide/messages.js';
-	import type { Snippet } from 'svelte';
+	import { untrack, type Snippet } from 'svelte';
 	import Icon from '../ui/Icon.svelte';
 
 	interface Props {
@@ -39,15 +39,22 @@
 	let lastDragT = 0;
 	let titleId = $derived(`sheet-title-${Math.random().toString(36).slice(2, 8)}`);
 
+	// Only `open` drives this effect. Reading the spring inside it untracked keeps it from
+	// re-running (and re-targeting the spring) on every animation frame.
 	$effect(() => {
-		if (open) {
+		const isOpen = open;
+		untrack(() => animate(isOpen));
+	});
+
+	function animate(show: boolean) {
+		if (show) {
 			rendered = true;
 			if (reduceMotion) {
 				progress.set(0, { instant: true });
 				return;
 			}
-			progress.stiffness = 0.12;
-			progress.damping = 0.5;
+			progress.stiffness = 0.2;
+			progress.damping = 0.62;
 			if (progress.current > 0.9) progress.set(1, { instant: true });
 			progress.set(0);
 		} else if (rendered) {
@@ -56,14 +63,18 @@
 				rendered = false;
 				return;
 			}
-			progress.stiffness = 0.25;
-			progress.damping = 0.8;
+			progress.stiffness = 0.32;
+			progress.damping = 0.9;
 			progress.set(1);
 			setTimeout(() => {
-				if (!open) rendered = false;
-			}, 450);
+				if (!isOpenNow()) rendered = false;
+			}, 320);
 		}
-	});
+	}
+
+	function isOpenNow() {
+		return untrack(() => open);
+	}
 
 	function sheetHeight() {
 		return sheet?.offsetHeight ?? 400;
@@ -96,8 +107,8 @@
 		if (progress.current > 0.4 || dragVelocity > 0.4) {
 			onclose();
 		} else {
-			progress.stiffness = 0.12;
-			progress.damping = 0.5;
+			progress.stiffness = 0.2;
+			progress.damping = 0.62;
 			progress.set(0);
 		}
 	}
@@ -116,7 +127,7 @@
 	{#if dismissible}
 		<button
 			type="button"
-			class="fixed inset-0 z-[1050] cursor-default bg-[#04101c]/70 backdrop-blur-[2px]"
+			class="fixed inset-0 z-[1050] cursor-default bg-[#04101c]/70"
 			style="opacity: {backdropOpacity}"
 			onclick={onclose}
 			aria-label={m.close()}
@@ -124,7 +135,7 @@
 		></button>
 	{:else}
 		<div
-			class="fixed inset-0 z-[1050] bg-[#04101c]/70 backdrop-blur-[2px]"
+			class="fixed inset-0 z-[1050] bg-[#04101c]/70"
 			style="opacity: {backdropOpacity}"
 			aria-hidden="true"
 		></div>

@@ -69,8 +69,10 @@ body {
 	--line-strong: color-mix(in oklab, var(--color-base-content) 20%, transparent);
 	--surface: color-mix(in oklab, #ffffff 5%, transparent);
 	--surface-hover: color-mix(in oklab, #ffffff 10%, transparent);
-	--glass: color-mix(in oklab, var(--color-base-100) 82%, transparent);
-	--glass-strong: color-mix(in oklab, var(--color-base-100) 94%, transparent);
+	/* Opaque enough to read over the map without backdrop-filter: blurring the map under every
+	   control re-rendered them on each frame while panning, which made the map stutter. */
+	--glass: color-mix(in oklab, var(--color-base-100) 90%, transparent);
+	--glass-strong: color-mix(in oklab, var(--color-base-100) 97%, transparent);
 	--shadow-float: 0 18px 40px -22px rgb(0 0 0 / 0.8), 0 2px 10px -4px rgb(0 0 0 / 0.45);
 	--shadow-sheet: 0 -24px 70px -28px rgb(0 0 0 / 0.9);
 	--ease-out-soft: cubic-bezier(0.22, 0.8, 0.24, 1);
@@ -201,7 +203,6 @@ h3 {
 	border: 1px solid var(--line);
 	border-radius: 999px;
 	background: var(--glass);
-	backdrop-filter: blur(14px) saturate(1.15);
 	transition:
 		transform 160ms var(--ease-out-soft),
 		background-color 180ms ease-out,
@@ -222,7 +223,6 @@ h3 {
 	background: var(--glass);
 	border: 1px solid var(--line);
 	box-shadow: var(--shadow-float);
-	backdrop-filter: blur(16px) saturate(1.2);
 }
 
 /* A full-width, tappable row for links and secondary actions. */
@@ -274,7 +274,6 @@ h3 {
 	border-radius: 999px;
 	background: var(--glass);
 	box-shadow: var(--shadow-float);
-	backdrop-filter: blur(14px) saturate(1.15);
 }
 
 .seg-btn {

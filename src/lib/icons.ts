@@ -93,3 +93,23 @@ export function fluentSvg(name: string, size = 22): string {
 	const height = icon.height;
 	return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${width} ${height}" width="${size}" height="${size}" aria-hidden="true">${icon.body}</svg>`;
 }
+
+const imgCache = new Map<string, string>();
+
+/**
+ * The same icon as a single <img>. The coloured emoji icons are made of dozens of paths, so
+ * inlining them in every map pin put thousands of SVG nodes into the map pane; an image keeps
+ * each pin to one element and lets the browser rasterise the icon once.
+ */
+export function fluentImg(name: string, size = 22): string {
+	const key = `${name}@${size}`;
+	let html = imgCache.get(key);
+	if (html === undefined) {
+		const svg = fluentSvg(name, size);
+		html = svg
+			? `<img src="data:image/svg+xml,${encodeURIComponent(svg)}" width="${size}" height="${size}" alt="" decoding="async" draggable="false">`
+			: '';
+		imgCache.set(key, html);
+	}
+	return html;
+}

@@ -10,14 +10,24 @@
 	import { locationMarks } from '$lib/stores/locationMarks.svelte';
 	import { filters } from '$lib/stores/filters.svelte';
 	import { trackEvent } from '$lib/telemetry';
-	import { placeholderImage } from '$lib/placeholderImage';
+	import { thumbnail } from '$lib/photos';
 	import BottomSheet from '$lib/components/sheets/BottomSheet.svelte';
 	import Icon from '$lib/components/ui/Icon.svelte';
 	import FilterSheet from '$lib/components/sheets/FilterSheet.svelte';
 	import LocationDetails from '$lib/components/places/LocationDetails.svelte';
+	import type { MapLayer } from '$lib/mapTiles';
 
 	let selected = $state<Location | null>(null);
-	let layer = $state<'standard' | 'topo' | 'transit'>('standard');
+	let layer = $state<MapLayer>('standard');
+	let layersOpen = $state(false);
+	let layerMenu = $state<HTMLElement | null>(null);
+
+	const layerOptions: { id: MapLayer; icon: string; label: () => string }[] = [
+		{ id: 'standard', icon: 'map', label: m.layer_standard },
+		{ id: 'topo', icon: 'terrain', label: m.layer_topo },
+		{ id: 'transit', icon: 'transit', label: m.layer_transit }
+	];
+	const currentLayer = $derived(layerOptions.find((option) => option.id === layer)!);
 	let focusId = $state<string | null>(null);
 	let query = $state('');
 	let hideVisited = $state(false);
@@ -100,9 +110,15 @@
 		trackEvent('map_hide_visited', { hidden: hideVisited });
 	}
 
-	function setLayer(next: 'standard' | 'topo' | 'transit') {
+	function setLayer(next: MapLayer) {
 		layer = next;
+		layersOpen = false;
 		trackEvent('map_layer_changed', { layer: next });
+	}
+
+	/** The layer menu closes on any tap outside it, e.g. when the reader starts panning. */
+	function onWindowPointerDown(event: PointerEvent) {
+		if (layersOpen && layerMenu && !layerMenu.contains(event.target as Node)) layersOpen = false;
 	}
 
 	function openList() {
@@ -212,6 +228,7 @@
 </script>
 
 <svelte:head><title>{m.app_name()}</title></svelte:head>
+<svelte:window onpointerdown={onWindowPointerDown} />
 
 <div class="relative h-dvh w-full overflow-hidden bg-base-200">
 	<div class="absolute inset-0">
@@ -231,17 +248,18 @@
 		{/await}
 	</div>
 
-	<!-- Search floats over the map; results replace the map until a place is picked. -->
+	<!-- Search shares the top row with the wishlist and settings buttons from the layout, which
+	     sit in the top-right corner (2 × 2.75rem plus gaps), so the map below stays uncovered. -->
 	<div
-		class="pointer-events-none absolute inset-x-3 top-[3.9rem] z-[1000] sm:inset-x-auto sm:left-4 sm:w-[26rem]"
+		class="pointer-events-none absolute top-[max(0.5rem,env(safe-area-inset-top))] right-[7.25rem] left-3 z-[1000] sm:right-auto sm:left-4 sm:w-[26rem]"
 	>
 		<div
-			class="glass-panel pointer-events-auto flex items-center gap-1 rounded-full py-1 pr-1.5 pl-3.5 transition-shadow duration-200 focus-within:border-primary/60 focus-within:shadow-[0_0_0_3px_color-mix(in_oklab,var(--color-primary)_22%,transparent)]"
+			class="glass-panel pointer-events-auto flex h-11 items-center gap-1 rounded-full pr-1 pl-3.5 transition-shadow duration-200 focus-within:border-primary/60 focus-within:shadow-[0_0_0_3px_color-mix(in_oklab,var(--color-primary)_22%,transparent)]"
 		>
 			<Icon name="search" class="shrink-0 text-base-content/55" />
 			<input
 				type="search"
-				class="field-bare h-11 min-w-0 flex-1 border-0 bg-transparent px-2 text-base outline-none placeholder:text-base-content/45"
+				class="field-bare h-full min-w-0 flex-1 border-0 bg-transparent px-2 text-base outline-none placeholder:text-base-content/45"
 				bind:value={query}
 				onkeydown={onSearchKeydown}
 				placeholder={m.map_search_placeholder()}
@@ -284,7 +302,7 @@
 								onclick={() => onselect(location)}
 							>
 								<img
-									src={location.image?.url ?? placeholderImage(location.categories)}
+									src={thumbnail(location)}
 									alt=""
 									class="h-11 w-11 shrink-0 rounded-lg object-cover ring-1 ring-white/10"
 									loading="lazy"
@@ -304,40 +322,61 @@
 		{/if}
 	</div>
 
-	<!-- Layer switcher: a calm segmented control, tucked under the search on phones. -->
+	<!-- Layer switcher. Phones and tablets get one small button with a menu under the top-right
+	     buttons; wide screens have room for the labelled control in the top row. -->
 	{#if !query.trim()}
 		<div
-			class="seg absolute top-[7.6rem] right-3 z-[1000] sm:top-[3.9rem] sm:right-4"
-			role="group"
-			aria-label={m.map_layers()}
+			bind:this={layerMenu}
+			class="absolute top-[calc(max(0.5rem,env(safe-area-inset-top))+3.25rem)] right-3 z-[1000] flex flex-col items-end gap-2 lg:hidden"
 		>
 			<button
 				type="button"
-				class="seg-btn"
-				aria-pressed={layer === 'standard'}
-				onclick={() => setLayer('standard')}
+				class="icon-btn text-base-content/85 shadow-[var(--shadow-float)]"
+				aria-label="{m.map_layers()}: {currentLayer.label()}"
+				title={m.map_layers()}
+				aria-expanded={layersOpen}
+				onclick={() => (layersOpen = !layersOpen)}
 			>
-				<Icon name="map" />
-				<span class="hidden md:inline">{m.layer_standard()}</span>
+				<Icon name={currentLayer.icon} size={21} />
 			</button>
-			<button
-				type="button"
-				class="seg-btn"
-				aria-pressed={layer === 'topo'}
-				onclick={() => setLayer('topo')}
-			>
-				<Icon name="terrain" />
-				<span class="hidden md:inline">{m.layer_topo()}</span>
-			</button>
-			<button
-				type="button"
-				class="seg-btn"
-				aria-pressed={layer === 'transit'}
-				onclick={() => setLayer('transit')}
-			>
-				<Icon name="transit" />
-				<span class="hidden md:inline">{m.layer_transit()}</span>
-			</button>
+			{#if layersOpen}
+				<div
+					class="glass-panel pop-in flex origin-top-right flex-col gap-0.5 rounded-2xl p-1.5"
+					role="group"
+					aria-label={m.map_layers()}
+				>
+					{#each layerOptions as option (option.id)}
+						<button
+							type="button"
+							class="seg-btn justify-start rounded-xl"
+							aria-pressed={layer === option.id}
+							onclick={() => setLayer(option.id)}
+						>
+							<Icon name={option.icon} />
+							{option.label()}
+						</button>
+					{/each}
+				</div>
+			{/if}
+		</div>
+
+		<!-- The wrapper carries the breakpoint: .seg sets its own display, which would win over `hidden`. -->
+		<div
+			class="absolute top-[max(0.5rem,env(safe-area-inset-top))] right-[7.25rem] z-[1000] hidden lg:block"
+		>
+			<div class="seg" role="group" aria-label={m.map_layers()}>
+				{#each layerOptions as option (option.id)}
+					<button
+						type="button"
+						class="seg-btn"
+						aria-pressed={layer === option.id}
+						onclick={() => setLayer(option.id)}
+					>
+						<Icon name={option.icon} />
+						{option.label()}
+					</button>
+				{/each}
+			</div>
 		</div>
 	{/if}
 
@@ -352,7 +391,7 @@
 					{notice === 'fallback' ? m.nearby_fallback() : m.no_matches_body()}
 				</p>
 				{#if notice === 'no-matches'}
-					<button class="btn btn-sm btn-soft" onclick={() => (filterOpen = true)}>
+					<button class="btn btn-soft btn-sm" onclick={() => (filterOpen = true)}>
 						{m.reset_filters()}
 					</button>
 				{/if}
@@ -438,7 +477,7 @@
 			<p class="text-sm text-base-content/70">{m.map_count({ count: shownLocations.length })}</p>
 			<button
 				type="button"
-				class="btn btn-sm gap-2 {hideVisited ? 'btn-soft' : 'btn-ghost'}"
+				class="btn gap-2 btn-sm {hideVisited ? 'btn-soft' : 'btn-ghost'}"
 				aria-pressed={hideVisited}
 				onclick={toggleHideVisited}
 			>
@@ -467,7 +506,7 @@
 						}}
 					>
 						<img
-							src={location.image?.url ?? placeholderImage(location.categories)}
+							src={thumbnail(location)}
 							alt=""
 							class="h-12 w-12 shrink-0 rounded-xl object-cover ring-1 ring-white/10"
 							loading="lazy"
@@ -475,8 +514,16 @@
 						<span class="min-w-0 flex-1">
 							<span class="flex items-center gap-1.5">
 								<span class="truncate font-semibold">{localize(location.name)}</span>
-								{#if wishlisted}<Icon name="star-filled" class="shrink-0 text-secondary" size={14} />{/if}
-								{#if visited}<Icon name="check-circle" class="shrink-0 text-success" size={14} />{/if}
+								{#if wishlisted}<Icon
+										name="star-filled"
+										class="shrink-0 text-secondary"
+										size={14}
+									/>{/if}
+								{#if visited}<Icon
+										name="check-circle"
+										class="shrink-0 text-success"
+										size={14}
+									/>{/if}
 							</span>
 							<span class="block truncate text-sm text-base-content/65">
 								{location.nearestStation}{origin

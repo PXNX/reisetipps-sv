@@ -29,7 +29,8 @@
 <BottomSheet {open} onclose={close} title={m.greeting_heading()}>
 	<div class="flex flex-col gap-5 pt-1">
 		<div class="relative mx-auto grid place-items-center">
-			<span class="absolute h-24 w-40 rounded-full bg-primary/20 blur-3xl" aria-hidden="true"></span>
+			<span class="absolute h-24 w-40 rounded-full bg-primary/20 blur-3xl" aria-hidden="true"
+			></span>
 			<img
 				src={bodenseeLogo}
 				alt=""
@@ -44,11 +45,10 @@
 			<Icon name="arrow-right" size={20} />
 		</button>
 
-		<div class="flex flex-col items-center gap-1.5 border-t border-white/8 pt-4">
+		<div class="flex justify-center border-t border-white/8 pt-4">
 			<a href={localizeHref('/datenschutz')} class="link text-sm link-primary">
 				{m.privacy_link()}
 			</a>
-			<p class="text-center text-xs text-base-content/55">{m.logo_credit()}</p>
 		</div>
 	</div>
 </BottomSheet>

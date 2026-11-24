@@ -1,39 +1,12 @@
 <script lang="ts">
-	import {
-		Map as LMap,
-		TileLayer,
-		Marker,
-		DivIcon,
-		Tooltip,
-		ControlZoom,
-		ControlAttribution
-	} from 'sveaflet';
+	import { Map as LMap, TileLayer, Marker, DivIcon, ControlZoom } from 'sveaflet';
 	import type { Map } from 'leaflet';
 	import { browser } from '$app/environment';
 	import type { Location } from '$lib/data/types';
 	import { localize } from '$lib/i18n';
 	import { locationMarks } from '$lib/stores/locationMarks.svelte';
-	import { fluentSvg, locationIconName } from '$lib/icons';
-
-	type Layer = 'standard' | 'topo' | 'transit';
-
-	const tiles: Record<Layer, { url: string; attribution: string; maxZoom: number }> = {
-		standard: {
-			url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-			attribution: '&copy; OpenStreetMap contributors',
-			maxZoom: 18
-		},
-		topo: {
-			url: 'https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png',
-			attribution: '&copy; OpenTopoMap (CC BY-SA) &copy; OpenStreetMap contributors',
-			maxZoom: 17
-		},
-		transit: {
-			url: 'https://tileserver.memomaps.de/tilegen/{z}/{x}/{y}.png',
-			attribution: '&copy; OpenStreetMap contributors, &copy; memomaps.de',
-			maxZoom: 18
-		}
-	};
+	import { fluentImg, locationIconName } from '$lib/icons';
+	import { mapTiles as tiles, type MapLayer as Layer } from '$lib/mapTiles';
 
 	const reducedMotion =
 		typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -71,7 +44,13 @@
 		center: HOME,
 		zoom: HOME_ZOOM,
 		zoomControl: false,
-		attributionControl: false
+		attributionControl: false,
+		// A lighter, longer glide after a flick so panning feels quick rather than heavy.
+		inertiaDeceleration: 2200,
+		easeLinearity: 0.3,
+		// Faster mouse-wheel and trackpad zoom.
+		wheelPxPerZoomLevel: 90,
+		wheelDebounceTime: 20
 	});
 
 	// Focus changes come from search, the list and the wishlist. Fly there gently instead of
@@ -94,37 +73,46 @@
 <div class="relative h-full w-full touch-none">
 	{#if browser}
 		<LMap options={mapOptions} bind:instance={map} onmoveend={reportMove}>
-			<ControlZoom options={{ position: 'topleft' }} />
-			<ControlAttribution options={{ position: 'bottomright', prefix: false }} />
+			<!-- Touch screens pinch to zoom; the buttons only show for a mouse (see the CSS below).
+			     Map credits live in Settings, so the map itself stays free of overlays. -->
+			<ControlZoom options={{ position: 'bottomleft' }} />
 			{#key layer}
 				<TileLayer
 					url={tiles[layer].url}
-					options={{ attribution: tiles[layer].attribution, maxZoom: tiles[layer].maxZoom }}
+					options={{
+						maxZoom: tiles[layer].maxZoom,
+						crossOrigin: tiles[layer].cors ? 'anonymous' : undefined,
+						// Load tiles while dragging (Leaflet waits for the finger to lift on phones by
+						// default, which leaves grey gaps) and keep a wider ring of tiles around the
+						// view, so panning back never reloads what was just on screen.
+						updateWhenIdle: false,
+						updateWhenZooming: false,
+						keepBuffer: 4
+					}}
 				/>
 			{/key}
 			{#each locations as location, index (location.id)}
 				<Marker
 					latLng={location.coordinates}
-					options={{
-						title: localize(location.name),
-						keyboard: true,
-						riseOnHover: true
-					}}
+					options={{ keyboard: true, riseOnHover: true }}
 					onclick={() => onselect(location)}
 				>
-					<DivIcon
-						options={{
-							className: pinClass(location),
-							iconSize: [30, 36],
-							iconAnchor: [15, 34]
-						}}
-						style="--pin-delay: {Math.min(index, 18) * 22}ms"
-					>
-						{@html fluentSvg(locationIconName(location), 16)}
-					</DivIcon>
-					<Tooltip options={{ direction: 'top', offset: [0, -34], className: 'map-pin-tip' }}
-						>{localize(location.name)}</Tooltip
-					>
+					<!-- sveaflet reads the icon options once, so a changed state (selected, visited,
+					     starred) rebuilds just that pin's icon. -->
+					{#key pinClass(location)}
+						<DivIcon
+							options={{
+								className: pinClass(location),
+								iconSize: [30, 36],
+								iconAnchor: [15, 34]
+							}}
+							style="--pin-delay: {Math.min(index, 24) * 12}ms"
+						>
+							{@html fluentImg(locationIconName(location), 16)}
+							<!-- No hover tooltip; the name is still announced to screen readers. -->
+							<span class="sr-only">{localize(location.name)}</span>
+						</DivIcon>
+					{/key}
 				</Marker>
 			{/each}
 		</LMap>
@@ -135,14 +123,7 @@
 	:global(.leaflet-container) {
 		touch-action: none;
 		background: #0c253d;
-		font:
-			inherit;
-	}
-
-	/* Barely-there desaturation so the bright OSM colours sit under the dark UI
-	   instead of competing with the pins. */
-	:global(.leaflet-tile-pane) {
-		filter: saturate(0.8) brightness(0.97) contrast(1.02);
+		font: inherit;
 	}
 
 	/* ------------------------------------------------------------- the pins -- */
@@ -167,9 +148,11 @@
 			0 3px 8px rgb(0 0 0 / 0.4),
 			0 0 0 2px rgb(6 20 32 / 0.45);
 		transform-origin: 50% 100%;
-		animation: pin-drop 420ms cubic-bezier(0.34, 1.4, 0.5, 1) both;
+		animation: pin-drop 300ms cubic-bezier(0.34, 1.5, 0.5, 1) backwards;
 		animation-delay: var(--pin-delay, 0ms);
-		transition: box-shadow 180ms ease-out;
+		transition:
+			transform 160ms cubic-bezier(0.34, 1.6, 0.5, 1),
+			box-shadow 160ms ease-out;
 	}
 
 	/* The little tail that makes it read as a pin rather than a dot. */
@@ -187,14 +170,17 @@
 		transform: translateX(-50%) rotate(45deg);
 	}
 
-	:global(.map-pin > div svg) {
+	:global(.map-pin > div img) {
 		width: 16px;
 		height: 16px;
 		position: relative;
 		z-index: 1;
+		pointer-events: none;
 	}
 
-	:global(.map-pin:hover > div) {
+	:global(.map-pin:hover > div),
+	:global(.map-pin:focus-visible > div) {
+		transform: translateY(-3px) scale(1.12);
 		box-shadow:
 			0 6px 14px rgb(0 0 0 / 0.45),
 			0 0 0 4px color-mix(in oklab, var(--pin-color, #7fd3ea) 35%, transparent);
@@ -263,6 +249,11 @@
 		box-shadow: 0 1px 3px rgb(0 0 0 / 0.4);
 	}
 
+	:global(.map-pin:active > div) {
+		transform: translateY(0) scale(0.92);
+		transition-duration: 80ms;
+	}
+
 	:global(.map-pin-highlight) {
 		z-index: 1000 !important;
 	}
@@ -272,22 +263,18 @@
 		animation: pin-pulse 2s ease-in-out infinite;
 	}
 
-	:global(.map-pin-tip) {
-		border: 1px solid rgb(255 255 255 / 0.12) !important;
-		border-radius: 0.6rem !important;
-		background: #0b1f33 !important;
-		color: #f3f8fb !important;
-		box-shadow: 0 12px 26px -14px rgb(0 0 0 / 0.9) !important;
-		font-size: 0.8rem !important;
-		font-weight: 600;
-		padding: 0.3rem 0.55rem !important;
-	}
-
 	/* ------------------------------------------------------ map furniture ---- */
 
-	:global(.leaflet-top.leaflet-left) {
-		top: 9.25rem;
-		left: 0.5rem;
+	/* Zoom buttons sit above the thumb bar, and only where there is no pinch-zoom. */
+	:global(.leaflet-bottom.leaflet-left) {
+		bottom: 5.25rem;
+		left: 0.75rem;
+	}
+
+	@media (pointer: coarse) {
+		:global(.leaflet-control-zoom) {
+			display: none;
+		}
 	}
 
 	:global(.leaflet-control-zoom) {
@@ -317,28 +304,10 @@
 		color: #7fd3ea !important;
 	}
 
-	:global(.leaflet-bottom.leaflet-right) {
-		bottom: 5.5rem;
-		right: 0.25rem;
-	}
-
-	:global(.leaflet-control-attribution) {
-		border-radius: 0.4rem 0 0 0.4rem !important;
-		background: rgb(11 31 51 / 0.66) !important;
-		color: rgb(207 221 230 / 0.85) !important;
-		font-size: 10px !important;
-		line-height: 1.4 !important;
-		padding: 2px 6px !important;
-	}
-
-	:global(.leaflet-control-attribution a) {
-		color: #7fd3ea !important;
-	}
-
 	@keyframes pin-drop {
 		from {
 			opacity: 0;
-			transform: translateY(-6px) scale(0.6);
+			transform: translateY(-10px) scale(0.5);
 		}
 		to {
 			opacity: 1;

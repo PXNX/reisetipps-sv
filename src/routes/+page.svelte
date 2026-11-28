@@ -3,8 +3,9 @@
 	import { browser } from '$app/environment';
 	import * as m from '$lib/paraglide/messages.js';
 	import { locations } from '$lib/data/locations';
-	import type { Location } from '$lib/data/types';
+	import type { Category, Location } from '$lib/data/types';
 	import { categoryLabel } from '$lib/categories';
+	import { categoryIcons } from '$lib/icons';
 	import { currentLocale, localize } from '$lib/i18n';
 	import { findMatches } from '$lib/recommend';
 	import { matchesQuery } from '$lib/search';
@@ -26,6 +27,9 @@
 	let layer = $state<MapLayer>('standard');
 	let layersOpen = $state(false);
 	let layerMenu = $state<HTMLElement | null>(null);
+
+	/** The five most common wishes, always one tap away; the sheet holds the rest. */
+	const quickCategories: Category[] = ['nature', 'culture', 'culinary', 'viewpoint', 'cheese'];
 
 	const layerOptions: { id: MapLayer; icon: string; label: () => string }[] = [
 		{ id: 'standard', icon: 'map', label: m.layer_standard },
@@ -129,6 +133,11 @@
 	function toggleHideVisited() {
 		hideVisited = !hideVisited;
 		trackEvent('map_hide_visited', { hidden: hideVisited });
+	}
+
+	function toggleQuickCategory(category: Category) {
+		filters.toggleCategory(category);
+		trackEvent('quick_filter', { category, selected: filters.categories.includes(category) });
 	}
 
 	function setLayer(next: MapLayer) {
@@ -339,6 +348,50 @@
 						{/each}
 					{/if}
 				</div>
+			</div>
+		{/if}
+
+		{#if !query.trim()}
+			<div
+				class="scroll-slim pointer-events-auto mt-2 flex gap-2 overflow-x-auto pb-1"
+				role="group"
+				aria-label={m.filter_categories_label()}
+			>
+				{#each quickCategories as category (category)}
+					{@const selected = filters.categories.includes(category)}
+					<button
+						type="button"
+						class="chip min-h-11 shrink-0 gap-1.5 px-3.5 text-[0.95rem] {selected
+							? 'chip-primary'
+							: ''}"
+						aria-pressed={selected}
+						onclick={() => toggleQuickCategory(category)}
+					>
+						<Icon name={categoryIcons[category]} size={17} />
+						{categoryLabel(category)}
+					</button>
+				{/each}
+				{#if filters.active}
+					<button
+						type="button"
+						class="chip min-h-11 shrink-0 px-3.5 text-[0.95rem]"
+						onclick={() => filters.reset()}
+					>
+						<Icon name="close" size={16} />
+						{m.reset_filters()}
+					</button>
+				{/if}
+				<button
+					type="button"
+					class="chip min-h-11 shrink-0 px-3.5 text-[0.95rem]"
+					onclick={() => {
+						filterOpen = true;
+						trackEvent('filter_sheet_opened', {});
+					}}
+				>
+					<Icon name="filter" size={16} />
+					{m.filter_title()}
+				</button>
 			</div>
 		{/if}
 	</div>

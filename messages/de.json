@@ -168,5 +168,9 @@
 	"open_now": "Jetzt geöffnet",
 	"closed_now": "Jetzt geschlossen",
 	"open_short": "Offen",
-	"closed_short": "Zu"
+	"closed_short": "Zu",
+	"empty_title": "Da ist gerade nichts dabei.",
+	"empty_body": "Ein anderer Suchbegriff oder ein Filter weniger bringt dich weiter.",
+	"empty_search_body": "Für diese Suche haben wir nichts gefunden. Versuch es kürzer oder sieh in die Karte.",
+	"empty_action_all": "Alle Orte anzeigen"
 }

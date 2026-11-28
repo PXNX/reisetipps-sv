@@ -168,5 +168,9 @@
 	"open_now": "Open now",
 	"closed_now": "Closed now",
 	"open_short": "Open",
-	"closed_short": "Closed"
+	"closed_short": "Closed",
+	"empty_title": "Nothing matches just now.",
+	"empty_body": "Another search word or one fewer filter will get you going.",
+	"empty_search_body": "We found nothing for that search. Try a shorter word or look at the map.",
+	"empty_action_all": "Show all places"
 }

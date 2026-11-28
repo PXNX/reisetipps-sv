@@ -19,6 +19,7 @@
 	import { thumbnail } from '$lib/photos';
 	import BottomSheet from '$lib/components/sheets/BottomSheet.svelte';
 	import Icon from '$lib/components/ui/Icon.svelte';
+	import EmptyState from '$lib/components/ui/EmptyState.svelte';
 	import FilterSheet from '$lib/components/sheets/FilterSheet.svelte';
 	import LocationDetails from '$lib/components/places/LocationDetails.svelte';
 	import type { MapLayer } from '$lib/mapTiles';
@@ -70,6 +71,15 @@
 			focusId = id;
 		}
 	});
+
+	/** One clear way out of an empty result: show everything again. */
+	function showAll() {
+		filters.reset();
+		hideVisited = false;
+		query = '';
+		notice = null;
+		trackEvent('empty_state_reset', {});
+	}
 
 	/** Copies a link that opens this exact view, including the current filters and search. */
 	async function shareView() {
@@ -320,7 +330,14 @@
 				</p>
 				<div class="scroll-slim max-h-[48dvh] overflow-y-auto">
 					{#if searchResults.length === 0}
-						<p class="px-3 py-6 text-center text-base-content/70">{m.map_no_results()}</p>
+						<EmptyState
+							compact
+							icon="search"
+							title={m.map_no_results()}
+							body={m.empty_search_body()}
+							actionLabel={m.empty_action_all()}
+							onaction={showAll}
+						/>
 					{:else}
 						{#each searchResults as location, index (location.id)}
 							<button
@@ -462,12 +479,10 @@
 			<Icon name="info" class="mt-0.5 shrink-0 text-primary" />
 			<div class="min-w-0 flex-1 space-y-2">
 				<p class="text-sm leading-snug">
-					{notice === 'fallback' ? m.nearby_fallback() : m.no_matches_body()}
+					{notice === 'fallback' ? m.nearby_fallback() : m.empty_body()}
 				</p>
 				{#if notice === 'no-matches'}
-					<button class="btn btn-soft btn-sm" onclick={() => (filterOpen = true)}>
-						{m.reset_filters()}
-					</button>
+					<button class="btn btn-soft btn-sm" onclick={showAll}>{m.empty_action_all()}</button>
 				{/if}
 			</div>
 			<button
@@ -572,10 +587,12 @@
 		</div>
 
 		{#if shownLocations.length === 0}
-			<div class="flex flex-col items-center gap-3 py-10 text-center text-base-content/70">
-				<Icon name="compass" size={36} />
-				<p>{m.map_no_results()}</p>
-			</div>
+			<EmptyState
+				title={m.empty_title()}
+				body={m.empty_body()}
+				actionLabel={m.empty_action_all()}
+				onaction={showAll}
+			/>
 		{:else}
 			<div class="space-y-2">
 				{#each shownLocations as location, index (location.id)}

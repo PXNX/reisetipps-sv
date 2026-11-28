@@ -215,5 +215,12 @@
 	"suggest_copy": "Copy text",
 	"suggest_copied": "Copied",
 	"suggest_share": "Share",
-	"suggest_again": "Write another tip"
+	"suggest_again": "Write another tip",
+	"consult_action": "Day plan as text",
+	"consult_hint": "A short message with every stop and your route link.",
+	"consult_ready": "Your day plan",
+	"consult_copy": "Copy text",
+	"consult_copied": "Copied",
+	"consult_share": "Share",
+	"consult_again": "Back to route"
 }

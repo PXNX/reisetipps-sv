@@ -215,5 +215,12 @@
 	"suggest_copy": "Text kopieren",
 	"suggest_copied": "Kopiert",
 	"suggest_share": "Teilen",
-	"suggest_again": "Neuen Tipp schreiben"
+	"suggest_again": "Neuen Tipp schreiben",
+	"consult_action": "Tagesplan als Text",
+	"consult_hint": "Eine kurze Nachricht mit allen Stopps und eurem Routenlink.",
+	"consult_ready": "Dein Tagesplan",
+	"consult_copy": "Text kopieren",
+	"consult_copied": "Kopiert",
+	"consult_share": "Teilen",
+	"consult_again": "Zurück zur Route"
 }

@@ -6,16 +6,19 @@
 	 */
 	import { page } from '$app/state';
 	import * as m from '$lib/paraglide/messages.js';
-	import { localize } from '$lib/i18n';
+	import { currentLocale, localize } from '$lib/i18n';
 	import { tour, tourRouteUrl } from '$lib/stores/tour.svelte';
 	import { filters } from '$lib/stores/filters.svelte';
 	import { shareOrCopy, sharePath } from '$lib/share';
+	import { buildItinerary } from '$lib/itinerary';
 	import { trackEvent } from '$lib/telemetry';
 	import BottomSheet from './BottomSheet.svelte';
 	import Icon from '../ui/Icon.svelte';
 
 	let open = $state(false);
 	let linkCopied = $state(false);
+	let draft = $state('');
+	let textCopied = $state(false);
 
 	const plan = $derived(tour.plan);
 	const routeUrl = $derived(tourRouteUrl(plan, tour.mode));
@@ -38,6 +41,43 @@
 		linkCopied = result !== 'failed';
 		trackEvent('tour_shared', { result, stops: tour.count });
 		setTimeout(() => (linkCopied = false), 2600);
+	}
+
+	/** A self-serve "mini consult": the whole plan as text, with the route link attached. */
+	function preparePlan() {
+		const path = sharePath({
+			tour: plan.map((stop) => stop.id),
+			mode: tour.mode,
+			categories: filters.categories,
+			duration: filters.duration
+		});
+		draft = buildItinerary(plan, tour.mode, currentLocale(), new URL(path, page.url.origin).href);
+		textCopied = false;
+		trackEvent('itinerary_prepared', { stops: plan.length });
+	}
+
+	async function copyPlan() {
+		try {
+			await navigator.clipboard.writeText(draft);
+			textCopied = true;
+			trackEvent('itinerary_copied', { stops: plan.length });
+			setTimeout(() => (textCopied = false), 3000);
+		} catch {
+			textCopied = false;
+		}
+	}
+
+	async function sharePlanText() {
+		if (navigator.share) {
+			try {
+				await navigator.share({ title: m.app_name(), text: draft });
+				trackEvent('itinerary_shared', { stops: plan.length });
+				return;
+			} catch (error) {
+				if (error instanceof DOMException && error.name === 'AbortError') return;
+			}
+		}
+		await copyPlan();
 	}
 </script>
 
@@ -136,15 +176,43 @@
 				{m.tour_open()}
 			</a>
 			<!-- eslint-enable svelte/no-navigation-without-resolve -->
-			<p class="text-center text-sm text-base-content/60">{m.tour_open_hint()}</p>
-			<button class="btn w-full gap-2 btn-soft" onclick={sharePlan} aria-live="polite">
-				<Icon name={linkCopied ? 'check' : 'arrow-right'} size={19} />
-				{linkCopied ? m.share_copied() : m.share_plan()}
-			</button>
-			<button class="btn w-full gap-2 btn-ghost" onclick={() => tour.clear()}>
-				<Icon name="remove" size={18} />
-				{m.tour_clear()}
-			</button>
+			{#if draft}
+				<div class="surface space-y-3 p-3.5">
+					<p class="font-semibold">{m.consult_ready()}</p>
+					<textarea
+						class="textarea min-h-48 w-full resize-y font-mono text-sm"
+						readonly
+						value={draft}></textarea>
+					<div class="grid gap-2 sm:grid-cols-2">
+						<button class="btn gap-2 btn-primary" onclick={sharePlanText}>
+							<Icon name="arrow-right" size={19} />
+							{m.consult_share()}
+						</button>
+						<button class="btn gap-2 btn-soft" onclick={copyPlan} aria-live="polite">
+							<Icon name={textCopied ? 'check' : 'text'} size={19} />
+							{textCopied ? m.consult_copied() : m.consult_copy()}
+						</button>
+					</div>
+					<button class="btn w-full btn-ghost" onclick={() => (draft = '')}>
+						{m.consult_again()}
+					</button>
+				</div>
+			{:else}
+				<p class="text-center text-sm text-base-content/60">{m.tour_open_hint()}</p>
+				<button class="btn w-full gap-2 btn-soft" onclick={sharePlan} aria-live="polite">
+					<Icon name={linkCopied ? 'check' : 'arrow-right'} size={19} />
+					{linkCopied ? m.share_copied() : m.share_plan()}
+				</button>
+				<button class="btn w-full gap-2 btn-soft" onclick={preparePlan}>
+					<Icon name="text" size={19} />
+					{m.consult_action()}
+				</button>
+				<p class="text-center text-xs text-base-content/60">{m.consult_hint()}</p>
+				<button class="btn w-full gap-2 btn-ghost" onclick={() => tour.clear()}>
+					<Icon name="remove" size={18} />
+					{m.tour_clear()}
+				</button>
+			{/if}
 		{/if}
 	</div>
 </BottomSheet>

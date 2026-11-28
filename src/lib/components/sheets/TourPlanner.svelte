@@ -4,14 +4,18 @@
 	 * orders the stops, picks walking or cycling and hands the route to Google Maps. Stops are added
 	 * from the details view of any place.
 	 */
+	import { page } from '$app/state';
 	import * as m from '$lib/paraglide/messages.js';
 	import { localize } from '$lib/i18n';
 	import { tour, tourRouteUrl } from '$lib/stores/tour.svelte';
+	import { filters } from '$lib/stores/filters.svelte';
+	import { shareOrCopy, sharePath } from '$lib/share';
 	import { trackEvent } from '$lib/telemetry';
 	import BottomSheet from './BottomSheet.svelte';
 	import Icon from '../ui/Icon.svelte';
 
 	let open = $state(false);
+	let linkCopied = $state(false);
 
 	const plan = $derived(tour.plan);
 	const routeUrl = $derived(tourRouteUrl(plan, tour.mode));
@@ -20,12 +24,27 @@
 		open = true;
 		trackEvent('tour_opened', { stops: tour.count, mode: tour.mode });
 	}
+
+	/** A link restores these stops and the active filters in the recipient's app. */
+	async function sharePlan() {
+		const path = sharePath({
+			tour: plan.map((stop) => stop.id),
+			mode: tour.mode,
+			categories: filters.categories,
+			duration: filters.duration
+		});
+		const url = new URL(path, page.url.origin).href;
+		const result = await shareOrCopy(url, m.app_name(), m.share_hint());
+		linkCopied = result !== 'failed';
+		trackEvent('tour_shared', { result, stops: tour.count });
+		setTimeout(() => (linkCopied = false), 2600);
+	}
 </script>
 
 {#if tour.count > 0}
 	<button
 		type="button"
-		class="btn fixed right-3 z-[1000] gap-2 rounded-full pr-4 pl-3 shadow-xl btn-primary pop-in"
+		class="pop-in btn fixed right-3 z-[1000] gap-2 rounded-full pr-4 pl-3 shadow-xl btn-primary"
 		style="bottom: calc(5.25rem + env(safe-area-inset-bottom))"
 		onclick={openPlanner}
 		aria-label={`${m.tour_title()} (${tour.count})`}
@@ -118,6 +137,10 @@
 			</a>
 			<!-- eslint-enable svelte/no-navigation-without-resolve -->
 			<p class="text-center text-sm text-base-content/60">{m.tour_open_hint()}</p>
+			<button class="btn w-full gap-2 btn-soft" onclick={sharePlan} aria-live="polite">
+				<Icon name={linkCopied ? 'check' : 'arrow-right'} size={19} />
+				{linkCopied ? m.share_copied() : m.share_plan()}
+			</button>
 			<button class="btn w-full gap-2 btn-ghost" onclick={() => tour.clear()}>
 				<Icon name="remove" size={18} />
 				{m.tour_clear()}

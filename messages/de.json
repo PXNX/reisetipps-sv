@@ -158,5 +158,11 @@
 	"error_generic_title": "Da ist etwas schiefgelaufen.",
 	"error_generic_body": "Die App konnte diese Seite nicht laden. Ein neuer Versuch hilft meistens.",
 	"error_home": "Zur Karte",
-	"error_reload": "Erneut versuchen"
+	"error_reload": "Erneut versuchen",
+	"share_plan": "Route teilen",
+	"share_view": "Auswahl teilen",
+	"share_copied": "Link kopiert",
+	"share_shared": "Danke fürs Teilen",
+	"share_failed": "Link konnte nicht kopiert werden.",
+	"share_hint": "Der Link öffnet deine Auswahl – ganz ohne Anmeldung."
 }

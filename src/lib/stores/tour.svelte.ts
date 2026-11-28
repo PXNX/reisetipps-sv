@@ -71,6 +71,16 @@ class Tour {
 		saveStops(this.stops);
 	}
 
+	/** Replaces the whole plan, e.g. when a shared link is opened. Unknown ids are ignored. */
+	setStops(ids: string[]) {
+		const known = new Set(locations.map((location) => location.id));
+		this.stops.clear();
+		for (const id of ids) {
+			if (known.has(id)) this.stops.add(id);
+		}
+		saveStops(this.stops);
+	}
+
 	move(id: string, direction: -1 | 1) {
 		const order = [...this.stops];
 		const index = order.indexOf(id);

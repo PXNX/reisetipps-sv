@@ -158,5 +158,11 @@
 	"error_generic_title": "Something went wrong.",
 	"error_generic_body": "The app could not load this page. Trying again usually helps.",
 	"error_home": "Back to the map",
-	"error_reload": "Try again"
+	"error_reload": "Try again",
+	"share_plan": "Share route",
+	"share_view": "Share this view",
+	"share_copied": "Link copied",
+	"share_shared": "Thanks for sharing",
+	"share_failed": "Could not copy the link.",
+	"share_hint": "The link opens your selection — no sign-in needed."
 }

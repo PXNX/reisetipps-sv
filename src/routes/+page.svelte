@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/state';
+	import { browser } from '$app/environment';
 	import * as m from '$lib/paraglide/messages.js';
 	import { locations } from '$lib/data/locations';
 	import type { Location } from '$lib/data/types';
@@ -7,6 +8,8 @@
 	import { localize } from '$lib/i18n';
 	import { findMatches } from '$lib/recommend';
 	import { haversineDistanceKm } from '$lib/geo';
+	import { parseShareState, shareOrCopy, sharePath } from '$lib/share';
+	import { tour } from '$lib/stores/tour.svelte';
 	import { locationMarks } from '$lib/stores/locationMarks.svelte';
 	import { filters } from '$lib/stores/filters.svelte';
 	import { trackEvent } from '$lib/telemetry';
@@ -41,15 +44,40 @@
 	let shown = $state<string[]>([]);
 	let resultDistance = $state<number | null>(null);
 	let resultSource = $state<'gps' | 'map' | null>(null);
+	let linkCopied = $state(false);
 
-	// A link from the wishlist can open a place even when we are already on this page.
+	// A shared link restores its filters, tour and open place once. After that the reader's own
+	// choices win, so navigating inside the app never overwrites them again.
+	let restoredFromLink = false;
 	$effect(() => {
-		const id = page.url.searchParams.get('focus');
+		if (restoredFromLink || !browser) return;
+		restoredFromLink = true;
+		const state = parseShareState(page.url.searchParams);
+		if (state.categories?.length) filters.categories = state.categories;
+		if (state.duration) filters.duration = state.duration;
+		if (state.query) query = state.query;
+		if (state.tour) tour.setStops(state.tour);
+		if (state.mode) tour.setMode(state.mode);
+		const id = state.focus;
 		if (id) {
-			selected = locations.find((l) => l.id === id) ?? null;
+			selected = locations.find((location) => location.id === id) ?? null;
 			focusId = id;
 		}
 	});
+
+	/** Copies a link that opens this exact view, including the current filters and search. */
+	async function shareView() {
+		const path = sharePath({
+			categories: filters.categories,
+			duration: filters.duration,
+			query
+		});
+		const url = new URL(path, page.url.origin).href;
+		const result = await shareOrCopy(url, m.app_name(), m.share_hint());
+		linkCopied = result !== 'failed';
+		trackEvent('view_shared', { result, places: shownLocations.length });
+		setTimeout(() => (linkCopied = false), 2600);
+	}
 
 	/** Places on the map: filters, search and visited state applied, nearest first when located. */
 	const shownLocations = $derived.by(() => {
@@ -475,15 +503,26 @@
 	<div class="space-y-4">
 		<div class="flex flex-wrap items-center justify-between gap-2">
 			<p class="text-sm text-base-content/70">{m.map_count({ count: shownLocations.length })}</p>
-			<button
-				type="button"
-				class="btn gap-2 btn-sm {hideVisited ? 'btn-soft' : 'btn-ghost'}"
-				aria-pressed={hideVisited}
-				onclick={toggleHideVisited}
-			>
-				<Icon name={hideVisited ? 'eye-off' : 'eye'} size={18} />
-				{hideVisited ? m.map_show_visited() : m.map_hide_visited()}
-			</button>
+			<div class="ml-auto flex items-center gap-2">
+				<button
+					type="button"
+					class="btn gap-2 btn-sm {linkCopied ? 'btn-soft' : 'btn-ghost'}"
+					onclick={shareView}
+					aria-live="polite"
+				>
+					<Icon name={linkCopied ? 'check' : 'arrow-right'} size={18} />
+					{linkCopied ? m.share_copied() : m.share_view()}
+				</button>
+				<button
+					type="button"
+					class="btn gap-2 btn-sm {hideVisited ? 'btn-soft' : 'btn-ghost'}"
+					aria-pressed={hideVisited}
+					onclick={toggleHideVisited}
+				>
+					<Icon name={hideVisited ? 'eye-off' : 'eye'} size={18} />
+					{hideVisited ? m.map_show_visited() : m.map_hide_visited()}
+				</button>
+			</div>
 		</div>
 
 		{#if shownLocations.length === 0}

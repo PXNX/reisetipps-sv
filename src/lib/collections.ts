@@ -3,6 +3,7 @@
  * They are just ids, so they stay in step with the place entries they point at.
  */
 import type { LocalizedText } from '$lib/data/types';
+import { seasonalGuides, weatherGuides, type MiniGuide } from './miniGuides';
 
 export interface Collection {
 	id: string;
@@ -97,6 +98,12 @@ export const collections: Collection[] = [
 	}
 ];
 
-export function getCollection(id: string | null): Collection | null {
-	return collections.find((collection) => collection.id === id) ?? null;
+export type IdeaSet = Collection | MiniGuide;
+
+export function getCollection(id: string | null): IdeaSet | null {
+	return (
+		collections.find((collection) => collection.id === id) ??
+		[...weatherGuides, ...seasonalGuides].find((guide) => guide.id === id) ??
+		null
+	);
 }

@@ -174,5 +174,8 @@
 	"empty_search_body": "We found nothing for that search. Try a shorter word or look at the map.",
 	"empty_action_all": "Show all places",
 	"bring_me_there": "Take me there",
-	"directions_hint": "Open a walking route"
+	"directions_hint": "Open a walking route",
+	"transit_action": "By train & bus",
+	"transit_from": "Route from {station}",
+	"transit_from_you": "Route from your location"
 }

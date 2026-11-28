@@ -174,5 +174,8 @@
 	"empty_search_body": "Für diese Suche haben wir nichts gefunden. Versuch es kürzer oder sieh in die Karte.",
 	"empty_action_all": "Alle Orte anzeigen",
 	"bring_me_there": "Bring mich hin",
-	"directions_hint": "Route zu Fuß öffnen"
+	"directions_hint": "Route zu Fuß öffnen",
+	"transit_action": "Mit Bahn & Bus",
+	"transit_from": "Route ab {station}",
+	"transit_from_you": "Route von deinem Standort"
 }

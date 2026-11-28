@@ -52,6 +52,18 @@ export function googleMapsUrl(location: Location): string {
 	return `https://www.google.com/maps/search/?api=1&query=${lat},${lng}`;
 }
 
+/** Transit directions to a place, starting at the station when no position is known. */
+export function transitUrl(location: Location, origin?: [number, number] | null): string {
+	const [lat, lng] = location.coordinates;
+	const params = new URLSearchParams({
+		api: '1',
+		destination: `${lat},${lng}`,
+		travelmode: 'transit',
+		origin: origin ? `${origin[0]},${origin[1]}` : location.nearestStation
+	});
+	return `https://www.google.com/maps/dir/?${params}`;
+}
+
 /** Walking directions to a place, starting at the reader's position when we know it. */
 export function directionsUrl(location: Location, origin?: [number, number] | null): string {
 	const [lat, lng] = location.coordinates;

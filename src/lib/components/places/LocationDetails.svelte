@@ -4,6 +4,7 @@
 		directionsUrl,
 		googleMapsUrl,
 		hikingMapUrl,
+		transitUrl,
 		type Location
 	} from '$lib/data/types';
 	import { localize } from '$lib/i18n';
@@ -42,7 +43,7 @@
 		trackEvent('tour_toggle', { action: inTour ? 'remove' : 'add', place: location.id });
 	}
 
-	function openLink(kind: 'directions' | 'maps' | 'hiking' | 'cycling' | 'website') {
+	function openLink(kind: 'directions' | 'transit' | 'maps' | 'hiking' | 'cycling' | 'website') {
 		trackEvent('place_link_opened', { kind, place: location.id });
 	}
 
@@ -138,6 +139,22 @@
 
 	<!-- eslint-disable svelte/no-navigation-without-resolve -- these are external URLs, not SvelteKit routes -->
 	<div class="space-y-2">
+		<a
+			href={transitUrl(location, origin)}
+			target="_blank"
+			rel="noreferrer"
+			class="row-link"
+			onclick={() => openLink('transit')}
+		>
+			<span class="icon-tile"><Icon name="transit" size={20} /></span>
+			<span class="min-w-0 flex-1">
+				<span class="block font-semibold">{m.transit_action()}</span>
+				<span class="block text-sm text-base-content/60">
+					{origin ? m.transit_from_you() : m.transit_from({ station: location.nearestStation })}
+				</span>
+			</span>
+			<Icon name="chevron-right" class="shrink-0 text-base-content/35" />
+		</a>
 		<a
 			href={googleMapsUrl(location)}
 			target="_blank"

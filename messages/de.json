@@ -164,5 +164,9 @@
 	"share_copied": "Link kopiert",
 	"share_shared": "Danke fürs Teilen",
 	"share_failed": "Link konnte nicht kopiert werden.",
-	"share_hint": "Der Link öffnet deine Auswahl – ganz ohne Anmeldung."
+	"share_hint": "Der Link öffnet deine Auswahl – ganz ohne Anmeldung.",
+	"open_now": "Jetzt geöffnet",
+	"closed_now": "Jetzt geschlossen",
+	"open_short": "Offen",
+	"closed_short": "Zu"
 }

@@ -8,6 +8,7 @@
 	import { tour } from '$lib/stores/tour.svelte';
 	import { placeholderImage } from '$lib/placeholderImage';
 	import { mediumPhoto } from '$lib/photos';
+	import { openingStatus } from '$lib/openingHours';
 	import { trackEvent } from '$lib/telemetry';
 	import ZoomableImage from './ZoomableImage.svelte';
 	import * as m from '$lib/paraglide/messages.js';
@@ -17,6 +18,7 @@
 	const visited = $derived(locationMarks.isVisited(location.id));
 	const wishlisted = $derived(locationMarks.isWishlisted(location.id));
 	const inTour = $derived(tour.has(location.id));
+	const openState = $derived(openingStatus(location.openingHours));
 
 	function toggleVisited() {
 		locationMarks.toggleVisited(location.id);
@@ -94,7 +96,19 @@
 		{#if location.openingHours}
 			<div class="flex flex-wrap items-baseline justify-between gap-1 px-4 py-3">
 				<dt class="text-sm text-base-content/65">{m.opening_hours()}</dt>
-				<dd class="text-base font-semibold">{localize(location.openingHours)}</dd>
+				<dd class="flex flex-wrap items-center justify-end gap-2 text-base font-semibold">
+					{#if openState !== 'unknown'}
+						<span class="chip {openState === 'open' ? 'chip-success' : ''}">
+							<span
+								class="h-2 w-2 rounded-full {openState === 'open'
+									? 'bg-success'
+									: 'bg-base-content/40'}"
+							></span>
+							{openState === 'open' ? m.open_now() : m.closed_now()}
+						</span>
+					{/if}
+					<span>{localize(location.openingHours)}</span>
+				</dd>
 			</div>
 		{/if}
 	</dl>

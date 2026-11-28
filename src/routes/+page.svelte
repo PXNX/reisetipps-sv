@@ -8,6 +8,7 @@
 	import { currentLocale, localize } from '$lib/i18n';
 	import { findMatches } from '$lib/recommend';
 	import { matchesQuery } from '$lib/search';
+	import { openingStatus } from '$lib/openingHours';
 	import { haversineDistanceKm } from '$lib/geo';
 	import { parseShareState, shareOrCopy, sharePath } from '$lib/share';
 	import { tour } from '$lib/stores/tour.svelte';
@@ -527,6 +528,7 @@
 				{#each shownLocations as location, index (location.id)}
 					{@const visited = locationMarks.isVisited(location.id)}
 					{@const wishlisted = locationMarks.isWishlisted(location.id)}
+					{@const openState = openingStatus(location.openingHours)}
 					<button
 						type="button"
 						class="rise-in row-link"
@@ -559,6 +561,8 @@
 							<span class="block truncate text-sm text-base-content/65">
 								{location.nearestStation}{origin
 									? ` · ${Math.round(haversineDistanceKm(origin, location.coordinates))} km`
+									: ''}{openState !== 'unknown'
+									? ` · ${openState === 'open' ? m.open_short() : m.closed_short()}`
 									: ''}
 							</span>
 						</span>

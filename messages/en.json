@@ -164,5 +164,9 @@
 	"share_copied": "Link copied",
 	"share_shared": "Thanks for sharing",
 	"share_failed": "Could not copy the link.",
-	"share_hint": "The link opens your selection — no sign-in needed."
+	"share_hint": "The link opens your selection — no sign-in needed.",
+	"open_now": "Open now",
+	"closed_now": "Closed now",
+	"open_short": "Open",
+	"closed_short": "Closed"
 }

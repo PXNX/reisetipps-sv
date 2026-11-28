@@ -177,5 +177,8 @@
 	"directions_hint": "Route zu Fuß öffnen",
 	"transit_action": "Mit Bahn & Bus",
 	"transit_from": "Route ab {station}",
-	"transit_from_you": "Route von deinem Standort"
+	"transit_from_you": "Route von deinem Standort",
+	"voice_search": "Sprechen",
+	"voice_listening": "Ich höre zu …",
+	"voice_error": "Das hat nicht geklappt. Tippe bitte."
 }

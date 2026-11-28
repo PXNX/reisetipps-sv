@@ -444,6 +444,21 @@ textarea {
 	}
 }
 
+/* The microphone shows that the app is really listening, without a jarring animation. */
+.mic-pulse {
+	animation: mic-pulse 1.4s ease-in-out infinite;
+}
+
+@keyframes mic-pulse {
+	0%,
+	100% {
+		box-shadow: 0 0 0 0 color-mix(in oklab, var(--color-primary) 45%, transparent);
+	}
+	50% {
+		box-shadow: 0 0 0 7px color-mix(in oklab, var(--color-primary) 0%, transparent);
+	}
+}
+
 /* Decorative sparkle used next to a picked recommendation. */
 .twinkle {
 	animation: twinkle 2.4s ease-in-out infinite;

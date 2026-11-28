@@ -58,6 +58,7 @@
 	import LocationFilled from '~icons/fluent/location-20-filled';
 	import Eye from '~icons/fluent/eye-20-regular';
 	import EyeOff from '~icons/fluent/eye-off-20-regular';
+	import Mic from '~icons/fluent/mic-20-regular';
 
 	const icons: Record<string, Component> = {
 		'star-filled': StarFilled,
@@ -113,6 +114,7 @@
 		'location-filled': LocationFilled,
 		eye: Eye,
 		'eye-off': EyeOff,
+		mic: Mic,
 		fallback: Info
 	};
 

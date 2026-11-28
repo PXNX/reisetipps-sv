@@ -53,6 +53,74 @@
 	let resultSource = $state<'gps' | 'map' | null>(null);
 	let linkCopied = $state(false);
 
+	// The Web Speech API is not in the TypeScript DOM types yet, so describe just the part we use.
+	interface SpeechRecognitionLike {
+		lang: string;
+		interimResults: boolean;
+		maxAlternatives: number;
+		onresult: ((event: { results: ArrayLike<ArrayLike<{ transcript: string }>> }) => void) | null;
+		onerror: (() => void) | null;
+		onend: (() => void) | null;
+		start(): void;
+		stop(): void;
+	}
+	type SpeechRecognitionCtor = new () => SpeechRecognitionLike;
+	let recognition: SpeechRecognitionLike | null = null;
+	let voiceSupported = $state(false);
+	let listening = $state(false);
+	let voiceError = $state(false);
+
+	function speechConstructor(): SpeechRecognitionCtor | undefined {
+		if (!browser) return undefined;
+		const scope = window as unknown as {
+			SpeechRecognition?: SpeechRecognitionCtor;
+			webkitSpeechRecognition?: SpeechRecognitionCtor;
+		};
+		return scope.SpeechRecognition ?? scope.webkitSpeechRecognition;
+	}
+
+	function toggleVoice() {
+		if (listening) {
+			recognition?.stop();
+			listening = false;
+			return;
+		}
+		const Constructor = speechConstructor();
+		if (!Constructor) return;
+		recognition = new Constructor();
+		recognition.lang = currentLocale() === 'de' ? 'de-DE' : 'en-GB';
+		recognition.interimResults = false;
+		recognition.maxAlternatives = 1;
+		recognition.onresult = (event) => {
+			const transcript = event.results[0]?.[0]?.transcript?.trim();
+			if (transcript) {
+				query = transcript;
+				trackEvent('voice_search_used', {});
+			}
+		};
+		recognition.onerror = () => {
+			voiceError = true;
+			setTimeout(() => (voiceError = false), 6000);
+		};
+		recognition.onend = () => {
+			listening = false;
+			recognition = null;
+		};
+		try {
+			recognition.start();
+			listening = true;
+			voiceError = false;
+			trackEvent('voice_search_started', {});
+		} catch {
+			voiceError = true;
+		}
+	}
+
+	$effect(() => {
+		voiceSupported = Boolean(speechConstructor());
+		return () => recognition?.stop();
+	});
+
 	// A shared link restores its filters, tour and open place once. After that the reader's own
 	// choices win, so navigating inside the app never overwrites them again.
 	let restoredFromLink = false;
@@ -306,6 +374,20 @@
 				aria-label={m.map_search_placeholder()}
 				autocomplete="off"
 			/>
+			{#if voiceSupported}
+				<button
+					type="button"
+					class="icon-btn h-9 w-9 border-0 bg-transparent {listening
+						? 'mic-pulse text-primary'
+						: 'text-base-content/60'}"
+					onclick={toggleVoice}
+					aria-label={listening ? m.voice_listening() : m.voice_search()}
+					title={listening ? m.voice_listening() : m.voice_search()}
+					aria-pressed={listening}
+				>
+					<Icon name="mic" size={18} />
+				</button>
+			{/if}
 			{#if query}
 				<button
 					type="button"
@@ -318,6 +400,15 @@
 				</button>
 			{/if}
 		</div>
+
+		{#if voiceError}
+			<p
+				class="glass-panel pointer-events-auto mt-2 rounded-xl px-3 py-2 text-sm text-error"
+				role="alert"
+			>
+				{m.voice_error()}
+			</p>
+		{/if}
 
 		{#if query.trim()}
 			<div

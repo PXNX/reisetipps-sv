@@ -177,5 +177,8 @@
 	"directions_hint": "Open a walking route",
 	"transit_action": "By train & bus",
 	"transit_from": "Route from {station}",
-	"transit_from_you": "Route from your location"
+	"transit_from_you": "Route from your location",
+	"voice_search": "Speak",
+	"voice_listening": "Listening …",
+	"voice_error": "That did not work. Please type instead."
 }

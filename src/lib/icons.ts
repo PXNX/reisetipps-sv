@@ -12,6 +12,7 @@ export const fluentNames: Record<string, string> = {
 	map: 'map-20-regular',
 	terrain: 'mountain-trail-20-regular',
 	search: 'search-20-regular',
+	mic: 'mic-20-regular',
 	close: 'dismiss-20-regular',
 	compass: 'compass-northwest-20-regular',
 	walk: 'person-walking-20-regular',

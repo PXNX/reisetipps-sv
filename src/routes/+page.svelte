@@ -373,6 +373,7 @@
 			<LeafletMap
 				locations={shownLocations}
 				{focusId}
+				{origin}
 				highlightId={selected?.id ?? null}
 				{onselect}
 				{layer}

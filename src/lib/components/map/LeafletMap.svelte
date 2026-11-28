@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Map as LMap, TileLayer, Marker, DivIcon, ControlZoom } from 'sveaflet';
+	import { Map as LMap, TileLayer, Marker, DivIcon, ControlZoom, Polyline } from 'sveaflet';
 	import type { Map } from 'leaflet';
 	import { browser } from '$app/environment';
 	import type { Location } from '$lib/data/types';
@@ -7,6 +7,8 @@
 	import { locationMarks } from '$lib/stores/locationMarks.svelte';
 	import { fluentImg, locationIconName } from '$lib/icons';
 	import { mapTiles as tiles, type MapLayer as Layer } from '$lib/mapTiles';
+	import { haversineDistanceKm } from '$lib/geo';
+	import { tour } from '$lib/stores/tour.svelte';
 
 	const reducedMotion =
 		typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -16,6 +18,9 @@
 		if (locationMarks.isVisited(location.id)) className += ' map-pin-visited';
 		else if (locationMarks.isWishlisted(location.id)) className += ' map-pin-wishlist';
 		if (location.id === highlightId) className += ' map-pin-highlight';
+		if (origin && haversineDistanceKm(origin, location.coordinates) < 12) {
+			className += ' map-pin-near';
+		}
 		return className;
 	}
 
@@ -26,6 +31,7 @@
 		onselect: (location: Location) => void;
 		oncenterchange?: (center: [number, number]) => void;
 		layer?: Layer;
+		origin?: [number, number] | null;
 	}
 	let {
 		locations,
@@ -33,10 +39,13 @@
 		highlightId = null,
 		onselect,
 		oncenterchange,
-		layer = 'standard'
+		layer = 'standard',
+		origin = null
 	}: Props = $props();
 
 	let map = $state<Map | undefined>();
+	/** The reader's plan becomes a quiet dotted line across the lake. */
+	const tourStops = $derived(tour.plan.map((stop) => stop.coordinates));
 
 	const HOME: [number, number] = [47.66, 9.35];
 	const HOME_ZOOM = 10;
@@ -91,6 +100,19 @@
 					}}
 				/>
 			{/key}
+			{#if tourStops.length > 1}
+				<Polyline
+					latLngs={tourStops}
+					options={{
+						color: '#7fd3ea',
+						weight: 3,
+						opacity: 0.8,
+						dashArray: '2 9',
+						lineCap: 'round',
+						interactive: false
+					}}
+				/>
+			{/if}
 			{#each locations as location, index (location.id)}
 				<Marker
 					latLng={location.coordinates}
@@ -221,10 +243,35 @@
 		--pin-color: #f3b3cd;
 	}
 
+	/* A place within roughly 12 km quietly breathes, so nearby options are easy to spot. */
+	:global(.map-pin-near > div) {
+		animation:
+			pin-drop 300ms cubic-bezier(0.34, 1.5, 0.5, 1) backwards,
+			pin-near 2.8s ease-in-out 400ms infinite;
+	}
+
 	:global(.map-pin-visited > div) {
 		--pin-color: #8c9aa8;
 		opacity: 0.68;
 		filter: saturate(0.35);
+	}
+
+	:global(.map-pin-visited > div::before) {
+		content: '✓';
+		position: absolute;
+		bottom: -5px;
+		left: -5px;
+		z-index: 2;
+		width: 14px;
+		height: 14px;
+		display: grid;
+		place-items: center;
+		border-radius: 999px;
+		background: #9ce6a8;
+		color: #062330;
+		font-size: 10px;
+		font-weight: 700;
+		line-height: 1;
 	}
 
 	:global(.map-pin-wishlist > div) {
@@ -312,6 +359,20 @@
 		to {
 			opacity: 1;
 			transform: none;
+		}
+	}
+
+	@keyframes pin-near {
+		0%,
+		100% {
+			box-shadow:
+				0 3px 8px rgb(0 0 0 / 0.4),
+				0 0 0 2px rgb(6 20 32 / 0.45);
+		}
+		50% {
+			box-shadow:
+				0 3px 8px rgb(0 0 0 / 0.4),
+				0 0 0 6px color-mix(in oklab, var(--pin-color, #7fd3ea) 28%, transparent);
 		}
 	}
 

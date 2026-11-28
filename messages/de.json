@@ -191,5 +191,12 @@
 	"passport_title": "Entdecker-Pass",
 	"passport_progress": "{count} von {total} Orten entdeckt",
 	"passport_hint": "Jeder besuchte Ort bekommt einen Stempel – ohne Anmeldung.",
-	"passport_empty": "Tippe bei einem Ort auf „Als besucht markieren“. Dann erscheint hier dein erster Stempel."
+	"passport_empty": "Tippe bei einem Ort auf „Als besucht markieren“. Dann erscheint hier dein erster Stempel.",
+	"postcard_action": "Postkarte teilen",
+	"postcard_title": "Postkarte vom See",
+	"postcard_hint": "Ein Bild mit Ort und Koordinaten – zum Teilen oder Abspeichern.",
+	"postcard_note_label": "Deine Nachricht (optional)",
+	"postcard_note_placeholder": "Ein schöner Tag am See …",
+	"postcard_share": "Teilen",
+	"postcard_save": "Speichern"
 }

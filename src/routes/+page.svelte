@@ -22,6 +22,7 @@
 	import EmptyState from '$lib/components/ui/EmptyState.svelte';
 	import RevealCard from '$lib/components/places/RevealCard.svelte';
 	import CollectionsSheet from '$lib/components/sheets/CollectionsSheet.svelte';
+	import PostcardSheet from '$lib/components/sheets/PostcardSheet.svelte';
 	import { getCollection } from '$lib/collections';
 	import FilterSheet from '$lib/components/sheets/FilterSheet.svelte';
 	import LocationDetails from '$lib/components/places/LocationDetails.svelte';
@@ -51,6 +52,7 @@
 	let filterOpen = $state(false);
 	let listOpen = $state(false);
 	let collectionOpen = $state(false);
+	let postcardOpen = $state(false);
 	let activeCollectionId = $state<string | null>(null);
 	const activeCollection = $derived(getCollection(activeCollectionId));
 	let notice = $state<'fallback' | 'no-matches' | null>(null);
@@ -738,6 +740,8 @@
 	</div>
 </div>
 
+<PostcardSheet open={postcardOpen} onclose={() => (postcardOpen = false)} location={selected} />
+
 <CollectionsSheet
 	open={collectionOpen}
 	onclose={() => (collectionOpen = false)}
@@ -871,7 +875,14 @@
 					{/if}
 				</div>
 			{/if}
-			<LocationDetails location={selected} {origin} />
+			<LocationDetails
+				location={selected}
+				{origin}
+				onpostcard={() => {
+					postcardOpen = true;
+					trackEvent('postcard_opened', { place: selected?.id ?? 'unknown' });
+				}}
+			/>
 			<div class="grid gap-2 sm:grid-cols-2">
 				<button class="btn gap-2 btn-soft" onclick={recommendNearby} disabled={locating}>
 					<Icon name="refresh" size={18} />

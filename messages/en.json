@@ -191,5 +191,12 @@
 	"passport_title": "Explorer passport",
 	"passport_progress": "{count} of {total} places explored",
 	"passport_hint": "Every visited place earns a stamp — no sign-in needed.",
-	"passport_empty": "Mark a place as visited and your first stamp will appear here."
+	"passport_empty": "Mark a place as visited and your first stamp will appear here.",
+	"postcard_action": "Share a postcard",
+	"postcard_title": "Postcard from the lake",
+	"postcard_hint": "A picture with the place and its coordinates — share or save it.",
+	"postcard_note_label": "Your note (optional)",
+	"postcard_note_placeholder": "A lovely day by the lake …",
+	"postcard_share": "Share",
+	"postcard_save": "Save"
 }

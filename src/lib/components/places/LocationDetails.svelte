@@ -20,8 +20,15 @@
 	import ZoomableImage from './ZoomableImage.svelte';
 	import * as m from '$lib/paraglide/messages.js';
 
-	let { location, origin = null }: { location: Location; origin?: [number, number] | null } =
-		$props();
+	let {
+		location,
+		origin = null,
+		onpostcard = () => {}
+	}: {
+		location: Location;
+		origin?: [number, number] | null;
+		onpostcard?: () => void;
+	} = $props();
 
 	const visited = $derived(locationMarks.isVisited(location.id));
 	const wishlisted = $derived(locationMarks.isWishlisted(location.id));
@@ -215,6 +222,11 @@
 	<!-- eslint-enable svelte/no-navigation-without-resolve -->
 
 	<div class="space-y-3 border-t border-white/8 pt-5">
+		<button type="button" class="row-link" onclick={onpostcard}>
+			<span class="icon-tile"><Icon name="image" size={20} /></span>
+			<span class="min-w-0 flex-1 font-semibold">{m.postcard_action()}</span>
+			<Icon name="chevron-right" class="shrink-0 text-base-content/35" />
+		</button>
 		<button
 			class="btn w-full gap-2 btn-lg {inTour ? 'btn-soft' : 'btn-primary'}"
 			class:tour-added={inTour}

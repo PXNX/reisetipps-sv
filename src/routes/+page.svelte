@@ -5,8 +5,9 @@
 	import { locations } from '$lib/data/locations';
 	import type { Location } from '$lib/data/types';
 	import { categoryLabel } from '$lib/categories';
-	import { localize } from '$lib/i18n';
+	import { currentLocale, localize } from '$lib/i18n';
 	import { findMatches } from '$lib/recommend';
+	import { matchesQuery } from '$lib/search';
 	import { haversineDistanceKm } from '$lib/geo';
 	import { parseShareState, shareOrCopy, sharePath } from '$lib/share';
 	import { tour } from '$lib/stores/tour.svelte';
@@ -81,23 +82,14 @@
 
 	/** Places on the map: filters, search and visited state applied, nearest first when located. */
 	const shownLocations = $derived.by(() => {
-		const needle = query.trim().toLocaleLowerCase();
 		const cats = filters.categories;
 		const dur = filters.duration;
+		const locale = currentLocale();
 		const list = locations.filter((location) => {
 			if (hideVisited && locationMarks.isVisited(location.id)) return false;
 			if (cats.length > 0 && !location.categories.some((c) => cats.includes(c))) return false;
 			if (dur && !location.duration.includes(dur)) return false;
-			if (!needle) return true;
-			const haystack = [
-				location.name.de,
-				location.name.en,
-				location.nearestStation,
-				...location.categories.map((category) => categoryLabel(category))
-			]
-				.join(' ')
-				.toLocaleLowerCase();
-			return haystack.includes(needle);
+			return matchesQuery(location, query, locale);
 		});
 		const from = origin;
 		if (!from) return list;

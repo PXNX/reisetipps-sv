@@ -9,6 +9,7 @@
 	import ServiceWorker from '$lib/components/sheets/ServiceWorker.svelte';
 	import SettingsSheet from '$lib/components/sheets/SettingsSheet.svelte';
 	import PassportSheet from '$lib/components/sheets/PassportSheet.svelte';
+	import SuggestSheet from '$lib/components/sheets/SuggestSheet.svelte';
 	import TourPlanner from '$lib/components/sheets/TourPlanner.svelte';
 	import WishlistSheet from '$lib/components/sheets/WishlistSheet.svelte';
 	import { locationMarks } from '$lib/stores/locationMarks.svelte';
@@ -23,6 +24,7 @@
 	let wishlistOpen = $state(false);
 	let settingsOpen = $state(false);
 	let passportOpen = $state(false);
+	let suggestOpen = $state(false);
 
 	function openWishlist() {
 		wishlistOpen = true;
@@ -106,6 +108,12 @@
 			passportOpen = true;
 			trackEvent('passport_opened', {});
 		}}
+		onopenSuggest={() => {
+			settingsOpen = false;
+			suggestOpen = true;
+			trackEvent('suggest_opened', {});
+		}}
 	/>
 	<PassportSheet open={passportOpen} onclose={() => (passportOpen = false)} />
+	<SuggestSheet open={suggestOpen} onclose={() => (suggestOpen = false)} />
 </div>

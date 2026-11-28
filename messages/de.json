@@ -199,5 +199,21 @@
 	"postcard_note_placeholder": "Ein schöner Tag am See …",
 	"postcard_share": "Teilen",
 	"postcard_save": "Speichern",
-	"guides_now": "Gerade jetzt"
+	"guides_now": "Gerade jetzt",
+	"suggest_title": "Tipp einreichen",
+	"suggest_hint": "Du kennst einen schönen Ort? Schreib ihn kurz auf – wir bereiten eine Nachricht vor, die du teilen oder kopieren kannst.",
+	"suggest_place_label": "Wie heißt der Ort?",
+	"suggest_place_placeholder": "z. B. Käslädele in Hörbranz",
+	"suggest_town_label": "In welchem Ort liegt er?",
+	"suggest_town_placeholder": "z. B. Hörbranz",
+	"suggest_note_label": "Warum ist er einen Tipp wert?",
+	"suggest_note_placeholder": "Kurze Beschreibung, Öffnungszeiten oder dein persönlicher Tipp",
+	"suggest_url_label": "Website (optional)",
+	"suggest_url_placeholder": "https://…",
+	"suggest_prepare": "Nachricht vorbereiten",
+	"suggest_ready": "Deine Nachricht ist fertig",
+	"suggest_copy": "Text kopieren",
+	"suggest_copied": "Kopiert",
+	"suggest_share": "Teilen",
+	"suggest_again": "Neuen Tipp schreiben"
 }

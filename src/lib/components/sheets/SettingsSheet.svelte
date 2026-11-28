@@ -22,9 +22,10 @@
 		open: boolean;
 		onclose: () => void;
 		onopenPassport: () => void;
+		onopenSuggest: () => void;
 	}
 
-	let { open, onclose, onopenPassport }: Props = $props();
+	let { open, onclose, onopenPassport, onopenSuggest }: Props = $props();
 
 	/** Each tile source's credit once, in the order the layers appear on the map. */
 	const mapCredits = [
@@ -106,6 +107,12 @@
 						{m.passport_progress({ count: locationMarks.visited.size, total: locations.length })}
 					</span>
 				</span>
+				<Icon name="chevron-right" class="shrink-0 text-base-content/35" />
+			</button>
+
+			<button type="button" class="row-link" onclick={onopenSuggest}>
+				<span class="icon-tile"><Icon name="bulb" size={20} /></span>
+				<span class="min-w-0 flex-1 font-semibold">{m.suggest_title()}</span>
 				<Icon name="chevron-right" class="shrink-0 text-base-content/35" />
 			</button>
 

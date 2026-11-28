@@ -199,5 +199,21 @@
 	"postcard_note_placeholder": "A lovely day by the lake …",
 	"postcard_share": "Share",
 	"postcard_save": "Save",
-	"guides_now": "Right now"
+	"guides_now": "Right now",
+	"suggest_title": "Suggest a place",
+	"suggest_hint": "Know a lovely place? Write a few words and we will prepare a message you can share or copy.",
+	"suggest_place_label": "What is the place called?",
+	"suggest_place_placeholder": "e.g. cheese shop in Hörbranz",
+	"suggest_town_label": "Which town is it in?",
+	"suggest_town_placeholder": "e.g. Hörbranz",
+	"suggest_note_label": "Why is it worth a tip?",
+	"suggest_note_placeholder": "A short description, opening hours or your own tip",
+	"suggest_url_label": "Website (optional)",
+	"suggest_url_placeholder": "https://…",
+	"suggest_prepare": "Prepare message",
+	"suggest_ready": "Your message is ready",
+	"suggest_copy": "Copy text",
+	"suggest_copied": "Copied",
+	"suggest_share": "Share",
+	"suggest_again": "Write another tip"
 }

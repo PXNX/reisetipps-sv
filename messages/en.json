@@ -180,5 +180,7 @@
 	"transit_from_you": "Route from your location",
 	"voice_search": "Speak",
 	"voice_listening": "Listening …",
-	"voice_error": "That did not work. Please type instead."
+	"voice_error": "That did not work. Please type instead.",
+	"reveal_label": "A place for you",
+	"reveal_continue": "See details"
 }

@@ -20,6 +20,7 @@
 	import BottomSheet from '$lib/components/sheets/BottomSheet.svelte';
 	import Icon from '$lib/components/ui/Icon.svelte';
 	import EmptyState from '$lib/components/ui/EmptyState.svelte';
+	import RevealCard from '$lib/components/places/RevealCard.svelte';
 	import FilterSheet from '$lib/components/sheets/FilterSheet.svelte';
 	import LocationDetails from '$lib/components/places/LocationDetails.svelte';
 	import type { MapLayer } from '$lib/mapTiles';
@@ -48,6 +49,9 @@
 	let filterOpen = $state(false);
 	let listOpen = $state(false);
 	let notice = $state<'fallback' | 'no-matches' | null>(null);
+	let reveal = $state<Location | null>(null);
+	let revealTimer: ReturnType<typeof setTimeout> | null = null;
+	const reduceMotion = browser && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 	let shown = $state<string[]>([]);
 	let resultDistance = $state<number | null>(null);
 	let resultSource = $state<'gps' | 'map' | null>(null);
@@ -118,7 +122,10 @@
 
 	$effect(() => {
 		voiceSupported = Boolean(speechConstructor());
-		return () => recognition?.stop();
+		return () => {
+			recognition?.stop();
+			if (revealTimer) clearTimeout(revealTimer);
+		};
 	});
 
 	// A shared link restores its filters, tour and open place once. After that the reader's own
@@ -139,6 +146,19 @@
 			focusId = id;
 		}
 	});
+
+	/** The reveal hands over to the details sheet; a tap can skip the short animation. */
+	function openPick(pick: Location) {
+		if (revealTimer) clearTimeout(revealTimer);
+		revealTimer = null;
+		reveal = null;
+		selected = pick;
+		focusId = pick.id;
+	}
+
+	function skipReveal() {
+		if (reveal) openPick(reveal);
+	}
 
 	/** One clear way out of an empty result: show everything again. */
 	function showAll() {
@@ -322,9 +342,14 @@
 		shown = [...shown, pick.id];
 		resultDistance = haversineDistanceKm(center, pick.coordinates);
 		resultSource = source;
-		selected = pick;
-		focusId = pick.id;
 		query = '';
+		if (reduceMotion) {
+			openPick(pick);
+		} else {
+			reveal = pick;
+			if (revealTimer) clearTimeout(revealTimer);
+			revealTimer = setTimeout(() => openPick(pick), 1400);
+		}
 		trackEvent('nearby_recommendation', {
 			place: pick.id,
 			source,
@@ -801,3 +826,7 @@
 		</div>
 	{/if}
 </BottomSheet>
+
+{#if reveal}
+	<RevealCard location={reveal} distanceKm={resultDistance} oncontinue={skipReveal} />
+{/if}

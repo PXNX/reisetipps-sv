@@ -180,5 +180,7 @@
 	"transit_from_you": "Route von deinem Standort",
 	"voice_search": "Sprechen",
 	"voice_listening": "Ich höre zu …",
-	"voice_error": "Das hat nicht geklappt. Tippe bitte."
+	"voice_error": "Das hat nicht geklappt. Tippe bitte.",
+	"reveal_label": "Ein Ort für dich",
+	"reveal_continue": "Details ansehen"
 }

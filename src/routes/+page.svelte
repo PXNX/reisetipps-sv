@@ -21,6 +21,8 @@
 	import Icon from '$lib/components/ui/Icon.svelte';
 	import EmptyState from '$lib/components/ui/EmptyState.svelte';
 	import RevealCard from '$lib/components/places/RevealCard.svelte';
+	import CollectionsSheet from '$lib/components/sheets/CollectionsSheet.svelte';
+	import { getCollection } from '$lib/collections';
 	import FilterSheet from '$lib/components/sheets/FilterSheet.svelte';
 	import LocationDetails from '$lib/components/places/LocationDetails.svelte';
 	import type { MapLayer } from '$lib/mapTiles';
@@ -48,6 +50,9 @@
 	let locationError = $state(false);
 	let filterOpen = $state(false);
 	let listOpen = $state(false);
+	let collectionOpen = $state(false);
+	let activeCollectionId = $state<string | null>(null);
+	const activeCollection = $derived(getCollection(activeCollectionId));
 	let notice = $state<'fallback' | 'no-matches' | null>(null);
 	let reveal = $state<Location | null>(null);
 	let revealTimer: ReturnType<typeof setTimeout> | null = null;
@@ -160,10 +165,23 @@
 		if (reveal) openPick(reveal);
 	}
 
+	/** A collection opens as a short list, so the choice feels small and doable. */
+	function selectCollection(id: string) {
+		activeCollectionId = id;
+		collectionOpen = false;
+		listOpen = true;
+	}
+
+	function leaveCollection() {
+		activeCollectionId = null;
+		trackEvent('collection_left', {});
+	}
+
 	/** One clear way out of an empty result: show everything again. */
 	function showAll() {
 		filters.reset();
 		hideVisited = false;
+		activeCollectionId = null;
 		query = '';
 		notice = null;
 		trackEvent('empty_state_reset', {});
@@ -189,6 +207,7 @@
 		const dur = filters.duration;
 		const locale = currentLocale();
 		const list = locations.filter((location) => {
+			if (activeCollection && !activeCollection.placeIds.includes(location.id)) return false;
 			if (hideVisited && locationMarks.isVisited(location.id)) return false;
 			if (cats.length > 0 && !location.categories.some((c) => cats.includes(c))) return false;
 			if (dur && !location.duration.includes(dur)) return false;
@@ -510,6 +529,19 @@
 				role="group"
 				aria-label={m.filter_categories_label()}
 			>
+				<button
+					type="button"
+					class="chip min-h-11 shrink-0 gap-1.5 px-3.5 text-[0.95rem] {activeCollection
+						? 'chip-primary'
+						: ''}"
+					onclick={() => {
+						collectionOpen = true;
+						trackEvent('collections_sheet_opened', {});
+					}}
+				>
+					<Icon name="sparkle" size={17} />
+					{m.collections_open()}
+				</button>
 				{#each quickCategories as category (category)}
 					{@const selected = filters.categories.includes(category)}
 					<button
@@ -632,6 +664,26 @@
 		</div>
 	{/if}
 
+	{#if activeCollection}
+		<div
+			class="glass-panel pointer-events-auto absolute inset-x-3 bottom-[5.9rem] z-[1000] mx-auto flex max-w-sm items-center gap-2 rounded-xl px-3 py-2 sm:right-auto sm:left-4"
+		>
+			<Icon name="sparkle" class="shrink-0 text-primary" size={17} />
+			<span class="min-w-0 flex-1 truncate text-sm font-semibold">
+				{m.collections_active({ name: localize(activeCollection.title) })}
+			</span>
+			<button
+				type="button"
+				class="icon-btn h-8 w-8 shrink-0 border-0 bg-transparent text-base-content/60"
+				onclick={leaveCollection}
+				aria-label={m.collections_clear()}
+				title={m.collections_clear()}
+			>
+				<Icon name="close" size={16} />
+			</button>
+		</div>
+	{/if}
+
 	<!-- Thumb bar. The side buttons keep their size; only the recommendation grows. -->
 	<div
 		class="pointer-events-none absolute inset-x-0 bottom-0 z-[1000] px-3"
@@ -685,6 +737,12 @@
 		</div>
 	</div>
 </div>
+
+<CollectionsSheet
+	open={collectionOpen}
+	onclose={() => (collectionOpen = false)}
+	onselect={selectCollection}
+/>
 
 <FilterSheet
 	open={filterOpen}

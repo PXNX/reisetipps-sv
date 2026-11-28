@@ -182,5 +182,10 @@
 	"voice_listening": "Listening …",
 	"voice_error": "That did not work. Please type instead.",
 	"reveal_label": "A place for you",
-	"reveal_continue": "See details"
+	"reveal_continue": "See details",
+	"collections_title": "Ideas for today",
+	"collections_hint": "Small sets for big and small plans.",
+	"collections_open": "Ideas",
+	"collections_active": "Collection: {name}",
+	"collections_clear": "Leave collection"
 }

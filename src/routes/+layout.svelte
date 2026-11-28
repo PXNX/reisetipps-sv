@@ -8,6 +8,7 @@
 	import InstallHint from '$lib/components/sheets/InstallHint.svelte';
 	import ServiceWorker from '$lib/components/sheets/ServiceWorker.svelte';
 	import SettingsSheet from '$lib/components/sheets/SettingsSheet.svelte';
+	import PassportSheet from '$lib/components/sheets/PassportSheet.svelte';
 	import TourPlanner from '$lib/components/sheets/TourPlanner.svelte';
 	import WishlistSheet from '$lib/components/sheets/WishlistSheet.svelte';
 	import { locationMarks } from '$lib/stores/locationMarks.svelte';
@@ -21,6 +22,7 @@
 
 	let wishlistOpen = $state(false);
 	let settingsOpen = $state(false);
+	let passportOpen = $state(false);
 
 	function openWishlist() {
 		wishlistOpen = true;
@@ -43,7 +45,7 @@
 			<!-- eslint-disable-next-line svelte/no-navigation-without-resolve -- localized internal link -->
 			<a
 				href={localizeHref('/')}
-				class="btn gap-2 btn-ghost -ml-1 h-11 px-2.5 text-base-content/85"
+				class="btn -ml-1 h-11 gap-2 btn-ghost px-2.5 text-base-content/85"
 				aria-label={m.nav_map()}
 			>
 				<Icon name="arrow-left" size={18} />
@@ -96,5 +98,14 @@
 	<ServiceWorker />
 	<TourPlanner />
 	<WishlistSheet open={wishlistOpen} onclose={() => (wishlistOpen = false)} />
-	<SettingsSheet open={settingsOpen} onclose={() => (settingsOpen = false)} />
+	<SettingsSheet
+		open={settingsOpen}
+		onclose={() => (settingsOpen = false)}
+		onopenPassport={() => {
+			settingsOpen = false;
+			passportOpen = true;
+			trackEvent('passport_opened', {});
+		}}
+	/>
+	<PassportSheet open={passportOpen} onclose={() => (passportOpen = false)} />
 </div>

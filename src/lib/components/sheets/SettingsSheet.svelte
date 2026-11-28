@@ -15,12 +15,16 @@
 	import BottomSheet from './BottomSheet.svelte';
 	import Icon from '../ui/Icon.svelte';
 
+	import { locationMarks } from '$lib/stores/locationMarks.svelte';
+	import { locations } from '$lib/data/locations';
+
 	interface Props {
 		open: boolean;
 		onclose: () => void;
+		onopenPassport: () => void;
 	}
 
-	let { open, onclose }: Props = $props();
+	let { open, onclose, onopenPassport }: Props = $props();
 
 	/** Each tile source's credit once, in the order the layers appear on the map. */
 	const mapCredits = [
@@ -94,6 +98,17 @@
 		</section>
 
 		<section class="space-y-2 border-t border-white/8 pt-5">
+			<button type="button" class="row-link" onclick={onopenPassport}>
+				<span class="icon-tile"><Icon name="check-circle" size={20} /></span>
+				<span class="min-w-0 flex-1">
+					<span class="block font-semibold">{m.passport_title()}</span>
+					<span class="block truncate text-sm text-base-content/60">
+						{m.passport_progress({ count: locationMarks.visited.size, total: locations.length })}
+					</span>
+				</span>
+				<Icon name="chevron-right" class="shrink-0 text-base-content/35" />
+			</button>
+
 			<button
 				type="button"
 				class="row-link"

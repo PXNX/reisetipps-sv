@@ -187,5 +187,9 @@
 	"collections_hint": "Kleine Sammlungen für größere und kleinere Pläne.",
 	"collections_open": "Ideen",
 	"collections_active": "Sammlung: {name}",
-	"collections_clear": "Sammlung beenden"
+	"collections_clear": "Sammlung beenden",
+	"passport_title": "Entdecker-Pass",
+	"passport_progress": "{count} von {total} Orten entdeckt",
+	"passport_hint": "Jeder besuchte Ort bekommt einen Stempel – ohne Anmeldung.",
+	"passport_empty": "Tippe bei einem Ort auf „Als besucht markieren“. Dann erscheint hier dein erster Stempel."
 }

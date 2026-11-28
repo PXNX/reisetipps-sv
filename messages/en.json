@@ -187,5 +187,9 @@
 	"collections_hint": "Small sets for big and small plans.",
 	"collections_open": "Ideas",
 	"collections_active": "Collection: {name}",
-	"collections_clear": "Leave collection"
+	"collections_clear": "Leave collection",
+	"passport_title": "Explorer passport",
+	"passport_progress": "{count} of {total} places explored",
+	"passport_hint": "Every visited place earns a stamp — no sign-in needed.",
+	"passport_empty": "Mark a place as visited and your first stamp will appear here."
 }

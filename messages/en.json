@@ -172,5 +172,7 @@
 	"empty_title": "Nothing matches just now.",
 	"empty_body": "Another search word or one fewer filter will get you going.",
 	"empty_search_body": "We found nothing for that search. Try a shorter word or look at the map.",
-	"empty_action_all": "Show all places"
+	"empty_action_all": "Show all places",
+	"bring_me_there": "Take me there",
+	"directions_hint": "Open a walking route"
 }

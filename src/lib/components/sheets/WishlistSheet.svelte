@@ -11,7 +11,7 @@
 	import { locationMarks } from '$lib/stores/locationMarks.svelte';
 	import { trackEvent } from '$lib/telemetry';
 	import { locations } from '$lib/data/locations';
-	import type { Location } from '$lib/data/types';
+	import { directionsUrl, type Location } from '$lib/data/types';
 	import Icon from '../ui/Icon.svelte';
 	import { thumbnail } from '$lib/photos';
 	import BottomSheet from './BottomSheet.svelte';
@@ -84,6 +84,20 @@
 							</span>
 							<Icon name="chevron-right" class="shrink-0 text-base-content/35" />
 						</button>
+						<!-- eslint-disable svelte/no-navigation-without-resolve -- external walking directions -->
+						<a
+							href={directionsUrl(location)}
+							target="_blank"
+							rel="noreferrer"
+							class="icon-btn h-9 w-9 shrink-0 border-0 bg-primary/15 text-primary"
+							aria-label={m.bring_me_there()}
+							title={m.bring_me_there()}
+							onclick={() =>
+								trackEvent('place_link_opened', { kind: 'directions', place: location.id })}
+						>
+							<Icon name="navigation" size={18} />
+						</a>
+						<!-- eslint-enable svelte/no-navigation-without-resolve -->
 						<button
 							type="button"
 							class="icon-btn h-9 w-9 shrink-0 border-0 bg-transparent text-base-content/50 hover:bg-white/8 hover:text-error"

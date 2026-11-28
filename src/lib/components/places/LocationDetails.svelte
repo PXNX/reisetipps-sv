@@ -1,5 +1,11 @@
 <script lang="ts">
-	import { cyclingMapUrl, googleMapsUrl, hikingMapUrl, type Location } from '$lib/data/types';
+	import {
+		cyclingMapUrl,
+		directionsUrl,
+		googleMapsUrl,
+		hikingMapUrl,
+		type Location
+	} from '$lib/data/types';
 	import { localize } from '$lib/i18n';
 	import { categoryLabel } from '$lib/categories';
 	import { locationIconName, categoryIcons } from '$lib/icons';
@@ -13,7 +19,8 @@
 	import ZoomableImage from './ZoomableImage.svelte';
 	import * as m from '$lib/paraglide/messages.js';
 
-	let { location }: { location: Location } = $props();
+	let { location, origin = null }: { location: Location; origin?: [number, number] | null } =
+		$props();
 
 	const visited = $derived(locationMarks.isVisited(location.id));
 	const wishlisted = $derived(locationMarks.isWishlisted(location.id));
@@ -35,7 +42,7 @@
 		trackEvent('tour_toggle', { action: inTour ? 'remove' : 'add', place: location.id });
 	}
 
-	function openLink(kind: 'maps' | 'hiking' | 'cycling' | 'website') {
+	function openLink(kind: 'directions' | 'maps' | 'hiking' | 'cycling' | 'website') {
 		trackEvent('place_link_opened', { kind, place: location.id });
 	}
 
@@ -77,6 +84,22 @@
 			</span>
 		{/each}
 	</div>
+
+	<!-- eslint-disable svelte/no-navigation-without-resolve -- external walking directions -->
+	<div>
+		<a
+			href={directionsUrl(location, origin)}
+			target="_blank"
+			rel="noreferrer"
+			class="btn w-full gap-2 btn-lg btn-primary"
+			onclick={() => openLink('directions')}
+		>
+			<Icon name="navigation" size={21} />
+			{m.bring_me_there()}
+		</a>
+		<p class="mt-1.5 text-center text-xs text-base-content/60">{m.directions_hint()}</p>
+	</div>
+	<!-- eslint-enable svelte/no-navigation-without-resolve -->
 
 	<p class="text-base leading-relaxed text-base-content/90">{localize(location.description)}</p>
 

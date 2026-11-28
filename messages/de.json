@@ -172,5 +172,7 @@
 	"empty_title": "Da ist gerade nichts dabei.",
 	"empty_body": "Ein anderer Suchbegriff oder ein Filter weniger bringt dich weiter.",
 	"empty_search_body": "Für diese Suche haben wir nichts gefunden. Versuch es kürzer oder sieh in die Karte.",
-	"empty_action_all": "Alle Orte anzeigen"
+	"empty_action_all": "Alle Orte anzeigen",
+	"bring_me_there": "Bring mich hin",
+	"directions_hint": "Route zu Fuß öffnen"
 }

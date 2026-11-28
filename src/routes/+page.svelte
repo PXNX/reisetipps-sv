@@ -3,7 +3,7 @@
 	import { browser } from '$app/environment';
 	import * as m from '$lib/paraglide/messages.js';
 	import { locations } from '$lib/data/locations';
-	import type { Category, Location } from '$lib/data/types';
+	import { directionsUrl, type Category, type Location } from '$lib/data/types';
 	import { categoryLabel } from '$lib/categories';
 	import { categoryIcons } from '$lib/icons';
 	import { currentLocale, localize } from '$lib/i18n';
@@ -340,28 +340,47 @@
 						/>
 					{:else}
 						{#each searchResults as location, index (location.id)}
-							<button
-								type="button"
-								class="rise-in flex w-full items-center gap-3 rounded-xl px-2 py-2 text-left transition-colors hover:bg-white/6 focus-visible:bg-white/6"
+							<div
+								class="rise-in flex items-center gap-1 rounded-xl px-2 py-2 transition-colors hover:bg-white/6"
 								style="animation-delay: {Math.min(index, 8) * 22}ms"
 								role="option"
 								aria-selected="false"
-								onclick={() => onselect(location)}
 							>
-								<img
-									src={thumbnail(location)}
-									alt=""
-									class="h-11 w-11 shrink-0 rounded-lg object-cover ring-1 ring-white/10"
-									loading="lazy"
-								/>
-								<span class="min-w-0 flex-1">
-									<span class="block truncate font-semibold">{localize(location.name)}</span>
-									<span class="block truncate text-sm text-base-content/65">
-										{location.nearestStation} · {categoryLabel(location.categories[0] ?? 'nature')}
+								<button
+									type="button"
+									class="flex min-w-0 flex-1 items-center gap-3 text-left"
+									onclick={() => onselect(location)}
+								>
+									<img
+										src={thumbnail(location)}
+										alt=""
+										class="h-11 w-11 shrink-0 rounded-lg object-cover ring-1 ring-white/10"
+										loading="lazy"
+									/>
+									<span class="min-w-0 flex-1">
+										<span class="block truncate font-semibold">{localize(location.name)}</span>
+										<span class="block truncate text-sm text-base-content/65">
+											{location.nearestStation} · {categoryLabel(
+												location.categories[0] ?? 'nature'
+											)}
+										</span>
 									</span>
-								</span>
-								<Icon name="chevron-right" class="shrink-0 text-base-content/35" />
-							</button>
+								</button>
+								<!-- eslint-disable svelte/no-navigation-without-resolve -- external walking directions -->
+								<a
+									href={directionsUrl(location, origin)}
+									target="_blank"
+									rel="noreferrer"
+									class="icon-btn h-10 w-10 shrink-0 border-0 bg-primary/15 text-primary"
+									aria-label={m.bring_me_there()}
+									title={m.bring_me_there()}
+									onclick={() =>
+										trackEvent('place_link_opened', { kind: 'directions', place: location.id })}
+								>
+									<Icon name="navigation" size={18} />
+								</a>
+								<!-- eslint-enable svelte/no-navigation-without-resolve -->
+							</div>
 						{/each}
 					{/if}
 				</div>
@@ -599,45 +618,59 @@
 					{@const visited = locationMarks.isVisited(location.id)}
 					{@const wishlisted = locationMarks.isWishlisted(location.id)}
 					{@const openState = openingStatus(location.openingHours)}
-					<button
-						type="button"
-						class="rise-in row-link"
-						style="animation-delay: {Math.min(index, 8) * 22}ms"
-						onclick={() => {
-							listOpen = false;
-							onselect(location);
-						}}
-					>
-						<img
-							src={thumbnail(location)}
-							alt=""
-							class="h-12 w-12 shrink-0 rounded-xl object-cover ring-1 ring-white/10"
-							loading="lazy"
-						/>
-						<span class="min-w-0 flex-1">
-							<span class="flex items-center gap-1.5">
-								<span class="truncate font-semibold">{localize(location.name)}</span>
-								{#if wishlisted}<Icon
-										name="star-filled"
-										class="shrink-0 text-secondary"
-										size={14}
-									/>{/if}
-								{#if visited}<Icon
-										name="check-circle"
-										class="shrink-0 text-success"
-										size={14}
-									/>{/if}
+					<div class="rise-in row-link" style="animation-delay: {Math.min(index, 8) * 22}ms">
+						<button
+							type="button"
+							class="flex min-w-0 flex-1 items-center gap-3 text-left"
+							onclick={() => {
+								listOpen = false;
+								onselect(location);
+							}}
+						>
+							<img
+								src={thumbnail(location)}
+								alt=""
+								class="h-12 w-12 shrink-0 rounded-xl object-cover ring-1 ring-white/10"
+								loading="lazy"
+							/>
+							<span class="min-w-0 flex-1">
+								<span class="flex items-center gap-1.5">
+									<span class="truncate font-semibold">{localize(location.name)}</span>
+									{#if wishlisted}<Icon
+											name="star-filled"
+											class="shrink-0 text-secondary"
+											size={14}
+										/>{/if}
+									{#if visited}<Icon
+											name="check-circle"
+											class="shrink-0 text-success"
+											size={14}
+										/>{/if}
+								</span>
+								<span class="block truncate text-sm text-base-content/65">
+									{location.nearestStation}{origin
+										? ` · ${Math.round(haversineDistanceKm(origin, location.coordinates))} km`
+										: ''}{openState !== 'unknown'
+										? ` · ${openState === 'open' ? m.open_short() : m.closed_short()}`
+										: ''}
+								</span>
 							</span>
-							<span class="block truncate text-sm text-base-content/65">
-								{location.nearestStation}{origin
-									? ` · ${Math.round(haversineDistanceKm(origin, location.coordinates))} km`
-									: ''}{openState !== 'unknown'
-									? ` · ${openState === 'open' ? m.open_short() : m.closed_short()}`
-									: ''}
-							</span>
-						</span>
-						<Icon name="chevron-right" class="shrink-0 text-base-content/35" />
-					</button>
+						</button>
+						<!-- eslint-disable svelte/no-navigation-without-resolve -- external walking directions -->
+						<a
+							href={directionsUrl(location, origin)}
+							target="_blank"
+							rel="noreferrer"
+							class="icon-btn h-11 w-11 shrink-0 border-0 bg-primary/15 text-primary"
+							aria-label={m.bring_me_there()}
+							title={m.bring_me_there()}
+							onclick={() =>
+								trackEvent('place_link_opened', { kind: 'directions', place: location.id })}
+						>
+							<Icon name="navigation" size={19} />
+						</a>
+						<!-- eslint-enable svelte/no-navigation-without-resolve -->
+					</div>
 				{/each}
 			</div>
 		{/if}
@@ -663,7 +696,7 @@
 					{/if}
 				</div>
 			{/if}
-			<LocationDetails location={selected} />
+			<LocationDetails location={selected} {origin} />
 			<div class="grid gap-2 sm:grid-cols-2">
 				<button class="btn gap-2 btn-soft" onclick={recommendNearby} disabled={locating}>
 					<Icon name="refresh" size={18} />

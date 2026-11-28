@@ -52,6 +52,18 @@ export function googleMapsUrl(location: Location): string {
 	return `https://www.google.com/maps/search/?api=1&query=${lat},${lng}`;
 }
 
+/** Walking directions to a place, starting at the reader's position when we know it. */
+export function directionsUrl(location: Location, origin?: [number, number] | null): string {
+	const [lat, lng] = location.coordinates;
+	const params = new URLSearchParams({
+		api: '1',
+		destination: `${lat},${lng}`,
+		travelmode: 'walking'
+	});
+	if (origin) params.set('origin', `${origin[0]},${origin[1]}`);
+	return `https://www.google.com/maps/dir/?${params}`;
+}
+
 export function hikingMapUrl(location: Location): string {
 	const [lat, lng] = location.coordinates;
 	return `https://www.opentopomap.org/#marker=15/${lat}/${lng}`;
